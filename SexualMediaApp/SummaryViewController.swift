@@ -464,10 +464,10 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             return cell
         } else { //related
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.listCell, for:indexPath)  else { return UITableViewCell()}
-        cell.setCellInfo(articleData: relatedArticleArray[indexPath.row])
-        cell.clipButton.addTarget(self, action:#selector(handleButton2(sender:event:)), for:  UIControl.Event.touchUpInside)
-        
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.listCell, for:indexPath)  else { return UITableViewCell()}
+            cell.setCellInfo(articleData: relatedArticleArray[indexPath.row])
+            cell.clipButton.addTarget(self, action:#selector(handleButton2(sender:event:)), for:  UIControl.Event.touchUpInside)
+            
         return cell
         }
     }
@@ -504,6 +504,23 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     
     @objc func sourceButton(sender:UIButton, event:UIEvent){
+        let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let sourceViewController:SourceViewController = InfoStoryboard.instantiateViewController(withIdentifier: "Source") as! SourceViewController
+        
+        //let sourceName = receiveCellViewModel!.sourceName!
+        //let title = receiveCellViewModel!.titleStr
+        self.navigationController?.pushViewController(sourceViewController, animated: true)
+        /*
+         let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
+         let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+         
+         let profileViewController:ProfileViewController = InfoStoryboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+         let summaryViewController:SummaryViewController = MainStoryboard.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
+         */
+    }
+    
+    /*Facebookログインしている人をタップした時の処理
+    @objc func sourceButton(sender:UIButton, event:UIEvent){
         let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
         let profileViewController:ProfileViewController = InfoStoryboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
         
@@ -517,7 +534,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
          let profileViewController:ProfileViewController = InfoStoryboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
          let summaryViewController:SummaryViewController = MainStoryboard.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
          */
-    }
+    }*/
     
     
     

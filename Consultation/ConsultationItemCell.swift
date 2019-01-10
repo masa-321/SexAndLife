@@ -12,14 +12,14 @@ import FirebaseUI
 import SDWebImage
 
 class ConsultationItemCell : UICollectionViewCell {
-    let storage = Storage.storage() //初期化
+    //Firebase Storageを初期化する
+    let storage = Storage.storage()
     
+    //CollectionViewCellのパーツを接続
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var consultaionTitle: UILabel!
     
-    
-    @IBOutlet weak var detailButton: UIButton!
-    
+    //consultationを宣言、初期化。
     var consultation: Consultation? {
         didSet {
             //thumbnail.image = UIImage(named: consultation!.imageName/*consultation!.imageName*/)

@@ -21,39 +21,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EH1-dG-Vo5">
                         <rect key="frame" x="0.0" y="0.0" width="593" height="177.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="IUy-FH-Sz9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="IUy-FH-Sz9">
                                 <rect key="frame" x="0.0" y="0.0" width="296.5" height="177.5"/>
                                 <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="IUy-FH-Sz9" secondAttribute="height" multiplier="5:3" id="NDO-kf-yvb"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1g-7L-e2K">
-                                <rect key="frame" x="296.5" y="0.0" width="296.5" height="177.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大掃除で出た不用品は捨ててはいけない！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWL-jK-GzR">
-                                        <rect key="frame" x="15" y="15" width="271.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="匿名相談箱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSf-pf-3Zg">
-                                        <rect key="frame" x="15" y="42" width="57" height="14"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="xSf-pf-3Zg" firstAttribute="leading" secondItem="j1g-7L-e2K" secondAttribute="leading" constant="15" id="GNF-7H-3OH"/>
-                                    <constraint firstAttribute="width" secondItem="j1g-7L-e2K" secondAttribute="height" multiplier="5:3" id="cUP-HB-vJi"/>
-                                    <constraint firstItem="zWL-jK-GzR" firstAttribute="leading" secondItem="j1g-7L-e2K" secondAttribute="leading" constant="15" id="lKX-nu-CUp"/>
-                                    <constraint firstItem="xSf-pf-3Zg" firstAttribute="top" secondItem="zWL-jK-GzR" secondAttribute="bottom" constant="10" id="wil-Fw-2Yg"/>
-                                    <constraint firstAttribute="trailing" secondItem="zWL-jK-GzR" secondAttribute="trailing" constant="10" id="x6n-wk-tEI"/>
-                                    <constraint firstItem="zWL-jK-GzR" firstAttribute="top" secondItem="j1g-7L-e2K" secondAttribute="top" constant="15" id="yFr-Na-Wnx"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ac-34-850" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
                                 <rect key="frame" x="242.5" y="10" width="69" height="30"/>
                                 <constraints>
@@ -72,6 +46,33 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1g-7L-e2K">
+                                <rect key="frame" x="296.5" y="0.0" width="296.5" height="177.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大掃除で出た不用品は捨ててはいけない！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWL-jK-GzR">
+                                        <rect key="frame" x="15" y="15" width="271.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="匿名相談箱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSf-pf-3Zg">
+                                        <rect key="frame" x="15" y="42" width="271.5" height="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="xSf-pf-3Zg" firstAttribute="leading" secondItem="j1g-7L-e2K" secondAttribute="leading" constant="15" id="GNF-7H-3OH"/>
+                                    <constraint firstAttribute="trailing" secondItem="xSf-pf-3Zg" secondAttribute="trailing" constant="10" id="bG3-fW-5tS"/>
+                                    <constraint firstAttribute="width" secondItem="j1g-7L-e2K" secondAttribute="height" multiplier="5:3" id="cUP-HB-vJi"/>
+                                    <constraint firstItem="zWL-jK-GzR" firstAttribute="leading" secondItem="j1g-7L-e2K" secondAttribute="leading" constant="15" id="lKX-nu-CUp"/>
+                                    <constraint firstItem="xSf-pf-3Zg" firstAttribute="top" secondItem="zWL-jK-GzR" secondAttribute="bottom" constant="10" id="wil-Fw-2Yg"/>
+                                    <constraint firstAttribute="trailing" secondItem="zWL-jK-GzR" secondAttribute="trailing" constant="10" id="x6n-wk-tEI"/>
+                                    <constraint firstItem="zWL-jK-GzR" firstAttribute="top" secondItem="j1g-7L-e2K" secondAttribute="top" constant="15" id="yFr-Na-Wnx"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6i-WL-Of5">
                                 <rect key="frame" x="242.5" y="15" width="54" height="17"/>
                                 <constraints>

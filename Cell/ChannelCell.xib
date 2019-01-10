@@ -51,6 +51,11 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptQ-NU-Rb0">
+                                        <rect key="frame" x="0.0" y="0.0" width="386" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.75636348923730912" blue="0.64171001183111709" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -76,6 +81,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sD-kC-J5t">
+                                        <rect key="frame" x="0.0" y="0.0" width="386" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94751066930241368" green="1" blue="0.61118144408718866" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -101,6 +110,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HJ-iR-4Ml">
+                                        <rect key="frame" x="0.0" y="0.0" width="386" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.54110108646150401" green="1" blue="0.94941205165806863" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -126,6 +139,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZR-ny-ZoV">
+                                        <rect key="frame" x="0.0" y="0.0" width="386" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.59369546298266052" green="1" blue="0.64979335020770379" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -151,6 +168,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASt-we-u1l">
+                                        <rect key="frame" x="0.0" y="0.0" width="386" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95150153796202463" green="0.696475662812577" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -176,6 +197,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zd7-IP-nhH">
+                                        <rect key="frame" x="0.0" y="0.0" width="386" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.46699996993075721" blue="0.47134404603862978" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -191,18 +216,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0M2-40-ZRT">
                                 <rect key="frame" x="0.0" y="420" width="386" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新着" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpU-ll-IO6">
-                                        <rect key="frame" x="175.5" y="20" width="35" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEt-a5-Jvg">
+                                        <rect key="frame" x="164" y="25" width="57" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="新着">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="KpU-ll-IO6" firstAttribute="top" secondItem="0M2-40-ZRT" secondAttribute="top" constant="20" id="CmF-yX-Kp6"/>
                                     <constraint firstAttribute="height" constant="80" id="RCA-A4-eUC"/>
-                                    <constraint firstItem="KpU-ll-IO6" firstAttribute="centerX" secondItem="0M2-40-ZRT" secondAttribute="centerX" id="fau-9Z-G2a"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -227,6 +251,7 @@
                             <constraint firstAttribute="trailing" secondItem="Rym-df-SrB" secondAttribute="trailing" id="cio-dI-86V"/>
                             <constraint firstItem="kbA-6E-CPz" firstAttribute="top" secondItem="EgJ-We-iqn" secondAttribute="bottom" id="gnq-em-odh"/>
                             <constraint firstItem="EgJ-We-iqn" firstAttribute="leading" secondItem="1sR-s4-bF6" secondAttribute="leading" id="kbr-6c-iUE"/>
+                            <constraint firstAttribute="height" constant="509.5" id="lEk-LJ-YX8"/>
                             <constraint firstAttribute="trailing" secondItem="03o-b6-sL7" secondAttribute="trailing" id="lXS-RV-QFD"/>
                             <constraint firstItem="Rym-df-SrB" firstAttribute="leading" secondItem="1sR-s4-bF6" secondAttribute="leading" id="nyy-RV-6Jo"/>
                             <constraint firstItem="cWg-ha-Zvf" firstAttribute="leading" secondItem="1sR-s4-bF6" secondAttribute="leading" id="sko-Bp-doV"/>
@@ -244,6 +269,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="channelButton1" destination="ptQ-NU-Rb0" id="5fY-Za-yDr"/>
+                <outlet property="channelButton2" destination="0sD-kC-J5t" id="9ps-zb-xDT"/>
+                <outlet property="channelButton3" destination="6HJ-iR-4Ml" id="XqE-mm-Z0t"/>
+                <outlet property="channelButton4" destination="pZR-ny-ZoV" id="tw3-QI-xkX"/>
+                <outlet property="channelButton5" destination="ASt-we-u1l" id="swC-e6-9yf"/>
+                <outlet property="channelButton6" destination="zd7-IP-nhH" id="Tpe-Ep-zJl"/>
+                <outlet property="homeButton" destination="UEt-a5-Jvg" id="uth-sH-qFK"/>
                 <outlet property="imageView1" destination="FQP-Ni-gKO" id="ZCa-Ip-BGr"/>
                 <outlet property="imageView2" destination="epz-JP-Ph2" id="nZz-lk-mbA"/>
                 <outlet property="imageView3" destination="rn7-ag-hEW" id="cgf-ur-3BM"/>

@@ -31,10 +31,10 @@ class InfoCellViewModel: NSObject {
         case .socialNetwork:
             titleText = "ソーシャル連携"
             iconImage = UIImage(named: "socialLink")
-        case .notification:
+        /*case .notification:
             titleText = "通知設定"
             iconImage = UIImage(named: "notification")
-            isNextImageHidden = true
+            isNextImageHidden = true*/
         case .inquiry:
             titleText = "お問い合わせ"
             iconImage = UIImage(named: "mail")

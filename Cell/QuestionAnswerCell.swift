@@ -20,8 +20,8 @@ class QuestionAnswerCell: UITableViewCell {
     
     var imageUrl: String = ""
 
-    /*
-    func setCellInfo(articleData:ArticleData) {
+    
+    func setQuestionAnswerCellInfo(articleData:ArticleData) {
         
         titleLabel.text = articleData.titleStr
         sourceLabel.text = articleData.sourceName
@@ -50,6 +50,6 @@ class QuestionAnswerCell: UITableViewCell {
             //self.likeButton.setImage(buttonImage, for: UIControl.State.normal)
         }
         
-    }*/
+    }
     
 }

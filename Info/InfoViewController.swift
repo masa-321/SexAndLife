@@ -91,7 +91,7 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
         //return UITableView.automaticDimension
     }
     
@@ -137,11 +137,11 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
             case .socialNetwork:
                 break //socialNetwork()
                 //FacebookとTwitter。NewsPicks参考
-            case .notification:
+            /*case .notification:
                 break //frequentQA()
                 //グノシーみたいな感じにしよう。
                 //付け足したものの、まだ必要ないんじゃないか。プロフィールページは必要だと思うけれど。コメント機能を実装するのであれば…。
-                
+            */
             case .inquiry:
                 /*
                 let configuration = FeedbackConfiguration(toRecipients: ["matarashi@gmail.com"], usesHTML: true)

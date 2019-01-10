@@ -13,11 +13,24 @@ class ChannelCell: UITableViewCell {
     @IBOutlet weak var titlelLabel: UILabel!
     
     @IBOutlet weak var imageView1: UIImageView!
+    @IBOutlet weak var channelButton1: UIButton!
+    
     @IBOutlet weak var imageView2: UIImageView!
+    @IBOutlet weak var channelButton2: UIButton!
+    
     @IBOutlet weak var imageView3: UIImageView!
+    @IBOutlet weak var channelButton3: UIButton!
+    
     @IBOutlet weak var imageView4: UIImageView!
+    @IBOutlet weak var channelButton4: UIButton!
+    
     @IBOutlet weak var imageView5: UIImageView!
+    @IBOutlet weak var channelButton5: UIButton!
+    
     @IBOutlet weak var imageView6: UIImageView!
+    @IBOutlet weak var channelButton6: UIButton!
+    
+    @IBOutlet weak var homeButton: UIButton!
     
     
 

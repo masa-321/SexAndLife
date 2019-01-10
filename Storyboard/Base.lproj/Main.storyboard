@@ -404,6 +404,40 @@
             </objects>
             <point key="canvasLocation" x="3692" y="385.45727136431788"/>
         </scene>
+        <!--Source View Controller-->
+        <scene sceneID="fcl-Un-42a">
+            <objects>
+                <viewController storyboardIdentifier="Source" id="AfH-XK-FhM" customClass="SourceViewController" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pz1-8I-3sk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="t9M-zB-Ytv">
+                                <rect key="frame" x="67" y="120" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-Jd-Z0D">
+                                <rect key="frame" x="37" y="243" width="297" height="127"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-ac-wmr">
+                                <rect key="frame" x="0.0" y="378" width="375" height="289"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="q0k-WG-FHJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qbm-aw-JCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4384.8000000000002" y="384.55772113943033"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="e0l-62-Y08">
             <objects>
@@ -1328,6 +1362,7 @@
         <image name="defaultImage" width="1271" height="1920"/>
         <image name="info" width="300" height="300"/>
         <image name="left" width="256" height="256"/>
+        <image name="placeholderImage" width="128" height="128"/>
         <image name="profile2" width="512" height="512"/>
         <image name="right" width="512" height="512"/>
         <image name="safari5" width="29" height="29"/>

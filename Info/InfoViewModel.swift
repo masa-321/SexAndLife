@@ -29,7 +29,7 @@ class InfoViewModel: NSObject {
         
         case socialNetwork
         
-        case notification
+        //case notification
         
         case inquiry //お問い合わせ
         

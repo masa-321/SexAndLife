@@ -18,12 +18,6 @@ class ConsultationCollectionCell: UITableViewCell {
     
     var masterViewPointer:ConsultationViewController?
     
-    var receivedTypeA_ArrayCount:Int = 0
-    var receivedTypeB_ArrayCount:Int = 0
-    var receivedTypeC_ArrayCount:Int = 0
-    var receivedTypeD_ArrayCount:Int = 0
-    var receivedTypeE_ArrayCount:Int = 0
-    var receivedTypeF_ArrayCount:Int = 0
     //var receivedConsultationArray:[[String : Any]] = []
     
     //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -34,6 +28,8 @@ class ConsultationCollectionCell: UITableViewCell {
         //collectionView.addGestureRecognizer(tap)
         collectionView.isUserInteractionEnabled = true
     }
+    
+    
     
     var title: String? {
         didSet {
@@ -53,20 +49,6 @@ extension ConsultationCollectionCell: UICollectionViewDataSource, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        /*if section == 0{
-            return receivedTypeA_ArrayCount
-        } else if section == 1 {
-            return receivedTypeB_ArrayCount
-        } else if section == 2 {
-            return receivedTypeC_ArrayCount
-        } else if section == 3 {
-            return receivedTypeD_ArrayCount
-        } else if section == 4 {
-            return receivedTypeE_ArrayCount
-        } else { //section == 5
-            return receivedTypeF_ArrayCount
-        }*/
-        //やっぱり上の書き方が無駄だった。numberOfItemInSextionの意味を捉え間違えていた。
         return consultations.count
     }
     

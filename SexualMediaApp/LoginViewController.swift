@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     var age = ["19歳以下", "20~24歳", "25~29歳", "30~39歳", "40~49歳", "50歳以上"]
     var userSex = ""
     var userAge = ""
+
     
     @IBOutlet weak var basementView: UIView!{
         didSet {
@@ -341,8 +342,8 @@ class LoginViewController: UIViewController {
         }
     }
     
-    let userRef  = Database.database().reference().child("users")
-    
+    //let userRef  = Database.database().reference().child("users")
+    let userRef =  Firestore.firestore().collection("users")
     
     @IBOutlet weak var passLoginButton: RoundedButton!
 
@@ -369,7 +370,13 @@ class LoginViewController: UIViewController {
             }
             SVProgressHUD.show()
             let userInfo = ["性別":self.userSex,"年齢":self.userAge]
-            self.userRef.child((user?.user.uid)!).setValue(userInfo)
+            self.userRef.addDocument(data: userInfo ) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                }
+            }
+            
+            //self.userRef.child((user?.user.uid)!).setValue(userInfo)
             //self.startVc.fetchCellViewModell()
             //self.dismiss(animated: true, completion: nil)
             
@@ -398,7 +405,12 @@ class LoginViewController: UIViewController {
             }
             SVProgressHUD.show()
             let userInfo = ["性別":"","年齢":""]
-            self.userRef.child((user?.user.uid)!).setValue(userInfo)
+            self.userRef.addDocument(data: userInfo ) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                }
+            }
+
             //self.startVc.fetchCellViewModell()
             //self.dismiss(animated: true, completion: nil)
             

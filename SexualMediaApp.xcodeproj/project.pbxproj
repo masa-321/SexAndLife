@@ -62,6 +62,7 @@
 		5FEDC03B21E1E2E8006A3563 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC03921E1E2E8006A3563 /* ChannelCell.swift */; };
 		5FEDC03C21E1E2E8006A3563 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FEDC03A21E1E2E8006A3563 /* ChannelCell.xib */; };
 		5FEDC03E21E333FE006A3563 /* ConsultationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC03D21E333FE006A3563 /* ConsultationDetailViewController.swift */; };
+		5FEDC04221E611BA006A3563 /* SourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC04121E611BA006A3563 /* SourceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -136,6 +137,7 @@
 		5FEDC03921E1E2E8006A3563 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		5FEDC03A21E1E2E8006A3563 /* ChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		5FEDC03D21E333FE006A3563 /* ConsultationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationDetailViewController.swift; sourceTree = "<group>"; };
+		5FEDC04121E611BA006A3563 /* SourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceViewController.swift; sourceTree = "<group>"; };
 		8853BF84B63493536DA82E03 /* Pods-SexualMediaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SexualMediaApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp.release.xcconfig"; sourceTree = "<group>"; };
 		BE69BB2CA2D5A439AA91EDD2 /* Pods-SexualMediaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SexualMediaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +188,7 @@
 				10AB5C78216A5FCE00EB5E61 /* CoverFlow.swift */,
 				102743E0216A47A8006FB7F2 /* SearchViewController.swift */,
 				509B4B7C216AEA5F006F239C /* SummaryViewController.swift */,
+				5FEDC04121E611BA006A3563 /* SourceViewController.swift */,
 				50511DDE2187DBB0003011CC /* ClipViewController.swift */,
 				509B4B7E216AEA78006F239C /* BrowseViewController.swift */,
 				5F3883E221DDF6E700D95B72 /* R.generated.swift */,
@@ -504,6 +507,7 @@
 				5FEDC03B21E1E2E8006A3563 /* ChannelCell.swift in Sources */,
 				50729B982185B20000F0F3C5 /* Const.swift in Sources */,
 				5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */,
+				5FEDC04221E611BA006A3563 /* SourceViewController.swift in Sources */,
 				502F9AE6218C8F0C008E6037 /* AttentionViewController.swift in Sources */,
 				10AB5C79216A5FCE00EB5E61 /* CoverFlow.swift in Sources */,
 				1051844F21659B0500EA36BD /* Media3ViewController.swift in Sources */,

@@ -17,8 +17,9 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
     
     let db = Firestore.firestore() //初期化
     let storage = Storage.storage() //初期化
+    let refreshControl = UIRefreshControl()
     
-    var categories = ["デートDV", "避妊・妊娠", "性的搾取", "性被害", "法律相談窓口","リベンジポルノ被害"]
+    var categories:[String] = []
     //var consultationArray:[Consultation] = []
     var consultationTypeA_Array:[[String : Any]] = []
     var consultationTypeB_Array:[[String : Any]] = []
@@ -34,9 +35,20 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        fetchConsulation()
+        //fetchConsulation()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "何も表示されないときは引っ張って更新してみてください")
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
+    @objc func refresh(){
+        fetchConsulation()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
@@ -48,11 +60,33 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
         navigationController?.navigationBar.tintColor = .black  //clear
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+
+        fetchConsulation() //viewDidLoadに入れていたら、調子が悪くなったので、こちらへ移行したらうまく動くようになった。
     }
     
     func fetchConsulation() {
-        let ref = db.collection("consultations")
         types = ["typeA","typeB","typeC","typeD","typeE","typeF"]
+        
+        let ref = db.collection("consultations")
+        db.collection("categories").document("vokXlkvJcce7W1YHvQNn").getDocument { (document, error) in
+            if let document = document, document.exists {
+                print(type(of: document.data()))
+                for i in 0..<document.data()!.count {
+                    self.categories.append(document.data()![self.types[i]] as! String)
+                }
+                print(self.categories) //categoriesの中に何が入っているかがこれでわかる。
+            } else {
+                print("Document does not exist")
+            }
+        }
+        
+        consultationTypeA_Array = []
+        consultationTypeB_Array = []
+        consultationTypeC_Array = []
+        consultationTypeD_Array = []
+        consultationTypeE_Array = []
+        consultationTypeF_Array = []
+            
         for type in types {
             ref.whereField("ConsultationType", isEqualTo: type).getDocuments{ (querySnapshot, err) in
                 if let err = err {
@@ -74,7 +108,9 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
                         }
                     }
                     //この中であれば、self.consultationTypeA_Array.countは数値を持つ。この外でも数値を持つためには、以下のようにreloadが必要。
+                    
                     self.tableView.reloadData()//これのおかげで、
+                    
                 }
             }
         }
@@ -161,15 +197,9 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConsultationCollectionCell") as! ConsultationCollectionCell
-        
+        print("ConsultationのcellForRowAtは呼ばれてます")
         cell.title = categories[indexPath.section]
         cell.consultations = generateConsultations(indexPath: indexPath)
-        cell.receivedTypeA_ArrayCount = consultationTypeA_Array.count
-        cell.receivedTypeB_ArrayCount = consultationTypeB_Array.count
-        cell.receivedTypeC_ArrayCount = consultationTypeC_Array.count
-        cell.receivedTypeD_ArrayCount = consultationTypeD_Array.count
-        cell.receivedTypeE_ArrayCount = consultationTypeE_Array.count
-        cell.receivedTypeF_ArrayCount = consultationTypeF_Array.count
         
         cell.masterViewPointer = self //まーじか。
         //print("テスト：\(consultationTypeA_Array.count)")

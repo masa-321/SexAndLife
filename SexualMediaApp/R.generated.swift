@@ -564,6 +564,7 @@ struct _R: Rswift.Validatable {
       let consultationDetail = StoryboardViewControllerResource<ConsultationDetailViewController>(identifier: "ConsultationDetail")
       let login = StoryboardViewControllerResource<LoginViewController>(identifier: "Login")
       let name = "Main"
+      let source = StoryboardViewControllerResource<SourceViewController>(identifier: "Source")
       let summaryViewController = StoryboardViewControllerResource<SummaryViewController>(identifier: "SummaryViewController")
       let viewController = StoryboardViewControllerResource<ViewController>(identifier: "ViewController")
       
@@ -583,6 +584,10 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: login)
       }
       
+      func source(_: Void = ()) -> SourceViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: source)
+      }
+      
       func summaryViewController(_: Void = ()) -> SummaryViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: summaryViewController)
       }
@@ -598,6 +603,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "defaultImage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'defaultImage' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "info", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'info' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "left", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'left' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "placeholderImage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'placeholderImage' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "profile2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'profile2' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "right", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'right' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "safari5", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'safari5' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -608,6 +614,7 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.main().browseViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browseViewController' could not be loaded from storyboard 'Main' as 'BrowseViewController'.") }
         if _R.storyboard.main().consultationDetail() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'consultationDetail' could not be loaded from storyboard 'Main' as 'ConsultationDetailViewController'.") }
         if _R.storyboard.main().login() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'login' could not be loaded from storyboard 'Main' as 'LoginViewController'.") }
+        if _R.storyboard.main().source() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'source' could not be loaded from storyboard 'Main' as 'SourceViewController'.") }
         if _R.storyboard.main().summaryViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'summaryViewController' could not be loaded from storyboard 'Main' as 'SummaryViewController'.") }
         if _R.storyboard.main().viewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'viewController' could not be loaded from storyboard 'Main' as 'ViewController'.") }
       }
