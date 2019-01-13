@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import FirebaseFirestore
 import SDWebImage
 
 class ConsultationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {

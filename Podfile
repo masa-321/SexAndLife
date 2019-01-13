@@ -17,5 +17,6 @@ target 'SexualMediaApp' do
   pod 'FirebaseDatabase'
   pod 'FirebaseUI/Storage'
   pod 'R.swift','5.0.0'
-
+  pod 'FBSDKLoginKit', '~> 4.38.0'
+  pod 'FBSDKCoreKit', '~> 4.38.0'
 end

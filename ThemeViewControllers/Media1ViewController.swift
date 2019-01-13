@@ -27,7 +27,7 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         //下が足りない問題はこれで応急処置ができそう。
- /*追加*/       let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         tableView.contentInset = edgeInsets
         tableView.scrollIndicatorInsets = edgeInsets
 
@@ -45,11 +45,11 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.register(nib2, forCellReuseIdentifier: "InitialTableViewCell")
         tableView.bounces = true
         
-  /*追加*/        let nib3 = UINib(nibName: "QuestionAnswerCell", bundle: nil)
+        let nib3 = UINib(nibName: "QuestionAnswerCell", bundle: nil)
         tableView.register(nib3, forCellReuseIdentifier: "QuestionAnswerCell")
         tableView.bounces = true
         
-  /*追加*/        let nib4 = UINib(nibName: "ChannelCell", bundle: nil)
+        let nib4 = UINib(nibName: "ChannelCell", bundle: nil)
         tableView.register(nib4, forCellReuseIdentifier: "ChannelCell")
         tableView.bounces = true
         
@@ -75,7 +75,8 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     @objc func refresh(){
-        fetchCellViewModell() //別途定義した、firebaseからデータを取ってくる関数
+        fetchCellViewModell()
+         //別途定義した、firebaseからデータを取ってくる関数
         tableView.reloadData()  //viewWillAppearの中でtableView.reloadData() ので、ここでは不要→viewWillAppearでなんとかなっていたLINEFirebaseBasicとは異なる。
         refreshControl.endRefreshing()//ぐるぐるを止める。こうしないとリロードが永遠に止まらなくなる。
     }
@@ -83,7 +84,7 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         //print("viewWillAppearだよ")
         //なぜか初回は呼ばれないようだ。他のカラムから戻ってきたら呼ばれる。
-        fetchCellViewModell()
+       fetchCellViewModell()
     }
     
     //override func viewDidAppear(_ animated: Bool) {}
@@ -95,7 +96,7 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func fetchCellViewModell() {
         articleArray = [] //これがないと、fetchされるたびにarticleArrayが倍増していく。
         //print("fetchCellViewModelが呼ばれたよ")
-        if Auth.auth().currentUser != nil { //新着はAuthがnilでもいいや。
+       if Auth.auth().currentUser != nil { //新着はAuthがnilでもいいや。
             //if self.observing == false {
                 let articlesRef = Database.database().reference().child(Const.ArticlePath)
                 articlesRef.observe(.childAdded, with: {snapshot in
@@ -163,22 +164,6 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
              //引っ張るたびに消えたりするのは、ここの問題っぽかった。
             }*/
         
-        } else { //見えるけれど、たどり着けないように。
-            /*
-            let articlesRef = Database.database().reference().child(Const.ArticlePath)
-            articlesRef.observe(.childAdded, with: {snapshot in
-                
-                let articleData = ArticleData(snapshot: snapshot, myId: "")
-
-                if self.articleArray.count < 30 { //トップ記事は30記事まで
-                        self.articleArray.insert(articleData, at: 0)
-                }
-                    
-                    //print(self.articleArray)
-                    // TableViewを再表示する
-                self.tableView.reloadData() //ここをコメントアウトすると、本記事がなくなってしまい、offset調整どころではなくなる。た
-                SVProgressHUD.dismiss()
-            })*/
         }
     }
     
@@ -254,10 +239,19 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("didSelectRowAtが呼ばれたよ")//これは呼ばれるらしい。
         if indexPath.section == 0 {
             if articleArray.count > 0{
                 let selectCellViewModel = articleArray[indexPath.row]
                 masterViewPointer?.summaryView(giveCellViewModel: selectCellViewModel)
+                //問題はこの部分。articleArrayは入っているから、masterViewPointerの問題か、summaryViewの問題か
+                //ページの遷移に問題があるように思われる。つまり、summaryViewだけではないと。clipも反応しないし、相談窓口ボタンも反応しなかった。
+                /*
+                 Terminating app due to uncaught exception 'NSGenericException', reason: 'Push segues can only be used when the source controller is managed by an instance of UINavigationController.
+                */
+                //これはどういう意味だろう。navigationControllerが呼ばれていないということだろうか。home画面へ移動する際のコードがshowになっていて、navigation controllerを継承したものではなかったのが原因だった。
+                //InitialNavigationControllerへ飛ばすことで解決。
+                
             } else {
                 return
             }
@@ -294,11 +288,16 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                 }
                 articleData.likes.remove(at: index)
+                print(articleData.likes)
                 
             } else {
                 articleData.likes.append(uid)
+                print(articleData.likes)
                 
             }
+            //色も数値も変わるってことは、ローカル環境でのlikes配列の中に、uidが保存されているということ。問題は、それをFirebaseへアップできていない…。
+            //視覚的に更新されていないだけで、実際は更新されていたというオチ。
+            
             // 増えたlikesをFirebaseに保存する
             let articleRef = Database.database().reference().child(Const.ArticlePath).child(articleData.id!)
             let likes = ["likes": articleData.likes]

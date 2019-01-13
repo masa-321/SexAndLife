@@ -117,6 +117,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.clear]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         //navigationController?.navigationBar.tintColor = .white
         //navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -506,10 +507,12 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     @objc func sourceButton(sender:UIButton, event:UIEvent){
         let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let sourceViewController:SourceViewController = InfoStoryboard.instantiateViewController(withIdentifier: "Source") as! SourceViewController
-        
+        sourceViewController.receiveData = receiveCellViewModel!.sourceName!
         //let sourceName = receiveCellViewModel!.sourceName!
         //let title = receiveCellViewModel!.titleStr
-        self.navigationController?.pushViewController(sourceViewController, animated: true)
+      //
+            
+            self.navigationController?.pushViewController(sourceViewController, animated: true)
         /*
          let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
          let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

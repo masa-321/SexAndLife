@@ -51,6 +51,10 @@
 		50E9C8E52189F454006F567E /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E9C8E32189F454006F567E /* CommentTableViewCell.xib */; };
 		50E9C8E7218AEF28006F567E /* LicenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9C8E6218AEF28006F567E /* LicenceViewController.swift */; };
 		50E9C8E9218AEFBC006F567E /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9C8E8218AEFBC006F567E /* PrivacyPolicyViewController.swift */; };
+		5F086F7C21E76F870077B8E9 /* SocialNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F7B21E76F870077B8E9 /* SocialNetworkViewController.swift */; };
+		5F086F8021EB2E670077B8E9 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F7F21EB2E660077B8E9 /* CAPSPageMenu.swift */; };
+		5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */; };
+		5F086F8521EB33EF0077B8E9 /* ProfileCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */; };
 		5F3883E321DDF6E800D95B72 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3883E221DDF6E700D95B72 /* R.generated.swift */; };
 		5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */; };
 		5FEDC02E21E05C3F006A3563 /* ConsultationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */; };
@@ -126,6 +130,10 @@
 		50E9C8E32189F454006F567E /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		50E9C8E6218AEF28006F567E /* LicenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceViewController.swift; sourceTree = "<group>"; };
 		50E9C8E8218AEFBC006F567E /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		5F086F7B21E76F870077B8E9 /* SocialNetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkViewController.swift; sourceTree = "<group>"; };
+		5F086F7F21EB2E660077B8E9 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
+		5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
+		5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentViewController.swift; sourceTree = "<group>"; };
 		5F3883E221DDF6E700D95B72 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationCollectionCell.swift; sourceTree = "<group>"; };
 		5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationItemCell.swift; sourceTree = "<group>"; };
@@ -160,6 +168,7 @@
 				105184352165992000EA36BD /* SexualMediaApp */,
 				5FEDC02A21E059E2006A3563 /* Consultation */,
 				509B4B90216E2A76006F239C /* ThemeViewControllers */,
+				5F086F8321EB33A00077B8E9 /* Profile */,
 				509B4B8F216E2A36006F239C /* Info */,
 				509B4B93216F05FE006F239C /* Cell */,
 				509B4B8A216E1BE7006F239C /* Storyboard */,
@@ -231,8 +240,7 @@
 		509B4B8F216E2A36006F239C /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				5FEDC03121E111B5006A3563 /* ProfileViewController.swift */,
-				5FEDC03321E111D2006A3563 /* ProfileEditViewController.swift */,
+				5F086F7B21E76F870077B8E9 /* SocialNetworkViewController.swift */,
 				509B4B80216CD962006F239C /* InfoViewController.swift */,
 				50E9C8E6218AEF28006F567E /* LicenceViewController.swift */,
 				50E9C8E8218AEFBC006F567E /* PrivacyPolicyViewController.swift */,
@@ -278,6 +286,18 @@
 				502F9AE2218C7D25008E6037 /* InitialTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		5F086F8321EB33A00077B8E9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5FEDC03121E111B5006A3563 /* ProfileViewController.swift */,
+				5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */,
+				5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */,
+				5F086F7F21EB2E660077B8E9 /* CAPSPageMenu.swift */,
+				5FEDC03321E111D2006A3563 /* ProfileEditViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		5FEDC02A21E059E2006A3563 /* Consultation */ = {
@@ -456,8 +476,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/CTFeedback/CTFeedback.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -474,8 +497,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTFeedback.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -510,6 +536,7 @@
 				5FEDC04221E611BA006A3563 /* SourceViewController.swift in Sources */,
 				502F9AE6218C8F0C008E6037 /* AttentionViewController.swift in Sources */,
 				10AB5C79216A5FCE00EB5E61 /* CoverFlow.swift in Sources */,
+				5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */,
 				1051844F21659B0500EA36BD /* Media3ViewController.swift in Sources */,
 				50E9C8E42189F454006F567E /* CommentTableViewCell.swift in Sources */,
 				500485A92170311A0062C75F /* InfoViewModel.swift in Sources */,
@@ -517,6 +544,7 @@
 				502F9AE8218D3149008E6037 /* Media6ViewController.swift in Sources */,
 				50729B9A2185B2D300F0F3C5 /* ArticleData.swift in Sources */,
 				50511DDF2187DBB0003011CC /* ClipViewController.swift in Sources */,
+				5F086F8021EB2E670077B8E9 /* CAPSPageMenu.swift in Sources */,
 				1051844D21659AFB00EA36BD /* Media2ViewController.swift in Sources */,
 				1051844B21659AF200EA36BD /* Media1ViewController.swift in Sources */,
 				50E9C8E7218AEF28006F567E /* LicenceViewController.swift in Sources */,
@@ -532,11 +560,13 @@
 				5FEDC03E21E333FE006A3563 /* ConsultationDetailViewController.swift in Sources */,
 				50E9C8DA2188C9A3006F567E /* ConsultationViewController.swift in Sources */,
 				5F3883E321DDF6E800D95B72 /* R.generated.swift in Sources */,
+				5F086F7C21E76F870077B8E9 /* SocialNetworkViewController.swift in Sources */,
 				5FEDC03221E111B5006A3563 /* ProfileViewController.swift in Sources */,
 				509B4B81216CD962006F239C /* InfoViewController.swift in Sources */,
 				1051845121659B1000EA36BD /* Media4ViewController.swift in Sources */,
 				503C98FF21814B4200646A8B /* RoundedButton.swift in Sources */,
 				50E9C8E9218AEFBC006F567E /* PrivacyPolicyViewController.swift in Sources */,
+				5F086F8521EB33EF0077B8E9 /* ProfileCommentViewController.swift in Sources */,
 				500485B6217C1C870062C75F /* DispatchQueue+.swift in Sources */,
 				5FEDC03021E06055006A3563 /* ConsultationModel.swift in Sources */,
 				500485B2217C18070062C75F /* Bundle+.swift in Sources */,

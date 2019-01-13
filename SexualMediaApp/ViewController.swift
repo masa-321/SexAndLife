@@ -11,6 +11,10 @@ import Firebase
 import FirebaseAuth
 import FSPagerView
 
+class InitialNavigationController: UINavigationController {
+    
+}
+
 class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate {
     
     //画面遷移時に渡すviewCellModelの用意
@@ -58,48 +62,47 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         rightButton.setImage(UIImage(named: "info"), for: .normal)
         */
         
-        
-        //ViewControllerの画面を宣言し、初期化する。
-        controller1.masterViewPointer = self
-        controller1.title = "新着"
-        controllerArray.append(controller1)
-        themeLabel_Array.append("新着")
-        
-        controller2.masterViewPointer = self
-        controller2.title = "体のこと"
-        controllerArray.append(controller2)
-        themeLabel_Array.append("体のこと")
-        
-        controller3.masterViewPointer = self
-        controller3.title = "避妊のこと"
-        controllerArray.append(controller3)
-        themeLabel_Array.append("避妊のこと")
-        
-        controller4.masterViewPointer = self
-        controller4.title = "健康のこと"
-        controllerArray.append(controller4)
-        themeLabel_Array.append("健康のこと")
-        
-        controller5.masterViewPointer = self
-        controller5.title = "LGBTQ+"
-        controllerArray.append(controller5)
-        themeLabel_Array.append("LGBTQ+")
-        
-        controller6.masterViewPointer = self
-        controller6.title = "ライフプランニング"
-        controllerArray.append(controller6)
-        themeLabel_Array.append("ライフプランニング")
-        
-        
-        controller7.masterViewPointer = self
-        controller7.title = "パートナーシップ"
-        controllerArray.append(controller7)
-        themeLabel_Array.append("パートナーシップ")
-        
-        
-        //FSPagerViewの設定
-        setupCoverFlowSliderView()
-        
+        if Auth.auth().currentUser != nil { //効果なし
+            //ViewControllerの画面を宣言し、初期化する。
+            controller1.masterViewPointer = self
+            controller1.title = "新着"
+            controllerArray.append(controller1)
+            themeLabel_Array.append("新着")
+            
+            controller2.masterViewPointer = self
+            controller2.title = "体のこと"
+            controllerArray.append(controller2)
+            themeLabel_Array.append("体のこと")
+            
+            controller3.masterViewPointer = self
+            controller3.title = "避妊のこと"
+            controllerArray.append(controller3)
+            themeLabel_Array.append("避妊のこと")
+            
+            controller4.masterViewPointer = self
+            controller4.title = "健康のこと"
+            controllerArray.append(controller4)
+            themeLabel_Array.append("健康のこと")
+            
+            controller5.masterViewPointer = self
+            controller5.title = "LGBTQ+"
+            controllerArray.append(controller5)
+            themeLabel_Array.append("LGBTQ+")
+            
+            controller6.masterViewPointer = self
+            controller6.title = "ライフプランニング"
+            controllerArray.append(controller6)
+            themeLabel_Array.append("ライフプランニング")
+            
+            
+            controller7.masterViewPointer = self
+            controller7.title = "パートナーシップ"
+            controllerArray.append(controller7)
+            themeLabel_Array.append("パートナーシップ")
+            
+            //FSPagerViewの設定
+            setupCoverFlowSliderView()
+        }
         
         
     }

@@ -33,7 +33,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Database.database().reference().child("users").observeSingleEvent(of: .value) {  (snap,error) in
             if let users = snap.value as? [String:NSDictionary] {
                 self.userSum = users.count
-                    self.reloadFavoriteData()
+                self.reloadFavoriteData()
             }
         }
         
@@ -64,7 +64,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if self.observing == false {
                 if let uid = Auth.auth().currentUser?.uid {
                     print("userSum:" + "\(userSum)")
-                    for x in 0...3 {
+                    for x in 0...userSum { //3ってなんだ？userSumじゃないのか？like数 3以下だったら、追加されるのでは？という仮説の元タッチしたら追加された。Firebaseの方も無事反応。じゃあ5つ以上の方はなぜ？
                         let LikesRef = Database.database().reference().child(Const.ArticlePath).queryOrdered(byChild:"likes/\(x)").queryEqual(toValue: uid)
                         
                         LikesRef.observe(.childAdded, with: { snapshot in
@@ -132,6 +132,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
+    //減らしていくだけの処理なので、他と少し異なることに注意。そのままコピペするとエラーになる。
     @objc func handleButton(sender: UIButton, event:UIEvent) {
         // タップされたセルのインデックスを求める
         let touch = event.allTouches?.first

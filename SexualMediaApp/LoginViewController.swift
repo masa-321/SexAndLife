@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 import SVProgressHUD
 
 class LoginViewController: UIViewController {
@@ -369,22 +370,24 @@ class LoginViewController: UIViewController {
                 return
             }
             SVProgressHUD.show()
-            let userInfo = ["性別":self.userSex,"年齢":self.userAge]
-            self.userRef.addDocument(data: userInfo ) { err in
+            let userInfo = ["Sex":self.userSex,"Age":self.userAge]
+            self.userRef.document((user?.user.uid)!).setData(userInfo){ err in
                 if let err = err {
                     print("Error adding document: \(err)")
                 }
             }
+            //uidもちゃんと指定した。
             
             //self.userRef.child((user?.user.uid)!).setValue(userInfo)
             //self.startVc.fetchCellViewModell()
             //self.dismiss(animated: true, completion: nil)
+            let initialVc: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "Initial") as! UINavigationController
+            self.show(initialVc, sender: nil)
             
-            print("ーーーーーー")
-            print(Auth.auth().currentUser)
-            let startVc: ViewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            self.show(startVc, sender: nil)
- 
+            /*
+            let homeVc:ViewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            self.navigationController?.pushViewController(homeVc, animated: true)
+            */
         }
     }
     
@@ -404,21 +407,34 @@ class LoginViewController: UIViewController {
                 return
             }
             SVProgressHUD.show()
-            let userInfo = ["性別":"","年齢":""]
+            let userInfo = ["Sex":"","Age":""]
+            self.userRef.document((user?.user.uid)!).setData(userInfo){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    /*
+                     updateDataでは、以下のエラーが出たが、setDataではエラーが出なかった。
+ Error adding document: Error Domain=FIRFirestoreErrorDomain Code=5 "No document to update: projects/sexualhealthmedia-736f9/databases/(default)/documents/users/XAAmc3iZ54gxBnQ9otoVYHVyd383" UserInfo={NSLocalizedDescription=No document to update: projects/sexualhealthmedia-736f9/databases/(default)/documents/users/XAAmc3iZ54gxBnQ9otoVYHVyd383}
+                    */
+                }
+            }
+            /*
             self.userRef.addDocument(data: userInfo ) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
                 }
-            }
-
+            }*/
+            
             //self.startVc.fetchCellViewModell()
             //self.dismiss(animated: true, completion: nil)
             
-            print("ーーーーーー")
-            print(Auth.auth().currentUser)
+            
             //この時点で、アカウントは生成されているし、それも確認されているはず。なのになぜ？
-            let startVc: ViewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            self.show(startVc, sender: nil)
+            let initialVc: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "Initial") as! UINavigationController
+            self.show(initialVc, sender: nil)
+            //これで解決
+            /*
+            let homeVc:ViewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            self.navigationController?.pushViewController(homeVc, animated: true)*/
             
             
             

@@ -8,6 +8,7 @@
 
 import UIKit
 import CTFeedback
+import FirebaseAuth
 
 //import CTFeedbackSwift エラーが起こるので、CTFeedbackをCarthageファイルから取り除いてみた。<https://qiita.com/y-some/items/85c2606928b0f1ef5d72>
 import StoreKit //StoreKitを一度削除してみた。
@@ -132,9 +133,15 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
             switch viewModel.type {
             case .profile:
                 let profileViewController:ProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+                if let user = Auth.auth().currentUser {
+                    profileViewController.receivedUserId = user.uid
+                }
+                
                 self.navigationController?.pushViewController(profileViewController, animated: true)
                 //性別、年齢層//プロフィール写真、カバー写真紹介文など。NewsPicks参考
             case .socialNetwork:
+                let socialNetworkViewController:SocialNetworkViewController = self.storyboard?.instantiateViewController(withIdentifier: "SocialNetwork") as! SocialNetworkViewController
+                self.navigationController?.pushViewController(socialNetworkViewController, animated: true)
                 break //socialNetwork()
                 //FacebookとTwitter。NewsPicks参考
             /*case .notification:
