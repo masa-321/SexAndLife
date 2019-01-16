@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseFirestore
 
 class ArticleData: NSObject {
     
@@ -75,8 +76,9 @@ class ArticleData: NSObject {
 
 }
 
-class ArticleData2: NSObject {
+class ArticleQueryData: NSObject {
     
+    //var articleQueryData:[ArticleQueryData] = []
     
     var id: String?
     var articleUrl:String?
@@ -86,23 +88,25 @@ class ArticleData2: NSObject {
     var imageUrl:String?
     var imageString: String?
     var titleStr: String?
-    var date: String?
-    //var date: NSDate?
+    var date: NSDate?
     var likes: [String] = []
     var isLiked: Bool = false
     var clipSumNumber:Int?
     var tags: String?
     var relatedArticleIDs:[String] = []
     
+    var isCommented: Bool = false
+    var commenterIDs:[String] = []
     
-    init(snapshot: DataSnapshot, myId: String) {
-        self.id = snapshot.key
+    init(snapshot: QueryDocumentSnapshot, myId: String) {
+        self.id = snapshot.documentID
+        //snapshotはkeyもvalueもある。これはDictionary型ってことだ。それは、Firestoreでは当てはまらないらしい。
         
-        let valueDictionary = snapshot.value as! [String: AnyObject]
+        let valueDictionary = snapshot.data() 
         
         //以下Keyに対応させて引っ張ってきている
         self.articleUrl = valueDictionary["articleUrl"] as? String
-        self.date = valueDictionary["date"] as? String
+        self.date = valueDictionary["date"] as? NSDate
         self.genreName = valueDictionary["genreName"] as? String
         self.imageUrl = valueDictionary["imageUrl"] as? String
         self.sourceName = valueDictionary["sourceName"] as? String
@@ -133,9 +137,7 @@ class ArticleData2: NSObject {
         }
         
         self.clipSumNumber = likes.count
+        
+    
     }
-    
-    
-    
-    
 }

@@ -361,14 +361,21 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
+    /// Storyboard `Consultation`.
+    static let consultation = _R.storyboard.consultation()
     /// Storyboard `Info`.
     static let info = _R.storyboard.info()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    
+    /// `UIStoryboard(name: "Consultation", bundle: ...)`
+    static func consultation(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.consultation)
+    }
     
     /// `UIStoryboard(name: "Info", bundle: ...)`
     static func info(_: Void = ()) -> UIKit.UIStoryboard {
@@ -409,6 +416,7 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _CommentTableViewCell.validate()
       try _InfoCell.validate()
       try _QuestionAnswerCell.validate()
     }
@@ -424,7 +432,7 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _CommentTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+    struct _CommentTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
       typealias ReusableType = CommentTableViewCell
       
       let bundle = R.hostingBundle
@@ -433,6 +441,12 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CommentTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CommentTableViewCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "profile2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'profile2' is used in nib 'CommentTableViewCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
       }
       
       fileprivate init() {}
@@ -523,9 +537,36 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try consultation.validate()
       try info.validate()
       try launchScreen.validate()
       try main.validate()
+    }
+    
+    struct consultation: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let consultationDetail = StoryboardViewControllerResource<ConsultationDetailViewController>(identifier: "ConsultationDetail")
+      let consultationViewController = StoryboardViewControllerResource<ConsultationViewController>(identifier: "ConsultationViewController")
+      let name = "Consultation"
+      
+      func consultationDetail(_: Void = ()) -> ConsultationDetailViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: consultationDetail)
+      }
+      
+      func consultationViewController(_: Void = ()) -> ConsultationViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: consultationViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "defaultImage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'defaultImage' is used in storyboard 'Consultation', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "profile2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'profile2' is used in storyboard 'Consultation', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.consultation().consultationDetail() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'consultationDetail' could not be loaded from storyboard 'Consultation' as 'ConsultationDetailViewController'.") }
+        if _R.storyboard.consultation().consultationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'consultationViewController' could not be loaded from storyboard 'Consultation' as 'ConsultationViewController'.") }
+      }
+      
+      fileprivate init() {}
     }
     
     struct info: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -595,7 +636,6 @@ struct _R: Rswift.Validatable {
       let attention = StoryboardViewControllerResource<AttentionViewController>(identifier: "Attention")
       let browseViewController = StoryboardViewControllerResource<BrowseViewController>(identifier: "BrowseViewController")
       let bundle = R.hostingBundle
-      let consultationDetail = StoryboardViewControllerResource<ConsultationDetailViewController>(identifier: "ConsultationDetail")
       let initial = StoryboardViewControllerResource<InitialNavigationController>(identifier: "Initial")
       let login = StoryboardViewControllerResource<LoginViewController>(identifier: "Login")
       let name = "Main"
@@ -609,10 +649,6 @@ struct _R: Rswift.Validatable {
       
       func browseViewController(_: Void = ()) -> BrowseViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: browseViewController)
-      }
-      
-      func consultationDetail(_: Void = ()) -> ConsultationDetailViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: consultationDetail)
       }
       
       func initial(_: Void = ()) -> InitialNavigationController? {
@@ -639,11 +675,8 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "InfoInquiry", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'InfoInquiry' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "LaunchImage2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'LaunchImage2' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "clip", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'clip' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "defaultImage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'defaultImage' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "info", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'info' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "left", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'left' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "placeholderImage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'placeholderImage' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "profile2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'profile2' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "right", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'right' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "safari5", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'safari5' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "search", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'search' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -651,7 +684,6 @@ struct _R: Rswift.Validatable {
         }
         if _R.storyboard.main().attention() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'attention' could not be loaded from storyboard 'Main' as 'AttentionViewController'.") }
         if _R.storyboard.main().browseViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browseViewController' could not be loaded from storyboard 'Main' as 'BrowseViewController'.") }
-        if _R.storyboard.main().consultationDetail() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'consultationDetail' could not be loaded from storyboard 'Main' as 'ConsultationDetailViewController'.") }
         if _R.storyboard.main().initial() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'initial' could not be loaded from storyboard 'Main' as 'InitialNavigationController'.") }
         if _R.storyboard.main().login() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'login' could not be loaded from storyboard 'Main' as 'LoginViewController'.") }
         if _R.storyboard.main().source() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'source' could not be loaded from storyboard 'Main' as 'SourceViewController'.") }

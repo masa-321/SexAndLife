@@ -19,4 +19,5 @@ target 'SexualMediaApp' do
   pod 'R.swift','5.0.0'
   pod 'FBSDKLoginKit', '~> 4.38.0'
   pod 'FBSDKCoreKit', '~> 4.38.0'
+  pod 'ReadMoreTextView'
 end

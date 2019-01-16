@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 import FirebaseDatabase
 import SDWebImage
 import SVProgressHUD
@@ -16,7 +17,8 @@ import SVProgressHUD
 class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     //TableViewの宣言
     var tableView:UITableView = UITableView()
-    var articleArray:[ArticleData] = []
+    
+    var articleDataArray:[ArticleQueryData] = []
     var observing = false
     
     let refreshControl = UIRefreshControl()
@@ -55,7 +57,9 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
   
         self.view.addSubview(tableView)
-        tableView.estimatedRowHeight = 200 //まじかーーーーー！！これで解決かよ！<https://qiita.com/ShingoFukuyama/items/dc0d39bd69775f1d24a5>
+        //tableView.estimatedRowHeight = 200 //まじかーーーーー！！これで解決かよ！<https://qiita.com/ShingoFukuyama/items/dc0d39bd69775f1d24a5>
+        //デリゲートメソッドでまとめようと思う。
+        tableView.rowHeight = UITableView.automaticDimension
         //didSetに組み込むと、今回の場合読み込まれなくなってしまうようだ。
 
         refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
@@ -75,7 +79,8 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     @objc func refresh(){
-        fetchCellViewModell()
+        fetchArticleData()
+        //fetchCellViewModell()
          //別途定義した、firebaseからデータを取ってくる関数
         tableView.reloadData()  //viewWillAppearの中でtableView.reloadData() ので、ここでは不要→viewWillAppearでなんとかなっていたLINEFirebaseBasicとは異なる。
         refreshControl.endRefreshing()//ぐるぐるを止める。こうしないとリロードが永遠に止まらなくなる。
@@ -84,7 +89,8 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         //print("viewWillAppearだよ")
         //なぜか初回は呼ばれないようだ。他のカラムから戻ってきたら呼ばれる。
-       fetchCellViewModell()
+        //fetchCellViewModell()
+        fetchArticleData()
     }
     
     //override func viewDidAppear(_ animated: Bool) {}
@@ -92,10 +98,194 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         SVProgressHUD.dismiss()
     }
     
+    func fetchArticleData() {
+        //ログイン済み（uidを取得済み）であることを確認
+        
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("articleData")
+            let uid = user.uid
+            
+            ref.addSnapshotListener { querySnapshot, err in
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    self.articleDataArray = []
+                    for document in querySnapshot!.documents {
+                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
+                        
+                        if self.articleDataArray.count < 14 { //トップ記事は10記事まで
+                            self.articleDataArray.insert(articleData, at: 0)
+                        }
 
+                    }
+                    
+                    let before = self.tableView.contentOffset.y
+                    self.tableView.reloadData()
+                    let after = self.tableView.contentOffset.y
+  
+                    if before > after {
+                        self.tableView.contentOffset.y = before
+                    }
+                    
+                    SVProgressHUD.dismiss()
+                    
+                    /*
+                    querySnapshot!.documentChanges.forEach{diff in
+                        if diff.type == .added {
+                            //print("added: \(diff.document.data())")
+                        } else if diff.type == .modified {
+                            //print("modified: \(diff.document.data())")
+                            print("Media1","modified")
+                            /*
+                            
+                            
+                            var index:Int = 0
+                            
+                            let articleData = ArticleQueryData(snapshot: diff.document, myId: uid)
+                            print("Media1",articleData.titleStr!)
+                            for article in self.articleDataArray {
+                                if article.id == articleData.id {
+                                    index = self.articleDataArray.index(of: article)!
+                                    break
+                                }
+                            }
+                            self.articleDataArray.remove(at: index)
+                            self.articleDataArray.insert(articleData, at: index)
+                            self.tableView.reloadData()
+
+                            
+                            SVProgressHUD.dismiss()
+                            */
+                        } else if diff.type == .removed {
+                            //print("removed: \(diff.document.data())")
+                        }
+                        
+                    }*/
+
+                }
+            } //ref.whereField...の終わり
+        } //if let user = Auth.auth().currentUser {...の終わり
+    }
+    
+    /*
+    func fetchArticleData() {
+        //ログイン済み（uidを取得済み）であることを確認
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("articleData")
+            let uid = user.uid
+            /*
+            ref.getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
+                        
+                        if self.articleDataArray.count < 14 { //トップ記事は10記事まで
+                            self.articleDataArray.insert(articleData, at: 0)
+                        }
+                        self.tableView.reloadData()
+                        SVProgressHUD.dismiss()
+                    
+                    }
+                }
+            }*/
+            
+            ref.addSnapshotListener { querySnapshot, err in
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    
+                    for document in querySnapshot!.documents {
+                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
+                        
+                        if self.articleDataArray.count < 14 { //トップ記事は10記事まで
+                            self.articleDataArray.insert(articleData, at: 0)
+                        }
+                        self.tableView.reloadData()
+                        SVProgressHUD.dismiss()
+                        
+                    }
+                    
+                    querySnapshot!.documentChanges.forEach{diff in
+                        if diff.type == .added {
+                            print("added: \(diff.document.data())")
+                            /*
+                            var index:Int = 0
+                            let articleData = ArticleQueryData(snapshot: diff.document, myId: uid)
+                            for article in self.articleDataArray {
+                                if article.id == articleData.id {
+                                    index = self.articleDataArray.index(of: article)!
+                                    break
+                                }
+                            }
+                            self.articleDataArray.insert(articleData, at: index)
+                            //上のコードがなくても、articleDataArrayにたくさん記事は追加される。*/
+                            /*
+                            var index:Int = 0
+                            let articleData = ArticleQueryData(snapshot: diff.document, myId: uid)
+                            for article in self.articleDataArray {
+                                if article.id == articleData.id {
+                                    index = self.articleDataArray.index(of: article)!
+                                    break
+                                }
+                            }
+                            self.articleDataArray.remove(at: index)
+                            self.articleDataArray.insert(articleData, at: index)
+                            */
+                            
+                        }else if diff.type == .modified {
+                            print("modified: \(diff.document.data())")
+                            var index:Int = 0
+                            let articleData = ArticleQueryData(snapshot: diff.document, myId: uid)
+                            for article in self.articleDataArray {
+                                if article.id == articleData.id {
+                                    index = self.articleDataArray.index(of: article)!
+                                    break
+                                }
+                            }
+                            self.articleDataArray.remove(at: index)
+                            self.articleDataArray.insert(articleData, at: index)
+                            //できた…！
+                        }
+                        
+                        
+                        /*
+                        for document in documents {
+                            let articleData = ArticleQueryData(snapshot: document, myId: uid)
+                            var index: Int = 0
+                            for article in self.articleDataArray {
+                                if article.id == articleData.id {
+                                    index = self.articleDataArray.index(of: article)!
+                                    break
+                                }
+                            }
+                            //差し替えるために一度削除
+                            self.articleDataArray.remove(at: index)
+                            //削除したところに更新済みのデータを追加
+                            self.articleDataArray.insert(articleData, at:index)
+                        }*/
+                    }
+                    /*
+                    for document in querySnapshot!.documents {
+                        
+                        var index: Int = 0
+                        for article in self.articleDataArray {
+                            if article.id == articleData.id {
+                                index = self.articleDataArray.index(of: article)!
+                                break
+                            }
+                        }
+                        
+                    }*/
+                }
+            } //ref.whereField...の終わり
+        } //if let user = Auth.auth().currentUser {...の終わり
+    }*/
+    
+    /*
     func fetchCellViewModell() {
         articleArray = [] //これがないと、fetchされるたびにarticleArrayが倍増していく。
-        //print("fetchCellViewModelが呼ばれたよ")
        if Auth.auth().currentUser != nil { //新着はAuthがnilでもいいや。
             //if self.observing == false {
                 let articlesRef = Database.database().reference().child(Const.ArticlePath)
@@ -118,6 +308,8 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         SVProgressHUD.dismiss()
                     }
                 })
+        
+                //.childChandedで、ボタンタップ時などの変更をキャッチしている。
                 articlesRef.observe(.childChanged, with: { snapshot in
                     if let uid = Auth.auth().currentUser?.uid {
                         let articleData = ArticleData(snapshot: snapshot, myId: uid)
@@ -165,13 +357,59 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }*/
         
         }
-    }
+    }*/
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
+
+     
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            if articleDataArray.count == 0 {
+                return 1
+            } else if articleDataArray.count > 0 && articleDataArray.count <= 7 {
+                return articleDataArray.count
+            } else {
+                return 7
+            }
+        } else if section == 1 {
+            if articleDataArray.count <= 7 {
+                return 0
+            } else {
+                return articleDataArray.count - 7
+            }
+        } else if section == 2 {
+            return 1 //5とかにすると、"チャンネル"のところがめっちゃダブることになる。
+        } else{ //other
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 1500
+        } else if indexPath.section == 1 {
+            return 100
+        } else {
+            return UITableView.automaticDimension
+        }
+        //数字の値は色々試して見つけた。また、tableViewのreload時に呼ぶこのコードも気休め程度には効果があるかもしれない。
+        /*
+         let before = self.tableView.contentOffset.y
+         self.tableView.reloadData()
+         let after = self.tableView.contentOffset.y
+         
+         if before > after {
+         self.tableView.contentOffset.y = before
+         }
+         */
+    }
+    
+    /*
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             if articleArray.count == 0 {
@@ -192,8 +430,55 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else{ //other
             return 1
         }
+    }*/
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        if indexPath.section == 0 {
+            if articleDataArray.count > 0 {
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.listCell, for:indexPath)  else { return UITableViewCell()}
+                print("indexPath.row",indexPath.row)
+                print("articleDataArray.count:",articleDataArray.count)
+                cell.setCellInfo(articleData: articleDataArray[indexPath.row])
+                cell.clipButton.addTarget(self, action: #selector(handleButton(sender:event:)), for:   UIControl.Event.touchUpInside)
+                
+                cell.selectionStyle = .none //ハイライトを消す
+                cell.backgroundColor = UIColor.clear
+                return cell
+                
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "InitialTableViewCell") as! InitialTableViewCell
+                cell.selectionStyle = .none
+                return cell
+            }
+        } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionAnswerCell") as! QuestionAnswerCell
+            cell.setQuestionAnswerCellInfo(articleData: articleDataArray[indexPath.row + 7])
+            cell.clipButton.addTarget(self, action: #selector(handleButton2(sender:event:)), for:   UIControl.Event.touchUpInside)
+            cell.selectionStyle = .none
+            return cell
+            
+        } else/* if indexPath.section == 3 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: "InitialTableViewCell") as! InitialTableViewCell
+             cell.setTitleLabel(string: "")
+             cell.selectionStyle = .none
+             return cell
+             
+             } else*/ {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ChannelCell") as! ChannelCell
+                //cell.setCommentTableViewCellInfo()
+                cell.selectionStyle = .none
+                cell.channelButton1.addTarget(self, action: #selector(channelChange1(sender:event:)), for:   UIControl.Event.touchUpInside)
+                cell.channelButton2.addTarget(self, action: #selector(channelChange2(sender:event:)), for:   UIControl.Event.touchUpInside)
+                cell.channelButton3.addTarget(self, action: #selector(channelChange3(sender:event:)), for:   UIControl.Event.touchUpInside)
+                cell.channelButton4.addTarget(self, action: #selector(channelChange4(sender:event:)), for:   UIControl.Event.touchUpInside)
+                cell.channelButton5.addTarget(self, action: #selector(channelChange5(sender:event:)), for:   UIControl.Event.touchUpInside)
+                cell.channelButton6.addTarget(self, action: #selector(channelChange6(sender:event:)), for:   UIControl.Event.touchUpInside)
+                cell.homeButton.addTarget(self, action: #selector(toHome(sender:event:)), for:   UIControl.Event.touchUpInside)
+                return cell
+        }
     }
-    
+    /*
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         if indexPath.section == 0 {
@@ -236,8 +521,35 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.homeButton.addTarget(self, action: #selector(toHome(sender:event:)), for:   UIControl.Event.touchUpInside)
             return cell
         }
-    }
+    }*/
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("didSelectRowAtが呼ばれたよ")//これは呼ばれるらしい。
+        if indexPath.section == 0 {
+            if articleDataArray.count > 0{
+                let selectCellViewModel = articleDataArray[indexPath.row]
+                masterViewPointer?.summaryView(giveCellViewModel: selectCellViewModel)
+                
+                
+                //問題はこの部分。articleArrayは入っているから、masterViewPointerの問題か、summaryViewの問題か
+                //ページの遷移に問題があるように思われる。つまり、summaryViewだけではないと。clipも反応しないし、相談窓口ボタンも反応しなかった。
+                /*
+                 Terminating app due to uncaught exception 'NSGenericException', reason: 'Push segues can only be used when the source controller is managed by an instance of UINavigationController.
+                 */
+                //これはどういう意味だろう。navigationControllerが呼ばれていないということだろうか。home画面へ移動する際のコードがshowになっていて、navigation controllerを継承したものではなかったのが原因だった。
+                //InitialNavigationControllerへ飛ばすことで解決。
+                
+            } else {
+                return
+            }
+        } else if indexPath.section == 1 {
+            if articleDataArray.count > 7{
+                let selectCellViewModel = articleDataArray[indexPath.row + 7]
+                masterViewPointer?.summaryView(giveCellViewModel: selectCellViewModel)
+            }
+        }
+    }
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAtが呼ばれたよ")//これは呼ばれるらしい。
         if indexPath.section == 0 {
@@ -261,10 +573,58 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 masterViewPointer?.summaryView(giveCellViewModel: selectCellViewModel)
             }
         }
-    }
+    }*/
     
     //以下はいいねボタンの処理。可能な限りコピペで使いまわしたい…
-  
+    @objc func handleButton(sender:UIButton, event:UIEvent) {
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        
+        // 配列からタップされたインデックスのデータを取り出す
+        let articleData = articleDataArray[indexPath!.row]
+        
+        //ずれの原因はここより下にあるようだ。
+        // Firebaseに保存するデータの準備
+        if let uid = Auth.auth().currentUser?.uid {
+            if articleData.isLiked {
+                // すでにいいねをしていた場合はいいねを解除するためIDを取り除く
+                var index = -1
+                for likeId in articleData.likes {
+                    if likeId == uid {
+                        // 削除するためにインデックスを保持しておく
+                        index = articleData.likes.index(of: likeId)!
+                        break
+                    }
+                }
+                articleData.likes.remove(at: index)
+                print(articleData.likes)
+                
+            } else {
+                articleData.likes.append(uid)
+                print(articleData.likes)
+                
+            }
+            //色も数値も変わるってことは、ローカル環境でのlikes配列の中に、uidが保存されているということ。問題は、それをFirebaseへアップできていない…。
+            //視覚的に更新されていないだけで、実際は更新されていたというオチ。
+            
+            // 増えたlikesをFirebaseに保存する
+            let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
+            let likes = ["likes": articleData.likes]
+
+            articleRef.updateData(likes){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            
+            }
+        }
+        
+    }
+    /*
     @objc func handleButton(sender:UIButton, event:UIEvent) {
          // タップされたセルのインデックスを求める
          let touch = event.allTouches?.first
@@ -306,7 +666,51 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
  
          }
  
+    }*/
+    @objc func handleButton2(sender:UIButton, event:UIEvent) {
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        
+        // 配列からタップされたインデックスのデータを取り出す
+        let articleData = articleDataArray[indexPath!.row + 7]
+        
+        //ずれの原因はここより下にあるようだ。
+        // Firebaseに保存するデータの準備
+        if let uid = Auth.auth().currentUser?.uid {
+            if articleData.isLiked {
+                // すでにいいねをしていた場合はいいねを解除するためIDを取り除く
+                var index = -1
+                for likeId in articleData.likes {
+                    if likeId == uid {
+                        // 削除するためにインデックスを保持しておく
+                        index = articleData.likes.index(of: likeId)!
+                        break
+                    }
+                }
+                articleData.likes.remove(at: index)
+                
+            } else {
+                articleData.likes.append(uid)
+                
+            }
+            // 増えたlikesをFirebaseに保存する
+            let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
+            let likes = ["likes": articleData.likes]
+            
+            articleRef.updateData(likes){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+                
+            }
+        }
+        
     }
+    /*
     @objc func handleButton2(sender:UIButton, event:UIEvent) {
         // タップされたセルのインデックスを求める
         let touch = event.allTouches?.first
@@ -343,7 +747,7 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-    }
+    }*/
     
     
     @objc func channelChange1(sender:UIButton, event:UIEvent) {

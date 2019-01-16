@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 import FirebaseAuth
 import FSPagerView
+import SVProgressHUD
 
 class InitialNavigationController: UINavigationController {
     
@@ -38,6 +40,7 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
     
     //起動画面のアニメーションで用いる。
     var launchImageView = UIImageView()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +113,7 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.navigationBar.shadowImage = UIImage()
+        fetchConsulationData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -141,9 +145,12 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         /*let navigationVc:NavigationViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as! NavigationViewController
          navigationController?.pushViewController(navigationVc, animated: true)*/
     }
+    
+
+    
 
     //summaryViewへ移動する処理
-    func summaryView(giveCellViewModel:ArticleData) {
+    func summaryView(giveCellViewModel:ArticleQueryData) {
         let giveCellViewModel = giveCellViewModel
         //self.giveCellViewModel = giveCellViewModel
         let vc:SummaryViewController = self.storyboard?.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
@@ -151,7 +158,105 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+//★★★★★★★★★★★★consultation★★★★★★★★★★★★//
+    var types:[String] = []
+    var giveCategories:[String] = []
+    var giveConsultationTypeA_Array:[[String : Any]] = []
+    var giveConsultationTypeB_Array:[[String : Any]] = []
+    var giveConsultationTypeC_Array:[[String : Any]] = []
+    var giveConsultationTypeD_Array:[[String : Any]] = []
+    var giveConsultationTypeE_Array:[[String : Any]] = []
+    var giveConsultationTypeF_Array:[[String : Any]] = []
+    
+    
+    func fetchConsulationData() {
+        SVProgressHUD.show()
+        types = ["typeA","typeB","typeC","typeD","typeE","typeF"]
+        
+        let db = Firestore.firestore()
 
+        db.collection("categories").document("vokXlkvJcce7W1YHvQNn").getDocument { (document, error) in
+            if let document = document, document.exists {
+                print(type(of: document.data()))
+                for i in 0..<document.data()!.count {
+                    self.giveCategories.append(document.data()![self.types[i]] as! String)
+                }
+                print(self.giveCategories) //categoriesの中に何が入っているかがこれでわかる。
+            } else {
+                print("Document does not exist")
+            }
+        }
+        
+        giveConsultationTypeA_Array = []
+        giveConsultationTypeB_Array = []
+        giveConsultationTypeC_Array = []
+        giveConsultationTypeD_Array = []
+        giveConsultationTypeE_Array = []
+        giveConsultationTypeF_Array = []
+        
+        for type in types {
+            db.collection("consultations").whereField("ConsultationType", isEqualTo: type).getDocuments{ (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        if type == "typeA" {
+                            self.giveConsultationTypeA_Array.append(document.data())
+                        } else if type == "typeB" {
+                            self.giveConsultationTypeB_Array.append(document.data())
+                        } else if type == "typeC" {
+                            self.giveConsultationTypeC_Array.append(document.data())
+                        } else if type == "typeD" {
+                            self.giveConsultationTypeD_Array.append(document.data())
+                        } else if type == "typeE" {
+                            self.giveConsultationTypeE_Array.append(document.data())
+                        } else if type == "typeF" {
+                            self.giveConsultationTypeF_Array.append(document.data())
+                        }
+                    }
+                    //この中であれば、self.consultationTypeA_Array.countは数値を持つ。この外でも数値を持つためには、以下のようにreloadが必要。
+                    //self.tableView.reloadData()
+                    SVProgressHUD.dismiss()
+                }
+            }
+        }
+    }
+    
+    @IBAction func consultationButton(_ sender: Any) {
+        let ConsultationStoryboard: UIStoryboard = UIStoryboard(name: "Consultation", bundle: nil)
+        let consultationVc: ConsultationViewController = ConsultationStoryboard.instantiateViewController(withIdentifier: "ConsultationViewController") as! ConsultationViewController
+        print("giveCategories", giveCategories)
+        
+        
+        consultationVc.receivedCategories = self.giveCategories
+        consultationVc.receivedConsultationTypeA_Array = self.giveConsultationTypeA_Array
+        consultationVc.receivedConsultationTypeB_Array = self.giveConsultationTypeB_Array
+        consultationVc.receivedConsultationTypeC_Array = self.giveConsultationTypeC_Array
+        consultationVc.receivedConsultationTypeD_Array = self.giveConsultationTypeD_Array
+        consultationVc.receivedConsultationTypeE_Array = self.giveConsultationTypeE_Array
+        consultationVc.receivedConsultationTypeF_Array = self.giveConsultationTypeF_Array
+        
+        if !giveCategories.isEmpty {
+            navigationController?.pushViewController(consultationVc, animated: true)
+        } else {
+            let title = "ロード中です！"
+            let message = "ロード完了まで数秒お待ちください"
+            let okText = "OK"
+            
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+            let okayButton = UIAlertAction(title: okText, style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okayButton)
+            
+            present(alert, animated: true, completion: nil)
+        }
+        
+        
+        //show(consultationVc, sender: nil)
+        
+        /*let navigationVc:NavigationViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as! NavigationViewController
+         navigationController?.pushViewController(navigationVc, animated: true)*/
+    }
+    
     
 
     

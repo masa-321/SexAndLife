@@ -52,11 +52,12 @@ class SummaryCell: UITableViewCell {
     }*/
     
     
-    func setSummaryCellInfo(articleData:ArticleData){
+    func setSummaryCellInfo(articleData:ArticleQueryData){
         browseButton.backgroundColor = UIColor(red:0.95, green:1.00, blue:0.36, alpha:1.0)
         titleLabel.text = articleData.titleStr
         sourceLabel.text = articleData.sourceName
-        dateLabel.text = articleData.date
+        //dateLabel.text = articleData.date dateは一旦保留
+        
         //summaryLabel.text = articleData.summary
         //summaryLabel.setLineSpacing(lineSpacing: 2.0)
         

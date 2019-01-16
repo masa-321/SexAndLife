@@ -10,6 +10,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 import FirebaseDatabase
 import SDWebImage
 import SVProgressHUD
@@ -17,7 +18,7 @@ import SVProgressHUD
 class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     //TableViewの宣言
     var tableView:UITableView = UITableView()
-    var articleArray:[ArticleData] = []
+    var articleDataArray:[ArticleQueryData] = []
     var observing = false
     
     let refreshControl = UIRefreshControl()
@@ -90,51 +91,25 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func fetchCellViewModell() {
-        articleArray = [] //これがないと、fetchされるたびにarticleArrayが倍増していく。
-        //print("fetchCellViewModelが呼ばれたよ")
-        if Auth.auth().currentUser != nil { //新着はAuthがnilでもいいや。
-            //if self.observing == false {
-            let articlesRef = Database.database().reference().child(Const.ArticlePath)
-            articlesRef.observe(.childAdded, with: {snapshot in
-                //observeSingleEventは、元々のやり方とは合わなかったようだ。どういうわけかはよくわからない。
-                
-                
-                //ArticleDataクラスを生成して受け取ったデータを設定する。
-                if let uid = Auth.auth().currentUser?.uid {
-                    let articleData = ArticleData(snapshot: snapshot, myId: uid)
-                    ///★デバッグ★ print("articleData.relatedArticleIDsの数は？:" + "\(articleData.relatedArticleIDs)") //この時点でrelatedArticleIDsが引き継げていない。
-                    //★デバッグ★ print("likesの数は？: " + "\(articleData.likes)")
-                    if self.articleArray.count < 14 && articleData.genreName == "LGBTQ+"{ //トップ記事は10記事まで
-                        self.articleArray.insert(articleData, at: 0)
-                    }
-                    
-                    //print(self.articleArray)
-                    // TableViewを再表示する
-                    self.tableView.reloadData() //ここをコメントアウトすると、本記事がなくなってしまい、offset調整どころではなくなる。た
-                    SVProgressHUD.dismiss()
-                }
-            })
-            articlesRef.observe(.childChanged, with: { snapshot in
-                if let uid = Auth.auth().currentUser?.uid {
-                    let articleData = ArticleData(snapshot: snapshot, myId: uid)
-                    
-                    var index: Int = 0
-                    for article in self.articleArray {
-                        if article.id == articleData.id {
-                            index = self.articleArray.index(of: article)!
-                            break
-                        }
-                    }
-                    
-                    if articleData.genreName == "LGBTQ+"{ //トップ記事は30記事まで
-                        //差し替えるために一度削除 ここでエラーになった。
-                        self.articleArray.remove(at: index)
-                        //削除したところに更新済みのデータを追加
-                        self.articleArray.insert(articleData, at:index)
+        articleDataArray = []
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "LGBTQ+")
+            let uid = user.uid
+            
+            ref.addSnapshotListener { querySnapshot, err in
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    self.articleDataArray = []
+                    for document in querySnapshot!.documents {
+                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
                         
+                        if self.articleDataArray.count < 14 { //トップ記事は10記事まで
+                            self.articleDataArray.insert(articleData, at: 0)
+                        }
+
                     }
-                    
-                    
+                    //Clipボタンを押した時にcontentOffsetがずれる課題に対しての気休め
                     let before = self.tableView.contentOffset.y
                     self.tableView.reloadData()
                     let after = self.tableView.contentOffset.y
@@ -142,12 +117,9 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     if before > after {
                         self.tableView.contentOffset.y = before
                     }
-                    
                     SVProgressHUD.dismiss()
-                    
                 }
-            })
-            
+            }
         }
     }
     
@@ -158,18 +130,18 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            if articleArray.count == 0 {
+            if articleDataArray.count == 0 {
                 return 1
-            } else if articleArray.count > 0 && articleArray.count <= 7 {
-                return articleArray.count
+            } else if articleDataArray.count > 0 && articleDataArray.count <= 7 {
+                return articleDataArray.count
             } else {
                 return 7
             }
         } else if section == 1 {
-            if articleArray.count <= 7 {
+            if articleDataArray.count <= 7 {
                 return 0
             } else {
-                return articleArray.count - 7
+                return articleDataArray.count - 7
             }
         } else if section == 2 {
             return 1 //5とかにすると、"チャンネル"のところがめっちゃダブることになる。
@@ -178,12 +150,32 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 1500
+        } else if indexPath.section == 1 {
+            return 100
+        } else {
+            return UITableView.automaticDimension
+        }
+        //数字の値は色々試して見つけた。また、tableViewのreload時に呼ぶこのコードも気休め程度には効果があるかもしれない。
+        /*
+         let before = self.tableView.contentOffset.y
+         self.tableView.reloadData()
+         let after = self.tableView.contentOffset.y
+         
+         if before > after {
+         self.tableView.contentOffset.y = before
+         }
+         */
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         if indexPath.section == 0 {
-            if articleArray.count > 0{
+            if articleDataArray.count > 0{
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.listCell, for:indexPath)  else { return UITableViewCell()}
-                cell.setCellInfo(articleData: articleArray[indexPath.row])
+                cell.setCellInfo(articleData: articleDataArray[indexPath.row])
                 cell.clipButton.addTarget(self, action: #selector(handleButton(sender:event:)), for:   UIControl.Event.touchUpInside)
                 
                 cell.selectionStyle = .none //ハイライトを消す
@@ -196,7 +188,7 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionAnswerCell") as! QuestionAnswerCell
-            cell.setQuestionAnswerCellInfo(articleData: articleArray[indexPath.row + 7])
+            cell.setQuestionAnswerCellInfo(articleData: articleDataArray[indexPath.row + 7])
             cell.clipButton.addTarget(self, action: #selector(handleButton2(sender:event:)), for:   UIControl.Event.touchUpInside)
             cell.selectionStyle = .none
             return cell
@@ -224,15 +216,15 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            if articleArray.count > 0 && articleArray.count <= 7{
-                let selectCellViewModel = articleArray[indexPath.row]
+            if articleDataArray.count > 0 && articleDataArray.count <= 7{
+                let selectCellViewModel = articleDataArray[indexPath.row]
                 masterViewPointer?.summaryView(giveCellViewModel: selectCellViewModel)
             } else {
                 return
             }
         } else if indexPath.section == 1 {
-            if articleArray.count > 7{
-                let selectCellViewModel = articleArray[indexPath.row + 7]
+            if articleDataArray.count > 7{
+                let selectCellViewModel = articleDataArray[indexPath.row + 7]
                 masterViewPointer?.summaryView(giveCellViewModel: selectCellViewModel)
             }
         }
@@ -247,7 +239,7 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let indexPath = tableView.indexPathForRow(at: point)
         
         // 配列からタップされたインデックスのデータを取り出す
-        let articleData = articleArray[indexPath!.row]
+        let articleData = articleDataArray[indexPath!.row]
         
         //ずれの原因はここより下にあるようだ。
         // Firebaseに保存するデータの準備
@@ -269,10 +261,17 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
             }
             // 増えたlikesをFirebaseに保存する
-            let articleRef = Database.database().reference().child(Const.ArticlePath).child(articleData.id!)
+            let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
             let likes = ["likes": articleData.likes]
-            articleRef.updateChildValues(likes)
             
+            articleRef.updateData(likes){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+                
+            }
             
         }
         
@@ -284,7 +283,7 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let indexPath = tableView.indexPathForRow(at: point)
         
         // 配列からタップされたインデックスのデータを取り出す
-        let articleData = articleArray[indexPath!.row + 7]
+        let articleData = articleDataArray[indexPath!.row + 7]
         
         //ずれの原因はここより下にあるようだ。
         // Firebaseに保存するデータの準備
@@ -306,11 +305,17 @@ class Media5ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
             }
             // 増えたlikesをFirebaseに保存する
-            let articleRef = Database.database().reference().child(Const.ArticlePath).child(articleData.id!)
+            let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
             let likes = ["likes": articleData.likes]
-            articleRef.updateChildValues(likes)
             
-            
+            articleRef.updateData(likes){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+                
+            }
         }
         
     }

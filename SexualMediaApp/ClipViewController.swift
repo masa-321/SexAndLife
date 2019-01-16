@@ -9,18 +9,13 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import FirebaseDatabase
 import SVProgressHUD
-
+import FirebaseFirestore
 
 class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    // DatabaseのobserveEventの登録状態を表す
-    var observing = false
-    var userSum = 0
     
     //clip記事が格納される配列を用意
-    var likesArray: [ArticleData] = []
+    var likesArray: [ArticleQueryData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +24,24 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.register(R.nib.listCell)
         tableView.estimatedRowHeight = 200
         SVProgressHUD.show()
-        
+        reloadFavoriteData()
+        /*
+        Firestore.firestore().collection("users").getDocuments(){(querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                self.userSum = querySnapshot!.documents.count
+                print("userSum①",self.userSum)
+                self.reloadFavoriteData()
+            }
+        }*/
+        /*
         Database.database().reference().child("users").observeSingleEvent(of: .value) {  (snap,error) in
             if let users = snap.value as? [String:NSDictionary] {
                 self.userSum = users.count
-                self.reloadFavoriteData()
+         
             }
-        }
+        }*/
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +63,42 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     
     func reloadFavoriteData() {
+        if let user = Auth.auth().currentUser {
+            let uid = user.uid
+            
+            let ref = Firestore.firestore().collection("articleData")
+            ref.addSnapshotListener { querySnapshot, err in
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    self.likesArray = []
+                    print("呼ばれたよ")
+                    for document in querySnapshot!.documents {
+                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
+                        print("documentがあったよ")
+                        self.likesArray.insert(articleData, at: 0)
+                    }
+                    
+                    self.likesArray = self.likesArray.filter { $0.likes.contains(uid) }
+                    
+                    let before = self.tableView.contentOffset.y
+                    self.tableView.reloadData()
+                    let after = self.tableView.contentOffset.y
+                    
+                    if before > after {
+                        self.tableView.contentOffset.y = before
+                    }
+                    
+                    SVProgressHUD.dismiss()
+                    
+                }
+               
+            }
+        }
+    }
+        /*
         //print("reloadFavoriteData()が呼ばれたよ")
-        self.likesArray = []
+     
         tableView.reloadData()
         if Auth.auth().currentUser != nil {
             if self.observing == false {
@@ -99,8 +139,8 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
             }
-        }
-    }
+        }*/
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -124,7 +164,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         fromClipArticleToSummary(giveCellViewModel: selectCellViewModel)
     }
     
-    func fromClipArticleToSummary(giveCellViewModel:ArticleData) {
+    func fromClipArticleToSummary(giveCellViewModel:ArticleQueryData) {
         let giveCellViewModel = giveCellViewModel
         let vc:SummaryViewController = storyboard?.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
         vc.receiveCellViewModel = giveCellViewModel
@@ -153,10 +193,24 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             likeData.likes.remove(at: index)
-            let likeRef = Database.database().reference().child(Const.ArticlePath).child(likeData.id!)
+            
+            /*
+            //let likeRef = Database.database().reference().child(Const.ArticlePath).child(likeData.id!)
             let likes = ["likes": likeData.likes]
             likeRef.updateChildValues(likes)
-            self.reloadFavoriteData()
+            self.reloadFavoriteData()*/
+            
+            let likeRef = Firestore.firestore().collection("articleData").document(likeData.id!)
+            let likes = ["likes": likeData.likes]
+            
+            likeRef.updateData(likes){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+                
+            }
             /*
             //この時点でuidはnilではない。
             if likeData.isLiked {

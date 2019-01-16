@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 import FirebaseDatabase
 import SDWebImage
 import SVProgressHUD
@@ -22,18 +23,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    var receiveCellViewModel:ArticleData?
+    var receiveCellViewModel:ArticleQueryData?
     
     let refreshControl = UIRefreshControl()
 
-    var searchArticleArray:[ArticleData] = []
-    var observing = false
- 
+    var searchArticleArray:[ArticleQueryData] = []
+    var preArticleArray:[ArticleQueryData] = []
+    var conditions = [(ArticleQueryData) -> Bool]()
+    
     @IBOutlet weak var searchBar: UISearchBar!{
         didSet {
             searchBar.delegate = self
             searchBar.showsCancelButton = true
-            searchBar.placeholder = "単語は4つまで検索可能です"
+            searchBar.placeholder = "区切り文字は半角スペースで"
+            
         }
     }
     
@@ -61,7 +64,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.title = "メディアを探す"
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.shadowImage = UIImage() //nill
         navigationController?.navigationBar.isTranslucent = true //こいつが原因の模様
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .black
@@ -97,18 +100,73 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 return
             } else if word.contains(" ") {
                 let words:[String] = word.components(separatedBy: " ")
-                searchArticleFetchCellViewModell(searchWords:words) //searchArticleFetchCellViewModell(searchWord: word)
+                searchFetchArticleData(searchWords:words)
                 SVProgressHUD.show()
                 print(words)
             } else {
-                searchArticleFetchCellViewModell(searchWords:[word]) //searchArticleFetchCellViewModell(searchWord: word)
+                searchFetchArticleData(searchWords:[word])
                 SVProgressHUD.show()
             }
         }
     }
     
 //★★★★★★★★★★Firebaseからデータを取ってくる★★★★★★★★★★★//
-    func searchArticleFetchCellViewModell(searchWords:[String]) { //←searchArticleFetchCellViewModell(searchWord:String)
+    func searchFetchArticleData(searchWords:[String]) {
+        
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("articleData")
+            let uid = user.uid
+            
+            ref.addSnapshotListener { querySnapshot, err in
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    self.searchArticleArray = []
+                    self.preArticleArray = [] //こっちも初期化しないと増えていってしまう。
+                    for document in querySnapshot!.documents {
+                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
+                        self.preArticleArray.insert(articleData, at: 0)
+                    }
+
+                    
+                   //preArticleArrayの要素一つ一つに対してcondition（Bool）がある。elementがwordを含んでいたらTrueになる。
+                    //var conditions = [(ArticleQueryData) -> Bool]()における、(ArticleQueryData)の部分が$0に入ってくる。
+                    for word in searchWords {
+                        //OR条件のクロージャーをArrayとしておいている
+                        self.conditions.append { $0.titleStr!.contains(word) || $0.summary!.contains(word) || $0.tags!.contains(word) }
+                        
+                    }
+                
+                    self.searchArticleArray = self.preArticleArray.filter { article in
+                        self.conditions.reduce(true) { $0 && $1 (article) }
+                    }
+                    //reduceでは何度も処理がループする
+                    //(true)は初期値で、$0に最初に入る値。
+                    //conditions[0]が$1に入り、$0 = $0 && $1といった処理が順々に行われていく。
+                    //今回の場合は、検索文字が3つでも、articleの文字に全て含まれれば、conditions = [true,true,true]といった感じになるはず。
+                    //3つ目の検索文字がarticleの文字に含まれない場合、conditions = [true,true,false]という感じになる。
+                    //reduceのところの処理は、conditionsの配列中にfalseが一つでもあった瞬間に、畳み込みから外れることになる。
+                    //処理自体はとても素晴らしい。増えてしまう問題の根本は別のところにあるようだ。
+                    
+                    if self.searchArticleArray.isEmpty {
+                        self.resultLabel.text = "検索条件に一致する記事は見つかりませんでした。"
+                    }
+                    
+                    let before = self.tableView.contentOffset.y
+                    self.tableView.reloadData()
+                    let after = self.tableView.contentOffset.y
+                    
+                    if before > after {
+                        self.tableView.contentOffset.y = before
+                    }
+                    
+                    SVProgressHUD.dismiss()
+                }
+            }
+        
+        }
+        
+        /*
         print("funcが呼ばれたよ")
         if Auth.auth().currentUser != nil {
             
@@ -213,9 +271,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     observing = false
                 }
             }*/
-        }
+     }*/
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         self.resultLabel.text = ""
@@ -261,7 +319,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         fromSearchToSummaryView(giveCellViewModel: cellViewModel)
     }
     
-    func fromSearchToSummaryView(giveCellViewModel:ArticleData) {
+    func fromSearchToSummaryView(giveCellViewModel:ArticleQueryData) {
         let giveCellViewModel = giveCellViewModel
         let vc:SummaryViewController = self.storyboard?.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
         vc.receiveCellViewModel = giveCellViewModel
@@ -295,10 +353,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 articleData.likes.append(uid)
             }
             // 増えたlikesをFirebaseに保存する
-            let articleRef = Database.database().reference().child(Const.ArticlePath).child(articleData.id!)
+            let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
             let likes = ["likes": articleData.likes]
-            articleRef.updateChildValues(likes)
             
+            articleRef.updateData(likes){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+                
+            }
         }
         
     }

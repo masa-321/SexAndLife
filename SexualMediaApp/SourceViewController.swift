@@ -21,7 +21,7 @@ class SourceViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var tableView: UITableView!
-    var sourceArticleArray: [ArticleData] = []
+    var sourceArticleArray: [ArticleQueryData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,56 +61,26 @@ class SourceViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func reloadSourceArticleData() {
-        print("reloadSourceArticleData()が呼ばれたよ")
-        self.sourceArticleArray = []
-        //tableView.reloadData()
-        if Auth.auth().currentUser != nil {
-            let articlesRef = Database.database().reference().child(Const.ArticlePath)
-            articlesRef.observe(.childAdded, with: {snapshot in
-                if let uid = Auth.auth().currentUser?.uid {
-                    let articleData = ArticleData(snapshot: snapshot, myId: uid)
-                    if articleData.sourceName == self.receiveData{
+        
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("articleData").whereField("sourceName", isEqualTo: self.receiveData)
+            let uid = user.uid
+            
+            ref.addSnapshotListener { querySnapshot, err in
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    self.sourceArticleArray = []
+                    for document in querySnapshot!.documents {
+                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
                         self.sourceArticleArray.insert(articleData, at: 0)
                     }
                     
                     self.tableView.reloadData()
-                    SVProgressHUD.dismiss()
-                }
-            })
-            articlesRef.observe(.childChanged, with: { snapshot in
-                if let uid = Auth.auth().currentUser?.uid {
-                    let articleData = ArticleData(snapshot: snapshot, myId: uid)
-                    
-                    var index: Int = 0
-                    for article in self.sourceArticleArray {
-                        if article.id == articleData.id {
-                            index = self.sourceArticleArray.index(of: article)!
-                            break
-                        }
-                    }
-                    
-                    if articleData.sourceName == self.receiveData{ //トップ記事は30記事まで
-                        //差し替えるために一度削除 ここでエラーになった。
-                        self.sourceArticleArray.remove(at: index)
-                        //削除したところに更新済みのデータを追加
-                        self.sourceArticleArray.insert(articleData, at:index)
-                        
-                    }
-                    
-                    
-                    let before = self.tableView.contentOffset.y
-                    self.tableView.reloadData()
-                    let after = self.tableView.contentOffset.y
-                    
-                    if before > after {
-                        self.tableView.contentOffset.y = before
-                    }
                     
                     SVProgressHUD.dismiss()
-                    
                 }
-            })
-            
+            }
         }
     }
     
@@ -163,7 +133,7 @@ class SourceViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
     }
     
-    func fromSourceArticleToSummary(giveCellViewModel:ArticleData) {
+    func fromSourceArticleToSummary(giveCellViewModel:ArticleQueryData) {
         let giveCellViewModel = giveCellViewModel
         let vc:SummaryViewController = storyboard?.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
         vc.receiveCellViewModel = giveCellViewModel
@@ -198,10 +168,18 @@ class SourceViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
             
 
-            let articleRef = Database.database().reference().child(Const.ArticlePath).child(articleData.id!)
+            // 増えたlikesをFirebaseに保存する
+            let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
             let likes = ["likes": articleData.likes]
-            articleRef.updateChildValues(likes)
             
+            articleRef.updateData(likes){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+                
+            }
         }
         
     }
@@ -240,7 +218,7 @@ class SourceImageCell:UITableViewCell{
                 for document in querySnapshot!.documents {
                     self.imageURLString = document["ImageURLString"] as! String
                 }
-                self.sourceImageView.sd_setImage(with: URL(string: self.imageURLString), placeholderImage: UIImage(named: "placeholderImage"))
+                self.sourceImageView.sd_setImage(with: URL(string: self.imageURLString)/*, placeholderImage: UIImage(named: "placeholderImage")*/)
             }
         }
         

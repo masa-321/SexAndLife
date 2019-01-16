@@ -56,6 +56,7 @@
 		5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */; };
 		5F086F8521EB33EF0077B8E9 /* ProfileCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */; };
 		5F3883E321DDF6E800D95B72 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3883E221DDF6E700D95B72 /* R.generated.swift */; };
+		5F6A1FB021EC2489009AD79A /* Consultation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */; };
 		5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */; };
 		5FEDC02E21E05C3F006A3563 /* ConsultationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */; };
 		5FEDC03021E06055006A3563 /* ConsultationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02F21E06055006A3563 /* ConsultationModel.swift */; };
@@ -135,6 +136,7 @@
 		5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentViewController.swift; sourceTree = "<group>"; };
 		5F3883E221DDF6E700D95B72 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Consultation.storyboard; sourceTree = "<group>"; };
 		5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationCollectionCell.swift; sourceTree = "<group>"; };
 		5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationItemCell.swift; sourceTree = "<group>"; };
 		5FEDC02F21E06055006A3563 /* ConsultationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationModel.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				1051843F2165992100EA36BD /* LaunchScreen.storyboard */,
 				1051843A2165992000EA36BD /* Main.storyboard */,
 				509B4B8B216E1C3E006F239C /* Info.storyboard */,
+				5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				509B4B8C216E1C3E006F239C /* Info.storyboard in Resources */,
 				1051843C2165992000EA36BD /* Main.storyboard in Resources */,
 				509B4B92216F04AE006F239C /* GoogleService-Info.plist in Resources */,
+				5F6A1FB021EC2489009AD79A /* Consultation.storyboard in Resources */,
 				50511DDD21878626003011CC /* SummaryCell.xib in Resources */,
 				50E9C8E52189F454006F567E /* CommentTableViewCell.xib in Resources */,
 				503C98FD2181432E00646A8B /* ListCell.xib in Resources */,
@@ -439,7 +443,7 @@
 				"",
 			);
 			outputPaths = (
-				$SRCROOT/SexualMediaApp/R.generated.swift,
+				"$SRCROOT/SexualMediaApp/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -486,6 +490,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReadMoreTextView/ReadMoreTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
@@ -507,6 +512,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReadMoreTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",

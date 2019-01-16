@@ -9,17 +9,22 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 import FirebaseDatabase
 import SVProgressHUD
+import ReadMoreTextView
 
 class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    var receiveCellViewModel:ArticleData?
+    var receiveCellViewModel:ArticleQueryData?
     
-    var relatedArticleArray:[ArticleData] = []
+    var relatedArticleArray:[ArticleQueryData] = []
     var request:URLRequest?
     var titleStr:String?
     var observing = false
+    
+    //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
+    var expandedCells = Set<Int>()
     
     //var relatedArticleCellViewModel = ListCellViewModel()
     //var relatedArticleCellViewModel_Array = [ListCellViewModel]()
@@ -65,7 +70,18 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             relatedTableView.register(nib3, forCellReuseIdentifier: "CommentTableViewCell")
             relatedTableView.bounces = true
             
+            //relatedTableView.rowHeight = UITableView.automaticDimension
+            
+            /*
             relatedTableView.estimatedRowHeight = 1000
+            
+            //以下の２行はコメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
+            //relatedTableView.estimatedRowHeight = 100
+            //relatedTableView.estimatedRowHeight = 200
+            relatedTableView.rowHeight = UITableView.automaticDimension
+            
+            //100や200だとピョンとするが、コメント欄はちゃんと動く。1000だとコメント欄がバグる。
+             */
         }
     }
     
@@ -99,7 +115,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         //ボタンは後述
         // Do any additional setup after loading the view.
         
-        
+        relatedTableView.reloadData()
     }
     
     
@@ -116,6 +132,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         navigationController?.navigationBar.alpha = 1 //0
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.clear]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -124,7 +141,15 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         //navigationController?.navigationBar.barTintColor = .white //なんだっけ
         //navigationController?.navigationBar.tintColor = .darkGray //戻るボタンの色は最終的に黒になる
         //navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        
     }
+    /*
+    //コメント欄の実装のために追加。ReadMoreTextViewとTestCommentを参考。
+    //あってもなくても関係がない？？
+    override func viewDidLayoutSubviews() {//ViewDidLoadの後のライフサイクル…
+        relatedTableView.reloadData()
+    }*/
+    
     
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -204,7 +229,64 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     }*/
     
 //★★★★★★★★★★★★relatedDataを引っ張ってくるためのコード★★★★★★★★★★★★//
-
+    
+    func relatedArticleFetchCellViewModell() {
+        //ログイン済み（uidを取得済み）であることを確認
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("articleData")
+            let uid = user.uid
+            
+            ref.addSnapshotListener { querySnapshot, err in
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    
+                    for document in querySnapshot!.documents {
+                        let relatedArticleData = ArticleQueryData(snapshot: document, myId: uid)
+                        
+                        for id in self.receiveCellViewModel!.relatedArticleIDs{
+                            if (relatedArticleData.id)! == id{
+                                self.relatedArticleArray.insert(relatedArticleData, at: 0)
+                            }
+                        }
+                        
+                        self.relatedTableView.reloadData()
+                        SVProgressHUD.dismiss()
+                        
+                    }
+                    
+                    querySnapshot!.documentChanges.forEach{diff in
+                        if diff.type == .added {
+                            //print("added: \(diff.document.data())")
+                            print("added in Summary")
+                        } else if diff.type == .modified {
+                            //print("modified: \(diff.document.data())")
+                            print("modified in Summary")
+                            //一部異なるがとりあえずこれで大丈夫かな？
+                            var index:Int = 0
+                            let relatedArticleData = ArticleQueryData(snapshot: diff.document, myId: uid)
+                            for article in self.relatedArticleArray {
+                                if article.id == relatedArticleData.id {
+                                    index = self.relatedArticleArray.index(of: article)!
+                                    break
+                                }
+                            }
+                            self.relatedArticleArray.remove(at: index)
+                            self.relatedArticleArray.insert(relatedArticleData, at: index)
+                            //できた…！
+                        } else if diff.type == .removed {
+                            //print("removed: \(diff.document.data())")
+                            print("removed in Summary")
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    /*
     func relatedArticleFetchCellViewModell() {
         
         //relatedArticleIDs この中には5つIDがあって、そのIDに合致する記事を引っ張ってきたい。
@@ -270,6 +352,8 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                         }
                         
                         self.relatedTableView.reloadData()
+                        //reloadDataを消すと、ピョンピョン移動は消えるかもしれないが、ボタンの色の変化も消えてしまう。
+                        
                         /*
                         //差し替えるために一度削除
                         if index > 0 {
@@ -293,6 +377,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                 if observing == true {
                     print("observingがtrueです")
                     relatedArticleArray = []
+                    
                     relatedTableView.reloadData()
                     Database.database().reference().removeAllObservers()
                     
@@ -300,7 +385,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                 }
             }
         }
-    }
+    }*/
         /*
         self.relatedArticleCellViewModel = ListCellViewModel()
         self.relatedArticleCellViewModel_Array = [ListCellViewModel]()
@@ -362,7 +447,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
 ///★★★★★★★★★★★★rerelatedTableViewの設定★★★★★★★★★★★★//
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 4 //Homeボタンを入れるなら4
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -377,6 +462,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             return 0 //Summary
         }
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 { //Related
             let headerView: UIView = UIView()
@@ -415,13 +501,31 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             return UIView() //Summary
         }
     }
+    
+
+    
+    //estimatedHeightRorRowAtの使い方：[UITableViewのrowHeightやestimatedRowHeightに何を設定すると良いのか](https://qiita.com/masashi-sutou/items/bb8ac89c717dcbe56123)
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.section == 0 {
+            return 934
+        } else if indexPath.section == 1 {
+            return 1000
+        //indexPath.sectionが0,1で1000が都合が良いのは、Cellの影響があるのではないか？
+        } else if indexPath.section == 2 {
+            return /*UITableView.automaticDimension*/ 246
+        } else {
+            return UITableView.automaticDimension
+        }
+    }
+ 
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 { //Summary
             return 1
         } else if section == 2 { //Comment
-            return 1 //とりあえず
+            return 3 //とりあえず
         } else if section == 3 {//ToHome
             return 1
         }else { //Summary
@@ -432,6 +536,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 { //Summary
+             ///*
             let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryCell") as! SummaryCell
             cell.setSummaryCellInfo(articleData: receiveCellViewModel!)
             cell.clipButton.addTarget(self, action:#selector(handleButton1(sender:event:)), for:  UIControl.Event.touchUpInside)
@@ -439,14 +544,36 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             cell.sourceButton.addTarget(self, action: #selector(sourceButton(sender:event:)), for: UIControl.Event.touchUpInside)
             cell.selectionStyle = .none
             return cell
-            
-            
+            //*/
+            //return UITableViewCell()
             
         } else if indexPath.section == 2 { //Comment
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
-            cell.setCommentTableViewCellInfo()
+            let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
+            //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
+            let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
+            readMoreTextView.shouldTrim = !expandedCells.contains(indexPath.row) //expandedCellは初めに宣言する必要がある。
+            readMoreTextView.setNeedsUpdateTrim()
+            readMoreTextView.layoutIfNeeded()
+            
+            //cell.setCommentTableViewCellInfo()
             cell.selectionStyle = .none
+            
+            //移植
+            //let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
+            readMoreTextView.onSizeChange = { [unowned tableView, unowned self] r in
+                let point = tableView.convert(r.bounds.origin, from: r)
+                guard let indexPath = tableView.indexPathForRow(at: point) else { return }
+                if r.shouldTrim {
+                    self.expandedCells.remove(indexPath.row)
+                } else {
+                    self.expandedCells.insert(indexPath.row)
+                }
+                tableView.reloadData()
+            }
+            
             return cell
+            
+
             
         } else if indexPath.section == 3 { //ToHome
             let cell = UITableViewCell()
@@ -463,22 +590,48 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             cell.addSubview(cellLabel)
 
             return cell
-        } else { //related
-        
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.listCell, for:indexPath)  else { return UITableViewCell()}
-            cell.setCellInfo(articleData: relatedArticleArray[indexPath.row])
-            cell.clipButton.addTarget(self, action:#selector(handleButton2(sender:event:)), for:  UIControl.Event.touchUpInside)
             
-        return cell
+        } else { //related
+            ///*
+             guard let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.listCell, for:indexPath)  else { return UITableViewCell()}
+             cell.setCellInfo(articleData: relatedArticleArray[indexPath.row])
+             cell.clipButton.addTarget(self, action:#selector(handleButton2(sender:event:)), for:  UIControl.Event.touchUpInside)
+             return cell
+             //*/
+            //return UITableViewCell()
+                
         }
     }
+
+    //各indexPathのcellが表示される直前に呼ばれる
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment.expandedCellsは上で宣言する必要があ
+            let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
+            readMoreTextView.onSizeChange = { [unowned tableView, unowned self] r in
+                let point = tableView.convert(r.bounds.origin, from: r)
+                guard let indexPath = tableView.indexPathForRow(at: point) else { return }
+                if r.shouldTrim {
+                    self.expandedCells.remove(indexPath.row)
+                } else {
+                    self.expandedCells.insert(indexPath.row)
+                }
+            tableView.reloadData()
+            }
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 0 { //Summary
             //relatedTableView.allowsSelection = false //これあると確かに反応しないけれど、ここタッチした後、他のSectionのTableViewCellも反応しなくなってしまうので一旦コメントアウト→cell.selectionStyle = .noneで代用して解決。
         } else if indexPath.section == 2 { //Comment
-            //relatedTableView.allowsSelection = false
+            //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
+            let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as! CommentTableViewCell
+            let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
+            readMoreTextView.shouldTrim = !readMoreTextView.shouldTrim
+            
         } else if indexPath.section == 3 { //ToHome
             let homeVc:ViewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             self.navigationController?.pushViewController(homeVc, animated: true)
@@ -489,7 +642,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     
     
-    func fromRelatedArticleToSummary(giveCellViewModel:ArticleData) {
+    func fromRelatedArticleToSummary(giveCellViewModel:ArticleQueryData) {
         let giveCellViewModel = giveCellViewModel
         let vc:SummaryViewController = storyboard?.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
         vc.receiveCellViewModel = giveCellViewModel

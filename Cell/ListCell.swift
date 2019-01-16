@@ -30,8 +30,8 @@ class ListCell: UITableViewCell {
     }*/
     
     
-    func setCellInfo(articleData:ArticleData) {
-
+    func setCellInfo(articleData:ArticleQueryData) {
+    
         titleLabel.text = articleData.titleStr
         sourceLabel.text = articleData.sourceName
         guard let imageUrl = articleData.imageUrl else {return}
@@ -60,4 +60,35 @@ class ListCell: UITableViewCell {
         }
     
     }
+    /*
+    func setCellInfo2(articleData:ArticleQueryData) {
+        
+        titleLabel.text = articleData.titleStr
+        sourceLabel.text = articleData.sourceName
+        guard let imageUrl = articleData.imageUrl else {return}
+        articleImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "placeholderImage"))
+        articleImageView.contentMode = .scaleAspectFill
+        articleImageView.clipsToBounds = true //はみ出たところを切り取る
+        
+        let likeNumber = articleData.likes.count
+        clipButtonLabel.text = "\(likeNumber)"
+        //clipButtonLabel.text = articleData.clipSumNumber!.description//いけた
+        selectionStyle = .none //ハイライトを消す
+        backgroundColor = UIColor.clear
+        
+        if articleData.isLiked {
+            clipButton.backgroundColor = UIColor(red:0.95, green:1.00, blue:0.36, alpha:1.0)
+            clipButton.borderColor = .clear
+            clipButtonLabel.textColor = .black
+            //let buttonImage = UIImage(named: "like_exist")
+            //self.likeButton.setImage(buttonImage, for: UIControl.State.normal)
+        } else {
+            clipButton.backgroundColor = .clear
+            clipButton.borderColor = .white
+            clipButtonLabel.textColor = .white
+            //let buttonImage = UIImage(named: "like_none")
+            //self.likeButton.setImage(buttonImage, for: UIControl.State.normal)
+        }
+        
+    }*/
 }
