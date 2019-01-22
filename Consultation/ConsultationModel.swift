@@ -32,7 +32,7 @@ class Consultation {
         self.id = snapshot.documentID
         let valueDictionary = snapshot.data()
         
-        if let consultationName = valueDictionary["CconsultationName"] as? String {
+        if let consultationName = valueDictionary["ConsultationName"] as? String {
             self.consultationName = consultationName
         } else {
             self.consultationName = ""

@@ -121,8 +121,9 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
             // ログインしていないときの処理
             // viewDidAppear内でpresent()を呼び出しても表示されないためメソッドが終了してから呼ばれるようにする
             DispatchQueue.main.async {
-                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-                self.present(loginViewController!, animated: true, completion: self.controller1.tableView.reloadData)
+                let TutorialStoryboard: UIStoryboard = UIStoryboard(name: "Tutorial", bundle: nil)
+                let loginViewController = TutorialStoryboard.instantiateViewController(withIdentifier: "Login")
+                self.present(loginViewController, animated: true, completion: self.controller1.tableView.reloadData)
             }
         }
         //起動時のアニメーション

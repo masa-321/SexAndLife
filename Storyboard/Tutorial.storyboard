@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SbZ-8S-ZPC">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="x2w-Z4-Vfk">
+            <objects>
+                <viewController storyboardIdentifier="Login" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="hu7-sd-B7G" customClass="LoginViewController" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0zU-iv-u9o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage2" translatesAutoresizingMaskIntoConstraints="NO" id="pSX-Dp-Ej5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWw-IQ-LuH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnn-L7-gKQ">
+                                <rect key="frame" x="15" y="118.5" width="345" height="430"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sN-ZY-Yrl">
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="100"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0c-g4-cah" userLabel="ダウンロードありがとうございます！  より良い情報をお届けするために、 あなたの性別と年齢を教えてください！">
+                                                <rect key="frame" x="22.5" y="10" width="300" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="EZv-CZ-RIA"/>
+                                                    <constraint firstAttribute="width" constant="300" id="NzB-ei-Ywc"/>
+                                                </constraints>
+                                                <string key="text">ダウンロードありがとうございます！
+ より良い情報をお届けするために、 あなたの性別と年齢を教えてください！</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.67868528250000004" green="1" blue="0.52685815960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="MFh-wa-RHE"/>
+                                            <constraint firstItem="E0c-g4-cah" firstAttribute="centerX" secondItem="6sN-ZY-Yrl" secondAttribute="centerX" id="Pef-0H-X9W"/>
+                                            <constraint firstItem="E0c-g4-cah" firstAttribute="centerY" secondItem="6sN-ZY-Yrl" secondAttribute="centerY" id="gRR-Yl-9cd"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruu-1q-roY">
+                                        <rect key="frame" x="0.0" y="100" width="345" height="330"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feW-yQ-X2C">
+                                        <rect key="frame" x="10" y="140" width="325" height="60"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2z5-S0-mP1">
+                                                <rect key="frame" x="202.5" y="0.0" width="122.5" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlc-Ax-hWi" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="21.5" y="10" width="80" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="6pO-cO-6PY"/>
+                                                            <constraint firstAttribute="width" constant="80" id="rUF-i9-WNl"/>
+                                                        </constraints>
+                                                        <state key="normal" title="その他">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="otherButton:" destination="hu7-sd-B7G" eventType="touchUpInside" id="51z-sU-yaM"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="nlc-Ax-hWi" firstAttribute="centerX" secondItem="2z5-S0-mP1" secondAttribute="centerX" id="gMf-FR-cgb"/>
+                                                    <constraint firstItem="nlc-Ax-hWi" firstAttribute="centerY" secondItem="2z5-S0-mP1" secondAttribute="centerY" id="j34-pa-di9"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oem-fC-x9t" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                <rect key="frame" x="122.5" y="10" width="80" height="40"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="kpL-1N-WzM"/>
+                                                    <constraint firstAttribute="height" constant="40" id="tLo-0G-EpA"/>
+                                                </constraints>
+                                                <state key="normal" title="女性">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="femaleButton:" destination="hu7-sd-B7G" eventType="touchUpInside" id="VYM-8X-8Em"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeU-3v-UeS">
+                                                <rect key="frame" x="0.0" y="0.0" width="122.5" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeC-7d-lRx" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="21.5" y="10" width="80" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="k08-yG-yFC"/>
+                                                            <constraint firstAttribute="height" constant="40" id="lPB-7S-yFy"/>
+                                                        </constraints>
+                                                        <state key="normal" title="男性">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="maleButton:" destination="hu7-sd-B7G" eventType="touchUpInside" id="eA1-TM-BiL"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="BeC-7d-lRx" firstAttribute="centerX" secondItem="JeU-3v-UeS" secondAttribute="centerX" id="7zY-3k-Sh1"/>
+                                                    <constraint firstItem="BeC-7d-lRx" firstAttribute="centerY" secondItem="JeU-3v-UeS" secondAttribute="centerY" id="AGK-4d-xlA"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="2z5-S0-mP1" firstAttribute="leading" secondItem="Oem-fC-x9t" secondAttribute="trailing" id="1NJ-1Q-7Ge"/>
+                                            <constraint firstAttribute="height" constant="60" id="CGr-KA-wzS"/>
+                                            <constraint firstItem="JeU-3v-UeS" firstAttribute="top" secondItem="feW-yQ-X2C" secondAttribute="top" id="GoY-KQ-fGN"/>
+                                            <constraint firstAttribute="trailing" secondItem="2z5-S0-mP1" secondAttribute="trailing" id="JXJ-rk-uaX"/>
+                                            <constraint firstItem="Oem-fC-x9t" firstAttribute="top" secondItem="feW-yQ-X2C" secondAttribute="top" constant="10" id="JoX-01-yc1"/>
+                                            <constraint firstAttribute="bottom" secondItem="2z5-S0-mP1" secondAttribute="bottom" id="LJt-PI-fw1"/>
+                                            <constraint firstItem="Oem-fC-x9t" firstAttribute="leading" secondItem="JeU-3v-UeS" secondAttribute="trailing" id="LbR-9o-491"/>
+                                            <constraint firstAttribute="bottom" secondItem="JeU-3v-UeS" secondAttribute="bottom" id="MYz-1m-KEM"/>
+                                            <constraint firstItem="2z5-S0-mP1" firstAttribute="top" secondItem="feW-yQ-X2C" secondAttribute="top" id="ddI-d8-c1s"/>
+                                            <constraint firstAttribute="bottom" secondItem="Oem-fC-x9t" secondAttribute="bottom" constant="10" id="fZy-IS-cOR"/>
+                                            <constraint firstItem="Oem-fC-x9t" firstAttribute="centerX" secondItem="feW-yQ-X2C" secondAttribute="centerX" id="vYC-ac-rQq"/>
+                                            <constraint firstItem="JeU-3v-UeS" firstAttribute="leading" secondItem="feW-yQ-X2C" secondAttribute="leading" id="xPB-5e-scI"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="luQ-z9-haP">
+                                        <rect key="frame" x="10" y="240" width="325" height="110"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guX-2z-fZL" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                <rect key="frame" x="122.5" y="10" width="80" height="40"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="mlp-3A-GKq"/>
+                                                    <constraint firstAttribute="height" constant="40" id="r19-5c-5GM"/>
+                                                </constraints>
+                                                <state key="normal" title="20~24歳">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="age2Button:" destination="hu7-sd-B7G" eventType="touchUpInside" id="f8Z-9s-uk4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRf-Sd-8Pc" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                <rect key="frame" x="122.5" y="60" width="80" height="40"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="7Dd-2j-u9b"/>
+                                                    <constraint firstAttribute="height" constant="40" id="uyX-f4-lSi"/>
+                                                </constraints>
+                                                <state key="normal" title="40~49歳">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="age5Button:" destination="hu7-sd-B7G" eventType="touchUpInside" id="Kzu-Dn-a1X"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgw-Wv-xC8">
+                                                <rect key="frame" x="0.0" y="0.0" width="122.5" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fi-NL-M67" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="21.5" y="10" width="80" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="Gv3-kX-skX"/>
+                                                            <constraint firstAttribute="width" constant="80" id="e0d-VQ-VVg"/>
+                                                        </constraints>
+                                                        <state key="normal" title="19歳以下">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="age1Button:" destination="hu7-sd-B7G" eventType="touchUpInside" id="qYX-8i-8LO"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="3Fi-NL-M67" firstAttribute="centerX" secondItem="dgw-Wv-xC8" secondAttribute="centerX" id="6Nl-bI-Cg3"/>
+                                                    <constraint firstItem="3Fi-NL-M67" firstAttribute="centerY" secondItem="dgw-Wv-xC8" secondAttribute="centerY" id="IcQ-7x-Vkm"/>
+                                                    <constraint firstAttribute="height" constant="60" id="oRi-QV-gxm"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7te-4P-M7X">
+                                                <rect key="frame" x="202.5" y="0.0" width="122.5" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSC-H8-fvn" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="21.5" y="10" width="80" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="OxH-gM-Qzz"/>
+                                                            <constraint firstAttribute="height" constant="40" id="w6e-UZ-Cpf"/>
+                                                        </constraints>
+                                                        <state key="normal" title="25~29歳">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="age3Button:" destination="hu7-sd-B7G" eventType="touchUpInside" id="MZs-mc-6qr"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="NSC-H8-fvn" firstAttribute="centerX" secondItem="7te-4P-M7X" secondAttribute="centerX" id="5R9-oR-fO4"/>
+                                                    <constraint firstItem="NSC-H8-fvn" firstAttribute="centerY" secondItem="7te-4P-M7X" secondAttribute="centerY" id="ggm-0t-FES"/>
+                                                    <constraint firstAttribute="height" constant="60" id="uh1-yO-UDy"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-ob-ChP">
+                                                <rect key="frame" x="0.0" y="50" width="122.5" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9X-Qt-hyb" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="21.5" y="10" width="80" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="1JP-vY-AXG"/>
+                                                            <constraint firstAttribute="height" constant="40" id="WJd-1b-Whu"/>
+                                                        </constraints>
+                                                        <state key="normal" title="30~39歳">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="age4Button:" destination="hu7-sd-B7G" eventType="touchUpInside" id="gne-Lw-YNs"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="L9X-Qt-hyb" firstAttribute="centerY" secondItem="YcU-ob-ChP" secondAttribute="centerY" id="4xs-7X-s8w"/>
+                                                    <constraint firstItem="L9X-Qt-hyb" firstAttribute="centerX" secondItem="YcU-ob-ChP" secondAttribute="centerX" id="6b5-w0-P6n"/>
+                                                    <constraint firstAttribute="height" constant="60" id="mjJ-pO-GgT"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-jz-nLG">
+                                                <rect key="frame" x="202.5" y="50" width="122.5" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFs-52-2xY" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="21.5" y="10" width="80" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="BFa-ab-RQ0"/>
+                                                            <constraint firstAttribute="width" constant="80" id="ZI2-6R-XoT"/>
+                                                        </constraints>
+                                                        <state key="normal" title="50歳以上">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="age6Button:" destination="hu7-sd-B7G" eventType="touchUpInside" id="Kf9-hM-w4S"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="jFs-52-2xY" firstAttribute="centerX" secondItem="Rgt-jz-nLG" secondAttribute="centerX" id="0MK-Ol-ZDV"/>
+                                                    <constraint firstAttribute="height" constant="60" id="Ceu-VS-fGH"/>
+                                                    <constraint firstItem="jFs-52-2xY" firstAttribute="centerY" secondItem="Rgt-jz-nLG" secondAttribute="centerY" id="iRJ-eR-XmT"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="YcU-ob-ChP" firstAttribute="leading" secondItem="luQ-z9-haP" secondAttribute="leading" id="12e-f2-tyj"/>
+                                            <constraint firstItem="wRf-Sd-8Pc" firstAttribute="top" secondItem="guX-2z-fZL" secondAttribute="bottom" constant="10" id="95L-gE-V9j"/>
+                                            <constraint firstAttribute="bottom" secondItem="Rgt-jz-nLG" secondAttribute="bottom" id="Csa-2I-3dV"/>
+                                            <constraint firstAttribute="bottom" secondItem="wRf-Sd-8Pc" secondAttribute="bottom" constant="10" id="Eeh-VH-V7Y"/>
+                                            <constraint firstItem="7te-4P-M7X" firstAttribute="top" secondItem="luQ-z9-haP" secondAttribute="top" id="FDM-8E-zqu"/>
+                                            <constraint firstItem="dgw-Wv-xC8" firstAttribute="leading" secondItem="luQ-z9-haP" secondAttribute="leading" id="HC4-hN-kuo"/>
+                                            <constraint firstAttribute="height" constant="110" id="Hi7-hL-RIz"/>
+                                            <constraint firstItem="guX-2z-fZL" firstAttribute="top" secondItem="luQ-z9-haP" secondAttribute="top" constant="10" id="MKj-hO-G7d"/>
+                                            <constraint firstItem="guX-2z-fZL" firstAttribute="centerX" secondItem="luQ-z9-haP" secondAttribute="centerX" id="Utz-zF-f1X"/>
+                                            <constraint firstItem="Rgt-jz-nLG" firstAttribute="leading" secondItem="wRf-Sd-8Pc" secondAttribute="trailing" id="Vat-zf-XeX"/>
+                                            <constraint firstItem="guX-2z-fZL" firstAttribute="leading" secondItem="dgw-Wv-xC8" secondAttribute="trailing" id="dlm-Hh-oHd"/>
+                                            <constraint firstItem="dgw-Wv-xC8" firstAttribute="top" secondItem="luQ-z9-haP" secondAttribute="top" id="dqd-dF-xKW"/>
+                                            <constraint firstItem="wRf-Sd-8Pc" firstAttribute="leading" secondItem="YcU-ob-ChP" secondAttribute="trailing" id="gmK-Nf-CgB"/>
+                                            <constraint firstItem="7te-4P-M7X" firstAttribute="leading" secondItem="guX-2z-fZL" secondAttribute="trailing" id="j44-da-FnA"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rgt-jz-nLG" secondAttribute="trailing" id="lcR-nB-B7V"/>
+                                            <constraint firstItem="wRf-Sd-8Pc" firstAttribute="centerX" secondItem="luQ-z9-haP" secondAttribute="centerX" id="mN2-A7-gDC"/>
+                                            <constraint firstAttribute="trailing" secondItem="7te-4P-M7X" secondAttribute="trailing" id="pPD-li-WST"/>
+                                            <constraint firstAttribute="bottom" secondItem="YcU-ob-ChP" secondAttribute="bottom" id="zvH-yr-E6D"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年齢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grc-CM-TeI">
+                                        <rect key="frame" x="25" y="215" width="25" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="i70-e8-0Gs"/>
+                                            <constraint firstAttribute="height" constant="15" id="pFp-Nx-3St"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3d-L3-4zd">
+                                        <rect key="frame" x="25" y="115" width="25" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="2xe-nf-vAl"/>
+                                            <constraint firstAttribute="height" constant="15" id="NrA-ND-Kdq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plr-XB-zqR">
+                                        <rect key="frame" x="167.5" y="350" width="10" height="80"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="10" id="F3n-K9-0EY"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2k-pa-FW0">
+                                        <rect key="frame" x="177.5" y="350" width="167.5" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rG-87-13q" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                <rect key="frame" x="29" y="20" width="110" height="40"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="110" id="GQA-Ti-Qbm"/>
+                                                    <constraint firstAttribute="height" constant="40" id="cBX-3o-NvB"/>
+                                                </constraints>
+                                                <state key="normal" title="送信する">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleLoginButton:" destination="hu7-sd-B7G" eventType="touchUpInside" id="9xw-ld-iaa"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="5rG-87-13q" firstAttribute="centerX" secondItem="l2k-pa-FW0" secondAttribute="centerX" id="69m-er-2i8"/>
+                                            <constraint firstItem="5rG-87-13q" firstAttribute="centerY" secondItem="l2k-pa-FW0" secondAttribute="centerY" id="Iwy-qI-BT3"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JDi-3i-qch">
+                                        <rect key="frame" x="0.0" y="350" width="167.5" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwG-ng-N1a" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                                <rect key="frame" x="29" y="20" width="110" height="40"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Knx-gy-Gge"/>
+                                                    <constraint firstAttribute="width" constant="110" id="Z5T-5s-aNE"/>
+                                                </constraints>
+                                                <state key="normal" title="今はしない">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="passLoginButton:" destination="hu7-sd-B7G" eventType="touchUpInside" id="biB-Wb-SNQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="lwG-ng-N1a" firstAttribute="centerY" secondItem="JDi-3i-qch" secondAttribute="centerY" id="Tr3-ay-roH"/>
+                                            <constraint firstItem="lwG-ng-N1a" firstAttribute="centerX" secondItem="JDi-3i-qch" secondAttribute="centerX" id="ye3-Ki-9O8"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="luQ-z9-haP" firstAttribute="leading" secondItem="lnn-L7-gKQ" secondAttribute="leading" constant="10" id="0YR-xd-qFY"/>
+                                    <constraint firstItem="ruu-1q-roY" firstAttribute="top" secondItem="6sN-ZY-Yrl" secondAttribute="bottom" id="5QS-0X-kUQ"/>
+                                    <constraint firstItem="l2k-pa-FW0" firstAttribute="top" secondItem="luQ-z9-haP" secondAttribute="bottom" id="5p0-0Q-e7P"/>
+                                    <constraint firstItem="feW-yQ-X2C" firstAttribute="top" secondItem="h3d-L3-4zd" secondAttribute="bottom" constant="10" id="6kf-m8-yCJ"/>
+                                    <constraint firstItem="h3d-L3-4zd" firstAttribute="leading" secondItem="lnn-L7-gKQ" secondAttribute="leading" constant="25" id="7T6-6x-TEj"/>
+                                    <constraint firstAttribute="trailing" secondItem="feW-yQ-X2C" secondAttribute="trailing" constant="10" id="BDC-Ps-TVL"/>
+                                    <constraint firstItem="6sN-ZY-Yrl" firstAttribute="top" secondItem="lnn-L7-gKQ" secondAttribute="top" id="Dic-cs-DWF"/>
+                                    <constraint firstItem="luQ-z9-haP" firstAttribute="top" secondItem="grc-CM-TeI" secondAttribute="bottom" constant="10" id="HNC-hX-K4l"/>
+                                    <constraint firstItem="feW-yQ-X2C" firstAttribute="leading" secondItem="lnn-L7-gKQ" secondAttribute="leading" constant="10" id="IvQ-o3-EAf"/>
+                                    <constraint firstItem="JDi-3i-qch" firstAttribute="leading" secondItem="lnn-L7-gKQ" secondAttribute="leading" id="NVM-FZ-f3f"/>
+                                    <constraint firstAttribute="trailing" secondItem="l2k-pa-FW0" secondAttribute="trailing" id="PBA-Ps-9Go"/>
+                                    <constraint firstAttribute="trailing" secondItem="ruu-1q-roY" secondAttribute="trailing" id="UHa-Mr-M8f"/>
+                                    <constraint firstItem="JDi-3i-qch" firstAttribute="top" secondItem="luQ-z9-haP" secondAttribute="bottom" id="XFb-8k-zMg"/>
+                                    <constraint firstItem="feW-yQ-X2C" firstAttribute="top" secondItem="6sN-ZY-Yrl" secondAttribute="bottom" constant="40" id="bGY-JV-keg"/>
+                                    <constraint firstItem="ruu-1q-roY" firstAttribute="leading" secondItem="lnn-L7-gKQ" secondAttribute="leading" id="cpY-ii-mSh"/>
+                                    <constraint firstItem="plr-XB-zqR" firstAttribute="leading" secondItem="JDi-3i-qch" secondAttribute="trailing" id="eD4-mX-e0D"/>
+                                    <constraint firstAttribute="bottom" secondItem="plr-XB-zqR" secondAttribute="bottom" id="fuW-q4-mel"/>
+                                    <constraint firstAttribute="bottom" secondItem="ruu-1q-roY" secondAttribute="bottom" id="gNC-FF-1ON"/>
+                                    <constraint firstAttribute="bottom" secondItem="luQ-z9-haP" secondAttribute="bottom" constant="80" id="j0K-nE-gf8"/>
+                                    <constraint firstAttribute="trailing" secondItem="6sN-ZY-Yrl" secondAttribute="trailing" id="ju0-Dj-0Rf"/>
+                                    <constraint firstAttribute="bottom" secondItem="l2k-pa-FW0" secondAttribute="bottom" id="m09-4f-sMD"/>
+                                    <constraint firstItem="luQ-z9-haP" firstAttribute="top" secondItem="feW-yQ-X2C" secondAttribute="bottom" constant="40" id="n7V-Mz-cuU"/>
+                                    <constraint firstAttribute="trailing" secondItem="luQ-z9-haP" secondAttribute="trailing" constant="10" id="oGY-4F-RPa"/>
+                                    <constraint firstItem="plr-XB-zqR" firstAttribute="centerX" secondItem="lnn-L7-gKQ" secondAttribute="centerX" id="rwO-GK-QEa"/>
+                                    <constraint firstItem="plr-XB-zqR" firstAttribute="top" secondItem="luQ-z9-haP" secondAttribute="bottom" id="tas-Fk-xEm"/>
+                                    <constraint firstItem="6sN-ZY-Yrl" firstAttribute="leading" secondItem="lnn-L7-gKQ" secondAttribute="leading" id="xC8-sJ-kTq"/>
+                                    <constraint firstItem="grc-CM-TeI" firstAttribute="leading" secondItem="lnn-L7-gKQ" secondAttribute="leading" constant="25" id="yN0-Kz-YE3"/>
+                                    <constraint firstItem="l2k-pa-FW0" firstAttribute="leading" secondItem="plr-XB-zqR" secondAttribute="trailing" id="zCa-yP-vlE"/>
+                                    <constraint firstAttribute="bottom" secondItem="JDi-3i-qch" secondAttribute="bottom" id="zuD-va-nec"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lnn-L7-gKQ" firstAttribute="leading" secondItem="I9f-k1-Ybb" secondAttribute="leading" constant="15" id="BZ6-2l-S0o"/>
+                            <constraint firstItem="pSX-Dp-Ej5" firstAttribute="leading" secondItem="I9f-k1-Ybb" secondAttribute="leading" id="Bxa-Wg-6aZ"/>
+                            <constraint firstItem="lnn-L7-gKQ" firstAttribute="centerX" secondItem="0zU-iv-u9o" secondAttribute="centerX" id="Fmj-Bm-N2v"/>
+                            <constraint firstItem="pSX-Dp-Ej5" firstAttribute="top" secondItem="0zU-iv-u9o" secondAttribute="top" id="I0I-lU-BZi"/>
+                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="trailing" secondItem="lnn-L7-gKQ" secondAttribute="trailing" constant="15" id="NG3-Jp-JW1"/>
+                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="trailing" secondItem="pSX-Dp-Ej5" secondAttribute="trailing" id="ROZ-3H-ihc"/>
+                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="trailing" secondItem="dWw-IQ-LuH" secondAttribute="trailing" id="TgQ-O0-YWG"/>
+                            <constraint firstItem="dWw-IQ-LuH" firstAttribute="top" secondItem="0zU-iv-u9o" secondAttribute="top" id="Vez-H2-F3a"/>
+                            <constraint firstItem="lnn-L7-gKQ" firstAttribute="centerY" secondItem="0zU-iv-u9o" secondAttribute="centerY" id="fAX-YJ-Mnc"/>
+                            <constraint firstItem="dWw-IQ-LuH" firstAttribute="leading" secondItem="I9f-k1-Ybb" secondAttribute="leading" id="l1x-Sw-A7u"/>
+                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="bottom" secondItem="pSX-Dp-Ej5" secondAttribute="bottom" id="pJ1-Ij-QaP"/>
+                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="bottom" secondItem="dWw-IQ-LuH" secondAttribute="bottom" id="qbq-yU-c2i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I9f-k1-Ybb"/>
+                    </view>
+                    <connections>
+                        <outlet property="age1Button" destination="3Fi-NL-M67" id="cU0-IZ-3dN"/>
+                        <outlet property="age2Button" destination="guX-2z-fZL" id="ncc-sC-nw2"/>
+                        <outlet property="age3Button" destination="NSC-H8-fvn" id="n9o-Dt-wpS"/>
+                        <outlet property="age4Button" destination="L9X-Qt-hyb" id="SDj-d1-MDB"/>
+                        <outlet property="age5Button" destination="wRf-Sd-8Pc" id="ViN-QF-Wxc"/>
+                        <outlet property="age6Button" destination="jFs-52-2xY" id="4Kh-FO-uhG"/>
+                        <outlet property="ageView" destination="luQ-z9-haP" id="Uh9-yy-nr8"/>
+                        <outlet property="basementView" destination="lnn-L7-gKQ" id="xvA-xC-kHg"/>
+                        <outlet property="femaleButton" destination="Oem-fC-x9t" id="G50-GM-oDh"/>
+                        <outlet property="handleLoginButton" destination="5rG-87-13q" id="eAh-TN-cZv"/>
+                        <outlet property="lowerView" destination="ruu-1q-roY" id="GKh-my-qiy"/>
+                        <outlet property="maleButton" destination="BeC-7d-lRx" id="tNc-EW-vio"/>
+                        <outlet property="otherButton" destination="nlc-Ax-hWi" id="Dbt-PZ-QG6"/>
+                        <outlet property="passLoginButton" destination="lwG-ng-N1a" id="KPA-zs-OJy"/>
+                        <outlet property="sexView" destination="feW-yQ-X2C" id="XoB-hj-CSX"/>
+                        <outlet property="upperView" destination="6sN-ZY-Yrl" id="iCT-t9-GOR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="64w-Oq-1TG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-959" y="-1451"/>
+        </scene>
+        <!--Tutorial View Controller3-->
+        <scene sceneID="NVh-gU-2yW">
+            <objects>
+                <viewController id="9fh-oU-Z2W" customClass="TutorialViewController3" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WWZ-cx-a5Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialClip" translatesAutoresizingMaskIntoConstraints="NO" id="r3i-0i-lxS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svg-e1-9Ud">
+                                <rect key="frame" x="5" y="283.5" width="365" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="gRh-JX-myv"/>
+                                </constraints>
+                                <string key="text">クリップした記事はこちらに登録され、
+いつでも読み直すことができます。</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IN1-Tp-3JM" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="147.5" y="527" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Mq2-fd-8Eb"/>
+                                    <constraint firstAttribute="height" constant="80" id="dpD-Zb-Ecz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="次へ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="lrf-w9-bp5" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Cw5-1H-19B"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAl-7l-TDm">
+                                <rect key="frame" x="315" y="607" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Qxb-UM-Vff"/>
+                                    <constraint firstAttribute="width" constant="40" id="nD9-m1-gfJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="r3i-0i-lxS" firstAttribute="bottom" secondItem="2JG-1J-68q" secondAttribute="bottom" id="4P4-sK-0ge"/>
+                            <constraint firstItem="2JG-1J-68q" firstAttribute="trailing" secondItem="svg-e1-9Ud" secondAttribute="trailing" constant="5" id="FHD-zG-ocO"/>
+                            <constraint firstItem="r3i-0i-lxS" firstAttribute="top" secondItem="WWZ-cx-a5Y" secondAttribute="top" id="Hba-jb-WD5"/>
+                            <constraint firstItem="IN1-Tp-3JM" firstAttribute="centerX" secondItem="WWZ-cx-a5Y" secondAttribute="centerX" id="Kwy-WW-tau"/>
+                            <constraint firstItem="2JG-1J-68q" firstAttribute="bottom" secondItem="AAl-7l-TDm" secondAttribute="bottom" constant="20" id="LP6-lG-wbR"/>
+                            <constraint firstItem="r3i-0i-lxS" firstAttribute="leading" secondItem="2JG-1J-68q" secondAttribute="leading" id="MQy-Rp-sCS"/>
+                            <constraint firstItem="svg-e1-9Ud" firstAttribute="centerX" secondItem="WWZ-cx-a5Y" secondAttribute="centerX" id="Xcm-U2-aP0"/>
+                            <constraint firstItem="svg-e1-9Ud" firstAttribute="centerY" secondItem="WWZ-cx-a5Y" secondAttribute="centerY" id="ZkU-9o-XiL"/>
+                            <constraint firstItem="r3i-0i-lxS" firstAttribute="trailing" secondItem="2JG-1J-68q" secondAttribute="trailing" id="a8E-yA-wt2"/>
+                            <constraint firstItem="2JG-1J-68q" firstAttribute="bottom" secondItem="IN1-Tp-3JM" secondAttribute="bottom" constant="60" id="bYZ-lF-Ymo"/>
+                            <constraint firstItem="2JG-1J-68q" firstAttribute="trailing" secondItem="AAl-7l-TDm" secondAttribute="trailing" constant="20" id="jyG-6f-0w9"/>
+                            <constraint firstItem="svg-e1-9Ud" firstAttribute="leading" secondItem="2JG-1J-68q" secondAttribute="leading" constant="5" id="xZ2-Il-jQF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2JG-1J-68q"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xwn-pK-k6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1448.8" y="-1451.4242878560722"/>
+        </scene>
+        <!--Tutorial View Controller1-->
+        <scene sceneID="sCU-X9-2zi">
+            <objects>
+                <viewController storyboardIdentifier="Tutorial" id="SbZ-8S-ZPC" customClass="TutorialViewController1" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n4D-2G-cpf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialDefault" translatesAutoresizingMaskIntoConstraints="NO" id="P3m-cA-wHW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャンネルは指で左右にフリックすることで切り替えることができます。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzj-5G-vP0">
+                                <rect key="frame" x="15" y="383.5" width="345" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="766-1f-W4V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flick" translatesAutoresizingMaskIntoConstraints="NO" id="F5k-pu-2Fv">
+                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="90E-Id-yxS"/>
+                                    <constraint firstAttribute="height" constant="200" id="Q54-yC-fWI"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhv-mi-C7h" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="147.5" y="527" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="hws-Fb-Mus"/>
+                                    <constraint firstAttribute="height" constant="80" id="koW-6a-XIU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="次へ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="saW-NY-9k4" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="OMc-FZ-z81"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1Q-TR-Ybj">
+                                <rect key="frame" x="315" y="607" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="GVc-l9-DxI"/>
+                                    <constraint firstAttribute="width" constant="40" id="znQ-PV-AL6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="P3m-cA-wHW" firstAttribute="leading" secondItem="66j-EW-5cB" secondAttribute="leading" id="05s-XJ-5He"/>
+                            <constraint firstItem="uhv-mi-C7h" firstAttribute="centerX" secondItem="n4D-2G-cpf" secondAttribute="centerX" id="4lj-fn-Shs"/>
+                            <constraint firstItem="66j-EW-5cB" firstAttribute="bottom" secondItem="uhv-mi-C7h" secondAttribute="bottom" constant="60" id="8Aa-dA-5oc"/>
+                            <constraint firstItem="F5k-pu-2Fv" firstAttribute="centerY" secondItem="n4D-2G-cpf" secondAttribute="centerY" id="A8K-Yg-2Xv"/>
+                            <constraint firstItem="gzj-5G-vP0" firstAttribute="top" secondItem="F5k-pu-2Fv" secondAttribute="bottom" constant="-50" id="Dxt-Ma-2fR"/>
+                            <constraint firstItem="F5k-pu-2Fv" firstAttribute="centerX" secondItem="n4D-2G-cpf" secondAttribute="centerX" id="GMj-jB-S7F"/>
+                            <constraint firstItem="P3m-cA-wHW" firstAttribute="top" secondItem="n4D-2G-cpf" secondAttribute="top" id="LoN-AO-bKB"/>
+                            <constraint firstItem="66j-EW-5cB" firstAttribute="trailing" secondItem="gzj-5G-vP0" secondAttribute="trailing" constant="15" id="OCy-Ex-VdU"/>
+                            <constraint firstItem="P3m-cA-wHW" firstAttribute="bottom" secondItem="66j-EW-5cB" secondAttribute="bottom" id="Q3s-c4-FGp"/>
+                            <constraint firstItem="66j-EW-5cB" firstAttribute="bottom" secondItem="J1Q-TR-Ybj" secondAttribute="bottom" constant="20" id="W2N-lX-4JD"/>
+                            <constraint firstItem="gzj-5G-vP0" firstAttribute="leading" secondItem="66j-EW-5cB" secondAttribute="leading" constant="15" id="WQC-Lv-efx"/>
+                            <constraint firstItem="66j-EW-5cB" firstAttribute="trailing" secondItem="J1Q-TR-Ybj" secondAttribute="trailing" constant="20" id="a1j-rB-Iqf"/>
+                            <constraint firstItem="P3m-cA-wHW" firstAttribute="trailing" secondItem="66j-EW-5cB" secondAttribute="trailing" id="k7d-8V-Jc3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="66j-EW-5cB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CkR-Ij-D5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-191" y="-1451"/>
+        </scene>
+        <!--Tutorial View Controller4-->
+        <scene sceneID="0Aw-Se-thq">
+            <objects>
+                <viewController id="lrf-w9-bp5" customClass="TutorialViewController4" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iYx-Lb-l4l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialConsultation" translatesAutoresizingMaskIntoConstraints="NO" id="C1a-mH-Lo7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drs-Ac-eJo" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="147.5" y="527" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Bq0-fv-ajd"/>
+                                    <constraint firstAttribute="height" constant="80" id="rIo-5N-cNi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="始める">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="NhE-hb-xiF" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="dcB-rM-MUK"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtD-PV-3lg">
+                                <rect key="frame" x="5" y="273.5" width="365" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="C22-i5-cha"/>
+                                </constraints>
+                                <string key="text">こちらには性に関して困った時に
+相談できる窓口がまとめられています。
+大事な人が困っていたら、紹介してあげてください。</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWb-pu-TzV">
+                                <rect key="frame" x="315" y="607" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ZQp-mV-x6Y"/>
+                                    <constraint firstAttribute="width" constant="40" id="yIz-FL-21v"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="C1a-mH-Lo7" firstAttribute="bottom" secondItem="q6n-k5-I71" secondAttribute="bottom" id="1Ll-3c-Hmb"/>
+                            <constraint firstItem="FtD-PV-3lg" firstAttribute="centerX" secondItem="iYx-Lb-l4l" secondAttribute="centerX" id="480-1p-vRg"/>
+                            <constraint firstItem="FtD-PV-3lg" firstAttribute="centerY" secondItem="iYx-Lb-l4l" secondAttribute="centerY" id="67j-0p-24c"/>
+                            <constraint firstItem="q6n-k5-I71" firstAttribute="trailing" secondItem="EWb-pu-TzV" secondAttribute="trailing" constant="20" id="6nw-Ga-liC"/>
+                            <constraint firstItem="q6n-k5-I71" firstAttribute="bottom" secondItem="drs-Ac-eJo" secondAttribute="bottom" constant="60" id="BpL-OW-hlm"/>
+                            <constraint firstItem="q6n-k5-I71" firstAttribute="trailing" secondItem="FtD-PV-3lg" secondAttribute="trailing" constant="5" id="IfO-gf-fKX"/>
+                            <constraint firstItem="drs-Ac-eJo" firstAttribute="centerX" secondItem="iYx-Lb-l4l" secondAttribute="centerX" id="Rz7-sV-VJW"/>
+                            <constraint firstItem="C1a-mH-Lo7" firstAttribute="leading" secondItem="q6n-k5-I71" secondAttribute="leading" id="bQK-YC-hsH"/>
+                            <constraint firstItem="C1a-mH-Lo7" firstAttribute="trailing" secondItem="q6n-k5-I71" secondAttribute="trailing" id="dEn-o1-6St"/>
+                            <constraint firstItem="C1a-mH-Lo7" firstAttribute="top" secondItem="iYx-Lb-l4l" secondAttribute="top" id="iSA-xd-jOv"/>
+                            <constraint firstItem="q6n-k5-I71" firstAttribute="bottom" secondItem="EWb-pu-TzV" secondAttribute="bottom" constant="20" id="nKA-xM-sxi"/>
+                            <constraint firstItem="FtD-PV-3lg" firstAttribute="leading" secondItem="q6n-k5-I71" secondAttribute="leading" constant="5" id="zCc-PD-k8W"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q6n-k5-I71"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wj3-ZE-t9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2316" y="-1451"/>
+        </scene>
+        <!--Tutorial View Controller5-->
+        <scene sceneID="D4p-aj-xOX">
+            <objects>
+                <viewController id="NhE-hb-xiF" customClass="TutorialViewController5" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iRT-8e-nI1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialDefault" translatesAutoresizingMaskIntoConstraints="NO" id="czS-qL-K8v">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgG-e6-l9x" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="147.5" y="527" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="TxF-C1-kkF"/>
+                                    <constraint firstAttribute="width" constant="80" id="i4Z-dS-2P1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="始める">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="start:" destination="NhE-hb-xiF" eventType="touchUpInside" id="YwQ-MH-d3O"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チュートリアルは以上です！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9V-l6-guz">
+                                <rect key="frame" x="15" y="283.5" width="345" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="qWL-u8-KJF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNA-nt-XMi">
+                                <rect key="frame" x="315" y="607" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="38Z-sy-oXU"/>
+                                    <constraint firstAttribute="width" constant="40" id="ShA-qt-HrD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="T9V-l6-guz" firstAttribute="leading" secondItem="A13-V0-NRc" secondAttribute="leading" constant="15" id="7U1-LZ-TTe"/>
+                            <constraint firstItem="czS-qL-K8v" firstAttribute="top" secondItem="iRT-8e-nI1" secondAttribute="top" id="JLc-Y8-pS2"/>
+                            <constraint firstItem="czS-qL-K8v" firstAttribute="leading" secondItem="A13-V0-NRc" secondAttribute="leading" id="JO5-uP-w3W"/>
+                            <constraint firstItem="T9V-l6-guz" firstAttribute="centerY" secondItem="iRT-8e-nI1" secondAttribute="centerY" id="Lhp-I9-jQv"/>
+                            <constraint firstItem="A13-V0-NRc" firstAttribute="trailing" secondItem="T9V-l6-guz" secondAttribute="trailing" constant="15" id="Ltx-Zl-CBq"/>
+                            <constraint firstItem="dgG-e6-l9x" firstAttribute="centerX" secondItem="iRT-8e-nI1" secondAttribute="centerX" id="Mjc-oX-dBI"/>
+                            <constraint firstItem="czS-qL-K8v" firstAttribute="trailing" secondItem="A13-V0-NRc" secondAttribute="trailing" id="UUP-vO-C6c"/>
+                            <constraint firstItem="A13-V0-NRc" firstAttribute="bottom" secondItem="dgG-e6-l9x" secondAttribute="bottom" constant="60" id="WEV-bO-aJU"/>
+                            <constraint firstItem="T9V-l6-guz" firstAttribute="centerX" secondItem="iRT-8e-nI1" secondAttribute="centerX" id="gG9-1K-qMe"/>
+                            <constraint firstItem="czS-qL-K8v" firstAttribute="bottom" secondItem="A13-V0-NRc" secondAttribute="bottom" id="mwS-6Q-NGb"/>
+                            <constraint firstItem="A13-V0-NRc" firstAttribute="trailing" secondItem="TNA-nt-XMi" secondAttribute="trailing" constant="20" id="nwv-pG-hKf"/>
+                            <constraint firstItem="A13-V0-NRc" firstAttribute="bottom" secondItem="TNA-nt-XMi" secondAttribute="bottom" constant="20" id="xTM-rl-WcE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A13-V0-NRc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KBr-OM-pOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3122" y="-1451"/>
+        </scene>
+        <!--Tutorial View Controller2-->
+        <scene sceneID="hTQ-XW-pY7">
+            <objects>
+                <viewController id="saW-NY-9k4" customClass="TutorialViewController2" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nh0-FW-8rq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialClip2" translatesAutoresizingMaskIntoConstraints="NO" id="eUz-Ox-mO5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usv-eZ-RNV">
+                                <rect key="frame" x="10" y="283.5" width="355" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="mTZ-iG-LzX"/>
+                                </constraints>
+                                <string key="text">役に立った記事や後で読みたい記事は、
+記事右端のクリップボタンでクリップします。</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B67-bi-v09" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="147.5" y="527" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Nsw-fz-gLo"/>
+                                    <constraint firstAttribute="width" constant="80" id="kjz-XA-EPH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="次へ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="9fh-oU-Z2W" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="3yF-6N-Sk6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZp-NM-c1C">
+                                <rect key="frame" x="315" y="607" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="a9G-9T-ARK"/>
+                                    <constraint firstAttribute="height" constant="40" id="cqW-kX-0Ez"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ydv-fE-k2Y" firstAttribute="trailing" secondItem="LZp-NM-c1C" secondAttribute="trailing" constant="20" id="1lM-LQ-3r5"/>
+                            <constraint firstItem="B67-bi-v09" firstAttribute="centerX" secondItem="Nh0-FW-8rq" secondAttribute="centerX" id="NMx-pO-qQn"/>
+                            <constraint firstItem="Usv-eZ-RNV" firstAttribute="leading" secondItem="Ydv-fE-k2Y" secondAttribute="leading" constant="10" id="QuR-02-Zp5"/>
+                            <constraint firstItem="Ydv-fE-k2Y" firstAttribute="trailing" secondItem="Usv-eZ-RNV" secondAttribute="trailing" constant="10" id="X6C-Wp-jNq"/>
+                            <constraint firstItem="eUz-Ox-mO5" firstAttribute="trailing" secondItem="Ydv-fE-k2Y" secondAttribute="trailing" id="XPb-1j-hg2"/>
+                            <constraint firstItem="eUz-Ox-mO5" firstAttribute="leading" secondItem="Ydv-fE-k2Y" secondAttribute="leading" id="ayX-6g-arU"/>
+                            <constraint firstItem="Usv-eZ-RNV" firstAttribute="centerX" secondItem="Nh0-FW-8rq" secondAttribute="centerX" id="fdC-nK-QhY"/>
+                            <constraint firstItem="eUz-Ox-mO5" firstAttribute="top" secondItem="Nh0-FW-8rq" secondAttribute="top" id="gjh-CE-n7u"/>
+                            <constraint firstItem="Ydv-fE-k2Y" firstAttribute="bottom" secondItem="LZp-NM-c1C" secondAttribute="bottom" constant="20" id="hZM-sb-omu"/>
+                            <constraint firstItem="Ydv-fE-k2Y" firstAttribute="bottom" secondItem="B67-bi-v09" secondAttribute="bottom" constant="60" id="jz2-rS-a8g"/>
+                            <constraint firstItem="eUz-Ox-mO5" firstAttribute="bottom" secondItem="Ydv-fE-k2Y" secondAttribute="bottom" id="s6j-zP-v6m"/>
+                            <constraint firstItem="Usv-eZ-RNV" firstAttribute="centerY" secondItem="Nh0-FW-8rq" secondAttribute="centerY" id="ugI-Q4-2cJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ydv-fE-k2Y"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bwB-3V-2MH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="584.79999999999995" y="-1451.4242878560722"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LaunchImage2" width="591.46014404296875" height="993.42333984375"/>
+        <image name="flick" width="512" height="512"/>
+        <image name="tutorialClip" width="212.57919311523438" height="366.35293579101562"/>
+        <image name="tutorialClip2" width="212.57919311523438" height="366.35293579101562"/>
+        <image name="tutorialConsultation" width="212.57919311523438" height="366.35293579101562"/>
+        <image name="tutorialDefault" width="212.57919311523438" height="366.35293579101562"/>
+    </resources>
+</document>

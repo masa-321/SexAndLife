@@ -336,9 +336,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0M2-40-ZRT">
                                 <rect key="frame" x="0.0" y="480" width="386" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEt-a5-Jvg">
-                                        <rect key="frame" x="164" y="25" width="57" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEt-a5-Jvg">
+                                        <rect key="frame" x="153" y="20" width="80" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="0GK-PR-7Zq"/>
+                                            <constraint firstAttribute="height" constant="40" id="n1Y-30-Yge"/>
+                                        </constraints>
                                         <state key="normal" title="新着">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -346,7 +349,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="UEt-a5-Jvg" firstAttribute="centerY" secondItem="0M2-40-ZRT" secondAttribute="centerY" id="DsC-Xk-S6c"/>
                                     <constraint firstAttribute="height" constant="80" id="RCA-A4-eUC"/>
+                                    <constraint firstItem="UEt-a5-Jvg" firstAttribute="centerX" secondItem="0M2-40-ZRT" secondAttribute="centerX" id="qCS-PG-ysD"/>
                                 </constraints>
                             </view>
                         </subviews>

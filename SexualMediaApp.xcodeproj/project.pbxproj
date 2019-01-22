@@ -64,6 +64,8 @@
 		5F6A1FF921F36A92009AD79A /* ProfileCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FF721F36A92009AD79A /* ProfileCommentCell.swift */; };
 		5F6A1FFA21F36A92009AD79A /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A1FF821F36A92009AD79A /* ProfileCommentCell.xib */; };
 		5F6A1FFC21F469D8009AD79A /* ContainnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FFB21F469D8009AD79A /* ContainnerViewController.swift */; };
+		5F6DF6C521F72D610010085C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6DF6C421F72D610010085C /* TutorialViewController.swift */; };
+		5F6DF6C721F742E60010085C /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6DF6C621F742E60010085C /* Tutorial.storyboard */; };
 		5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */; };
 		5FEDC02E21E05C3F006A3563 /* ConsultationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */; };
 		5FEDC03021E06055006A3563 /* ConsultationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02F21E06055006A3563 /* ConsultationModel.swift */; };
@@ -151,6 +153,8 @@
 		5F6A1FF721F36A92009AD79A /* ProfileCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentCell.swift; sourceTree = "<group>"; };
 		5F6A1FF821F36A92009AD79A /* ProfileCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCell.xib; sourceTree = "<group>"; };
 		5F6A1FFB21F469D8009AD79A /* ContainnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainnerViewController.swift; sourceTree = "<group>"; };
+		5F6DF6C421F72D610010085C /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		5F6DF6C621F742E60010085C /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationCollectionCell.swift; sourceTree = "<group>"; };
 		5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationItemCell.swift; sourceTree = "<group>"; };
 		5FEDC02F21E06055006A3563 /* ConsultationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationModel.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 				105184362165992000EA36BD /* AppDelegate.swift */,
 				502F9AE5218C8F0C008E6037 /* AttentionViewController.swift */,
 				50729B9B2185B5F800F0F3C5 /* LoginViewController.swift */,
+				5F6DF6C421F72D610010085C /* TutorialViewController.swift */,
 				105184382165992000EA36BD /* ViewController.swift */,
 				10AB5C78216A5FCE00EB5E61 /* CoverFlow.swift */,
 				102743E0216A47A8006FB7F2 /* SearchViewController.swift */,
@@ -252,6 +257,7 @@
 				1051843A2165992000EA36BD /* Main.storyboard */,
 				509B4B8B216E1C3E006F239C /* Info.storyboard */,
 				5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */,
+				5F6DF6C621F742E60010085C /* Tutorial.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 				509B4B8C216E1C3E006F239C /* Info.storyboard in Resources */,
 				1051843C2165992000EA36BD /* Main.storyboard in Resources */,
 				509B4B92216F04AE006F239C /* GoogleService-Info.plist in Resources */,
+				5F6DF6C721F742E60010085C /* Tutorial.storyboard in Resources */,
 				5F6A1FB021EC2489009AD79A /* Consultation.storyboard in Resources */,
 				50511DDD21878626003011CC /* SummaryCell.xib in Resources */,
 				50E9C8E52189F454006F567E /* CommentTableViewCell.xib in Resources */,
@@ -564,6 +571,7 @@
 				5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */,
 				5FEDC04221E611BA006A3563 /* SourceViewController.swift in Sources */,
 				502F9AE6218C8F0C008E6037 /* AttentionViewController.swift in Sources */,
+				5F6DF6C521F72D610010085C /* TutorialViewController.swift in Sources */,
 				10AB5C79216A5FCE00EB5E61 /* CoverFlow.swift in Sources */,
 				5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */,
 				1051844F21659B0500EA36BD /* Media3ViewController.swift in Sources */,

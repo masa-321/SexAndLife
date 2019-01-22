@@ -381,8 +381,12 @@ class LoginViewController: UIViewController {
             //self.userRef.child((user?.user.uid)!).setValue(userInfo)
             //self.startVc.fetchCellViewModell()
             //self.dismiss(animated: true, completion: nil)
+            /*
             let initialVc: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "Initial") as! UINavigationController
-            self.show(initialVc, sender: nil)
+            self.show(initialVc, sender: nil)*/
+            
+            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial") as! UIViewController
+            self.show(tutorialVc, sender: nil)
             
             /*
             let homeVc:ViewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
@@ -429,8 +433,8 @@ class LoginViewController: UIViewController {
             
             
             //この時点で、アカウントは生成されているし、それも確認されているはず。なのになぜ？
-            let initialVc: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "Initial") as! UINavigationController
-            self.show(initialVc, sender: nil)
+            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial") as! UIViewController
+            self.show(tutorialVc, sender: nil)
             //これで解決
             /*
             let homeVc:ViewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
