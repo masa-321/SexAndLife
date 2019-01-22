@@ -14,15 +14,18 @@ class ProfileInfoViewController: UINavigationController {
     
     var masterViewPointer:ProfileViewController?
     var textView: UITextView = UITextView()
-    var receivedUserId = ""
+    
     
     let ref = Firestore.firestore().collection("users")
+    var receivedUserId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("ProfileInfoViewControllerが呼ばれたよ")
         // 背景色を記述
         self.view.backgroundColor = UIColor.groupTableViewBackground
+        
+  
         
         
         if let user = Auth.auth().currentUser {
@@ -40,8 +43,10 @@ class ProfileInfoViewController: UINavigationController {
                         print("Document does not exist")
                     
                     }
+                    print("テスト")
                 }
             } else {
+                print("receivedUserId != user.uidでした")
                 //receivedUserIdが他人だった場合の処理式
                 
             }
@@ -61,6 +66,9 @@ class ProfileInfoViewController: UINavigationController {
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.backgroundColor = UIColor.white
+        
+        
+        //textView.frame = CGRect(x:0, y:10, width:self.view.frame.width, height:100)
     }
     
 

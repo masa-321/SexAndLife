@@ -33,6 +33,7 @@ class ArticleData: NSObject {
     
     init(snapshot: DataSnapshot, myId: String) {
         self.id = snapshot.key
+        //keyって記事のIDであっているよな…
         
         let valueDictionary = snapshot.value as! [String: AnyObject]
         
@@ -96,7 +97,7 @@ class ArticleQueryData: NSObject {
     var relatedArticleIDs:[String] = []
     
     var isCommented: Bool = false
-    var commenterIDs:[String] = []
+    var comments:[String:Any] = [:]
     
     init(snapshot: QueryDocumentSnapshot, myId: String) {
         self.id = snapshot.documentID
@@ -116,6 +117,9 @@ class ArticleQueryData: NSObject {
         
         //let time = valueDictionary["time"] as? String
         //self.date = NSDate(timeIntervalSinceReferenceDate: TimeInterval(time!)!)
+        if let comments = valueDictionary["comments"] as? [String:Any] {
+            self.comments = comments
+        }
         
         
         if let relatedArticleIDs = valueDictionary["relatedArticleIDs"] as? [String]{

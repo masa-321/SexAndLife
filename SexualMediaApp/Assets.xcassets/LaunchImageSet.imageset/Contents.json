@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "appLaunchImage.png",
+      "filename" : "LaunchImageSet.png",
       "scale" : "1x"
     },
     {

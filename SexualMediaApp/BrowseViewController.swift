@@ -8,6 +8,10 @@
 
 import UIKit
 import WebKit
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseDatabase
 import SVProgressHUD
 
 class BrowseViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
@@ -15,6 +19,7 @@ class BrowseViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
     var browseURLRequest:URLRequest!
     var browsePageTitle = ""
     var webView: WKWebView!
+    var receivedArticleData:ArticleQueryData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,4 +104,34 @@ class BrowseViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func commentButton(_ sender: Any) {
+        let vc:CommentViewController = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
+        let title = "Facebook連携が必要です"
+        let message = "コメント機能を利用するためにはFacebook連携を行う必要があります。"
+        let okText = "OK"
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okayButton = UIAlertAction(title: okText, style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(okayButton)
+        
+        if let user = Auth.auth().currentUser {
+            if !user.providerData.isEmpty {
+                for item in user.providerData {
+                    if item.providerID == "facebook.com" {
+                        Firestore.firestore().collection("users").document(user.uid).addSnapshotListener { querySnapshot, err in
+                            if let err = err {
+                                print("Error fetching documents: \(err)")
+                            } else {
+                                vc.profileData = Profile(snapshot: querySnapshot!)
+                                vc.receivedArticleData = self.receivedArticleData
+                                self.present(vc, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
+            } else {
+                present(alert, animated: true, completion: nil)
+            }
+        }
+    }
 }

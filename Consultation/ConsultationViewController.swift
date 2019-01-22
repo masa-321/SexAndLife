@@ -23,12 +23,18 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
     
     var receivedCategories:[String] = []
     //var consultationArray:[Consultation] = []
-    var receivedConsultationTypeA_Array:[[String : Any]] = []
+    var receivedConsultationTypeA_Array:[Consultation] = []
+    var receivedConsultationTypeB_Array:[Consultation] = []
+    var receivedConsultationTypeC_Array:[Consultation] = []
+    var receivedConsultationTypeD_Array:[Consultation] = []
+    var receivedConsultationTypeE_Array:[Consultation] = []
+    var receivedConsultationTypeF_Array:[Consultation] = []
+    /*var receivedConsultationTypeA_Array:[[String : Any]] = []
     var receivedConsultationTypeB_Array:[[String : Any]] = []
     var receivedConsultationTypeC_Array:[[String : Any]] = []
     var receivedConsultationTypeD_Array:[[String : Any]] = []
     var receivedConsultationTypeE_Array:[[String : Any]] = []
-    var receivedConsultationTypeF_Array:[[String : Any]] = []
+    var receivedConsultationTypeF_Array:[[String : Any]] = []*/
     //var consultationNameArray:[String] = []
     
     var types:[String] = []
@@ -53,7 +59,7 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationItem.title = "相談"
+        self.navigationItem.title = "相談窓口"
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil //UIImage()
         navigationController?.navigationBar.isTranslucent = true
@@ -124,68 +130,84 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
     func generateConsultations(indexPath: IndexPath) -> [Consultation] {
         
         var consultations:[Consultation] = []
-        
+
         if indexPath.section == 0 {
             for i in 0..<self.receivedConsultationTypeA_Array.count {
+                let consultation = self.receivedConsultationTypeA_Array[i]
+                consultations.append(consultation)
+                
+                /*
                 if receivedConsultationTypeA_Array[i]["ImageURLString"] == nil {
-                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/defaultImage.png", consultationName: "\(receivedConsultationTypeA_Array[i]["ConsultationName"]!)")
+                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/placeholderImage.jpg", consultationName: "\(receivedConsultationTypeA_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
                 } else {
                     let consultation = Consultation(imageURLString: "\(receivedConsultationTypeA_Array[i]["ImageURLString"]!)", consultationName: "\(receivedConsultationTypeA_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
                     print("receivedConsultationTypeA_Array",consultation)
-                }
+                }*/
             }
         } else if indexPath.section == 1 {
             for i in 0..<self.receivedConsultationTypeB_Array.count {
+                let consultation = self.receivedConsultationTypeB_Array[i]
+                consultations.append(consultation)
+                /*
                 if receivedConsultationTypeB_Array[i]["ImageURLString"] == nil {
-                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/defaultImage.png", consultationName: "\(receivedConsultationTypeB_Array[i]["ConsultationName"]!)")
+                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/placeholderImage.jpg", consultationName: "\(receivedConsultationTypeB_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
                 } else {
                     let consultation = Consultation(imageURLString: "\(receivedConsultationTypeB_Array[i]["ImageURLString"]!)", consultationName: "\(receivedConsultationTypeB_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
                     print("receivedConsultationTypeB_Array",consultation)
-                }
+                }*/
             }
         } else if indexPath.section == 2 {
             for i in 0..<self.receivedConsultationTypeC_Array.count {
-                if receivedConsultationTypeC_Array[i]["ImageURLString"] == nil {
-                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/defaultImage.png", consultationName: "\(receivedConsultationTypeC_Array[i]["ConsultationName"]!)")
+                let consultation = self.receivedConsultationTypeC_Array[i]
+                consultations.append(consultation)
+                /*if receivedConsultationTypeC_Array[i]["ImageURLString"] == nil {
+                    
+                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/placeholderImage.jpg", consultationName: "\(receivedConsultationTypeC_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
                 } else {
                     let consultation = Consultation(imageURLString: "\(receivedConsultationTypeC_Array[i]["ImageURLString"]!)", consultationName: "\(receivedConsultationTypeC_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
-                }
+                }*/
             }
         } else if indexPath.section == 3 {
             for i in 0..<self.receivedConsultationTypeD_Array.count {
-                if receivedConsultationTypeD_Array[i]["ImageURLString"] == nil {
-                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/defaultImage.png", consultationName: "\(receivedConsultationTypeD_Array[i]["ConsultationName"]!)")
+                let consultation = self.receivedConsultationTypeD_Array[i]
+                consultations.append(consultation)
+                /*if receivedConsultationTypeD_Array[i]["ImageURLString"] == nil {
+                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/placeholderImage.jpg", consultationName: "\(receivedConsultationTypeD_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
                 } else {
                     let consultation = Consultation(imageURLString: "\(receivedConsultationTypeD_Array[i]["ImageURLString"]!)", consultationName: "\(receivedConsultationTypeD_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
-                }
+                }*/
             }
         } else if indexPath.section == 4 {
             for i in 0..<self.receivedConsultationTypeE_Array.count {
-                if receivedConsultationTypeE_Array[i]["ImageURLString"] == nil {
-                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/defaultImage.png", consultationName: "\(receivedConsultationTypeE_Array[i]["ConsultationName"]!)")
+                let consultation = self.receivedConsultationTypeE_Array[i]
+                consultations.append(consultation)
+                /*if receivedConsultationTypeE_Array[i]["ImageURLString"] == nil {
+                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/placeholderImage.jpg", consultationName: "\(receivedConsultationTypeE_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
                 } else {
                     let consultation = Consultation(imageURLString: "\(receivedConsultationTypeE_Array[i]["ImageURLString"]!)", consultationName: "\(receivedConsultationTypeE_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
-                }
+                }*/
             }
         } else if indexPath.section == 5 {
             for i in 0..<self.receivedConsultationTypeF_Array.count {
-                if receivedConsultationTypeF_Array[i]["ImageURLString"] == nil {
-                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/defaultImage.png", consultationName: "\(receivedConsultationTypeF_Array[i]["ConsultationName"]!)")
+                let consultation = self.receivedConsultationTypeF_Array[i]
+                consultations.append(consultation)
+                /*if receivedConsultationTypeF_Array[i]["ImageURLString"] == nil {
+                    let consultation = Consultation(imageURLString: "gs://sexualhealthmedia-736f9.appspot.com/placeholderImage.jpg", consultationName: "\(receivedConsultationTypeF_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
                 } else {
                     let consultation = Consultation(imageURLString: "\(receivedConsultationTypeF_Array[i]["ImageURLString"]!)", consultationName: "\(receivedConsultationTypeF_Array[i]["ConsultationName"]!)")
                     consultations.append(consultation)
-                }
+                }*/
             }
         }
         return consultations

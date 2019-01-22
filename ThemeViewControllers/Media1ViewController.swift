@@ -695,6 +695,7 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 articleData.likes.append(uid)
                 
             }
+            
             // 増えたlikesをFirebaseに保存する
             let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
             let likes = ["likes": articleData.likes]
@@ -705,7 +706,6 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 } else {
                     print("Document successfully written!")
                 }
-                
             }
         }
         

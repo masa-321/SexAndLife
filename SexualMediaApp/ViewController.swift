@@ -161,12 +161,20 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
 //★★★★★★★★★★★★consultation★★★★★★★★★★★★//
     var types:[String] = []
     var giveCategories:[String] = []
-    var giveConsultationTypeA_Array:[[String : Any]] = []
+    
+    var giveConsultationTypeA_Array:[Consultation] = []
+    var giveConsultationTypeB_Array:[Consultation] = []
+    var giveConsultationTypeC_Array:[Consultation] = []
+    var giveConsultationTypeD_Array:[Consultation] = []
+    var giveConsultationTypeE_Array:[Consultation] = []
+    var giveConsultationTypeF_Array:[Consultation] = []
+    
+    /*var giveConsultationTypeA_Array:[[String : Any]] = []
     var giveConsultationTypeB_Array:[[String : Any]] = []
     var giveConsultationTypeC_Array:[[String : Any]] = []
     var giveConsultationTypeD_Array:[[String : Any]] = []
     var giveConsultationTypeE_Array:[[String : Any]] = []
-    var giveConsultationTypeF_Array:[[String : Any]] = []
+    var giveConsultationTypeF_Array:[[String : Any]] = []*/
     
     
     func fetchConsulationData() {
@@ -174,7 +182,7 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         types = ["typeA","typeB","typeC","typeD","typeE","typeF"]
         
         let db = Firestore.firestore()
-
+        giveCategories = []
         db.collection("categories").document("vokXlkvJcce7W1YHvQNn").getDocument { (document, error) in
             if let document = document, document.exists {
                 print(type(of: document.data()))
@@ -201,17 +209,28 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
                 } else {
                     for document in querySnapshot!.documents {
                         if type == "typeA" {
-                            self.giveConsultationTypeA_Array.append(document.data())
+                            let consultation = Consultation(snapshot: document)
+                            self.giveConsultationTypeA_Array.append(consultation)
                         } else if type == "typeB" {
-                            self.giveConsultationTypeB_Array.append(document.data())
+                            let consultation = Consultation(snapshot: document)
+                            self.giveConsultationTypeB_Array.append(consultation)
+                            //self.giveConsultationTypeB_Array.append(document.data())
                         } else if type == "typeC" {
-                            self.giveConsultationTypeC_Array.append(document.data())
+                            let consultation = Consultation(snapshot: document)
+                            self.giveConsultationTypeC_Array.append(consultation)
+                            //self.giveConsultationTypeC_Array.append(document.data())
                         } else if type == "typeD" {
-                            self.giveConsultationTypeD_Array.append(document.data())
+                            let consultation = Consultation(snapshot: document)
+                            self.giveConsultationTypeD_Array.append(consultation)
+                            //self.giveConsultationTypeD_Array.append(document.data())
                         } else if type == "typeE" {
-                            self.giveConsultationTypeE_Array.append(document.data())
+                            let consultation = Consultation(snapshot: document)
+                            self.giveConsultationTypeE_Array.append(consultation)
+                            //self.giveConsultationTypeE_Array.append(document.data())
                         } else if type == "typeF" {
-                            self.giveConsultationTypeF_Array.append(document.data())
+                            let consultation = Consultation(snapshot: document)
+                            self.giveConsultationTypeF_Array.append(consultation)
+                            //self.giveConsultationTypeF_Array.append(document.data())
                         }
                     }
                     //この中であれば、self.consultationTypeA_Array.countは数値を持つ。この外でも数値を持つためには、以下のようにreloadが必要。

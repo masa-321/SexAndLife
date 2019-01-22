@@ -38,7 +38,6 @@ class Media2ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //TableViewの宣言
     var tableView:UITableView = UITableView()
     var articleDataArray:[ArticleQueryData] = []
-    var observing = false
     
     let refreshControl = UIRefreshControl()
     
