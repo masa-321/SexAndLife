@@ -14,6 +14,7 @@ class SummaryCell: UITableViewCell {
     
     @IBOutlet weak var upperView: UIView!
     @IBOutlet weak var centerView: UIView!
+    
     @IBOutlet weak var lowerView: UIView!
     
     
@@ -61,7 +62,7 @@ class SummaryCell: UITableViewCell {
         //summaryLabel.text = articleData.summary
         //summaryLabel.setLineSpacing(lineSpacing: 2.0)
         
-        let attributedString = NSMutableAttributedString(string: articleData.summary!)
+        let attributedString = NSMutableAttributedString(string: articleData.summary)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 7
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
@@ -91,11 +92,25 @@ class SummaryCell: UITableViewCell {
             //let buttonImage = UIImage(named: "like_none")
             //self.likeButton.setImage(buttonImage, for: UIControl.State.normal)
         }
+        
+        changeVisible(visible: articleData.isFAQ)
+        
+    }
+    
+    // 表示/非表示を切り替え
+    func changeVisible(visible: Bool) {
+        if visible {
+            lowerView.isHidden = true
+            lowerView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        } else {
+            return
+        }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        changeVisible(visible: false)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

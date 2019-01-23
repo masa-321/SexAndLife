@@ -17,11 +17,12 @@ class Consultation {
     var imageURLString: String
     var consultationType: String
     var consultationInfo: String
+    var consultationTools:[String] = []
     
     var contactAddress: String
     var address: String
     var howToConsult: String
-    var receptionTime:String
+    var receptionTime:[String] = []
     var webSiteAddress: String
     
     var targetPersons:[String] = []
@@ -56,6 +57,11 @@ class Consultation {
             self.consultationInfo = ""
         }
         
+        if let consultationTools = valueDictionary["ConsultationTools"] as? [String] {
+            self.consultationTools = consultationTools
+        }
+        
+        
         if let contactAddress = valueDictionary["ContactAddress"] as? String {
             self.contactAddress = contactAddress
         } else {
@@ -74,10 +80,8 @@ class Consultation {
             self.howToConsult = ""
         }
         
-        if let receptionTime = valueDictionary["ReceptionTime"] as? String {
+        if let receptionTime = valueDictionary["ReceptionTime"] as? [String] {
             self.receptionTime = receptionTime
-        } else {
-            self.receptionTime = ""
         }
         
         if let webSiteAddress = valueDictionary["WebSiteAddress"] as? String {

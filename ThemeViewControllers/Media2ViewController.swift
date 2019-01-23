@@ -124,7 +124,7 @@ class Media2ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         if self.articleDataArray.count < 14 { //トップ記事は10記事まで
                             self.articleDataArray.insert(articleData, at: 0)
-                            print("insertが呼ばれたよ",articleData.titleStr!)
+                            //print("insertが呼ばれたよ",articleData.titleStr!)
                         }
                     }
                     //Clipボタンを押した時にcontentOffsetがずれる課題に対しての気休め

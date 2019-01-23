@@ -82,13 +82,13 @@ class ArticleQueryData: NSObject {
     //var articleQueryData:[ArticleQueryData] = []
     
     var id: String?
-    var articleUrl:String?
+    var articleUrl:String = ""
     var genreName:String?
-    var sourceName:String?
-    var summary:String?
+    var sourceName:String = ""
+    var summary:String = ""
     var imageUrl:String?
-    var imageString: String?
-    var titleStr: String?
+    var imageString: String = ""
+    var titleStr: String = ""
     var date: NSDate?
     var likes: [String] = []
     var isLiked: Bool = false
@@ -99,24 +99,53 @@ class ArticleQueryData: NSObject {
     var isCommented: Bool = false
     var comments:[String:Any] = [:]
     
+    var isFAQ:Bool = false
+    
     init(snapshot: QueryDocumentSnapshot, myId: String) {
         self.id = snapshot.documentID
         //snapshotはkeyもvalueもある。これはDictionary型ってことだ。それは、Firestoreでは当てはまらないらしい。
         
         let valueDictionary = snapshot.data() 
         
-        //以下Keyに対応させて引っ張ってきている
-        self.articleUrl = valueDictionary["articleUrl"] as? String
+        //以下Keyに対応させて引っ張ってきている。
+        //FAQでもArticleでも記事登録時に、commentsとlikesとisFAQ以外それぞれの項目を作成しているので、!アンラップしてもエラーにはならない。
+        if let articleUrl = valueDictionary["articleUrl"] as? String {
+            self.articleUrl = articleUrl
+        } 
+        
         self.date = valueDictionary["date"] as? NSDate
         self.genreName = valueDictionary["genreName"] as? String
-        self.imageUrl = valueDictionary["imageUrl"] as? String
-        self.sourceName = valueDictionary["sourceName"] as? String
-        self.titleStr = valueDictionary["titleStr"] as? String
-        self.summary = valueDictionary["summary"] as? String
+        
+        if let imageUrl = valueDictionary["imageUrl"] as? String {
+            self.imageUrl = imageUrl
+        }
+        
+        if let sourceName = valueDictionary["sourceName"] as? String {
+            self.sourceName = sourceName
+        }
+        
+        
+        if let titleStr = valueDictionary["titleStr"] as? String {
+            self.titleStr = titleStr
+        }
+        
+        if let summary = valueDictionary["summary"] as? String {
+            self.summary = summary
+        }
+
         self.tags = valueDictionary["tags"] as? String //これ忘れていると、upexpected nilとなってエラーになり止まる。
+        
+        
+        
+        
+        //isFAQにはBool値としてtrueが登録される。Formで送信しただけでそうなる。
+        if let isFAQ = valueDictionary["isFAQ"] as? Bool {
+            self.isFAQ = isFAQ
+        }
         
         //let time = valueDictionary["time"] as? String
         //self.date = NSDate(timeIntervalSinceReferenceDate: TimeInterval(time!)!)
+        //commentsは項目が最初存在しないので、if letで丁寧に取り出す。
         if let comments = valueDictionary["comments"] as? [String:Any] {
             self.comments = comments
         }
@@ -127,6 +156,7 @@ class ArticleQueryData: NSObject {
             //print("ArticleData.swiftにて、relatedArticleIDs:" + "\(self.relatedArticleIDs)")
         }
         
+        //likesは項目が最初存在しないので、if letで丁寧に取り出す。
         if let likes = valueDictionary["likes"] as? [String] {
             self.likes = likes
             //print("ArticleData.swiftにて、likes:" + "\(self.likes)")

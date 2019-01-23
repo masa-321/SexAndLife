@@ -190,9 +190,9 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
 
     
     @IBAction func shareButton(_ sender: Any) {
-        let shareString = "\(receiveCellViewModel!.titleStr!)" + " | " + "#sexualhealthmedia"
+        let shareString = "\(receiveCellViewModel!.titleStr)" + " | " + "#sexualhealthmedia"
         var items = [] as [Any]
-        if let shareUrl =  URL(string: receiveCellViewModel!.articleUrl!) {
+        if let shareUrl =  URL(string: receiveCellViewModel!.articleUrl) {
             items = [shareString, shareUrl] as [Any]
         } else {
             items = [shareString]
@@ -535,7 +535,12 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             let screenHeight:CGFloat = headerView.frame.size.height
             headerLabel.frame.size = CGSize(width:screenWidth/2, height:screenHeight/2)
             headerLabel.center = CGPoint(x: screenWidth/2, y: screenHeight/2)
-            headerLabel.text = "コメント"
+            if receiveCellViewModel!.isFAQ {
+                headerLabel.text = "回答コメント"
+            } else {
+                headerLabel.text = "補足コメント"
+            }
+            
             headerLabel.textColor = .black
             headerLabel.font = UIFont.systemFont(ofSize: 25)
             headerLabel.textAlignment = NSTextAlignment.center
@@ -722,15 +727,15 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     //★★★★★★★★★★★★いいね!ボタンのコード★★★★★★★★★★★★//
     
     @objc func browseButton(sender:UIButton, event:UIEvent){
-        guard let url = URL(string: receiveCellViewModel!.articleUrl!) else {return}
+        guard let url = URL(string: receiveCellViewModel!.articleUrl) else {return}
         let title = receiveCellViewModel!.titleStr
-        browse(URLRequest(url: url),titleStr: title!)
+        browse(URLRequest(url: url),titleStr: title)
     }
     
     @objc func sourceButton(sender:UIButton, event:UIEvent){
         let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let sourceViewController:SourceViewController = InfoStoryboard.instantiateViewController(withIdentifier: "Source") as! SourceViewController
-        sourceViewController.receiveData = receiveCellViewModel!.sourceName!
+        sourceViewController.receiveData = receiveCellViewModel!.sourceName
         //let sourceName = receiveCellViewModel!.sourceName!
         //let title = receiveCellViewModel!.titleStr
       //

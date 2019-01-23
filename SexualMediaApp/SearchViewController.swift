@@ -133,7 +133,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     //var conditions = [(ArticleQueryData) -> Bool]()における、(ArticleQueryData)の部分が$0に入ってくる。
                     for word in searchWords {
                         //OR条件のクロージャーをArrayとしておいている
-                        self.conditions.append { $0.titleStr!.contains(word) || $0.summary!.contains(word) || $0.tags!.contains(word) }
+                        self.conditions.append { $0.titleStr.contains(word) || $0.summary.contains(word) || $0.tags!.contains(word) }
                         
                     }
                 

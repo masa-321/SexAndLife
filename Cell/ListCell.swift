@@ -32,7 +32,12 @@ class ListCell: UITableViewCell {
     
     func setCellInfo(articleData:ArticleQueryData) {
     
-        titleLabel.text = articleData.titleStr
+        if articleData.isFAQ {
+//            titleLabel.text = "Q." + articleData.titleStr
+        } else {
+            titleLabel.text = articleData.titleStr
+        }
+        
         sourceLabel.text = articleData.sourceName
         guard let imageUrl = articleData.imageUrl else {return}
         articleImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "placeholderImage"))
