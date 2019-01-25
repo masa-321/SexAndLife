@@ -22,6 +22,7 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
     let refreshControl = UIRefreshControl()
     
     var receivedCategories:[String] = []
+    var receivedDescriptions:[String] = []
     //var consultationArray:[Consultation] = []
     var receivedConsultationTypeA_Array:[Consultation] = []
     var receivedConsultationTypeB_Array:[Consultation] = []
@@ -226,6 +227,7 @@ class ConsultationViewController: UIViewController, UITableViewDataSource, UITab
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConsultationCollectionCell") as! ConsultationCollectionCell
         print("ConsultationのcellForRowAtは呼ばれてます")
         cell.title = receivedCategories[indexPath.section]
+        cell.descriptionText = receivedDescriptions[indexPath.section]
         cell.consultations = generateConsultations(indexPath: indexPath)
         
         cell.masterViewPointer = self //まーじか。

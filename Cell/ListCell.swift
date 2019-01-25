@@ -33,7 +33,7 @@ class ListCell: UITableViewCell {
     func setCellInfo(articleData:ArticleQueryData) {
     
         if articleData.isFAQ {
-//            titleLabel.text = "Q." + articleData.titleStr
+            titleLabel.text = "Q." + articleData.titleStr
         } else {
             titleLabel.text = articleData.titleStr
         }

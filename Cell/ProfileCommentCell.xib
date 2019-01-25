@@ -42,7 +42,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="訪日外国人の消費総額が過去最高の4.5兆円に、政府目標は遠い" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUt-1i-wir">
                                 <rect key="frame" x="114.5" y="3.5" width="189.5" height="33.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -85,12 +85,12 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSL-cC-7uO">
-                        <rect key="frame" x="0.0" y="73" width="314" height="108"/>
+                        <rect key="frame" x="0.0" y="73" width="314" height="98"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="テストさん" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21j-M5-cVx">
-                                <rect key="frame" x="80" y="3" width="200" height="30"/>
+                                <rect key="frame" x="60" y="3" width="200" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="94H-rt-CgE"/>
+                                    <constraint firstAttribute="height" constant="20" id="94H-rt-CgE"/>
                                     <constraint firstAttribute="width" constant="200" id="T0b-VR-l3m"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -98,29 +98,29 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="テスト科 テスト教員" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gx-oL-96u">
-                                <rect key="frame" x="80" y="33" width="200" height="30"/>
+                                <rect key="frame" x="60" y="23" width="200" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="HD9-6E-GqG"/>
+                                    <constraint firstAttribute="height" constant="20" id="HD9-6E-GqG"/>
                                     <constraint firstAttribute="width" constant="200" id="d2g-yG-XOR"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="コメントラベルコメントラベルコメントラベルコメントラベルコメントラベルコメントラベル" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4v-Ok-bz0">
-                                <rect key="frame" x="80" y="63" width="224" height="30"/>
+                                <rect key="frame" x="10" y="43" width="294" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0WS-dx-haN"/>
+                                    <constraint firstAttribute="height" constant="40" id="0WS-dx-haN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile2" translatesAutoresizingMaskIntoConstraints="NO" id="ejO-Hd-oJq" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
-                                <rect key="frame" x="10" y="20" width="60" height="60"/>
+                                <rect key="frame" x="10" y="0.0" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="DXK-Jg-GO8"/>
-                                    <constraint firstAttribute="width" constant="60" id="rXn-3r-fzR"/>
+                                    <constraint firstAttribute="height" constant="40" id="DXK-Jg-GO8"/>
+                                    <constraint firstAttribute="width" constant="40" id="rXn-3r-fzR"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -131,15 +131,15 @@
                             <constraint firstItem="21j-M5-cVx" firstAttribute="top" secondItem="aSL-cC-7uO" secondAttribute="top" constant="3" id="6gq-pr-Fdw"/>
                             <constraint firstAttribute="bottom" secondItem="Q4v-Ok-bz0" secondAttribute="bottom" constant="15" id="7uj-1G-5XC"/>
                             <constraint firstItem="Q4v-Ok-bz0" firstAttribute="top" secondItem="2gx-oL-96u" secondAttribute="bottom" id="Yj4-qC-ecz"/>
-                            <constraint firstItem="Q4v-Ok-bz0" firstAttribute="leading" secondItem="21j-M5-cVx" secondAttribute="leading" id="hL3-7y-x6j"/>
-                            <constraint firstItem="ejO-Hd-oJq" firstAttribute="top" secondItem="aSL-cC-7uO" secondAttribute="top" constant="20" id="iTr-KM-FDQ"/>
+                            <constraint firstItem="ejO-Hd-oJq" firstAttribute="top" secondItem="aSL-cC-7uO" secondAttribute="top" id="iTr-KM-FDQ"/>
                             <constraint firstItem="ejO-Hd-oJq" firstAttribute="leading" secondItem="aSL-cC-7uO" secondAttribute="leading" constant="10" id="lji-Yc-Ewe"/>
+                            <constraint firstItem="Q4v-Ok-bz0" firstAttribute="leading" secondItem="aSL-cC-7uO" secondAttribute="leading" constant="10" id="mSe-75-yJJ"/>
                             <constraint firstItem="2gx-oL-96u" firstAttribute="top" secondItem="21j-M5-cVx" secondAttribute="bottom" id="sdm-zU-7Pw"/>
                             <constraint firstItem="2gx-oL-96u" firstAttribute="leading" secondItem="ejO-Hd-oJq" secondAttribute="trailing" constant="10" id="xf9-Dl-xJd"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viF-bb-7qs">
-                        <rect key="frame" x="0.0" y="181" width="314" height="10"/>
+                        <rect key="frame" x="0.0" y="171" width="314" height="10"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="mXl-9g-gdk"/>

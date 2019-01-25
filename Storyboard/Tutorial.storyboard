@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SbZ-8S-ZPC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qiM-o4-STu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,11 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage2" translatesAutoresizingMaskIntoConstraints="NO" id="pSX-Dp-Ej5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage2" translatesAutoresizingMaskIntoConstraints="NO" id="YpJ-FL-x8d">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <view opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWw-IQ-LuH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnn-L7-gKQ">
@@ -457,18 +457,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="trailing" secondItem="YpJ-FL-x8d" secondAttribute="trailing" id="9YW-Co-wbb"/>
                             <constraint firstItem="lnn-L7-gKQ" firstAttribute="leading" secondItem="I9f-k1-Ybb" secondAttribute="leading" constant="15" id="BZ6-2l-S0o"/>
-                            <constraint firstItem="pSX-Dp-Ej5" firstAttribute="leading" secondItem="I9f-k1-Ybb" secondAttribute="leading" id="Bxa-Wg-6aZ"/>
+                            <constraint firstItem="YpJ-FL-x8d" firstAttribute="leading" secondItem="I9f-k1-Ybb" secondAttribute="leading" id="Drg-Rw-IDN"/>
                             <constraint firstItem="lnn-L7-gKQ" firstAttribute="centerX" secondItem="0zU-iv-u9o" secondAttribute="centerX" id="Fmj-Bm-N2v"/>
-                            <constraint firstItem="pSX-Dp-Ej5" firstAttribute="top" secondItem="0zU-iv-u9o" secondAttribute="top" id="I0I-lU-BZi"/>
                             <constraint firstItem="I9f-k1-Ybb" firstAttribute="trailing" secondItem="lnn-L7-gKQ" secondAttribute="trailing" constant="15" id="NG3-Jp-JW1"/>
-                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="trailing" secondItem="pSX-Dp-Ej5" secondAttribute="trailing" id="ROZ-3H-ihc"/>
                             <constraint firstItem="I9f-k1-Ybb" firstAttribute="trailing" secondItem="dWw-IQ-LuH" secondAttribute="trailing" id="TgQ-O0-YWG"/>
-                            <constraint firstItem="dWw-IQ-LuH" firstAttribute="top" secondItem="0zU-iv-u9o" secondAttribute="top" id="Vez-H2-F3a"/>
+                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="bottom" secondItem="YpJ-FL-x8d" secondAttribute="bottom" id="Wmx-v0-kLc"/>
                             <constraint firstItem="lnn-L7-gKQ" firstAttribute="centerY" secondItem="0zU-iv-u9o" secondAttribute="centerY" id="fAX-YJ-Mnc"/>
+                            <constraint firstItem="YpJ-FL-x8d" firstAttribute="top" secondItem="I9f-k1-Ybb" secondAttribute="top" id="g5U-Re-322"/>
                             <constraint firstItem="dWw-IQ-LuH" firstAttribute="leading" secondItem="I9f-k1-Ybb" secondAttribute="leading" id="l1x-Sw-A7u"/>
-                            <constraint firstItem="I9f-k1-Ybb" firstAttribute="bottom" secondItem="pSX-Dp-Ej5" secondAttribute="bottom" id="pJ1-Ij-QaP"/>
                             <constraint firstItem="I9f-k1-Ybb" firstAttribute="bottom" secondItem="dWw-IQ-LuH" secondAttribute="bottom" id="qbq-yU-c2i"/>
+                            <constraint firstItem="dWw-IQ-LuH" firstAttribute="top" secondItem="I9f-k1-Ybb" secondAttribute="top" id="soI-6n-Se8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I9f-k1-Ybb"/>
                     </view>
@@ -493,18 +493,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64w-Oq-1TG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-959" y="-1451"/>
+            <point key="canvasLocation" x="-1673" y="-1451"/>
         </scene>
-        <!--Tutorial View Controller3-->
+        <!--Tutorial View Controller4-->
         <scene sceneID="NVh-gU-2yW">
             <objects>
-                <viewController id="9fh-oU-Z2W" customClass="TutorialViewController3" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Tutorial4" id="9fh-oU-Z2W" customClass="TutorialViewController4" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WWZ-cx-a5Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialClip" translatesAutoresizingMaskIntoConstraints="NO" id="r3i-0i-lxS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svg-e1-9Ud">
@@ -543,7 +543,7 @@
                                     <segue destination="lrf-w9-bp5" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Cw5-1H-19B"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAl-7l-TDm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4/6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAl-7l-TDm">
                                 <rect key="frame" x="315" y="607" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Qxb-UM-Vff"/>
@@ -558,7 +558,6 @@
                         <constraints>
                             <constraint firstItem="r3i-0i-lxS" firstAttribute="bottom" secondItem="2JG-1J-68q" secondAttribute="bottom" id="4P4-sK-0ge"/>
                             <constraint firstItem="2JG-1J-68q" firstAttribute="trailing" secondItem="svg-e1-9Ud" secondAttribute="trailing" constant="5" id="FHD-zG-ocO"/>
-                            <constraint firstItem="r3i-0i-lxS" firstAttribute="top" secondItem="WWZ-cx-a5Y" secondAttribute="top" id="Hba-jb-WD5"/>
                             <constraint firstItem="IN1-Tp-3JM" firstAttribute="centerX" secondItem="WWZ-cx-a5Y" secondAttribute="centerX" id="Kwy-WW-tau"/>
                             <constraint firstItem="2JG-1J-68q" firstAttribute="bottom" secondItem="AAl-7l-TDm" secondAttribute="bottom" constant="20" id="LP6-lG-wbR"/>
                             <constraint firstItem="r3i-0i-lxS" firstAttribute="leading" secondItem="2JG-1J-68q" secondAttribute="leading" id="MQy-Rp-sCS"/>
@@ -566,6 +565,7 @@
                             <constraint firstItem="svg-e1-9Ud" firstAttribute="centerY" secondItem="WWZ-cx-a5Y" secondAttribute="centerY" id="ZkU-9o-XiL"/>
                             <constraint firstItem="r3i-0i-lxS" firstAttribute="trailing" secondItem="2JG-1J-68q" secondAttribute="trailing" id="a8E-yA-wt2"/>
                             <constraint firstItem="2JG-1J-68q" firstAttribute="bottom" secondItem="IN1-Tp-3JM" secondAttribute="bottom" constant="60" id="bYZ-lF-Ymo"/>
+                            <constraint firstItem="r3i-0i-lxS" firstAttribute="top" secondItem="2JG-1J-68q" secondAttribute="top" id="h4I-rp-c84"/>
                             <constraint firstItem="2JG-1J-68q" firstAttribute="trailing" secondItem="AAl-7l-TDm" secondAttribute="trailing" constant="20" id="jyG-6f-0w9"/>
                             <constraint firstItem="svg-e1-9Ud" firstAttribute="leading" secondItem="2JG-1J-68q" secondAttribute="leading" constant="5" id="xZ2-Il-jQF"/>
                         </constraints>
@@ -576,16 +576,16 @@
             </objects>
             <point key="canvasLocation" x="1448.8" y="-1451.4242878560722"/>
         </scene>
-        <!--Tutorial View Controller1-->
+        <!--Tutorial View Controller2-->
         <scene sceneID="sCU-X9-2zi">
             <objects>
-                <viewController storyboardIdentifier="Tutorial" id="SbZ-8S-ZPC" customClass="TutorialViewController1" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Tutorial2" id="SbZ-8S-ZPC" customClass="TutorialViewController2" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4D-2G-cpf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialDefault" translatesAutoresizingMaskIntoConstraints="NO" id="P3m-cA-wHW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャンネルは指で左右にフリックすることで切り替えることができます。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzj-5G-vP0">
@@ -629,7 +629,7 @@
                                     <segue destination="saW-NY-9k4" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="OMc-FZ-z81"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1Q-TR-Ybj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1Q-TR-Ybj">
                                 <rect key="frame" x="315" y="607" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="GVc-l9-DxI"/>
@@ -648,9 +648,9 @@
                             <constraint firstItem="F5k-pu-2Fv" firstAttribute="centerY" secondItem="n4D-2G-cpf" secondAttribute="centerY" id="A8K-Yg-2Xv"/>
                             <constraint firstItem="gzj-5G-vP0" firstAttribute="top" secondItem="F5k-pu-2Fv" secondAttribute="bottom" constant="-50" id="Dxt-Ma-2fR"/>
                             <constraint firstItem="F5k-pu-2Fv" firstAttribute="centerX" secondItem="n4D-2G-cpf" secondAttribute="centerX" id="GMj-jB-S7F"/>
-                            <constraint firstItem="P3m-cA-wHW" firstAttribute="top" secondItem="n4D-2G-cpf" secondAttribute="top" id="LoN-AO-bKB"/>
                             <constraint firstItem="66j-EW-5cB" firstAttribute="trailing" secondItem="gzj-5G-vP0" secondAttribute="trailing" constant="15" id="OCy-Ex-VdU"/>
                             <constraint firstItem="P3m-cA-wHW" firstAttribute="bottom" secondItem="66j-EW-5cB" secondAttribute="bottom" id="Q3s-c4-FGp"/>
+                            <constraint firstItem="P3m-cA-wHW" firstAttribute="top" secondItem="66j-EW-5cB" secondAttribute="top" id="Rgl-cj-Sma"/>
                             <constraint firstItem="66j-EW-5cB" firstAttribute="bottom" secondItem="J1Q-TR-Ybj" secondAttribute="bottom" constant="20" id="W2N-lX-4JD"/>
                             <constraint firstItem="gzj-5G-vP0" firstAttribute="leading" secondItem="66j-EW-5cB" secondAttribute="leading" constant="15" id="WQC-Lv-efx"/>
                             <constraint firstItem="66j-EW-5cB" firstAttribute="trailing" secondItem="J1Q-TR-Ybj" secondAttribute="trailing" constant="20" id="a1j-rB-Iqf"/>
@@ -661,18 +661,97 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CkR-Ij-D5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-191" y="-1451"/>
+            <point key="canvasLocation" x="-191.19999999999999" y="-1451.4242878560722"/>
         </scene>
-        <!--Tutorial View Controller4-->
+        <!--Tutorial View Controller1-->
+        <scene sceneID="1U9-Jf-TCm">
+            <objects>
+                <viewController storyboardIdentifier="Tutorial1" id="qiM-o4-STu" customClass="TutorialViewController1" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8DX-Sp-8Yn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialDefault" translatesAutoresizingMaskIntoConstraints="NO" id="MG9-sF-5de">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3A-eq-oab" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="147.5" y="527" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="W3M-Aw-qDi"/>
+                                    <constraint firstAttribute="height" constant="80" id="kaB-aI-5ib"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="次へ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="SbZ-8S-ZPC" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="9lu-Bt-9KU"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRm-E8-TEg">
+                                <rect key="frame" x="315" y="607" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="8kX-IZ-kp8"/>
+                                    <constraint firstAttribute="height" constant="40" id="RPY-1X-DcM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チュートリアルを開始します！！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5n7-dh-8TM">
+                                <rect key="frame" x="15" y="283.5" width="345" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="dWh-LF-jmf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5n7-dh-8TM" firstAttribute="centerY" secondItem="8DX-Sp-8Yn" secondAttribute="centerY" id="4i0-Lt-5sj"/>
+                            <constraint firstItem="MG9-sF-5de" firstAttribute="bottom" secondItem="z6E-PV-mTi" secondAttribute="bottom" id="B5z-xb-bVl"/>
+                            <constraint firstItem="z6E-PV-mTi" firstAttribute="trailing" secondItem="5n7-dh-8TM" secondAttribute="trailing" constant="15" id="BKl-u0-iDd"/>
+                            <constraint firstItem="5n7-dh-8TM" firstAttribute="leading" secondItem="z6E-PV-mTi" secondAttribute="leading" constant="15" id="C0D-Tq-ARx"/>
+                            <constraint firstItem="MG9-sF-5de" firstAttribute="leading" secondItem="z6E-PV-mTi" secondAttribute="leading" id="EOA-AV-mxo"/>
+                            <constraint firstItem="z6E-PV-mTi" firstAttribute="trailing" secondItem="bRm-E8-TEg" secondAttribute="trailing" constant="20" id="Ocf-FH-fVn"/>
+                            <constraint firstItem="z6E-PV-mTi" firstAttribute="bottom" secondItem="bRm-E8-TEg" secondAttribute="bottom" constant="20" id="YGP-gg-J9X"/>
+                            <constraint firstItem="z6E-PV-mTi" firstAttribute="bottom" secondItem="L3A-eq-oab" secondAttribute="bottom" constant="60" id="YtE-yp-MKo"/>
+                            <constraint firstItem="5n7-dh-8TM" firstAttribute="centerX" secondItem="8DX-Sp-8Yn" secondAttribute="centerX" id="fwr-KW-bFv"/>
+                            <constraint firstItem="L3A-eq-oab" firstAttribute="centerX" secondItem="8DX-Sp-8Yn" secondAttribute="centerX" id="nGH-r2-lcl"/>
+                            <constraint firstItem="MG9-sF-5de" firstAttribute="trailing" secondItem="z6E-PV-mTi" secondAttribute="trailing" id="pBm-3C-d32"/>
+                            <constraint firstItem="MG9-sF-5de" firstAttribute="top" secondItem="z6E-PV-mTi" secondAttribute="top" id="zFC-uY-ygd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="z6E-PV-mTi"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OH6-kP-8wo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1004" y="-1451"/>
+        </scene>
+        <!--Tutorial View Controller5-->
         <scene sceneID="0Aw-Se-thq">
             <objects>
-                <viewController id="lrf-w9-bp5" customClass="TutorialViewController4" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Tutorial5" id="lrf-w9-bp5" customClass="TutorialViewController5" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iYx-Lb-l4l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialConsultation" translatesAutoresizingMaskIntoConstraints="NO" id="C1a-mH-Lo7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drs-Ac-eJo" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
@@ -712,7 +791,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWb-pu-TzV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5/6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWb-pu-TzV">
                                 <rect key="frame" x="315" y="607" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ZQp-mV-x6Y"/>
@@ -729,12 +808,12 @@
                             <constraint firstItem="FtD-PV-3lg" firstAttribute="centerX" secondItem="iYx-Lb-l4l" secondAttribute="centerX" id="480-1p-vRg"/>
                             <constraint firstItem="FtD-PV-3lg" firstAttribute="centerY" secondItem="iYx-Lb-l4l" secondAttribute="centerY" id="67j-0p-24c"/>
                             <constraint firstItem="q6n-k5-I71" firstAttribute="trailing" secondItem="EWb-pu-TzV" secondAttribute="trailing" constant="20" id="6nw-Ga-liC"/>
+                            <constraint firstItem="C1a-mH-Lo7" firstAttribute="top" secondItem="q6n-k5-I71" secondAttribute="top" id="72S-tx-uTI"/>
                             <constraint firstItem="q6n-k5-I71" firstAttribute="bottom" secondItem="drs-Ac-eJo" secondAttribute="bottom" constant="60" id="BpL-OW-hlm"/>
                             <constraint firstItem="q6n-k5-I71" firstAttribute="trailing" secondItem="FtD-PV-3lg" secondAttribute="trailing" constant="5" id="IfO-gf-fKX"/>
                             <constraint firstItem="drs-Ac-eJo" firstAttribute="centerX" secondItem="iYx-Lb-l4l" secondAttribute="centerX" id="Rz7-sV-VJW"/>
                             <constraint firstItem="C1a-mH-Lo7" firstAttribute="leading" secondItem="q6n-k5-I71" secondAttribute="leading" id="bQK-YC-hsH"/>
                             <constraint firstItem="C1a-mH-Lo7" firstAttribute="trailing" secondItem="q6n-k5-I71" secondAttribute="trailing" id="dEn-o1-6St"/>
-                            <constraint firstItem="C1a-mH-Lo7" firstAttribute="top" secondItem="iYx-Lb-l4l" secondAttribute="top" id="iSA-xd-jOv"/>
                             <constraint firstItem="q6n-k5-I71" firstAttribute="bottom" secondItem="EWb-pu-TzV" secondAttribute="bottom" constant="20" id="nKA-xM-sxi"/>
                             <constraint firstItem="FtD-PV-3lg" firstAttribute="leading" secondItem="q6n-k5-I71" secondAttribute="leading" constant="5" id="zCc-PD-k8W"/>
                         </constraints>
@@ -743,18 +822,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wj3-ZE-t9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2316" y="-1451"/>
+            <point key="canvasLocation" x="2316" y="-1451.4242878560722"/>
         </scene>
-        <!--Tutorial View Controller5-->
+        <!--Tutorial View Controller6-->
         <scene sceneID="D4p-aj-xOX">
             <objects>
-                <viewController id="NhE-hb-xiF" customClass="TutorialViewController5" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Tutorial6" id="NhE-hb-xiF" customClass="TutorialViewController6" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iRT-8e-nI1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialDefault" translatesAutoresizingMaskIntoConstraints="NO" id="czS-qL-K8v">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgG-e6-l9x" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
@@ -791,7 +870,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNA-nt-XMi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6/6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNA-nt-XMi">
                                 <rect key="frame" x="315" y="607" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="38Z-sy-oXU"/>
@@ -805,7 +884,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="T9V-l6-guz" firstAttribute="leading" secondItem="A13-V0-NRc" secondAttribute="leading" constant="15" id="7U1-LZ-TTe"/>
-                            <constraint firstItem="czS-qL-K8v" firstAttribute="top" secondItem="iRT-8e-nI1" secondAttribute="top" id="JLc-Y8-pS2"/>
                             <constraint firstItem="czS-qL-K8v" firstAttribute="leading" secondItem="A13-V0-NRc" secondAttribute="leading" id="JO5-uP-w3W"/>
                             <constraint firstItem="T9V-l6-guz" firstAttribute="centerY" secondItem="iRT-8e-nI1" secondAttribute="centerY" id="Lhp-I9-jQv"/>
                             <constraint firstItem="A13-V0-NRc" firstAttribute="trailing" secondItem="T9V-l6-guz" secondAttribute="trailing" constant="15" id="Ltx-Zl-CBq"/>
@@ -813,6 +891,7 @@
                             <constraint firstItem="czS-qL-K8v" firstAttribute="trailing" secondItem="A13-V0-NRc" secondAttribute="trailing" id="UUP-vO-C6c"/>
                             <constraint firstItem="A13-V0-NRc" firstAttribute="bottom" secondItem="dgG-e6-l9x" secondAttribute="bottom" constant="60" id="WEV-bO-aJU"/>
                             <constraint firstItem="T9V-l6-guz" firstAttribute="centerX" secondItem="iRT-8e-nI1" secondAttribute="centerX" id="gG9-1K-qMe"/>
+                            <constraint firstItem="czS-qL-K8v" firstAttribute="top" secondItem="A13-V0-NRc" secondAttribute="top" id="glC-TL-b0c"/>
                             <constraint firstItem="czS-qL-K8v" firstAttribute="bottom" secondItem="A13-V0-NRc" secondAttribute="bottom" id="mwS-6Q-NGb"/>
                             <constraint firstItem="A13-V0-NRc" firstAttribute="trailing" secondItem="TNA-nt-XMi" secondAttribute="trailing" constant="20" id="nwv-pG-hKf"/>
                             <constraint firstItem="A13-V0-NRc" firstAttribute="bottom" secondItem="TNA-nt-XMi" secondAttribute="bottom" constant="20" id="xTM-rl-WcE"/>
@@ -822,18 +901,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KBr-OM-pOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3122" y="-1451"/>
+            <point key="canvasLocation" x="3120.8000000000002" y="-1451.4242878560722"/>
         </scene>
-        <!--Tutorial View Controller2-->
+        <!--Tutorial View Controller3-->
         <scene sceneID="hTQ-XW-pY7">
             <objects>
-                <viewController id="saW-NY-9k4" customClass="TutorialViewController2" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Tutorial3" id="saW-NY-9k4" customClass="TutorialViewController3" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nh0-FW-8rq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialClip2" translatesAutoresizingMaskIntoConstraints="NO" id="eUz-Ox-mO5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usv-eZ-RNV">
@@ -872,7 +951,7 @@
                                     <segue destination="9fh-oU-Z2W" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="3yF-6N-Sk6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZp-NM-c1C">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZp-NM-c1C">
                                 <rect key="frame" x="315" y="607" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="a9G-9T-ARK"/>
@@ -892,11 +971,11 @@
                             <constraint firstItem="eUz-Ox-mO5" firstAttribute="trailing" secondItem="Ydv-fE-k2Y" secondAttribute="trailing" id="XPb-1j-hg2"/>
                             <constraint firstItem="eUz-Ox-mO5" firstAttribute="leading" secondItem="Ydv-fE-k2Y" secondAttribute="leading" id="ayX-6g-arU"/>
                             <constraint firstItem="Usv-eZ-RNV" firstAttribute="centerX" secondItem="Nh0-FW-8rq" secondAttribute="centerX" id="fdC-nK-QhY"/>
-                            <constraint firstItem="eUz-Ox-mO5" firstAttribute="top" secondItem="Nh0-FW-8rq" secondAttribute="top" id="gjh-CE-n7u"/>
                             <constraint firstItem="Ydv-fE-k2Y" firstAttribute="bottom" secondItem="LZp-NM-c1C" secondAttribute="bottom" constant="20" id="hZM-sb-omu"/>
                             <constraint firstItem="Ydv-fE-k2Y" firstAttribute="bottom" secondItem="B67-bi-v09" secondAttribute="bottom" constant="60" id="jz2-rS-a8g"/>
                             <constraint firstItem="eUz-Ox-mO5" firstAttribute="bottom" secondItem="Ydv-fE-k2Y" secondAttribute="bottom" id="s6j-zP-v6m"/>
                             <constraint firstItem="Usv-eZ-RNV" firstAttribute="centerY" secondItem="Nh0-FW-8rq" secondAttribute="centerY" id="ugI-Q4-2cJ"/>
+                            <constraint firstItem="eUz-Ox-mO5" firstAttribute="top" secondItem="Ydv-fE-k2Y" secondAttribute="top" id="y4X-XP-z1F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ydv-fE-k2Y"/>
                     </view>

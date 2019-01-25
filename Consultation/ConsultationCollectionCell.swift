@@ -14,6 +14,9 @@ class ConsultationCollectionCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
+    
     
     
     var masterViewPointer:ConsultationViewController?
@@ -34,6 +37,12 @@ class ConsultationCollectionCell: UITableViewCell {
     var title: String? {
         didSet {
             titleLabel.text = title
+        }
+    }
+    
+    var descriptionText: String? {
+        didSet {
+            descriptionTextView.text = descriptionText!.replacingOccurrences(of: "\\n", with: "\n")
         }
     }
     

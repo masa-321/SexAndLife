@@ -20,8 +20,6 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     var relatedArticleArray:[ArticleQueryData] = []
     var commentArray:[CommentData] = []
-    var request:URLRequest?
-    var titleStr:String?
     
     //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
     var expandedCells = Set<Int>()
@@ -609,6 +607,8 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             cell.profileButton.addTarget(self, action:#selector(junpToCommenterProfile(sender:event:)), for:  UIControl.Event.touchUpInside)
             //引数をどうやって渡せばいいのだ？commentArray[indexPath.row].commenterID。もしかしたら渡すことができないのかもしれない。であれば、likeと同じようにしてみるか。
             cell.likeButton.addTarget(self, action:#selector(likeButton(sender:event:)), for:  UIControl.Event.touchUpInside)
+            cell.deleteButton.addTarget(self, action:#selector(deleteButton(sender:event:)), for:  UIControl.Event.touchUpInside)
+            cell.editButton.addTarget(self, action:#selector(editButton(sender:event:)), for:  UIControl.Event.touchUpInside)
             
             //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
             let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
@@ -770,8 +770,6 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     
     func browse(_ request:URLRequest, titleStr:String) {
-        self.request = request
-        self.titleStr = titleStr
         let vc:BrowseViewController = self.storyboard?.instantiateViewController(withIdentifier: "BrowseViewController") as! BrowseViewController
         vc.browseURLRequest = request
         vc.browsePageTitle = titleStr
@@ -859,6 +857,95 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                 }
             }
         }
+    }
+    //★★★CommentCellのSerectorのコード★★★//
+    @objc func deleteButton(sender:UIButton, event:UIEvent) {
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.relatedTableView)
+        let indexPath = relatedTableView.indexPathForRow(at: point)
+        let commentData = commentArray[indexPath!.row]
+        let commentRef = Firestore.firestore().collection("comments").document(commentData.commenterID!)
+        
+        //アラートを宣言
+        let title = "コメントを削除してもよろしいですか？"
+        let message = ""
+        let okText = "OK"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        /*
+          reason: 'UIAlertController can only have one action with a style of UIAlertActionStyleCancel'
+         */
+        
+        //OK時の処理を定義。UIAlertAction.Styleがdefaultであることに注意
+        let okAction = UIAlertAction(title: "はい" ,style: UIAlertAction.Style.default, handler :
+            { (action:UIAlertAction) in
+            //ここで処理の続行へ戻させる
+            //今回はFirestoreのコメントを削除
+                commentRef.updateData([
+                    self.receiveCellViewModel!.id: FieldValue.delete(),
+                    ])  { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+            }
+            
+        })
+        alert.addAction(okAction)
+        
+        //キャンセル時の処理を定義。UIAlertAction.Styleがcancelであることに注意
+        let cancelAction:UIAlertAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.cancel, handler: { (action:UIAlertAction!) -> Void in
+            //キャンセル時の処理を書く。ただ処理をやめるだけなら書く必要はない。
+        })
+        alert.addAction(cancelAction) //addActionなのね。
+        
+        
+        self.present(alert, animated: true, completion: nil)
+
+    }
+    
+    @objc func editButton(sender:UIButton, event:UIEvent) {
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.relatedTableView)
+        let indexPath = relatedTableView.indexPathForRow(at: point)
+        let commentData = commentArray[indexPath!.row]
+        print("commentData.commentText：",commentData.commentText)
+        
+        let vc:CommentViewController = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
+        let title = "Facebook連携が必要です"
+        let message = "コメント機能を利用するためにはFacebook連携を行う必要があります。"
+        let okText = "OK"
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okayButton = UIAlertAction(title: okText, style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(okayButton)
+        
+        if let user = Auth.auth().currentUser {
+            if !user.providerData.isEmpty {
+                for item in user.providerData {
+                    if item.providerID == "facebook.com" {
+                        Firestore.firestore().collection("users").document(user.uid).addSnapshotListener { querySnapshot, err in
+                            if let err = err {
+                                print("Error fetching documents: \(err)")
+                            } else {
+                                vc.profileData = Profile(snapshot: querySnapshot!)
+                                vc.receivedArticleData = self.receiveCellViewModel
+                                vc.postedCommentData = commentData
+                                self.present(vc, animated: true, completion: nil)
+                                //self.navigationController?.pushViewController(vc, animated: true)
+                                
+                            }
+                        }
+                    }
+                }
+            } else {
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
+
+        
     }
     
     @objc func likeButton(sender:UIButton, event:UIEvent) {

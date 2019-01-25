@@ -35,7 +35,19 @@ class ConsultationDetailViewController: UIViewController {
         consultationNameLabel.text = "\(receiveConsultation!.consultationName)"
     }
     
+    @IBAction func browse(_ sender: Any) {
+        guard let url = URL(string: receiveConsultation!.webSiteAddress) else {return}
+        let title = receiveConsultation!.consultationName
+        browse(URLRequest(url: url),titleStr: title)
+    }
     
+    func browse(_ request:URLRequest, titleStr:String) {
+        let vc:BrowseConsultationViewController = self.storyboard?.instantiateViewController(withIdentifier: "BrowseConsultationViewController") as! BrowseConsultationViewController
+        vc.browseURLRequest = request
+        vc.browsePageTitle = titleStr
+        //vc.receivedArticleData = receiveCellViewModel
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
     /*
     // MARK: - Navigation

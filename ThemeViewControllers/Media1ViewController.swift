@@ -756,21 +756,27 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //そもそもViewの大きさが怪しいのでは？って気づくことができたのは、幾たびもの実験の成果である。
         
         masterViewPointer?.coverFlowSliderView.scrollToItem(at: 1, animated: true)
+        
     }
     @objc func channelChange2(sender:UIButton, event:UIEvent) {
         masterViewPointer?.coverFlowSliderView.scrollToItem(at: 2, animated: true)
+        
     };
     @objc func channelChange3(sender:UIButton, event:UIEvent) {
         masterViewPointer?.coverFlowSliderView.scrollToItem(at: 3, animated: true)
+        
     }
     @objc func channelChange4(sender:UIButton, event:UIEvent) {
         masterViewPointer?.coverFlowSliderView.scrollToItem(at: 4, animated: true)
+        
     }
     @objc func channelChange5(sender:UIButton, event:UIEvent) {
         masterViewPointer?.coverFlowSliderView.scrollToItem(at: 5, animated: true)
+        
     }
     @objc func channelChange6(sender:UIButton, event:UIEvent) {
         masterViewPointer?.coverFlowSliderView.scrollToItem(at: 6, animated: true)
+        
     }
     
     @objc func toHome(sender:UIButton, event:UIEvent) {

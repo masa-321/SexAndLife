@@ -19,6 +19,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
     
     var profileData:Profile?
     var receivedArticleData:ArticleQueryData?
+    var postedCommentData:CommentData?
     //var commentedArticleIDs:[String]?
     
     @IBOutlet weak var imageView: EnhancedCircleImageView!{
@@ -48,7 +49,11 @@ class CommentViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!{
         didSet{
             if let savedText = UserDefaults.standard.object(forKey: "comment") as? String{
-                textView.text = savedText
+                if postedCommentData == nil {
+                    textView.text = savedText
+                } else {
+                    textView.text = postedCommentData!.commentText
+                }
             }
         }
     }
@@ -133,21 +138,36 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         
         if let user = Auth.auth().currentUser {
             let now = NSDate()
-            let comment = [
-                receivedArticleData!.id: [
-                    "commentLikes": [],
-                    "commentText": textView.text,
-                    "commentTime": now,
-                ]
-                ] as! [String : Any]
+            var commentData:[String : Any] = [:]
+            if postedCommentData == nil {
+                let comment = [
+                    receivedArticleData!.id: [
+                        "commentLikes": [],
+                        "commentText": textView.text,
+                        "commentTime": now,
+                    ]
+                    ] as! [String : Any]
+                commentData = comment
+            } else {
+                let comment = [
+                    receivedArticleData!.id: [
+                        "commentLikes": postedCommentData!.commentLikes,
+                        "commentText": textView.text,
+                        "commentTime": now,
+                        
+                    ]
+                    ] as! [String : Any]
+                commentData = comment
+            }
+            
             
             let ref = Firestore.firestore().collection("comments").document(user.uid)
-            ref.updateData(comment) { err in
+            ref.updateData(commentData) { err in
                 if let err = err {
                     print("updateData(comment) Error adding document: \(err)")
                     //documentが存在しなかった場合の処理
                     if "\(err)".contains("No document to update") {
-                        ref.setData(comment) {err in
+                        ref.setData(commentData) {err in
                             if let err = err {
                                 print("setData(comment) Error adding document: \(err)")
                             } else {
@@ -163,7 +183,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
                     
                 } else {
                     //documentが存在していれば、アップデートされる。
-                    print("updateData(comment) Document successfully written!")
+                    print("updateData(commentData) Document successfully written!")
                     //navigationControllerで一つ前の画面に戻る
                     //self.navigationController?.popViewController(animated: true)
                     UserDefaults.standard.set("", forKey: "comment") //UserDefaultをリセット

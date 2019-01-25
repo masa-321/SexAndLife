@@ -13,7 +13,7 @@ import ReadMoreTextView
 import FirebaseUI
 import SDWebImage
 
-class CommentTableViewCell: UITableViewCell {
+class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
     var profileData:Profile?
     
     let ref = Firestore.firestore().collection("articleData").document("-LQqLtig-hxumfojMFTT").collection("comments")
@@ -28,6 +28,17 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     
+    @IBOutlet weak var deleteButton: UIButton! {
+        didSet {
+            deleteButton.isHidden = true
+        }
+    }
+    @IBOutlet weak var editButton: UIButton! {
+        didSet {
+            editButton.isHidden = true
+        }
+    }
+    
     
     func setCommentTableViewCellInfo(commentData:CommentData) {
         
@@ -37,6 +48,7 @@ class CommentTableViewCell: UITableViewCell {
             self.likeNumberLabel.text = String(likeNumber)
         }
         selectionStyle = .none
+        
         
         if commentData.isLiked {
             likeButton.backgroundColor = .white//UIColor(red:0.95, green:1.00, blue:0.36, alpha:1.0)
@@ -49,7 +61,13 @@ class CommentTableViewCell: UITableViewCell {
             //likeNumberLabel.font = UIFont.labelFontSize
             //clipButtonLabel.textColor = .white
         }
+        
         if Auth.auth().currentUser != nil {
+            if Auth.auth().currentUser?.uid == commentData.commenterID {
+                deleteButton.isHidden = false
+                editButton.isHidden = false
+            }
+            
             if let commenterID = commentData.commenterID {
                 let ref = Firestore.firestore().collection("users").document(commenterID)
                 print(commenterID)
@@ -92,7 +110,7 @@ class CommentTableViewCell: UITableViewCell {
         }*/
         
         
-        //NSAttributedStringで文字就職を実現することができるのか。
+        //NSAttributedStringで文字修飾を実現することができるのか。
         let readMoreTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: UIColor.blue,//view.tintColor,
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)
@@ -104,7 +122,32 @@ class CommentTableViewCell: UITableViewCell {
         
         textView.attributedReadMoreText = NSAttributedString(string: "... Read more", attributes: readMoreTextAttributes)
         textView.attributedReadLessText = NSAttributedString(string: " Read less", attributes: readLessTextAttributes)
+        
+        /*
+        let baseString = textView.text
+        let attributedString = NSMutableAttributedString(string: baseString!)
+        attributedString.addAttribute(.link,
+                                      value: UIApplication.openSettingsURLString,
+                                      range: NSString(string: baseString!).range(of: "https://medu4.com/"))
+        attributedString.addAttribute(.link,
+                                      value: "https://www.google.co.jp/",
+                                      range: NSString(string: baseString!).range(of: "https://medu4.com/"))
+        
+        textView.attributedText = attributedString
+        textView.isSelectable = true
+        textView.delegate = self*/
+        
     }
+    /*
+    func textView(_ textView: UITextView,
+                  shouldInteractWith URL: URL,
+                  in characterRange: NSRange,
+                  interaction: UITextItemInteraction) -> Bool {
+        
+        UIApplication.shared.open(URL)
+        
+        return false
+    }*/
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

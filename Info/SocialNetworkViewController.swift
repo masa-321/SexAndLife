@@ -108,6 +108,8 @@ extension SocialNetworkViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let loginManager = FBSDKLoginManager()
+        
+        
         if let user = Auth.auth().currentUser {
             
             if user.providerData.isEmpty {
@@ -129,6 +131,22 @@ extension SocialNetworkViewController: UITableViewDataSource, UITableViewDelegat
                                 print("ログイン Errorメッセージ：\(error!)")
                                 return
                             }
+                            
+                            //成功時のアラート表示（始め）//
+                            let title = "Facebookと連携しました"
+                            let message = ""
+                            //let okText = "OK"
+                            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+                            
+                            //OK時の処理を定義。UIAlertAction.Styleがdefaultであることに注意
+                            let okAction = UIAlertAction(title: "OK" ,style: UIAlertAction.Style.default, handler :
+                            { (action:UIAlertAction) in
+                                //ここで処理の続行へ戻させる
+                               
+                            })
+                            alert.addAction(okAction)
+                            self.present(alert, animated: true, completion: nil)
+                            //成功時のアラート表示（終わり）//
                             
                             //ここに、途中キャンセルした時の処理を書けたらいいのだが…
                             print("\(authResult)")
@@ -152,19 +170,46 @@ extension SocialNetworkViewController: UITableViewDataSource, UITableViewDelegat
                      */
                     if item.providerID == "facebook.com" {
                     //if user.providerData[i].providerID == "facebook.com" {
-                        loginManager.logOut()
-                        //loginManager.logOut()を記入しなくても、unlinkでログアウトしているようだ。Firebaseを見る限り。
-                        //試しに使ってみたが、全く反応しない。
-                        //いや、これを記述していないと、ログイン状態が保たれていて、いつでも許可なくlinkできてしまう状態が保たれるのでは？
+                        
+                        //連携解除時のアラーを設置。OKを押したら、解除処理を行う。
+                        let title = "Facebookとの連携を解除してもよろしいですか？"
+                        let message = ""
+                        //let okText = "OK"
+                        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        //OK時の処理を定義。UIAlertAction.Styleがdefaultであることに注意
+                        let okAction = UIAlertAction(title: "はい" ,style: UIAlertAction.Style.default, handler :
+                        { (action:UIAlertAction) in
+                            //ここで処理の続行へ戻させる
+                            
+                            //連携解除の処理
+                            loginManager.logOut()
+                            //loginManager.logOut()を記入しなくても、unlinkでログアウトしているようだ。Firebaseを見る限り。
+                            //試しに使ってみたが、全く反応しない。
+                            //いや、これを記述していないと、ログイン状態が保たれていて、いつでも許可なくlinkできてしまう状態が保たれるのでは？
+                            
+                            
+                            //Facebookとの連携を解除する操作
+                            user.unlink(fromProvider: "facebook.com") { (user, error) in
+                                // ...
+                                print("unlinkしました")
+                                self.tableView.reloadData()
+                                return
+                            }
+                            
+                        })
+                        alert.addAction(okAction)
+                        
+                        //キャンセル時の処理を定義。UIAlertAction.Styleがcancelであることに注意
+                        let cancelAction:UIAlertAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.cancel, handler: { (action:UIAlertAction!) -> Void in
+                            //キャンセル時の処理を書く。ただ処理をやめるだけなら書く必要はない。
+                        })
+                        alert.addAction(cancelAction) //addActionなのね。
+                        
+                         
+                        self.present(alert, animated: true, completion: nil)
                         
                         
-                        //Facebookとの連携を解除する操作
-                        user.unlink(fromProvider: "facebook.com") { (user, error) in
-                            // ...
-                            print("unlinkしました")
-                            self.tableView.reloadData()
-                            return
-                        }
                         
                         /*
                         let firebaseAuth = Auth.auth()

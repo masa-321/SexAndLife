@@ -56,6 +56,7 @@
 		5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */; };
 		5F086F8521EB33EF0077B8E9 /* ProfileCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */; };
 		5F3883E321DDF6E800D95B72 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3883E221DDF6E700D95B72 /* R.generated.swift */; };
+		5F48750221FAB5BB00190E75 /* BrowseConsultationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48750121FAB5BB00190E75 /* BrowseConsultationViewController.swift */; };
 		5F6A1FB021EC2489009AD79A /* Consultation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */; };
 		5F6A1FF021EF1D2C009AD79A /* EnhancedCircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FEF21EF1D2C009AD79A /* EnhancedCircleImageView.swift */; };
 		5F6A1FF221EF23D4009AD79A /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FF121EF23D4009AD79A /* ProfileModel.swift */; };
@@ -145,6 +146,7 @@
 		5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentViewController.swift; sourceTree = "<group>"; };
 		5F3883E221DDF6E700D95B72 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		5F48750121FAB5BB00190E75 /* BrowseConsultationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseConsultationViewController.swift; sourceTree = "<group>"; };
 		5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Consultation.storyboard; sourceTree = "<group>"; };
 		5F6A1FEF21EF1D2C009AD79A /* EnhancedCircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedCircleImageView.swift; sourceTree = "<group>"; };
 		5F6A1FF121EF23D4009AD79A /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */,
 				5FEDC02F21E06055006A3563 /* ConsultationModel.swift */,
 				5FEDC03D21E333FE006A3563 /* ConsultationDetailViewController.swift */,
+				5F48750121FAB5BB00190E75 /* BrowseConsultationViewController.swift */,
 			);
 			path = Consultation;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */,
 				5FEDC04221E611BA006A3563 /* SourceViewController.swift in Sources */,
 				502F9AE6218C8F0C008E6037 /* AttentionViewController.swift in Sources */,
+				5F48750221FAB5BB00190E75 /* BrowseConsultationViewController.swift in Sources */,
 				5F6DF6C521F72D610010085C /* TutorialViewController.swift in Sources */,
 				10AB5C79216A5FCE00EB5E61 /* CoverFlow.swift in Sources */,
 				5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */,

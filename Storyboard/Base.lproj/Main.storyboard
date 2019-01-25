@@ -644,7 +644,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sb6-3M-9DG">
                                 <rect key="frame" x="10" y="233.5" width="355" height="200"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Lorem ipsum dolor sit er elit lamet, consec" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="D2C-yg-Ecc">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="D2C-yg-Ecc">
                                         <rect key="frame" x="10" y="10" width="335" height="140"/>
                                         <color key="backgroundColor" red="0.92559027671813965" green="0.93717938661575317" blue="0.9411778450012207" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

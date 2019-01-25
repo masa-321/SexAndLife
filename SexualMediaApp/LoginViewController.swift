@@ -385,7 +385,7 @@ class LoginViewController: UIViewController {
             let initialVc: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "Initial") as! UINavigationController
             self.show(initialVc, sender: nil)*/
             
-            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial") as! UIViewController
+            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial1") as! UIViewController
             self.show(tutorialVc, sender: nil)
             
             /*
@@ -433,7 +433,7 @@ class LoginViewController: UIViewController {
             
             
             //この時点で、アカウントは生成されているし、それも確認されているはず。なのになぜ？
-            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial") as! UIViewController
+            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial1") as! UIViewController
             self.show(tutorialVc, sender: nil)
             //これで解決
             /*
