@@ -105,7 +105,7 @@ class ProfileCommentCell: UITableViewCell {
                 if let err = err {
                     print("Error fetching documents: \(err)")
                 } else {
-                    self.profileData = Profile(snapshot: querySnapshot!)
+                    self.profileData = Profile(snapshot: querySnapshot!, myId: Auth.auth().currentUser!.uid)
                     //print("profileData",self.profileData)
 
                     self.commenterImageView.sd_setImage(with: URL(string: self.profileData!.pictureUrl!),placeholderImage: UIImage(named: "profile2"))

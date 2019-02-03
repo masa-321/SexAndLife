@@ -12,7 +12,6 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseDatabase
 import SVProgressHUD
-import ReadMoreTextView
 
 class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -20,9 +19,6 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     var relatedArticleArray:[ArticleQueryData] = []
     var commentArray:[CommentData] = []
-    
-    //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
-    var expandedCells = Set<Int>()
     
     //var relatedArticleCellViewModel = ListCellViewModel()
     //var relatedArticleCellViewModel_Array = [ListCellViewModel]()
@@ -67,6 +63,12 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             let nib3 = UINib(nibName: "CommentTableViewCell", bundle: nil)
             relatedTableView.register(nib3, forCellReuseIdentifier: "CommentTableViewCell")
             relatedTableView.bounces = true
+            
+            let nib4 = UINib(nibName: "CommentEmptyCell", bundle: nil)
+            relatedTableView.register(nib4, forCellReuseIdentifier: "CommentEmptyCell")
+            relatedTableView.bounces = true
+            
+            
             
             //relatedTableView.rowHeight = UITableView.automaticDimension
             
@@ -154,12 +156,29 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     @IBAction func commentButton(_ sender: Any) {
         let vc:CommentViewController = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
         let title = "Facebook連携が必要です"
-        let message = "コメント機能を利用するためにはFacebook連携を行う必要があります。"
-        let okText = "OK"
+        let message = "コメント機能を利用するためにはFacebook連携を行う必要があります。ソーシャル連携のページへ移動しますか？"
+        
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        let okayButton = UIAlertAction(title: okText, style: UIAlertAction.Style.cancel, handler: nil)
-        alert.addAction(okayButton)
+
+        //OK時の処理を定義。UIAlertAction.Styleがdefaultであることに注意
+        let okAction = UIAlertAction(title: "はい" ,style: UIAlertAction.Style.default, handler :
+        { (action:UIAlertAction) in
+            //ここで処理の続行へ戻させる
+             let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
+             let socialNetworkViewController:SocialNetworkViewController = InfoStoryboard.instantiateViewController(withIdentifier: "SocialNetwork") as! SocialNetworkViewController
+             self.navigationController?.pushViewController(socialNetworkViewController, animated: true)
+             
+            
+        })
+        alert.addAction(okAction)
+        
+        //キャンセル時の処理を定義。UIAlertAction.Styleがcancelであることに注意
+        let cancelAction:UIAlertAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.cancel, handler: { (action:UIAlertAction!) -> Void in
+            //キャンセル時の処理を書く。ただ処理をやめるだけなら書く必要はない。
+        })
+        alert.addAction(cancelAction)
+        
         
         if let user = Auth.auth().currentUser {
             if !user.providerData.isEmpty {
@@ -169,7 +188,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                         if let err = err {
                             print("Error fetching documents: \(err)")
                             } else {
-                                vc.profileData = Profile(snapshot: querySnapshot!)
+                            vc.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                                 vc.receivedArticleData = self.receiveCellViewModel
                                 self.present(vc, animated: true, completion: nil)
                                 //self.navigationController?.pushViewController(vc, animated: true)
@@ -183,12 +202,16 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                 
             }
         }
+        
+        
+        
+        
     }
     
 
     
     @IBAction func shareButton(_ sender: Any) {
-        let shareString = "\(receiveCellViewModel!.titleStr)" + " | " + "#sexualhealthmedia"
+        let shareString = "\(receiveCellViewModel!.titleStr)" + " | " + "#Sex&Life"
         var items = [] as [Any]
         if let shareUrl =  URL(string: receiveCellViewModel!.articleUrl) {
             items = [shareString, shareUrl] as [Any]
@@ -272,7 +295,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                     print("Error fetching documents: \(err)")
                 } else {
                     self.commentArray = []
-                    print("呼ばれたよ。documentSnapshot?.documents:", querySnapshot?.documents)
+                    //print("呼ばれたよ。documentSnapshot?.documents:", querySnapshot?.documents)
                     //このsnapshotが指しているのは、key:articleID,value:mapの値だ。
                     for document in (querySnapshot?.documents)! {
                         //print("document.data()",document.data())
@@ -281,6 +304,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                             if commentData.commentedArticleID == self.receiveCellViewModel!.id!{
                                 self.commentArray.insert(commentData, at: 0)
                             }
+                            self.commentArray.sort(by: {$0.commentLikes.count > $1.commentLikes.count}) //昇順にソート
                         }
                     }
                     self.relatedTableView.reloadData()
@@ -602,25 +626,43 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             //return UITableViewCell()
             
         } else if indexPath.section == 1 /*本来2だが、Commentをrelatedの上にできるか確認するために一旦1へ。*/{ //Comment
-            let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
-            cell.setCommentTableViewCellInfo(commentData: commentArray[indexPath.row])
-            cell.profileButton.addTarget(self, action:#selector(junpToCommenterProfile(sender:event:)), for:  UIControl.Event.touchUpInside)
-            //引数をどうやって渡せばいいのだ？commentArray[indexPath.row].commenterID。もしかしたら渡すことができないのかもしれない。であれば、likeと同じようにしてみるか。
-            cell.likeButton.addTarget(self, action:#selector(likeButton(sender:event:)), for:  UIControl.Event.touchUpInside)
-            cell.deleteButton.addTarget(self, action:#selector(deleteButton(sender:event:)), for:  UIControl.Event.touchUpInside)
-            cell.editButton.addTarget(self, action:#selector(editButton(sender:event:)), for:  UIControl.Event.touchUpInside)
             
+            if commentArray.isEmpty { //CommentEmptyCell
+                //以下の処理式を書いたけれど、全く反応しない。printも呼ばれない。謎。delegeteだろうか。
+                print("commentArrayは、Emptyです")
+                let cell:CommentEmptyCell = tableView.dequeueReusableCell(withIdentifier: "CommentEmptyCell") as! CommentEmptyCell
+                //cell.setCommentTableViewCellInfo(commentData: commentArray[indexPath.row])
+                
+                cell.selectionStyle = .none
+                return cell
+                
+            } else {
+                let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
+                cell.setCommentTableViewCellInfo(commentData: commentArray[indexPath.row])
+                cell.profileButton.addTarget(self, action:#selector(junpToCommenterProfile(sender:event:)), for:  UIControl.Event.touchUpInside)
+                //引数をどうやって渡せばいいのだ？commentArray[indexPath.row].commenterID。もしかしたら渡すことができないのかもしれない。であれば、likeと同じようにしてみるか。
+                cell.likeButton.addTarget(self, action:#selector(likeButton(sender:event:)), for:  UIControl.Event.touchUpInside)
+                cell.deleteButton.addTarget(self, action:#selector(deleteButton(sender:event:)), for:  UIControl.Event.touchUpInside)
+                cell.editButton.addTarget(self, action:#selector(editButton(sender:event:)), for:  UIControl.Event.touchUpInside)
+                
+                cell.selectionStyle = .none
+                return cell
+            }
+            
+            
+            /*
             //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
             let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
             readMoreTextView.shouldTrim = !expandedCells.contains(indexPath.row) //expandedCellは初めに宣言する必要がある。
             readMoreTextView.setNeedsUpdateTrim()
-            readMoreTextView.layoutIfNeeded()
+            readMoreTextView.layoutIfNeeded()*/
             
             //cell.setCommentTableViewCellInfo()
-            cell.selectionStyle = .none
+            
             
             //移植
             //let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
+            /*
             readMoreTextView.onSizeChange = { [unowned tableView, unowned self] r in
                 let point = tableView.convert(r.bounds.origin, from: r)
                 guard let indexPath = tableView.indexPathForRow(at: point) else { return }
@@ -630,9 +672,8 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                     self.expandedCells.insert(indexPath.row)
                 }
                 tableView.reloadData()
-            }
+            }*/
             
-            return cell
             
 
             
@@ -666,6 +707,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
 
     //各indexPathのcellが表示される直前に呼ばれる
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        /*
         if indexPath.section == 1/*本来2だが、Commentをrelatedの上にできるか確認するために一旦1へ。*/ {
             //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment.expandedCellsは上で宣言する必要があ
             let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
@@ -679,7 +721,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                 }
             tableView.reloadData()
             }
-        }
+        }*/
     }
     
     
@@ -690,8 +732,8 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         } else if indexPath.section == 1/*本来2だが、Commentをrelatedの上にできるか確認するために一旦1へ。*/ { //Comment
             //コメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
             let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as! CommentTableViewCell
-            let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
-            readMoreTextView.shouldTrim = !readMoreTextView.shouldTrim
+           // let readMoreTextView = cell.contentView.viewWithTag(1) as! ReadMoreTextView
+            //readMoreTextView.shouldTrim = !readMoreTextView.shouldTrim
             
         } else if indexPath.section == 3 { //ToHome
             let homeVc:ViewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
@@ -806,7 +848,10 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             }
             // 増えたlikesをFirebaseに保存する
             let articleRef =  Firestore.firestore().collection("articleData").document(articleData.id!)
-            let likes = ["likes": articleData.likes]
+            let likes = [
+                "likes": articleData.likes,
+                "likesCount":articleData.likes.count
+                ] as [String : Any]
             
             articleRef.updateData(likes){ err in
                 if let err = err {
@@ -847,7 +892,10 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             
             // 増えたlikesをFirebaseに保存する
             let articleRef =  Firestore.firestore().collection("articleData").document(articleData.id!)
-            let likes = ["likes": articleData.likes]
+            let likes = [
+                "likes": articleData.likes,
+                "likesCount":articleData.likes.count
+                ] as [String : Any]
             
             articleRef.updateData(likes){ err in
                 if let err = err {
@@ -929,7 +977,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                             if let err = err {
                                 print("Error fetching documents: \(err)")
                             } else {
-                                vc.profileData = Profile(snapshot: querySnapshot!)
+                                vc.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                                 vc.receivedArticleData = self.receiveCellViewModel
                                 vc.postedCommentData = commentData
                                 self.present(vc, animated: true, completion: nil)

@@ -37,6 +37,7 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
     let controller5:Media5ViewController = Media5ViewController()
     let controller6:Media6ViewController = Media6ViewController()
     let controller7:Media7ViewController = Media7ViewController()
+    let controller8:Media8ViewController = Media8ViewController()
     
     //起動画面のアニメーションで用いる。
     var launchImageView = UIImageView()
@@ -102,6 +103,11 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         controller7.title = "パートナーシップ"
         controllerArray.append(controller7)
         themeLabel_Array.append("パートナーシップ")
+        
+        controller8.masterViewPointer = self
+        controller8.title = "セックスのこと"
+        controllerArray.append(controller8)
+        themeLabel_Array.append("セックスのこと")
         
         //FSPagerViewの設定
         setupCoverFlowSliderView()
@@ -192,6 +198,7 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
                     self.giveCategories.append(document.data()![self.types[i]] as! String)
                 }
                 //print(self.giveCategories) //categoriesの中に何が入っているかがこれでわかる。
+                
             } else {
                 print("Document does not exist")
             }

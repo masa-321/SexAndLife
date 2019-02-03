@@ -62,7 +62,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //以下はClip記事のnavigationControllerの設定をコピーしてみた。
         //→searchは解決！何が原因だったのだろう…
         navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationItem.title = "メディアを探す"
+        self.navigationItem.title = "記事を探す"
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = UIImage() //nill
         navigationController?.navigationBar.isTranslucent = true //こいつが原因の模様
@@ -97,6 +97,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let word = searchBar.text {
             if(word == "") {
+                tableView.reloadData()
                 return
             } else if word.contains(" ") {
                 let words:[String] = word.components(separatedBy: " ")
@@ -116,30 +117,42 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let user = Auth.auth().currentUser {
             let ref = Firestore.firestore().collection("articleData")
             let uid = user.uid
-            
+            //.order(by: "likesCount", descending: false) //order(by:)を使うと、取得する記事数が限られるらしい。
             ref.addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching documents: \(err)")
                 } else {
                     self.searchArticleArray = []
                     self.preArticleArray = [] //こっちも初期化しないと増えていってしまう。
-                    for document in querySnapshot!.documents {
-                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
-                        self.preArticleArray.insert(articleData, at: 0)
-                    }
-
+                    self.conditions = [(ArticleQueryData) -> Bool]() //こっちも初期化しないと、検索するたびにconditionsが増えていってしまうらしい。
                     
+                    
+                    for document in querySnapshot!.documents {
+                        
+                        let articleData = ArticleQueryData(snapshot: document, myId: uid)
+                        print("title:",articleData.titleStr)
+                        self.preArticleArray.insert(articleData, at: 0)
+                        self.preArticleArray.sort(by: {$0.likes .count > $1.likes.count}) //昇順にソート
+                    }
+                    //preArticleArrayの中に14記事入るはずが、11記事しか入っていないように見える。いくつかの記事が取得できていない…？
+                    
+                    print("self.preArticleArray：",self.preArticleArray)
+                    print("searchWords",searchWords)
                    //preArticleArrayの要素一つ一つに対してcondition（Bool）がある。elementがwordを含んでいたらTrueになる。
                     //var conditions = [(ArticleQueryData) -> Bool]()における、(ArticleQueryData)の部分が$0に入ってくる。
                     for word in searchWords {
+                        print("word",word)
                         //OR条件のクロージャーをArrayとしておいている
                         self.conditions.append { $0.titleStr.contains(word) || $0.summary.contains(word) || $0.tags!.contains(word) }
                         
                     }
-                
+                    
+                    
                     self.searchArticleArray = self.preArticleArray.filter { article in
                         self.conditions.reduce(true) { $0 && $1 (article) }
                     }
+                    print("self.searchArticleArray：",self.searchArticleArray)
+                    
                     //reduceでは何度も処理がループする
                     //(true)は初期値で、$0に最初に入る値。
                     //conditions[0]が$1に入り、$0 = $0 && $1といった処理が順々に行われていく。
@@ -278,6 +291,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBar.text = ""
         self.resultLabel.text = ""
         searchArticleArray.removeAll()
+        tableView.reloadData()
         SVProgressHUD.dismiss()
         self.view.endEditing(true)
     }
@@ -354,7 +368,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             // 増えたlikesをFirebaseに保存する
             let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
-            let likes = ["likes": articleData.likes]
+            let likes = [
+                "likes": articleData.likes,
+                "likesCount":articleData.likes.count
+                ] as [String : Any]
             
             articleRef.updateData(likes){ err in
                 if let err = err {

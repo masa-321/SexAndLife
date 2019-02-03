@@ -49,14 +49,42 @@ class ConsultationDetailViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func shareButton(_ sender: Any) {
+        let shareString = "\(receiveConsultation!.consultationName)" + " | " + "#Sex&Life"
+        var items = [] as [Any]
+        if let shareUrl =  URL(string: receiveConsultation!.webSiteAddress) {
+            items = [shareString, shareUrl] as [Any]
+        } else {
+            items = [shareString]
+        }
+        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            activityViewController.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.size.width/2, y: UIScreen.main.bounds.size.height, width: 0, height: 0)
+            //iPadではこれがないとクラッシュする。
+        }
+        
+        let excludedActivityTypes: Array<UIActivity.ActivityType> = [
+            //除外するもの
+            // UIActivityType.addToReadingList,
+            // UIActivityType.airDrop,
+            // UIActivityType.assignToContact,
+            // UIActivityType.copyToPasteboard,
+            // UIActivityType.mail,
+            // UIActivityType.message,
+            // UIActivityType.openInIBooks,
+            //UIActivity.ActivityType.postToFacebook,
+            //UIActivity.ActivityType.postToFlickr,
+            //UIActivity.ActivityType.postToTencentWeibo,
+            //UIActivity.ActivityType.postToTwitter,
+            // UIActivityType.postToVimeo,
+            // UIActivityType.postToWeibo,
+            // UIActivityType.print,
+            // UIActivityType.saveToCameraRoll,
+            // UIActivityType.markupAsPDF
+        ]
+        activityViewController.excludedActivityTypes = excludedActivityTypes
+        present(activityViewController, animated: true, completion: nil)
     }
-    */
-
 }

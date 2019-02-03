@@ -67,7 +67,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let uid = user.uid
             
             let ref = Firestore.firestore().collection("articleData")
-            ref.addSnapshotListener { querySnapshot, err in
+            ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching documents: \(err)")
                 } else {

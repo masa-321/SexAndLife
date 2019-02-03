@@ -119,7 +119,7 @@ class BrowseViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
                             if let err = err {
                                 print("Error fetching documents: \(err)")
                             } else {
-                                vc.profileData = Profile(snapshot: querySnapshot!)
+                                vc.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                                 vc.receivedArticleData = self.receivedArticleData
                                 self.present(vc, animated: true, completion: nil)
                             }

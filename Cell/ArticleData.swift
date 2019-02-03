@@ -89,7 +89,7 @@ class ArticleQueryData: NSObject {
     var imageUrl:String?
     var imageString: String = ""
     var titleStr: String = ""
-    var date: NSDate?
+    var date: Date?
     var likes: [String] = []
     var isLiked: Bool = false
     var clipSumNumber:Int?
@@ -113,7 +113,11 @@ class ArticleQueryData: NSObject {
             self.articleUrl = articleUrl
         } 
         
-        self.date = valueDictionary["date"] as? NSDate
+        //Firestoreに、"date"というKeyに対応してタイムスタンプ型のValueがあれば、そのValueをDate型にキャストしてdateに格納。ない場合は、何もしない＝self.dateはnilのまま。
+        if let date = valueDictionary["date"] as? Date {
+            self.date = date
+        }
+        
         self.genreName = valueDictionary["genreName"] as? String
         
         if let imageUrl = valueDictionary["imageUrl"] as? String {

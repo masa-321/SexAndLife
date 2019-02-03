@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-import ReadMoreTextView
 import FirebaseUI
 import SDWebImage
 
@@ -23,7 +22,8 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
     @IBOutlet weak var commenterEmploymentAndOccupationLabel: UILabel!
     
     @IBOutlet weak var postDateLabel: UILabel!
-    @IBOutlet weak var textView: ReadMoreTextView!
+    
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var likeNumberLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
@@ -39,11 +39,51 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
         }
     }
     
+    @IBOutlet weak var professionalImage: UIImageView! {
+        didSet {
+            professionalImage.isHidden = true
+            //professionalImage.widthAnchor.constraint(equalToConstant: 0).isActive = true
+        }
+    }
+    
+    
+    @IBOutlet weak var doctorImage: UIImageView!{
+        didSet {
+            doctorImage.isHidden = true
+            //doctorImage.widthAnchor.constraint(equalToConstant: 0).isActive = true
+        }
+    }
+    
+    @IBOutlet weak var youthProImage: UIImageView!{
+        didSet {
+            youthProImage.isHidden = true
+        }
+    }
+    
+    
+    
+    
+    let formatter = DateFormatter()
     
     func setCommentTableViewCellInfo(commentData:CommentData) {
         
-        //postDateLabel.text = commentData.commentTime as String
+        //Date型をString型に変換する準備
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+        postDateLabel.text = formatter.string(from: commentData.commentTime! /*Date()*/)
+        
+        //TextViewの高さを可変にする処理
         textView.text = commentData.commentText
+        
+        let contentSize = self.textView.sizeThatFits(self.textView.bounds.size)
+        var frame = self.textView.frame
+        frame.size.height = contentSize.height
+        self.textView.frame = frame
+        
+        let aspectRatioTextViewConstraint = NSLayoutConstraint(item: self.textView, attribute: .height, relatedBy: .equal, toItem: self.textView, attribute: .width, multiplier: textView.bounds.height/textView.bounds.width, constant: 1)
+        self.textView.addConstraint(aspectRatioTextViewConstraint)
+        //なんかよくわからないがこれで、可変になったようだ。
+        
+        
         if let likeNumber =  commentData.likeSumNumber{
             self.likeNumberLabel.text = String(likeNumber)
         }
@@ -62,8 +102,8 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
             //clipButtonLabel.textColor = .white
         }
         
-        if Auth.auth().currentUser != nil {
-            if Auth.auth().currentUser?.uid == commentData.commenterID {
+        if let user = Auth.auth().currentUser {
+            if user.uid == commentData.commenterID {
                 deleteButton.isHidden = false
                 editButton.isHidden = false
             }
@@ -75,7 +115,7 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
                     if let err = err {
                         print("Error fetching documents: \(err)")
                     } else {
-                         self.profileData = Profile(snapshot: querySnapshot!)
+                        self.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                          //print("profileData",self.profileData)
                         
                          self.commenterImageView.sd_setImage(with: URL(string: self.profileData!.pictureUrl!),placeholderImage: UIImage(named: "profile2"))
@@ -86,6 +126,18 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
                          } else {
                          self.commenterEmploymentAndOccupationLabel.text = self.profileData!.occupation
                          }
+                        
+                        if self.profileData!.isProfessional {
+                            self.professionalImage.isHidden = false
+                        }
+                        
+                        if self.profileData!.isDoctor {
+                            self.doctorImage.isHidden = false
+                        }
+                        
+                        if self.profileData!.isYouthPro {
+                            self.youthProImage.isHidden = false
+                        }
                     }
                 }
             }
@@ -95,8 +147,6 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        textView.shouldTrim = true
-        textView.maximumNumberOfLines = 4
         /*
         ref.getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -109,7 +159,7 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
             }
         }*/
         
-        
+        /*
         //NSAttributedStringで文字修飾を実現することができるのか。
         let readMoreTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: UIColor.blue,//view.tintColor,
@@ -122,6 +172,7 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
         
         textView.attributedReadMoreText = NSAttributedString(string: "... Read more", attributes: readMoreTextAttributes)
         textView.attributedReadLessText = NSAttributedString(string: " Read less", attributes: readLessTextAttributes)
+        */
         
         /*
         let baseString = textView.text
@@ -156,10 +207,4 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
     }
     
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        textView.onSizeChange = { _ in }
-        textView.shouldTrim = true
-    }
 }

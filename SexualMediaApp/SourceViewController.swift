@@ -66,7 +66,7 @@ class SourceViewController: UIViewController,UITableViewDelegate,UITableViewData
             let ref = Firestore.firestore().collection("articleData").whereField("sourceName", isEqualTo: self.receiveData)
             let uid = user.uid
             
-            ref.addSnapshotListener { querySnapshot, err in
+            ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching documents: \(err)")
                 } else {
@@ -162,15 +162,19 @@ class SourceViewController: UIViewController,UITableViewDelegate,UITableViewData
                     }
                 }
                 articleData.likes.remove(at: index)
-                
+                articleData.isLiked = false
             } else {
                 articleData.likes.append(uid)
+                articleData.isLiked = true
             }
             
 
             // 増えたlikesをFirebaseに保存する
             let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
-            let likes = ["likes": articleData.likes]
+            let likes = [
+                "likes": articleData.likes,
+                "likesCount":articleData.likes.count
+                ] as [String : Any]
             
             articleRef.updateData(likes){ err in
                 if let err = err {
@@ -178,8 +182,8 @@ class SourceViewController: UIViewController,UITableViewDelegate,UITableViewData
                 } else {
                     print("Document successfully written!")
                 }
-                
             }
+            tableView.reloadData()
         }
         
     }

@@ -26,7 +26,7 @@ class InfoCellViewModel: NSObject {
         switch type {
         
         case .profile:
-            titleText = "プロフィール編集"
+            titleText = "プロフィール"
             iconImage = UIImage(named: "profile")
         case .socialNetwork:
             titleText = "ソーシャル連携"

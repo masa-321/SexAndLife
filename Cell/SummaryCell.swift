@@ -29,6 +29,7 @@ class SummaryCell: UITableViewCell {
     @IBOutlet weak var summaryLabel: UILabel!
     
   
+    @IBOutlet weak var articleIdLabel: UILabel!
     
     @IBOutlet weak var articleImageView: UIImageView!
   
@@ -52,19 +53,31 @@ class SummaryCell: UITableViewCell {
         //失敗。ただ、browseButtonを追っていけば、その秘密を突き止められそう。
     }*/
     
+    let formatter = DateFormatter()
     
     func setSummaryCellInfo(articleData:ArticleQueryData){
         browseButton.backgroundColor = UIColor(red:0.95, green:1.00, blue:0.36, alpha:1.0)
         titleLabel.text = articleData.titleStr
         sourceLabel.text = articleData.sourceName
-        //dateLabel.text = articleData.date dateは一旦保留
+        articleIdLabel.text = articleData.id
+        
+        //Date型をString型に変換する準備
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+        if let date = articleData.date {
+            //artidcleData.dateにData型のdateがあれば、それをString型に変換して表示。
+            dateLabel.text = formatter.string(from: date /*Date()*/)
+        } else {
+            //そうでない場合は、空欄にする。
+            dateLabel.text = ""
+        }
         
         //summaryLabel.text = articleData.summary
         //summaryLabel.setLineSpacing(lineSpacing: 2.0)
         
-        let attributedString = NSMutableAttributedString(string: articleData.summary)
+        let summaryString = articleData.summary.replacingOccurrences(of: "\\n", with: "\n") //改行コードを読み取るように処理
+        let attributedString = NSMutableAttributedString(string: summaryString)
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 7
+        paragraphStyle.lineSpacing = 10 //space
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         summaryLabel.attributedText = attributedString
         

@@ -57,11 +57,12 @@ struct Coverflow {
             Coverflow(
                 id: 7,
                 thumbnail: UIImage.init(named: "defaultImage")!
-            ),/*
+            ),
             Coverflow(
                 id: 8,
                 thumbnail: UIImage.init(named: "defaultImage")!
-            ),*/
+            ),
+            //新たにチャンネルを追加したい場合は、ここにCoverflowを追加する必要がある。
         ]
     }
 }

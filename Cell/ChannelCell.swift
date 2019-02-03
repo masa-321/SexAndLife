@@ -30,6 +30,9 @@ class ChannelCell: UITableViewCell {
     @IBOutlet weak var imageView6: UIImageView!
     @IBOutlet weak var channelButton6: UIButton!
     
+    @IBOutlet weak var imageView7: UIImageView!
+    @IBOutlet weak var channelButton7: UIButton!
+    
     @IBOutlet weak var homeButton: UIButton!
     
     

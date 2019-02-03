@@ -82,7 +82,7 @@ class Media2ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.showsVerticalScrollIndicator = false
         
-        SVProgressHUD.show()
+        //SVProgressHUD.show()
         SVProgressHUD.setBackgroundColor(.clear)//試してみた。なんか全てのページに適応になった。
         
         let initLabel = UILabel()
@@ -114,7 +114,7 @@ class Media2ViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let ref = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "体のこと")
             let uid = user.uid
             
-            ref.addSnapshotListener { querySnapshot, err in
+            ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching documents: \(err)")
                 } else {
@@ -362,6 +362,7 @@ class Media2ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.channelButton4.addTarget(self, action: #selector(channelChange4(sender:event:)), for:   UIControl.Event.touchUpInside)
                 cell.channelButton5.addTarget(self, action: #selector(channelChange5(sender:event:)), for:   UIControl.Event.touchUpInside)
                 cell.channelButton6.addTarget(self, action: #selector(channelChange6(sender:event:)), for:   UIControl.Event.touchUpInside)
+                cell.channelButton7.addTarget(self, action: #selector(channelChange7(sender:event:)), for:   UIControl.Event.touchUpInside)
                 cell.homeButton.addTarget(self, action: #selector(toHome(sender:event:)), for:   UIControl.Event.touchUpInside)
                 return cell
         }
@@ -408,14 +409,17 @@ class Media2ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                 }
                 articleData.likes.remove(at: index)
-                
+                articleData.isLiked = false
             } else {
                 articleData.likes.append(uid)
-                
+                articleData.isLiked = true
             }
             // 増えたlikesをFirebaseに保存する
             let articleRef = Firestore.firestore().collection("articleData").document(articleData.id!)
-            let likes = ["likes": articleData.likes]
+            let likes = [
+                "likes": articleData.likes,
+                "likesCount":articleData.likes.count
+                ] as [String : Any]
             
             articleRef.updateData(likes){ err in
                 if let err = err {
@@ -425,7 +429,7 @@ class Media2ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 
             }
-            
+            tableView.reloadData()
             
         }
         
@@ -494,6 +498,9 @@ class Media2ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     @objc func channelChange6(sender:UIButton, event:UIEvent) {
         masterViewPointer?.coverFlowSliderView.scrollToItem(at: 6, animated: true)
+    }
+    @objc func channelChange7(sender:UIButton, event:UIEvent) {
+        masterViewPointer?.coverFlowSliderView.scrollToItem(at: 7, animated: true)
     }
     
     @objc func toHome(sender:UIButton, event:UIEvent) {

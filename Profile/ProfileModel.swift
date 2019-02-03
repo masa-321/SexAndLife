@@ -18,9 +18,18 @@ class Profile:NSObject {
     var profile:String?
     var employment:String?
     var occupation:String?
-    var commentedArticleIDs:[String] = []
+    //var commentedArticleIDs:[String] = []
     
-    init(snapshot:DocumentSnapshot) {
+    //follow機能の実装
+    var followers:[String] = []
+    var followersSum:Int?
+    var isFollowed:Bool = false
+    
+    var isProfessional:Bool = false
+    var isDoctor:Bool = false
+    var isYouthPro:Bool = false
+    
+    init(snapshot:DocumentSnapshot, myId: String) {
         self.id = snapshot.documentID //取り急ぎ
         
         let valueDictionary = snapshot.data()
@@ -76,11 +85,39 @@ class Profile:NSObject {
             self.occupation = ""
         }
   
+        /*
         if let commentedArticleIDs:[String] = valueDictionary!["CommentedArticleIDs"] as? [String] {
             self.commentedArticleIDs = commentedArticleIDs
         } else {
             print("CommentedArticleIDsはnilです")
+        }*/
+        
+        if let followers:[String] = valueDictionary!["followers"] as? [String] {
+            self.followers = followers
         }
+        
+        for followerId in self.followers {
+            if followerId == myId {
+                self.isFollowed = true
+                break
+            }
+        }
+        
+        self.followersSum = followers.count
+        
+        
+        if let isProfessional:Bool = valueDictionary!["isProfessional"] as? Bool {
+            self.isProfessional = isProfessional
+        }
+        
+        if let isDoctor:Bool = valueDictionary!["isDoctor"] as? Bool {
+            self.isDoctor = isDoctor
+        }
+        
+        if let isYouthPro:Bool = valueDictionary!["isYouthPro"] as? Bool {
+            self.isYouthPro = isYouthPro
+        }
+        
         
     }
     

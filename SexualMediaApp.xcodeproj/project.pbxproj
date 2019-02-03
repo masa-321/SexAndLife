@@ -55,8 +55,11 @@
 		5F086F8021EB2E670077B8E9 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F7F21EB2E660077B8E9 /* CAPSPageMenu.swift */; };
 		5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */; };
 		5F086F8521EB33EF0077B8E9 /* ProfileCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */; };
+		5F15B68622067CE300B38E34 /* Media8ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15B68522067CE300B38E34 /* Media8ViewController.swift */; };
 		5F3883E321DDF6E800D95B72 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3883E221DDF6E700D95B72 /* R.generated.swift */; };
 		5F48750221FAB5BB00190E75 /* BrowseConsultationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48750121FAB5BB00190E75 /* BrowseConsultationViewController.swift */; };
+		5F48750521FB60CC00190E75 /* CommentEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48750321FB60CC00190E75 /* CommentEmptyCell.swift */; };
+		5F48750621FB60CC00190E75 /* CommentEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F48750421FB60CC00190E75 /* CommentEmptyCell.xib */; };
 		5F6A1FB021EC2489009AD79A /* Consultation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */; };
 		5F6A1FF021EF1D2C009AD79A /* EnhancedCircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FEF21EF1D2C009AD79A /* EnhancedCircleImageView.swift */; };
 		5F6A1FF221EF23D4009AD79A /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FF121EF23D4009AD79A /* ProfileModel.swift */; };
@@ -64,7 +67,6 @@
 		5F6A1FF621F20490009AD79A /* ConsultationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FF521F20490009AD79A /* ConsultationData.swift */; };
 		5F6A1FF921F36A92009AD79A /* ProfileCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FF721F36A92009AD79A /* ProfileCommentCell.swift */; };
 		5F6A1FFA21F36A92009AD79A /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A1FF821F36A92009AD79A /* ProfileCommentCell.xib */; };
-		5F6A1FFC21F469D8009AD79A /* ContainnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A1FFB21F469D8009AD79A /* ContainnerViewController.swift */; };
 		5F6DF6C521F72D610010085C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6DF6C421F72D610010085C /* TutorialViewController.swift */; };
 		5F6DF6C721F742E60010085C /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6DF6C621F742E60010085C /* Tutorial.storyboard */; };
 		5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */; };
@@ -145,8 +147,11 @@
 		5F086F7F21EB2E660077B8E9 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentViewController.swift; sourceTree = "<group>"; };
+		5F15B68522067CE300B38E34 /* Media8ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media8ViewController.swift; sourceTree = "<group>"; };
 		5F3883E221DDF6E700D95B72 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		5F48750121FAB5BB00190E75 /* BrowseConsultationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseConsultationViewController.swift; sourceTree = "<group>"; };
+		5F48750321FB60CC00190E75 /* CommentEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEmptyCell.swift; sourceTree = "<group>"; };
+		5F48750421FB60CC00190E75 /* CommentEmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentEmptyCell.xib; sourceTree = "<group>"; };
 		5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Consultation.storyboard; sourceTree = "<group>"; };
 		5F6A1FEF21EF1D2C009AD79A /* EnhancedCircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedCircleImageView.swift; sourceTree = "<group>"; };
 		5F6A1FF121EF23D4009AD79A /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -154,7 +159,6 @@
 		5F6A1FF521F20490009AD79A /* ConsultationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationData.swift; sourceTree = "<group>"; };
 		5F6A1FF721F36A92009AD79A /* ProfileCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentCell.swift; sourceTree = "<group>"; };
 		5F6A1FF821F36A92009AD79A /* ProfileCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCell.xib; sourceTree = "<group>"; };
-		5F6A1FFB21F469D8009AD79A /* ContainnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainnerViewController.swift; sourceTree = "<group>"; };
 		5F6DF6C421F72D610010085C /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		5F6DF6C621F742E60010085C /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationCollectionCell.swift; sourceTree = "<group>"; };
@@ -219,7 +223,6 @@
 				105184382165992000EA36BD /* ViewController.swift */,
 				10AB5C78216A5FCE00EB5E61 /* CoverFlow.swift */,
 				102743E0216A47A8006FB7F2 /* SearchViewController.swift */,
-				5F6A1FFB21F469D8009AD79A /* ContainnerViewController.swift */,
 				509B4B7C216AEA5F006F239C /* SummaryViewController.swift */,
 				5FEDC04121E611BA006A3563 /* SourceViewController.swift */,
 				50511DDE2187DBB0003011CC /* ClipViewController.swift */,
@@ -289,6 +292,7 @@
 				1051845221659B1B00EA36BD /* Media5ViewController.swift */,
 				502F9AE7218D3149008E6037 /* Media6ViewController.swift */,
 				502F9AE9218D321B008E6037 /* Media7ViewController.swift */,
+				5F15B68522067CE300B38E34 /* Media8ViewController.swift */,
 			);
 			path = ThemeViewControllers;
 			sourceTree = "<group>";
@@ -308,6 +312,8 @@
 				5FEDC03621E1D3D5006A3563 /* QuestionAnswerCell.xib */,
 				50E9C8E22189F454006F567E /* CommentTableViewCell.swift */,
 				50E9C8E32189F454006F567E /* CommentTableViewCell.xib */,
+				5F48750321FB60CC00190E75 /* CommentEmptyCell.swift */,
+				5F48750421FB60CC00190E75 /* CommentEmptyCell.xib */,
 				5F6A1FF721F36A92009AD79A /* ProfileCommentCell.swift */,
 				5F6A1FF821F36A92009AD79A /* ProfileCommentCell.xib */,
 				502F9AE1218C7D25008E6037 /* InitialTableViewCell.swift */,
@@ -424,6 +430,7 @@
 				1051843E2165992100EA36BD /* Assets.xcassets in Resources */,
 				5FEDC03821E1D3D5006A3563 /* QuestionAnswerCell.xib in Resources */,
 				5FEDC03C21E1E2E8006A3563 /* ChannelCell.xib in Resources */,
+				5F48750621FB60CC00190E75 /* CommentEmptyCell.xib in Resources */,
 				509B4B8C216E1C3E006F239C /* Info.storyboard in Resources */,
 				1051843C2165992000EA36BD /* Main.storyboard in Resources */,
 				509B4B92216F04AE006F239C /* GoogleService-Info.plist in Resources */,
@@ -592,9 +599,9 @@
 				50E9C8E7218AEF28006F567E /* LicenceViewController.swift in Sources */,
 				50511DDC21878626003011CC /* SummaryCell.swift in Sources */,
 				5FEDC03721E1D3D5006A3563 /* QuestionAnswerCell.swift in Sources */,
+				5F15B68622067CE300B38E34 /* Media8ViewController.swift in Sources */,
 				502F9AE3218C7D25008E6037 /* InitialTableViewCell.swift in Sources */,
 				5F6A1FF921F36A92009AD79A /* ProfileCommentCell.swift in Sources */,
-				5F6A1FFC21F469D8009AD79A /* ContainnerViewController.swift in Sources */,
 				105184372165992000EA36BD /* AppDelegate.swift in Sources */,
 				50729B9C2185B5F800F0F3C5 /* LoginViewController.swift in Sources */,
 				509B4B95216F0656006F239C /* ListCellViewModel.swift in Sources */,
@@ -619,6 +626,7 @@
 				509B4B7D216AEA5F006F239C /* SummaryViewController.swift in Sources */,
 				5FEDC03421E111D2006A3563 /* ProfileEditViewController.swift in Sources */,
 				509B4B7F216AEA78006F239C /* BrowseViewController.swift in Sources */,
+				5F48750521FB60CC00190E75 /* CommentEmptyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

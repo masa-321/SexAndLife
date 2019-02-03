@@ -43,7 +43,7 @@ class BrowseConsultationViewController: UIViewController, WKUIDelegate, WKNaviga
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.title = browsePageTitle
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage()/*nil*/, for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = .white //clear

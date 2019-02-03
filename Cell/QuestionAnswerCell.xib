@@ -28,6 +28,10 @@
                                     <constraint firstAttribute="width" secondItem="IUy-FH-Sz9" secondAttribute="height" multiplier="5:3" id="NDO-kf-yvb"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="boP-uy-Hv8">
+                                <rect key="frame" x="0.0" y="0.0" width="706" height="423.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ac-34-850" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
                                 <rect key="frame" x="652" y="10" width="69" height="30"/>
                                 <constraints>
@@ -89,12 +93,16 @@
                             <constraint firstItem="IUy-FH-Sz9" firstAttribute="top" secondItem="EH1-dG-Vo5" secondAttribute="top" id="2CM-pH-zp0"/>
                             <constraint firstAttribute="trailing" secondItem="j1g-7L-e2K" secondAttribute="trailing" id="9Sw-fN-6tO"/>
                             <constraint firstItem="3Ac-34-850" firstAttribute="top" secondItem="EH1-dG-Vo5" secondAttribute="top" constant="10" id="E2c-fP-bHB"/>
+                            <constraint firstItem="boP-uy-Hv8" firstAttribute="trailing" secondItem="IUy-FH-Sz9" secondAttribute="trailing" id="EPU-Cp-B19"/>
                             <constraint firstAttribute="width" secondItem="EH1-dG-Vo5" secondAttribute="height" multiplier="10:3" id="GN9-jD-hbJ"/>
                             <constraint firstItem="j1g-7L-e2K" firstAttribute="leading" secondItem="IUy-FH-Sz9" secondAttribute="trailing" id="IwR-2z-QG9"/>
                             <constraint firstItem="IUy-FH-Sz9" firstAttribute="leading" secondItem="EH1-dG-Vo5" secondAttribute="leading" id="J0O-Zm-5Un"/>
                             <constraint firstItem="j1g-7L-e2K" firstAttribute="leading" secondItem="3Ac-34-850" secondAttribute="trailing" constant="-15" id="Uxz-h3-htT"/>
                             <constraint firstItem="j1g-7L-e2K" firstAttribute="top" secondItem="EH1-dG-Vo5" secondAttribute="top" id="ZhE-Aw-Jmc"/>
+                            <constraint firstItem="boP-uy-Hv8" firstAttribute="bottom" secondItem="IUy-FH-Sz9" secondAttribute="bottom" id="cm5-l2-oyA"/>
+                            <constraint firstItem="boP-uy-Hv8" firstAttribute="top" secondItem="IUy-FH-Sz9" secondAttribute="top" id="csZ-Sx-bPl"/>
                             <constraint firstItem="o6i-WL-Of5" firstAttribute="top" secondItem="EH1-dG-Vo5" secondAttribute="top" constant="15" id="eaz-AQ-CD3"/>
+                            <constraint firstItem="boP-uy-Hv8" firstAttribute="leading" secondItem="IUy-FH-Sz9" secondAttribute="leading" id="gx5-Xg-I8f"/>
                             <constraint firstItem="j1g-7L-e2K" firstAttribute="leading" secondItem="o6i-WL-Of5" secondAttribute="trailing" id="mZC-nP-Myd"/>
                             <constraint firstAttribute="bottom" secondItem="IUy-FH-Sz9" secondAttribute="bottom" id="mrY-zp-Tp8"/>
                         </constraints>

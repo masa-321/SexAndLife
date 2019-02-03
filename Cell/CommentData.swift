@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 class CommentData:NSObject {
     var commentText:String?
-    var commentTime:NSDate?
+    var commentTime:Date?
     var commenterID:String?
     var commentLikes:[String] = []
     var isLiked: Bool = false
@@ -27,7 +27,7 @@ class CommentData:NSObject {
         let valueDictionary = snapshot.value as! [String:Any]
         
         self.commentText = valueDictionary["commentText"] as? String
-        self.commentTime = valueDictionary["commentTime"] as? NSDate
+        self.commentTime = valueDictionary["commentTime"] as? Date
         
         //self.commentedArticleID = valueDictionary["commentedArticleID"] as? String
         

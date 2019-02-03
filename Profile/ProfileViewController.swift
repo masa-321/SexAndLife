@@ -124,6 +124,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.setCellInfo(receivedUserId: self.receivedUserId)
             cell.masterViewPointer = self
             cell.selectionStyle = .none
+            cell.receivedUserId = self.receivedUserId
+            //cell.followButton.addTarget(self, action: #selector(followUnfollow(sender:event:)), for: UIControl.Event.touchUpInside)
+           
             return cell
             
             
@@ -236,7 +239,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let ref = Firestore.firestore().collection("articleData")
             let uid = user.uid
             
-            ref.addSnapshotListener { querySnapshot, err in
+            ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching documents: \(err)")
                 } else {
@@ -304,6 +307,51 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             present(alert, animated: true, completion: nil)
         }*/
     }
+    
+    
+    @objc func followUnfollow(sender:UIButton, event:UIEvent) {
+        if let user = Auth.auth().currentUser {
+            if receivedUserId == user.uid {
+                
+            }
+        }
+        // 配列からタップされたインデックスのデータを取り出す
+        let profileData = self.profileData
+        
+        if let uid = Auth.auth().currentUser?.uid {
+            //相手が自分よってフォローされていたとしたら
+            if profileData!.isFollowed {
+                var index = 0
+                for followerId in profileData!.followers {
+                    if followerId == uid {
+                        index = profileData!.followers.index(of: followerId)!
+                    }
+                }
+                
+                profileData?.followers.remove(at: index)
+                profileData?.isFollowed = false
+            } else {
+                profileData?.followers.append(uid)
+                profileData?.isFollowed = true
+            }
+            
+            // 増えたlikesをFirebaseに保存する
+            let profileRef = Firestore.firestore().collection("users").document(profileData!.id!)
+            let followers = ["followers": profileData!.followers]
+            
+            profileRef.updateData(followers){ err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+                
+            }
+            //addSnapshotListenerにしてから、自動的に更新されるはずだったか、isLikedの反転とreloadDataが呼ばれないことが多発したため、あらかじめ付け加えることにした。
+            tableView.reloadData()
+            
+        }
+    }
 }
     
 
@@ -313,6 +361,29 @@ class ProfileInfoCell:UITableViewCell {
             nameLabel.text = ""
         }
     }
+    @IBOutlet weak var professionalImage: UIImageView! {
+        didSet {
+            professionalImage.isHidden = true
+            //professionalImage.widthAnchor.constraint(equalToConstant: 0).isActive = true
+        }
+    }
+    
+    
+    @IBOutlet weak var doctorImage: UIImageView!{
+        didSet {
+            doctorImage.isHidden = true
+            //doctorImage.widthAnchor.constraint(equalToConstant: 0).isActive = true
+        }
+    }
+    
+    @IBOutlet weak var youthProImage: UIImageView!{
+        didSet {
+            youthProImage.isHidden = true
+        }
+    }
+    
+    
+    
     @IBOutlet weak var employmentAndOccupationLabel: UILabel!{
         didSet {
             employmentAndOccupationLabel.text = ""
@@ -321,18 +392,68 @@ class ProfileInfoCell:UITableViewCell {
     @IBOutlet weak var profileImage: EnhancedCircleImageView!
     @IBOutlet weak var profileButton: RoundedButton!
     
+    @IBOutlet weak var followButton: RoundedButton!{
+        didSet{
+            followButton.addTarget(self, action: #selector(followUnfollow(sender:event:)), for: UIControl.Event.touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var followButtonLabel: UILabel!
+    
     var receivedUserId = ""
     var profileData:Profile?
     var masterViewPointer:ProfileViewController?
     
+    @IBOutlet weak var followLabel: UILabel!
+    
+    @IBOutlet weak var followerLabel: UILabel!
+    
+    @IBOutlet weak var professionalCertification: UIButton!{
+        didSet {
+            //professionalCertificationボタンは、管理人がプロフィールページをのぞいた時のみ、表示される。
+            professionalCertification.isHidden = true
+            professionalCertification.addTarget(self, action: #selector(professionalCertificate(sender:event:)), for: UIControl.Event.touchUpInside)
+        }
+    }
+    
+    
+    @IBOutlet weak var doctorCertification: UIButton!{
+        didSet {
+            //doctorCertificationボタンは、管理人がプロフィールページをのぞいた時のみ、表示される。
+            doctorCertification.isHidden = true
+            doctorCertification.addTarget(self, action: #selector(doctorCertificate(sender:event:)), for: UIControl.Event.touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var youthProCertification: UIButton!{
+        didSet {
+            //youthProCertificationボタンは、管理人がプロフィールページをのぞいた時のみ、表示される。
+            youthProCertification.isHidden = true
+            youthProCertification.addTarget(self, action: #selector(youthProCertificate(sender:event:)), for: UIControl.Event.touchUpInside)
+        }
+    }
+
+
+    
+    
     func setCellInfo(receivedUserId:String) {
         if let user = Auth.auth().currentUser {
+            
+            //もしユーザーが管理人だったら、doctorCertificationボタンを表示させる。
+            if user.uid == "eT7OYTOD0nW7URSW8gDk23RTXzv2" {
+                professionalCertification.isHidden = false
+                doctorCertification.isHidden = false
+                youthProCertification.isHidden = false
+            }
+            
             //プロフィールページを開いたのがユーザー本人だったら。
             if receivedUserId == user.uid {
                 //ボタンを表示させる
                 self.profileButton.isHidden = false
+                self.followButton.isHidden = true
+                
                 //編集ボタンにメソッドを付与
-                self.profileButton.addTarget(self, action: #selector(self.Editing(sender:event:)), for: UIControl.Event.touchUpInside)
+                self.profileButton.addTarget(self, action: #selector(self.editing(sender:event:)), for: UIControl.Event.touchUpInside)
                 
                 //Firebaseからユーザー本人の情報を引っ張ってくる。
                 let ref = Firestore.firestore().collection("users").document("\(user.uid)")
@@ -341,15 +462,20 @@ class ProfileInfoCell:UITableViewCell {
                         print("Error fetching documents: \(err)")
                     } else {
                         //引っ張ってきたユーザー情報をsetCellInfoメソッドの引数として渡す
-                        self.profileData = Profile(snapshot: querySnapshot!)
+                        self.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                         self.setCellInfo2(profileData:self.profileData!)
                     }
                 }
+                
+                
                 
             } else {
                 //receivedUserIdが他人だった場合の処理式。receivedUserIdには、commenterIDが入っている。
                 //編集ボタンを消す必要ある。
                 self.profileButton.isHidden = true
+                self.followButton.isHidden = false
+                
+                
                 
                 //Firebaseからcommenterの情報を引っ張ってくる。
                 let ref = Firestore.firestore().collection("users").document(receivedUserId)
@@ -358,10 +484,18 @@ class ProfileInfoCell:UITableViewCell {
                         print("Error fetching documents: \(err)")
                     } else {
                         //引っ張ってきたユーザー情報をsetCellInfoメソッドの引数として渡す
-                        self.profileData = Profile(snapshot: querySnapshot!)
+                        self.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                         self.setCellInfo2(profileData:self.profileData!)
+                        
+                        //他人だった場合、フォローボタンの装飾を考えないと
+                        if self.profileData!.isFollowed {
+                            self.followButtonLabel.text = "フォロー解除"
+                        } else {
+                            self.followButtonLabel.text = "フォローする"
+                        }
                     }
                 }
+                
                 
             }
         }
@@ -379,12 +513,210 @@ class ProfileInfoCell:UITableViewCell {
             //self.employmentAndOccupationLabel.text = "\(self.profileData!.occupation)"
             self.employmentAndOccupationLabel.text = profileData.occupation
         }
+        
+        //この段階で、やっとProfile情報が取得されている。
+        if let follwersSum = profileData.followersSum {
+            followerLabel.text = "\(follwersSum)"
+        }
+        
+        if profileData.isProfessional {
+            professionalImage.isHidden = false
+            //professionalImage.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        }
+        
+        if profileData.isDoctor {
+            doctorImage.isHidden = false
+            //doctorImage.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        }
+        
+        if profileData.isYouthPro {
+            youthProImage.isHidden = false
+        }
+        //うまく表示させるためには、配列に格納して、順に…って感じなんでしょうかね。〜
     }
     
     //self.profileDataの中身が入っているかはちょっと確認してみないとわからない。
-    @objc func Editing(sender:UIButton, event:UIEvent){
+    @objc func editing(sender:UIButton, event:UIEvent){
         masterViewPointer?.next(profileData:self.profileData!)
     }
+    
+    @objc func followUnfollow(sender:UIButton, event:UIEvent) {
+        print("followUnfollowが呼ばれたよ")
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("users").document(receivedUserId)
+            ref.getDocument{ (querySnapshot, err) in
+                //addlistenerにしていた時は、以下の処理が繰り返し永遠に呼ばれてしまった。listenを削除。
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    //引っ張ってきたユーザー情報をsetCellInfoメソッドの引数として渡す
+                    let profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
+                    print("profileDataをフェッチしたよ")
+                    //相手が自分よってフォローされていたとしたら
+                    if profileData.isFollowed {
+                        var index = 0
+                        for followerId in profileData.followers {
+                            if followerId == user.uid {
+                                index = profileData.followers.index(of: followerId)!
+                            }
+                        }
+                        
+                        profileData.followers.remove(at: index)
+                        profileData.isFollowed = false
+                        //self.followButton.titleLabel?.text = "フォローする"
+                    } else {
+                        profileData.followers.append(user.uid)
+                        profileData.isFollowed = true
+                        //self.followButton.titleLabel?.text = "フォロー解除"
+                    }
+                    
+                    // 増えたlikesをFirebaseに保存する
+                    let profileRef = Firestore.firestore().collection("users").document(profileData.id!)
+                    let followers = ["followers": profileData.followers]
+                    
+                    profileRef.updateData(followers){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                    //addSnapshotListenerにしてから、自動的に更新されるはずだったか、isLikedの反転とreloadDataが呼ばれないことが多発したため、あらかじめ付け加えることにした。
+                    //self.masterViewPointer!.tableView.reloadData()
+                }
+            }
+            
+            
+        }
+
+    }
+    //管理人がワンタップで、思春期プロを確認する
+    @objc func professionalCertificate(sender:UIButton, event:UIEvent) {
+        print("certificateが呼ばれたよ")
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("users").document(receivedUserId)
+            ref.getDocument{ (querySnapshot, err) in
+                
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    //引っ張ってきたユーザー情報をsetCellInfoメソッドの引数として渡す
+                    let profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
+                    print("profileDataをフェッチしたよ")
+                    
+                    if profileData.isProfessional {
+                        profileData.isProfessional = false
+                        self.professionalImage.isHidden = true
+                        
+                    } else {
+                        profileData.isProfessional = true
+                        
+                    }
+                    
+                    // 増えたlikesをFirebaseに保存する
+                    let profileRef = Firestore.firestore().collection("users").document(profileData.id!)
+                    let isProfessional = ["isProfessional": profileData.isProfessional]
+                    
+                    profileRef.updateData(isProfessional){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+        
+    }
+    
+    //管理人がワンタップで、医者を確認する
+    @objc func doctorCertificate(sender:UIButton, event:UIEvent) {
+        print("certificateが呼ばれたよ")
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("users").document(receivedUserId)
+            ref.getDocument{ (querySnapshot, err) in
+                
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    //引っ張ってきたユーザー情報をsetCellInfoメソッドの引数として渡す
+                    let profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
+                    print("profileDataをフェッチしたよ")
+                    
+                    if profileData.isDoctor {
+                        profileData.isDoctor = false
+                        self.doctorImage.isHidden = true
+                       
+                    } else {
+                        profileData.isDoctor = true
+                        
+                    }
+                    
+                    // 増えたlikesをFirebaseに保存する
+                    let profileRef = Firestore.firestore().collection("users").document(profileData.id!)
+                    let isDoctor = ["isDoctor": profileData.isDoctor]
+                    
+                    profileRef.updateData(isDoctor){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+        
+    }
+    
+    //管理人がワンタップで、YouthProを確認する
+    @objc func youthProCertificate(sender:UIButton, event:UIEvent) {
+        print("certificateが呼ばれたよ")
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("users").document(receivedUserId)
+            ref.getDocument{ (querySnapshot, err) in
+                
+                if let err = err {
+                    print("Error fetching documents: \(err)")
+                } else {
+                    //引っ張ってきたユーザー情報をsetCellInfoメソッドの引数として渡す
+                    let profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
+                    print("profileDataをフェッチしたよ")
+                    
+                    if profileData.isYouthPro {
+                        profileData.isYouthPro = false
+                        self.youthProImage.isHidden = true
+                        
+                    } else {
+                        profileData.isYouthPro = true
+                        
+                    }
+                    
+                    // 増えたlikesをFirebaseに保存する
+                    let profileRef = Firestore.firestore().collection("users").document(profileData.id!)
+                    let isYouthPro = ["isYouthPro": profileData.isYouthPro]
+                    
+                    profileRef.updateData(isYouthPro){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+        
+    }
+    
+    
 }
     
 
@@ -392,6 +724,7 @@ class ProfileTextViewCell:UITableViewCell {
     
     @IBOutlet weak var textView: UITextView!
     var profileData:Profile?
+    
     
     func setCellInfo(receivedUserId:String) {
         if let user = Auth.auth().currentUser {
@@ -404,7 +737,7 @@ class ProfileTextViewCell:UITableViewCell {
                         print("Error fetching documents: \(err)")
                     } else {
                         //引っ張ってきたユーザー情報をsetCellInfoメソッドの引数として渡す
-                        self.profileData = Profile(snapshot: querySnapshot!)
+                        self.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                         self.textView.text = self.profileData!.profile
                     }
                 }
@@ -416,7 +749,7 @@ class ProfileTextViewCell:UITableViewCell {
                         print("Error fetching documents: \(err)")
                     } else {
                         //引っ張ってきたユーザー情報をsetCellInfoメソッドの引数として渡す
-                        self.profileData = Profile(snapshot: querySnapshot!)
+                        self.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                         self.textView.text = self.profileData!.profile
                     }
                 }
