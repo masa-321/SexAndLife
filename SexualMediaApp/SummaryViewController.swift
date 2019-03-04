@@ -203,9 +203,6 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             }
         }
         
-        
-        
-        
     }
     
 

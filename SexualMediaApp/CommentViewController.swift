@@ -138,6 +138,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         
         if let user = Auth.auth().currentUser {
             let now = NSDate()
+            //Firestoreに格納するために辞書型の箱を作っている
             var commentData:[String : Any] = [:]
             if postedCommentData == nil {
                 let comment = [
@@ -186,6 +187,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
                     print("updateData(commentData) Document successfully written!")
                     //navigationControllerで一つ前の画面に戻る
                     //self.navigationController?.popViewController(animated: true)
+                    //送信成功と同時に、UserDefaultsにて"question"というkey値で保存されたデータをリセット
                     UserDefaults.standard.set("", forKey: "comment") //UserDefaultをリセット
                     
                     self.dismiss(animated: true, completion:nil)

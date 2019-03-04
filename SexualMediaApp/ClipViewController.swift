@@ -66,6 +66,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let user = Auth.auth().currentUser {
             let uid = user.uid
             
+            //.orderは約10個以上になるとうまく表示されない可能性がある。慎重に。
             let ref = Firestore.firestore().collection("articleData")
             ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
                 if let err = err {

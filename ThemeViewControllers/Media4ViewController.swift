@@ -97,7 +97,7 @@ class Media4ViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
                 if let err = err {
-                    print("Error fetching documents: \(err)")
+                    print("Error fetching articleData documents: \(err)")
                 } else {
                     self.articleDataArray = []
                     for document in querySnapshot!.documents {

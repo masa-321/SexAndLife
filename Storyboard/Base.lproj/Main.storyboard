@@ -326,17 +326,46 @@
                                     <action selector="rightSideButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xT9-FL-paC"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XB8-GZ-WUh" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="21" y="598" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="ARE-ud-OSq"/>
+                                    <constraint firstAttribute="height" constant="50" id="StF-kN-mNg"/>
+                                </constraints>
+                            </imageView>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgp-F9-rs7" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="597" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.016222721291371933" green="0.81217190305593656" blue="0.43732657968200012" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Xqv-VH-MA5"/>
+                                    <constraint firstAttribute="height" constant="50" id="xWL-Gp-yyb"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="ASK"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="commentButton:" destination="yn8-Cs-tjc" eventType="touchUpInside" id="iVR-m2-BFa"/>
+                                    <action selector="questionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XCR-Lc-9Pw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Oyq-og-WU4" firstAttribute="centerY" secondItem="re6-C6-cKl" secondAttribute="centerY" id="0Qj-rI-cPG"/>
                             <constraint firstItem="Oyq-og-WU4" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1tM-ya-v1q"/>
+                            <constraint firstItem="Zgp-F9-rs7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="24l-WL-D0d"/>
                             <constraint firstItem="3GN-Td-eGs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5pn-Rg-D5T"/>
                             <constraint firstItem="EHl-sB-Vu9" firstAttribute="centerY" secondItem="44q-Rv-aAI" secondAttribute="centerY" id="6SX-W4-y97"/>
                             <constraint firstItem="Oyq-og-WU4" firstAttribute="leading" secondItem="re6-C6-cKl" secondAttribute="trailing" id="7o2-S3-D4l"/>
                             <constraint firstItem="3GN-Td-eGs" firstAttribute="top" secondItem="vIn-b0-Qjg" secondAttribute="bottom" id="8uy-SR-cIV"/>
                             <constraint firstItem="44q-Rv-aAI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9wQ-QY-YVO"/>
                             <constraint firstItem="a0S-hI-M08" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="APp-gx-P2M"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XB8-GZ-WUh" secondAttribute="bottom" constant="19" id="B55-G5-ESA"/>
                             <constraint firstItem="vIn-b0-Qjg" firstAttribute="top" secondItem="UYn-8Z-Ryi" secondAttribute="bottom" id="Fzi-kW-rj7"/>
                             <constraint firstItem="re6-C6-cKl" firstAttribute="centerY" secondItem="V05-RF-tIl" secondAttribute="centerY" id="HLY-oH-Fdr"/>
                             <constraint firstItem="UYn-8Z-Ryi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IGY-5h-Wk3"/>
@@ -358,7 +387,9 @@
                             <constraint firstItem="re6-C6-cKl" firstAttribute="top" secondItem="UYn-8Z-Ryi" secondAttribute="bottom" id="nlt-uU-JOe"/>
                             <constraint firstItem="V05-RF-tIl" firstAttribute="leading" secondItem="a0S-hI-M08" secondAttribute="trailing" id="o8d-U6-7gs"/>
                             <constraint firstItem="dTY-rH-pTF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oR7-N1-uOZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Zgp-F9-rs7" secondAttribute="bottom" constant="20" id="owS-8E-rXa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3GN-Td-eGs" secondAttribute="bottom" id="pk0-kT-cAx"/>
+                            <constraint firstItem="XB8-GZ-WUh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="21" id="zRZ-eV-cPW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -661,7 +692,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="9"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
