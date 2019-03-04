@@ -13,8 +13,10 @@ class QuestionCell: UITableViewCell {
     
     
     @IBOutlet weak var textView: UITextView!
-    
     @IBOutlet weak var postDateLabel: UILabel!
+    
+    @IBOutlet weak var likeButton: RoundedButton!
+    @IBOutlet weak var likeImage: UIImageView!
     @IBOutlet weak var likeNumberLabel: UILabel!
     
     override func awakeFromNib() {
@@ -57,18 +59,14 @@ class QuestionCell: UITableViewCell {
         }
         
         
-        /*
-        if commentData.isLiked {
-            likeButton.backgroundColor = .white//UIColor(red:0.95, green:1.00, blue:0.36, alpha:1.0)
-            likeButton.titleLabel?.font = .boldSystemFont(ofSize: 17.0)
-            likeNumberLabel.font = .boldSystemFont(ofSize: 17.0)
-            //clipButtonLabel.textColor = .black
+        
+        if questionData.isLiked {
+            likeImage.image = UIImage(named: "Heart2")
+            //likeNumberLabel.font = .boldSystemFont(ofSize: 17.0)
         } else {
-            likeButton.backgroundColor = .clear
-            likeButton.titleLabel?.font = .systemFont(ofSize: 17.0)
-            //likeNumberLabel.font = UIFont.labelFontSize
-            //clipButtonLabel.textColor = .white
-        }*/
+            likeImage.image = UIImage(named: "Heart")
+            //likeNumberLabel.font = //boldを解除するコードを書きたいがわからない
+        }
    
     }
 

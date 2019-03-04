@@ -129,6 +129,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             let cell:QuestionCell = tableView.dequeueReusableCell(withIdentifier: "AskedCell", for: indexPath) as! QuestionCell
             cell.setQuestionCellInfo(questionData: questionArray[indexPath.row])
             cell.selectionStyle = .none
+            cell.likeButton.addTarget(self, action: #selector(likeButton(sender:event:)), for: UIControl.Event.touchUpInside)
             //cell.profileButton.addTarget()
             //cell.textView.text = "テスト"
             
@@ -152,15 +153,48 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func likeButton(sender:UIButton, event:UIEvent) {
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        let questionData = questionArray[indexPath!.row]
+        
+        if let uid = Auth.auth().currentUser?.uid {
+            if questionData.isLiked {
+                // すでにいいねをしていた場合はいいねを解除するためIDを取り除く
+                var index = -1
+                for likeId in questionData.questionLikes {
+                    if likeId == uid {
+                        // 削除するためにインデックスを保持しておく
+                        index = questionData.questionLikes.index(of: likeId)!
+                        
+                        break
+                    }
+                }
+                questionData.questionLikes.remove(at: index)
+            } else {
+                questionData.questionLikes.append(uid)
+            }
+            
+            // 増えたlikesをFirebaseに保存する
+            let questionRef = Firestore.firestore().collection("questions").document(questionData.questionerID!)
+            let questionlikes = [
+                questionData.questionID:[
+                    "questionLikes":questionData.questionLikes,
+                    "questionText":questionData.questionText,
+                    "questionTime":questionData.questionTime
+                ]
+            ]
+            
+            questionRef.updateData(questionlikes){ err in
+                if let err = err {
+                    print("Error adding questionLikes document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        }
+        
     }
-    */
 
 }

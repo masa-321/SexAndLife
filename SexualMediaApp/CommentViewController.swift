@@ -49,6 +49,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!{
         didSet{
             if let savedText = UserDefaults.standard.object(forKey: "comment") as? String{
+                //すでに記事にコメントしたものがあれば、編集から再開する。そのためのpostedCommentData
                 if postedCommentData == nil {
                     textView.text = savedText
                 } else {
@@ -161,11 +162,12 @@ class CommentViewController: UIViewController, UITextViewDelegate {
                 commentData = comment
             }
             
-            
+            //"comments"コレクションの編集
             let ref = Firestore.firestore().collection("comments").document(user.uid)
             ref.updateData(commentData) { err in
                 if let err = err {
                     print("updateData(comment) Error adding document: \(err)")
+                    //updateDataが通用するのはすでにuser.uidに紐ついたdocumentが存在したケース。存在しない場合は新たにuser.uidに紐ついたdocumentを作成しなければならない。
                     //documentが存在しなかった場合の処理
                     if "\(err)".contains("No document to update") {
                         ref.setData(commentData) {err in
@@ -177,6 +179,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
                                 UserDefaults.standard.set("", forKey: "comment")
                                 self.dismiss(animated: true, completion:nil)
                                 SVProgressHUD.dismiss()
+                                self.updateCommenterIDs()
                                 return
                             }
                         }
@@ -193,67 +196,36 @@ class CommentViewController: UIViewController, UITextViewDelegate {
                     self.dismiss(animated: true, completion:nil)
                     
                     SVProgressHUD.dismiss()
+                    
+                    self.updateCommenterIDs()
+                    
                     return
                 }
             }
             
+        }
+    }
+    
+    func updateCommenterIDs() {
+        if let user = Auth.auth().currentUser {
+            //"articleData"コレクションの編集。commentの数を確認できるようにするため。
+            var newCommenterIDs:[String] = receivedArticleData!.commenterIDs
             
-            //なぞ過ぎるので、頑張って、commentsカラムからcommentcellを引っ張ってくるようにしよう。
-            //usersの方にはcommentsは書かないような設計…実現できるかわからないがそれしか道はないとして。
-            /*
-            let ref = Firestore.firestore().collection("users").document(user.uid)
-            ref.updateData(commentedArticleIDs) { err in
+            if !newCommenterIDs.contains(user.uid) {
+                newCommenterIDs.append(user.uid)
+            }
+            let includingNewCommenterData = [
+                "commenterIDs":newCommenterIDs
+            ]
+            let ref2 = Firestore.firestore().collection("articleData").document(receivedArticleData!.id!)
+            ref2.updateData(includingNewCommenterData) { err in
                 if let err = err {
-                    print("updateData(CommentedArticleIDs) Error adding document: \(err)")
-                    
+                    print("updateData(includingCommenterData) Error adding document: \(err)")
                 } else {
-                    print("updateData(CommentedArticleIDs) Document successfully written!")
+                    //documentは必ず存在するから、アップデートのみの処理で良い。
+                    print("updateData(includingCommenterData) Document successfully written!")
                 }
-            }*/
-            
-            
-            
-            /*
-            let comment = [
-                "comments": [user.uid: [
-                    "commentLikes": [],
-                    "commentText": textView.text,
-                    "commentTime": now,
-                    "commentedArticleID": receivedArticleData!.id
-                    ]
-                ]
-            ] as [String : Any]
-            
-            */
-            //扱いづらいか…でもこっちの方が美しいように思える。
-/*
-            let comment = [
-                "commenterID":user.uid,
-                "commentLikes": [],
-                "commentText": textView.text,
-                "commentTime": now,
-                "commentedArticleID": receivedArticleData!.id
-                ] as [String : Any]
-            */
-            
-            //let ref = Firestore.firestore().collection("articleData").document(self.receivedArticleData!.id!).collection("comments").document(user.uid)
-            /*
-            let ref = Firestore.firestore().collection("comments")
-            if ref.whereField("commentedArticleID", isEqualTo: receivedArticleData!.id) == nil {
-                if ref.whereField("commenterID", isEqualTo: user.uid) == nil {
-                    ref.setValue("commentedArticleID", forKey: self.receivedArticleData!.id)
-                    ref.setValue(
-                    ref.setValue(textView.text, forKey: "commentText")
-                    ref.setValue(now, forKey: "commentTime")
-                    ref.setValue(receivedArticleData!.id, forKey: "commentedArticleID")
-                } else {
-                    
-                }
-            } else if
-            //美しくない*/
-            
-            
-            
+            }
         }
     }
     

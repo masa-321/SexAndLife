@@ -97,9 +97,12 @@ class ArticleQueryData: NSObject {
     var relatedArticleIDs:[String] = []
     
     var isCommented: Bool = false
-    var comments:[String:Any] = [:]
+    
+    var commenterIDs:[String] = []
     
     var isFAQ:Bool = false
+    var isSupervised:Bool = false
+    var isStory:Bool = false
     
     init(snapshot: QueryDocumentSnapshot, myId: String) {
         self.id = snapshot.documentID
@@ -147,14 +150,21 @@ class ArticleQueryData: NSObject {
             self.isFAQ = isFAQ
         }
         
-        //let time = valueDictionary["time"] as? String
-        //self.date = NSDate(timeIntervalSinceReferenceDate: TimeInterval(time!)!)
-        //commentsは項目が最初存在しないので、if letで丁寧に取り出す。
-        if let comments = valueDictionary["comments"] as? [String:Any] {
-            self.comments = comments
+        if let isSupervised = valueDictionary["isSupervised"] as? Bool {
+            self.isSupervised = isSupervised
+        }
+        
+        if let isStory = valueDictionary["isStory"] as? Bool {
+            self.isStory = isStory
+        }
+        
+        if let commenterIDs = valueDictionary["commenterIDs"] as? [String]{
+            self.commenterIDs = commenterIDs
         }
         
         
+        //let time = valueDictionary["time"] as? String
+        //self.date = NSDate(timeIntervalSinceReferenceDate: TimeInterval(time!)!)
         if let relatedArticleIDs = valueDictionary["relatedArticleIDs"] as? [String]{
             self.relatedArticleIDs = relatedArticleIDs
             //print("ArticleData.swiftにて、relatedArticleIDs:" + "\(self.relatedArticleIDs)")

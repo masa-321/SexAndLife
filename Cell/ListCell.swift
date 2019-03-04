@@ -19,6 +19,21 @@ class ListCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var articleImageView: UIImageView!
+    
+    @IBOutlet weak var categoryImageView: UIImageView!{
+        didSet{
+            categoryImageView.isHidden = true
+        }
+    }
+    @IBOutlet weak var categoryLabel: UILabel!{
+        didSet{
+            categoryLabel.isHidden = true
+        }
+    }
+    
+    @IBOutlet weak var commentCountLabel: UILabel!
+    
+    
 
     var imageUrl: String = ""
     
@@ -34,8 +49,26 @@ class ListCell: UITableViewCell {
     
         if articleData.isFAQ {
             titleLabel.text = "Q." + articleData.titleStr
+            categoryImageView.image = UIImage(named: "category-1")
+            categoryImageView.isHidden = false
+            categoryLabel.text = "FAQ"
+            categoryLabel.isHidden = false
+        } else if articleData.isSupervised {
+            titleLabel.text = articleData.titleStr
+            categoryImageView.image = UIImage(named: "category-2")
+            categoryImageView.isHidden = false
+            categoryLabel.text = "医師監修"
+            categoryLabel.isHidden = false
+        } else if articleData.isStory {
+            titleLabel.text = articleData.titleStr
+            categoryImageView.image = UIImage(named: "category-3")
+            categoryImageView.isHidden = false
+            categoryLabel.text = "体験談"
+            categoryLabel.isHidden = false
         } else {
             titleLabel.text = articleData.titleStr
+            categoryImageView.isHidden = true
+            categoryLabel.isHidden = true
         }
         
         sourceLabel.text = articleData.sourceName
@@ -47,6 +80,10 @@ class ListCell: UITableViewCell {
         let likeNumber = articleData.likes.count
         clipButtonLabel.text = "\(likeNumber)"
         //clipButtonLabel.text = articleData.clipSumNumber!.description//いけた
+        
+        let commentNumber = articleData.commenterIDs.count
+        commentCountLabel.text = "\(commentNumber)"
+        
         selectionStyle = .none //ハイライトを消す
         backgroundColor = UIColor.clear
         

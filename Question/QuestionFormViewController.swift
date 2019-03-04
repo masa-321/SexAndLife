@@ -30,13 +30,9 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var textView: UITextView!{
         didSet{
-            /*if let savedText = UserDefaults.standard.object(forKey: "question") as? String{
-                if postedCommentData == nil {
-                    textView.text = savedText
-                } else {
-                    textView.text = postedCommentData!.commentText
-                }
-            }*/
+            if let savedText = UserDefaults.standard.object(forKey: "question") as? String{
+                textView.text = savedText
+            }
         }
     }
     
@@ -65,6 +61,7 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func clearButton(_ sender: Any) {
         textView.text = ""
+        UserDefaults.standard.set(textView.text, forKey: "question")
     }
     
     //submitボタン。CommentViewController.swiftを参考に構築
@@ -92,7 +89,22 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
             ref.updateData(questionData) { err in
                 if let err = err {
                     print("updateData(questionData) Error adding document:\(err)")
-                    
+                    //updateDataが通用するのはすでにuser.uidに紐ついたdocumentが存在したケース。存在しない場合は新たにuser.uidに紐ついたdocumentを作成しなければならない。
+                    //documentが存在しなかった場合の処理
+                    if "\(err)".contains("No document to update") {
+                        ref.setData(questionData) {err in
+                            if let err = err {
+                                print("setData(question) Error adding document: \(err)")
+                            } else {
+                                print("setData(question) Document successfully written!")
+                                
+                                UserDefaults.standard.set("", forKey: "question")
+                                self.dismiss(animated: true, completion:nil)
+                                SVProgressHUD.dismiss()
+                                return
+                            }
+                        }
+                    }
                     
                 } else {
                     print("updateData(questionData) Document successfully written!:\(err)")

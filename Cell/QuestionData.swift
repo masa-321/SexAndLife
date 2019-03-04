@@ -17,13 +17,13 @@ class QuestionData:NSObject {
     var questionerID:String?
     var questionLikes:[String] = []
     var isLiked: Bool = false
-    //var commentedArticleID:String? Questionは記事に紐つくわけではないのでなし
+    var questionID:String? //Question固有のuuid
     var likeSumNumber:Int?
     
     init (snapshot:(key: String, value: Any), questionerID:String, myId: String) {
         
         self.questionerID = questionerID
-        //self.commentedArticleID = snapshot.key //記事のID。しかしQuestionは記事に紐つくわけではないのでなし
+        self.questionID = snapshot.key //Question固有のuuid
         
         let valueDictionary = snapshot.value as! [String:Any]
         

@@ -489,9 +489,9 @@ class ProfileInfoCell:UITableViewCell {
                         
                         //他人だった場合、フォローボタンの装飾を考えないと
                         if self.profileData!.isFollowed {
-                            self.followButtonLabel.text = "フォロー解除"
+                            self.followButtonLabel.text = "信頼を保留"
                         } else {
-                            self.followButtonLabel.text = "フォローする"
+                            self.followButtonLabel.text = "信頼する"
                         }
                     }
                 }

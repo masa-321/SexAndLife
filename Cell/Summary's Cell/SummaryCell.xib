@@ -197,6 +197,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="clip" translatesAutoresizingMaskIntoConstraints="NO" id="83W-gk-UR8">
+                                <rect key="frame" x="421" y="67" width="30" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8FN-b8-nVv"/>
+                                    <constraint firstAttribute="width" constant="30" id="WAX-Ro-kfy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -209,10 +216,12 @@
                             <constraint firstAttribute="bottom" secondItem="Rs5-7U-uTV" secondAttribute="bottom" constant="5" id="Gx3-vk-Xx3"/>
                             <constraint firstItem="wPM-i3-E1o" firstAttribute="leading" secondItem="xib-SV-zde" secondAttribute="leading" constant="20" id="Heb-iS-WSE"/>
                             <constraint firstItem="UND-Rk-aV3" firstAttribute="leading" secondItem="xib-SV-zde" secondAttribute="leading" constant="20" id="Jmg-iS-WdD"/>
+                            <constraint firstItem="ix4-G2-pAe" firstAttribute="centerY" secondItem="83W-gk-UR8" secondAttribute="centerY" id="NaD-eE-DtS"/>
                             <constraint firstItem="af7-mX-5hI" firstAttribute="leading" secondItem="xib-SV-zde" secondAttribute="leading" constant="20" id="Win-NX-G5O"/>
                             <constraint firstItem="chJ-Rg-Eor" firstAttribute="leading" secondItem="xib-SV-zde" secondAttribute="leading" constant="20" id="dbF-uH-LH4"/>
                             <constraint firstAttribute="trailing" secondItem="UND-Rk-aV3" secondAttribute="trailing" constant="20" id="e5q-dY-Efs"/>
                             <constraint firstItem="chJ-Rg-Eor" firstAttribute="top" secondItem="UND-Rk-aV3" secondAttribute="bottom" constant="10" id="m5E-ZR-RWx"/>
+                            <constraint firstItem="ix4-G2-pAe" firstAttribute="leading" secondItem="83W-gk-UR8" secondAttribute="trailing" id="vfF-1x-HF3"/>
                             <constraint firstAttribute="bottom" secondItem="af7-mX-5hI" secondAttribute="bottom" id="vfY-DP-68P"/>
                             <constraint firstItem="wPM-i3-E1o" firstAttribute="top" secondItem="UND-Rk-aV3" secondAttribute="bottom" constant="10" id="yM0-My-2ux"/>
                         </constraints>
@@ -293,4 +302,7 @@
             <point key="canvasLocation" x="127.2" y="130.43478260869566"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="clip" width="512" height="512"/>
+    </resources>
 </document>

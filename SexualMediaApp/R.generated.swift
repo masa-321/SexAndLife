@@ -30,10 +30,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 50 images.
+  /// This `R.image` struct is generated, and contains static references to 65 images.
   struct image {
     /// Image ` identification`.
     static let identification = Rswift.ImageResource(bundle: R.hostingBundle, name: " identification")
+    /// Image `Heart2`.
+    static let heart2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Heart2")
     /// Image `Heart`.
     static let heart = Rswift.ImageResource(bundle: R.hostingBundle, name: "Heart")
     /// Image `InfoInquiry`.
@@ -52,10 +54,24 @@ struct R: Rswift.Validatable {
     static let alphabetD = Rswift.ImageResource(bundle: R.hostingBundle, name: "alphabet-D")
     /// Image `body`.
     static let body = Rswift.ImageResource(bundle: R.hostingBundle, name: "body")
+    /// Image `category-1`.
+    static let category1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "category-1")
+    /// Image `category-2`.
+    static let category2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "category-2")
+    /// Image `category-3`.
+    static let category3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "category-3")
+    /// Image `clip2`.
+    static let clip2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "clip2")
     /// Image `clip`.
     static let clip = Rswift.ImageResource(bundle: R.hostingBundle, name: "clip")
     /// Image `commentBlue`.
     static let commentBlue = Rswift.ImageResource(bundle: R.hostingBundle, name: "commentBlue")
+    /// Image `commentCount2`.
+    static let commentCount2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "commentCount2")
+    /// Image `commentCount3`.
+    static let commentCount3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "commentCount3")
+    /// Image `commentCount`.
+    static let commentCount = Rswift.ImageResource(bundle: R.hostingBundle, name: "commentCount")
     /// Image `commentGreen`.
     static let commentGreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "commentGreen")
     /// Image `contraception`.
@@ -74,8 +90,18 @@ struct R: Rswift.Validatable {
     static let garbage = Rswift.ImageResource(bundle: R.hostingBundle, name: "garbage")
     /// Image `health`.
     static let health = Rswift.ImageResource(bundle: R.hostingBundle, name: "health")
+    /// Image `help`.
+    static let help = Rswift.ImageResource(bundle: R.hostingBundle, name: "help")
     /// Image `info`.
     static let info = Rswift.ImageResource(bundle: R.hostingBundle, name: "info")
+    /// Image `inquiry2`.
+    static let inquiry2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "inquiry2")
+    /// Image `inquiry3`.
+    static let inquiry3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "inquiry3")
+    /// Image `inquiry4`.
+    static let inquiry4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "inquiry4")
+    /// Image `inquiry`.
+    static let inquiry = Rswift.ImageResource(bundle: R.hostingBundle, name: "inquiry")
     /// Image `left`.
     static let left = Rswift.ImageResource(bundle: R.hostingBundle, name: "left")
     /// Image `lgbtq`.
@@ -96,6 +122,8 @@ struct R: Rswift.Validatable {
     static let partnership = Rswift.ImageResource(bundle: R.hostingBundle, name: "partnership")
     /// Image `pen`.
     static let pen = Rswift.ImageResource(bundle: R.hostingBundle, name: "pen")
+    /// Image `placeholderImage-1`.
+    static let placeholderImage1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "placeholderImage-1")
     /// Image `placeholderImage`.
     static let placeholderImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "placeholderImage")
     /// Image `placeholder`.
@@ -116,6 +144,8 @@ struct R: Rswift.Validatable {
     static let searchbar = Rswift.ImageResource(bundle: R.hostingBundle, name: "searchbar")
     /// Image `socialLink`.
     static let socialLink = Rswift.ImageResource(bundle: R.hostingBundle, name: "socialLink")
+    /// Image `sos-downsize`.
+    static let sosDownsize = Rswift.ImageResource(bundle: R.hostingBundle, name: "sos-downsize")
     /// Image `star2`.
     static let star2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "star2")
     /// Image `star3`.
@@ -141,6 +171,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Heart", bundle: ..., traitCollection: ...)`
     static func heart(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.heart, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Heart2", bundle: ..., traitCollection: ...)`
+    static func heart2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.heart2, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "InfoInquiry", bundle: ..., traitCollection: ...)`
@@ -183,14 +218,49 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.body, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "category-1", bundle: ..., traitCollection: ...)`
+    static func category1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.category1, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "category-2", bundle: ..., traitCollection: ...)`
+    static func category2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.category2, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "category-3", bundle: ..., traitCollection: ...)`
+    static func category3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.category3, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "clip", bundle: ..., traitCollection: ...)`
     static func clip(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.clip, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "clip2", bundle: ..., traitCollection: ...)`
+    static func clip2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.clip2, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "commentBlue", bundle: ..., traitCollection: ...)`
     static func commentBlue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commentBlue, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "commentCount", bundle: ..., traitCollection: ...)`
+    static func commentCount(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commentCount, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "commentCount2", bundle: ..., traitCollection: ...)`
+    static func commentCount2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commentCount2, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "commentCount3", bundle: ..., traitCollection: ...)`
+    static func commentCount3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commentCount3, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "commentGreen", bundle: ..., traitCollection: ...)`
@@ -238,9 +308,34 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.health, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "help", bundle: ..., traitCollection: ...)`
+    static func help(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.help, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "info", bundle: ..., traitCollection: ...)`
     static func info(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.info, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "inquiry", bundle: ..., traitCollection: ...)`
+    static func inquiry(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.inquiry, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "inquiry2", bundle: ..., traitCollection: ...)`
+    static func inquiry2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.inquiry2, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "inquiry3", bundle: ..., traitCollection: ...)`
+    static func inquiry3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.inquiry3, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "inquiry4", bundle: ..., traitCollection: ...)`
+    static func inquiry4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.inquiry4, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "left", bundle: ..., traitCollection: ...)`
@@ -303,6 +398,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.placeholderImage, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "placeholderImage-1", bundle: ..., traitCollection: ...)`
+    static func placeholderImage1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.placeholderImage1, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "profile", bundle: ..., traitCollection: ...)`
     static func profile(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile, compatibleWith: traitCollection)
@@ -341,6 +441,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "socialLink", bundle: ..., traitCollection: ...)`
     static func socialLink(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.socialLink, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "sos-downsize", bundle: ..., traitCollection: ...)`
+    static func sosDownsize(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sosDownsize, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "star", bundle: ..., traitCollection: ...)`
@@ -644,8 +749,10 @@ struct _R: Rswift.Validatable {
       try _ChannelCell.validate()
       try _CommentTableViewCell.validate()
       try _InfoCell.validate()
+      try _ListCell.validate()
       try _ProfileCommentCell.validate()
       try _QuestionAnswerCell.validate()
+      try _SummaryCell.validate()
     }
     
     struct _ChannelCell: Rswift.NibResourceType, Rswift.Validatable {
@@ -746,7 +853,7 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _ListCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+    struct _ListCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
       typealias ReusableType = ListCell
       
       let bundle = R.hostingBundle
@@ -755,6 +862,14 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ListCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ListCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "category-1", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'category-1' is used in nib 'ListCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "clip2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'clip2' is used in nib 'ListCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "commentCount3", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'commentCount3' is used in nib 'ListCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
       }
       
       fileprivate init() {}
@@ -789,6 +904,9 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "category-1", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'category-1' is used in nib 'QuestionAnswerCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "clip2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'clip2' is used in nib 'QuestionAnswerCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "commentCount3", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'commentCount3' is used in nib 'QuestionAnswerCell', but couldn't be loaded.") }
         if UIKit.UIImage(named: "placeholderImage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'placeholderImage' is used in nib 'QuestionAnswerCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
@@ -797,7 +915,7 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _SummaryCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+    struct _SummaryCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
       typealias ReusableType = SummaryCell
       
       let bundle = R.hostingBundle
@@ -806,6 +924,12 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SummaryCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SummaryCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "clip", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'clip' is used in nib 'SummaryCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
       }
       
       fileprivate init() {}
@@ -965,15 +1089,16 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "InfoInquiry", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'InfoInquiry' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "addComment", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'addComment' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "clip", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'clip' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "info", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'info' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "inquiry4", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'inquiry4' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "left", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'left' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "profile2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'profile2' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "right", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'right' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "safari5", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'safari5' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "search", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'search' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "sos-downsize", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'sos-downsize' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.main().browseViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browseViewController' could not be loaded from storyboard 'Main' as 'BrowseViewController'.") }

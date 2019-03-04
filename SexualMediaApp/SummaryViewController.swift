@@ -933,6 +933,8 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                     print("Error removing document: \(err)")
                 } else {
                     print("Document successfully removed!")
+                    
+                    self.updateCommenterIDs()
                 }
             }
             
@@ -948,6 +950,30 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         
         self.present(alert, animated: true, completion: nil)
 
+    }
+    
+    func updateCommenterIDs() {
+        if let user = Auth.auth().currentUser {
+            //"articleData"コレクションの編集。commentの数を確認できるようにするため。
+            var newCommenterIDs:[String] = receiveCellViewModel!.commenterIDs
+            
+            if newCommenterIDs.contains(user.uid) {
+                newCommenterIDs.remove(at: newCommenterIDs.index(of: user.uid)!)
+            }
+            
+            let includingNewCommenterData = [
+                "commenterIDs":newCommenterIDs
+            ]
+            let ref2 = Firestore.firestore().collection("articleData").document(receiveCellViewModel!.id!)
+            ref2.updateData(includingNewCommenterData) { err in
+                if let err = err {
+                    print("updateData(includingCommenterData) Error adding document: \(err)")
+                } else {
+                    //documentは必ず存在するから、アップデートのみの処理で良い。
+                    print("updateData(includingCommenterData) Document successfully written!")
+                }
+            }
+        }
     }
     
     @objc func editButton(sender:UIButton, event:UIEvent) {
