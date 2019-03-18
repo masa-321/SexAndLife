@@ -24,7 +24,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var imageView: EnhancedCircleImageView!{
         didSet{
-            imageView.sd_setImage(with: URL(string: profileData!.pictureUrl!), placeholderImage: UIImage(named: "profile2"))
+            imageView.sd_setImage(with: URL(string: profileData!.pictureUrl!), placeholderImage: UIImage(named: "profile4"))
         }
     }
     
@@ -52,8 +52,31 @@ class CommentViewController: UIViewController, UITextViewDelegate {
                 //すでに記事にコメントしたものがあれば、編集から再開する。そのためのpostedCommentData
                 if postedCommentData == nil {
                     textView.text = savedText
+                    let commentNum = textView.text.count
+                    if commentNum <= 289 {
+                        commentNumLabel.text = "残り " + String(300 - commentNum)
+                        commentNumLabel.textColor = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1)
+                    } else if commentNum > 289 && commentNum <= 300{
+                        commentNumLabel.text = "残り " + String(300 - commentNum)
+                        commentNumLabel.textColor = .orange
+                    } else {
+                        commentNumLabel.text = "残り 0"
+                        commentNumLabel.textColor = .red
+                    }
+                    
                 } else {
                     textView.text = postedCommentData!.commentText
+                    let commentNum = textView.text.count
+                    if commentNum <= 289 {
+                        commentNumLabel.text = "残り " + String(300 - commentNum)
+                        commentNumLabel.textColor = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1)
+                    } else if commentNum > 289 && commentNum <= 300{
+                        commentNumLabel.text = "残り " + String(300 - commentNum)
+                        commentNumLabel.textColor = .orange
+                    } else {
+                        commentNumLabel.text = "残り 0"
+                        commentNumLabel.textColor = .red
+                    }
                 }
             }
         }
@@ -76,6 +99,8 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         }
     }
 
+    @IBOutlet weak var commentNumLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -247,6 +272,31 @@ class CommentViewController: UIViewController, UITextViewDelegate {
     //編集中でも情報を送ることができた。
     func textViewDidChange(_ textView: UITextView) {
        // masterViewPointer?.profileData?.profile = self.textView.text
+        
+        //文字数をカウントし、残りの文字数を描画する。
+        let commentNum = textView.text.count
+        //残りの文字数に応じて、ラベルの色を変える。
+        if commentNum <= 289 {
+            commentNumLabel.text = "残り " + String(300 - commentNum)
+            commentNumLabel.textColor = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1)
+        } else if commentNum > 289 && commentNum <= 300{
+            commentNumLabel.text = "残り " + String(300 - commentNum)
+            commentNumLabel.textColor = .orange
+        } else {
+            commentNumLabel.text = "残り 0"
+            commentNumLabel.textColor = .red
+        }
+        
+        //文字数制限を加える
+        let beforeStr: String = textView.text // 文字列をあらかじめ取得しておく
+        if textView.text.count > 299 { // 300字を超えた時
+            // 以下，範囲指定する
+            let zero = beforeStr.startIndex
+            let start = beforeStr.index(zero, offsetBy: 0)
+            let end = beforeStr.index(zero, offsetBy: 299)
+            textView.text = String(beforeStr[start...end])
+        }
+        
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

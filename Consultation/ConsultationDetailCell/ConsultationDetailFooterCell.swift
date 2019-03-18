@@ -1,16 +1,18 @@
 //
-//  CommentEmptyCell.swift
+//  ConsultationDetailFooterCell.swift
 //  SexualMediaApp
 //
-//  Created by Masahiro Atarashi on 2019/01/26.
+//  Created by Masahiro Atarashi on 2019/03/05.
 //  Copyright © 2019 Masahiro Atarashi. All rights reserved.
 //
 
 import UIKit
 
-class CommentEmptyCell: UITableViewCell {
+class ConsultationDetailFooterCell: UITableViewCell {
+    
+    //var masterViewPointer:ConsultationDetailViewController?
 
-    @IBOutlet weak var formLabel: UILabel!
+    @IBOutlet weak var browseButton: RoundedButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +24,4 @@ class CommentEmptyCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

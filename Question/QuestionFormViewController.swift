@@ -32,6 +32,19 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
         didSet{
             if let savedText = UserDefaults.standard.object(forKey: "question") as? String{
                 textView.text = savedText
+                let commentNum = textView.text.count
+                //残りの文字数に応じて、ラベルの色を変える。
+                if commentNum <= 69 {
+                    commentNumLabel.text = "残り " + String(80 - commentNum)
+                    commentNumLabel.textColor = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1)
+                } else if commentNum > 69 && commentNum <= 80{
+                    commentNumLabel.text = "残り " + String(80 - commentNum)
+                    commentNumLabel.textColor = .orange
+                } else {
+                    commentNumLabel.text = "残り 0"
+                    commentNumLabel.textColor = .red
+                }
+                
             }
         }
     }
@@ -51,6 +64,9 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
             lowerView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         }
     }
+    
+    @IBOutlet weak var commentNumLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,6 +151,31 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
     //編集中でも情報を送ることができた。
     func textViewDidChange(_ textView: UITextView) {
         // masterViewPointer?.profileData?.profile = self.textView.text
+        
+        //文字数をカウントし、残りの文字数を描画する。
+        let commentNum = textView.text.count
+        //残りの文字数に応じて、ラベルの色を変える。
+        if commentNum <= 69 {
+            commentNumLabel.text = "残り " + String(80 - commentNum)
+            commentNumLabel.textColor = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1)
+        } else if commentNum > 69 && commentNum <= 80{
+            commentNumLabel.text = "残り " + String(80 - commentNum)
+            commentNumLabel.textColor = .orange
+        } else {
+            commentNumLabel.text = "残り 0"
+            commentNumLabel.textColor = .red
+        }
+        
+        
+        //文字数制限を加える
+        let beforeStr: String = textView.text // 文字列をあらかじめ取得しておく
+        if textView.text.count > 79 { // 80字を超えた時
+            // 以下，範囲指定する
+            let zero = beforeStr.startIndex
+            let start = beforeStr.index(zero, offsetBy: 0)
+            let end = beforeStr.index(zero, offsetBy: 79)
+            textView.text = String(beforeStr[start...end])
+        }
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

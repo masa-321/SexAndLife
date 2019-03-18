@@ -123,7 +123,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell:ProfileInfoCell = tableView.dequeueReusableCell(withIdentifier: "ProfileInfoCell", for:indexPath) as! ProfileInfoCell
             cell.setCellInfo(receivedUserId: self.receivedUserId)
             cell.masterViewPointer = self
-            cell.selectionStyle = .none
+            cell.selectionStyle = .none//xibファイルやstoryboadのselectionをnoneにすることでも設定できる。
             cell.receivedUserId = self.receivedUserId
             //cell.followButton.addTarget(self, action: #selector(followUnfollow(sender:event:)), for: UIControl.Event.touchUpInside)
            
@@ -504,7 +504,7 @@ class ProfileInfoCell:UITableViewCell {
     
     
     func setCellInfo2(profileData:Profile) {
-        self.profileImage.sd_setImage(with: URL(string: profileData.pictureUrl!), placeholderImage: UIImage(named: "profile2"))
+        self.profileImage.sd_setImage(with: URL(string: profileData.pictureUrl!), placeholderImage: UIImage(named: "profile4"))
         self.nameLabel.text = profileData.name
         if profileData.employment != "" {
             //self.employmentAndOccupationLabel.text = "\(self.profileData!.employment) \(self.profileData!.occupation)"

@@ -116,7 +116,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile2" translatesAutoresizingMaskIntoConstraints="NO" id="ejO-Hd-oJq" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile4" translatesAutoresizingMaskIntoConstraints="NO" id="ejO-Hd-oJq" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
                                 <rect key="frame" x="10" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="DXK-Jg-GO8"/>
@@ -178,6 +178,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="profile2" width="512" height="512"/>
+        <image name="profile4" width="495" height="495"/>
     </resources>
 </document>

@@ -17,8 +17,6 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     //var infoTitleBox = [String]()
     
-   
-    
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.delegate = self

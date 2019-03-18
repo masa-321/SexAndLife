@@ -74,6 +74,13 @@
 		5F875637221ECDEC009A8EF0 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F875636221ECDEC009A8EF0 /* QuestionCell.swift */; };
 		5F87563B221FD963009A8EF0 /* QuestionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87563A221FD963009A8EF0 /* QuestionFormViewController.swift */; };
 		5FB49027222CFF1B00594856 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB49026222CFF1B00594856 /* QuestionData.swift */; };
+		5FB4902B222E5A0300594856 /* ConsultationDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB49029222E5A0300594856 /* ConsultationDetailHeaderCell.swift */; };
+		5FB4902C222E5A0300594856 /* ConsultationDetailHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4902A222E5A0300594856 /* ConsultationDetailHeaderCell.xib */; };
+		5FB4902F222E5A2D00594856 /* ConsultationDetailBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4902D222E5A2D00594856 /* ConsultationDetailBodyCell.swift */; };
+		5FB49030222E5A2D00594856 /* ConsultationDetailBodyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4902E222E5A2D00594856 /* ConsultationDetailBodyCell.xib */; };
+		5FB49033222E5A4100594856 /* ConsultationDetailFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB49031222E5A4100594856 /* ConsultationDetailFooterCell.swift */; };
+		5FB49034222E5A4100594856 /* ConsultationDetailFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB49032222E5A4100594856 /* ConsultationDetailFooterCell.xib */; };
+		5FB490362230F5F500594856 /* SortingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB490352230F5F500594856 /* SortingViewController.swift */; };
 		5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */; };
 		5FEDC02E21E05C3F006A3563 /* ConsultationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */; };
 		5FEDC03021E06055006A3563 /* ConsultationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEDC02F21E06055006A3563 /* ConsultationModel.swift */; };
@@ -171,6 +178,13 @@
 		5F875636221ECDEC009A8EF0 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		5F87563A221FD963009A8EF0 /* QuestionFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFormViewController.swift; sourceTree = "<group>"; };
 		5FB49026222CFF1B00594856 /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
+		5FB49029222E5A0300594856 /* ConsultationDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationDetailHeaderCell.swift; sourceTree = "<group>"; };
+		5FB4902A222E5A0300594856 /* ConsultationDetailHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsultationDetailHeaderCell.xib; sourceTree = "<group>"; };
+		5FB4902D222E5A2D00594856 /* ConsultationDetailBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationDetailBodyCell.swift; sourceTree = "<group>"; };
+		5FB4902E222E5A2D00594856 /* ConsultationDetailBodyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsultationDetailBodyCell.xib; sourceTree = "<group>"; };
+		5FB49031222E5A4100594856 /* ConsultationDetailFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationDetailFooterCell.swift; sourceTree = "<group>"; };
+		5FB49032222E5A4100594856 /* ConsultationDetailFooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsultationDetailFooterCell.xib; sourceTree = "<group>"; };
+		5FB490352230F5F500594856 /* SortingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingViewController.swift; sourceTree = "<group>"; };
 		5FEDC02B21E05A6A006A3563 /* ConsultationCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationCollectionCell.swift; sourceTree = "<group>"; };
 		5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationItemCell.swift; sourceTree = "<group>"; };
 		5FEDC02F21E06055006A3563 /* ConsultationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationModel.swift; sourceTree = "<group>"; };
@@ -349,6 +363,7 @@
 			children = (
 				5F875634221EA731009A8EF0 /* QuestionViewController.swift */,
 				5F87563A221FD963009A8EF0 /* QuestionFormViewController.swift */,
+				5FB490352230F5F500594856 /* SortingViewController.swift */,
 				5F875636221ECDEC009A8EF0 /* QuestionCell.swift */,
 			);
 			path = Question;
@@ -376,6 +391,19 @@
 			path = "Profile's Cell";
 			sourceTree = "<group>";
 		};
+		5FB49028222E599F00594856 /* ConsultationDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				5FB49029222E5A0300594856 /* ConsultationDetailHeaderCell.swift */,
+				5FB4902A222E5A0300594856 /* ConsultationDetailHeaderCell.xib */,
+				5FB4902D222E5A2D00594856 /* ConsultationDetailBodyCell.swift */,
+				5FB4902E222E5A2D00594856 /* ConsultationDetailBodyCell.xib */,
+				5FB49031222E5A4100594856 /* ConsultationDetailFooterCell.swift */,
+				5FB49032222E5A4100594856 /* ConsultationDetailFooterCell.xib */,
+			);
+			path = ConsultationDetailCell;
+			sourceTree = "<group>";
+		};
 		5FEDC02A21E059E2006A3563 /* Consultation */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +413,7 @@
 				5FEDC02D21E05C3F006A3563 /* ConsultationItemCell.swift */,
 				5FEDC02F21E06055006A3563 /* ConsultationModel.swift */,
 				5FEDC03D21E333FE006A3563 /* ConsultationDetailViewController.swift */,
+				5FB49028222E599F00594856 /* ConsultationDetailCell */,
 				5F48750121FAB5BB00190E75 /* BrowseConsultationViewController.swift */,
 			);
 			path = Consultation;
@@ -467,7 +496,9 @@
 				105184412165992100EA36BD /* LaunchScreen.storyboard in Resources */,
 				500485AF2170372C0062C75F /* InfoCell.xib in Resources */,
 				1051843E2165992100EA36BD /* Assets.xcassets in Resources */,
+				5FB49030222E5A2D00594856 /* ConsultationDetailBodyCell.xib in Resources */,
 				5FEDC03821E1D3D5006A3563 /* QuestionAnswerCell.xib in Resources */,
+				5FB4902C222E5A0300594856 /* ConsultationDetailHeaderCell.xib in Resources */,
 				5FEDC03C21E1E2E8006A3563 /* ChannelCell.xib in Resources */,
 				5F48750621FB60CC00190E75 /* CommentEmptyCell.xib in Resources */,
 				509B4B8C216E1C3E006F239C /* Info.storyboard in Resources */,
@@ -476,6 +507,7 @@
 				5F6DF6C721F742E60010085C /* Tutorial.storyboard in Resources */,
 				5F6A1FB021EC2489009AD79A /* Consultation.storyboard in Resources */,
 				50511DDD21878626003011CC /* SummaryCell.xib in Resources */,
+				5FB49034222E5A4100594856 /* ConsultationDetailFooterCell.xib in Resources */,
 				50E9C8E52189F454006F567E /* CommentTableViewCell.xib in Resources */,
 				503C98FD2181432E00646A8B /* ListCell.xib in Resources */,
 				5F875632221EA60F009A8EF0 /* Question.storyboard in Resources */,
@@ -627,6 +659,7 @@
 				10AB5C79216A5FCE00EB5E61 /* CoverFlow.swift in Sources */,
 				5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */,
 				1051844F21659B0500EA36BD /* Media3ViewController.swift in Sources */,
+				5FB4902B222E5A0300594856 /* ConsultationDetailHeaderCell.swift in Sources */,
 				50E9C8E42189F454006F567E /* CommentTableViewCell.swift in Sources */,
 				500485A92170311A0062C75F /* InfoViewModel.swift in Sources */,
 				5F6A1FF021EF1D2C009AD79A /* EnhancedCircleImageView.swift in Sources */,
@@ -637,6 +670,7 @@
 				5F086F8021EB2E670077B8E9 /* CAPSPageMenu.swift in Sources */,
 				1051844D21659AFB00EA36BD /* Media2ViewController.swift in Sources */,
 				1051844B21659AF200EA36BD /* Media1ViewController.swift in Sources */,
+				5FB490362230F5F500594856 /* SortingViewController.swift in Sources */,
 				50E9C8E7218AEF28006F567E /* LicenceViewController.swift in Sources */,
 				5FB49027222CFF1B00594856 /* QuestionData.swift in Sources */,
 				50511DDC21878626003011CC /* SummaryCell.swift in Sources */,
@@ -646,12 +680,14 @@
 				5F6A1FF921F36A92009AD79A /* ProfileCommentCell.swift in Sources */,
 				105184372165992000EA36BD /* AppDelegate.swift in Sources */,
 				50729B9C2185B5F800F0F3C5 /* LoginViewController.swift in Sources */,
+				5FB49033222E5A4100594856 /* ConsultationDetailFooterCell.swift in Sources */,
 				509B4B95216F0656006F239C /* ListCellViewModel.swift in Sources */,
 				500485AB217033B60062C75F /* InfoCellViewModel.swift in Sources */,
 				502F9AEA218D321B008E6037 /* Media7ViewController.swift in Sources */,
 				500485AE2170372C0062C75F /* InfoCell.swift in Sources */,
 				5FEDC03E21E333FE006A3563 /* ConsultationDetailViewController.swift in Sources */,
 				5F875635221EA731009A8EF0 /* QuestionViewController.swift in Sources */,
+				5FB4902F222E5A2D00594856 /* ConsultationDetailBodyCell.swift in Sources */,
 				50E9C8DA2188C9A3006F567E /* ConsultationViewController.swift in Sources */,
 				5F3883E321DDF6E800D95B72 /* R.generated.swift in Sources */,
 				5F87563B221FD963009A8EF0 /* QuestionFormViewController.swift in Sources */,

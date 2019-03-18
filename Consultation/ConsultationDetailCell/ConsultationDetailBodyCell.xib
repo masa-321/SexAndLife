@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ConsultationDetailBodyCell" rowHeight="74" id="KGk-i7-Jjw" customClass="ConsultationDetailBodyCell" customModule="SexualMediaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="73.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edu-XD-3kI">
+                        <rect key="frame" x="20" y="0.0" width="280" height="73.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hN8-oM-oBH">
+                                <rect key="frame" x="20" y="10" width="240" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwr-nL-dfh">
+                                <rect key="frame" x="20" y="36" width="240" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x92-oN-Mmn" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
+                                <rect key="frame" x="5" y="15" width="10" height="10"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="x92-oN-Mmn" secondAttribute="height" multiplier="1:1" id="oMG-FV-Z1G"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hN8-oM-oBH" firstAttribute="top" secondItem="edu-XD-3kI" secondAttribute="top" constant="10" id="3cg-zc-CGx"/>
+                            <constraint firstItem="hN8-oM-oBH" firstAttribute="leading" secondItem="edu-XD-3kI" secondAttribute="leading" constant="20" id="5AD-Uu-DcZ"/>
+                            <constraint firstItem="x92-oN-Mmn" firstAttribute="leading" secondItem="edu-XD-3kI" secondAttribute="leading" constant="5" id="88h-9w-jl6"/>
+                            <constraint firstItem="gwr-nL-dfh" firstAttribute="top" secondItem="hN8-oM-oBH" secondAttribute="bottom" constant="5" id="Lzp-sS-QIs"/>
+                            <constraint firstAttribute="trailing" secondItem="gwr-nL-dfh" secondAttribute="trailing" constant="20" id="cqC-96-G5j"/>
+                            <constraint firstItem="hN8-oM-oBH" firstAttribute="leading" secondItem="x92-oN-Mmn" secondAttribute="trailing" constant="5" id="iuw-qf-R9x"/>
+                            <constraint firstAttribute="trailing" secondItem="hN8-oM-oBH" secondAttribute="trailing" constant="20" id="oiY-Ld-1I3"/>
+                            <constraint firstItem="gwr-nL-dfh" firstAttribute="leading" secondItem="edu-XD-3kI" secondAttribute="leading" constant="20" id="ppH-bd-Hon"/>
+                            <constraint firstItem="hN8-oM-oBH" firstAttribute="centerY" secondItem="x92-oN-Mmn" secondAttribute="centerY" id="qyd-xH-MeM"/>
+                            <constraint firstAttribute="bottom" secondItem="gwr-nL-dfh" secondAttribute="bottom" constant="10" id="wnL-I9-Sn5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="edu-XD-3kI" secondAttribute="bottom" id="FrE-LX-mYb"/>
+                    <constraint firstItem="edu-XD-3kI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Gge-Um-A7x"/>
+                    <constraint firstAttribute="trailing" secondItem="edu-XD-3kI" secondAttribute="trailing" constant="20" id="blD-aR-aEf"/>
+                    <constraint firstItem="edu-XD-3kI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ddf-gy-Hz8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="contentDetailLabel" destination="gwr-nL-dfh" id="cwW-o4-1hu"/>
+                <outlet property="contentTitleLabel" destination="hN8-oM-oBH" id="7xe-Nv-21g"/>
+            </connections>
+            <point key="canvasLocation" x="105.59999999999999" y="35.082458770614693"/>
+        </tableViewCell>
+    </objects>
+</document>

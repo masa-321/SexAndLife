@@ -108,7 +108,7 @@ class ProfileCommentCell: UITableViewCell {
                     self.profileData = Profile(snapshot: querySnapshot!, myId: Auth.auth().currentUser!.uid)
                     //print("profileData",self.profileData)
 
-                    self.commenterImageView.sd_setImage(with: URL(string: self.profileData!.pictureUrl!),placeholderImage: UIImage(named: "profile2"))
+                    self.commenterImageView.sd_setImage(with: URL(string: self.profileData!.pictureUrl!),placeholderImage: UIImage(named: "profile4"))
                     self.commenterNameLabel.text = self.profileData?.name
 
                     if self.profileData?.employment != "" {

@@ -27,7 +27,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile2" translatesAutoresizingMaskIntoConstraints="NO" id="17S-Ic-5tg" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile4" translatesAutoresizingMaskIntoConstraints="NO" id="17S-Ic-5tg" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
                         <rect key="frame" x="20" y="16" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="4yJ-h3-sPD"/>
@@ -176,7 +176,7 @@
     <resources>
         <image name="editing" width="256" height="256"/>
         <image name="garbage" width="128" height="128"/>
-        <image name="profile2" width="512" height="512"/>
+        <image name="profile4" width="495" height="495"/>
         <image name="star" width="256" height="256"/>
         <image name="star2" width="256" height="256"/>
         <image name="star3" width="256" height="256"/>

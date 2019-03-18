@@ -16,6 +16,18 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var sectionTitles = [String]()
     var questionArray:[QuestionData] = []
     
+    @IBOutlet weak var sortingView: UIView!{
+        didSet {
+            sortingView.alpha = 0
+        }
+    }
+    
+    @IBOutlet weak var typeALabel: UILabel!
+    @IBOutlet weak var typeACheckImageView: UIImageView!
+    
+    @IBOutlet weak var typeBLabel: UILabel!
+    @IBOutlet weak var typeBCheckImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,19 +36,32 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.isTranslucent = true
-        navigationItem.title = "質問箱"
+        navigationItem.title = "匿名質問箱"
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.barTintColor = .white
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
-        sectionTitles = ["Ask Form","Questions"]
+        sectionTitles = ["","Ask Form"," Questions"]
+        
+        if UserDefaults.standard.object(forKey: "sortingMode") == nil || (UserDefaults.standard.object(forKey: "sortingMode") as? String) == "sortingTypeA" {
+            typeACheckImageView.isHidden = false
+            typeBCheckImageView.isHidden = true
+            typeALabel.font = UIFont.boldSystemFont(ofSize: 17)
+            
+        } else if (UserDefaults.standard.object(forKey: "sortingMode") as? String) == "sortingTypeB" {
+            typeACheckImageView.isHidden = true
+            typeBCheckImageView.isHidden = false
+            typeBLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        }
         
         fetchQuestions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
+        fetchQuestions()
+        
     }
     
     //★Questionsを引っ張ってくるためのコード
@@ -56,12 +81,18 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
                             let questionData = QuestionData(snapshot: snapshot, questionerID: document.documentID, myId: uid)
                             self.questionArray.insert(questionData, at: 0) //コメントと違って、記事のIDとの紐つけでスクリーニングする必要はない。
                             
-                            self.questionArray.sort(by: {$0.questionLikes.count > $1.questionLikes.count})//いいねの数順にソート
-                            print("self.questionArray","\(self.questionArray)") //デバッグ用
+                            if UserDefaults.standard.object(forKey: "sortingMode") == nil || (UserDefaults.standard.object(forKey: "sortingMode") as? String) == "sortingTypeA" {
+                                self.questionArray.sort(by: {$0.questionLikes.count > $1.questionLikes.count})//いいねの数順にソート
+                            } else if (UserDefaults.standard.object(forKey: "sortingMode") as? String) == "sortingTypeB" {
+                                self.questionArray.sort(by: {$0.questionTime! > $1.questionTime!}) //"Binary operator '>' cannot be applied to two 'Date?' operands"というエラーが出ていたが、オプショナルを解除したらうまくいった。
+                            }
+                            
+                            //print("self.questionArray","\(self.questionArray)") //デバッグ用
                         }
                     }
                     
                     self.tableView.reloadData()
+                    
                 }
             }
         }
@@ -86,34 +117,124 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        if section == 0 { //投稿のためのCell部分のHeader
-            return 50
+        if section == 0 { //説明のためのCell部分のHeader
+            return 0
+        } else if section == 1 { //投稿のためのCell部分のHeader
+            return 0
         } else { //if section == 1 質問が溜まっていく部分のHeader
             return 50
         }
     }
     
-    /*func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 { //投稿のためのCell部分のHeaderの中身
-            let headerView = UIView()
-            headerView.backgroundColor = .gray
-            return headerView
-        } else { //section == 1 質問が溜まっていく部分のHeaderの中身
-            let headerView = UIView()
-            return headerView
+    //普通にheaderを設置すると、下にスクロールするときに、上のheaderが残って気持ち悪い。それをなくすためのちょっとした工夫。要は一番上のSectionのFooterを次のSectionのHeaderの代わりとして使う。
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 { //説明のためのCell部分のHeader
+            return 50
+        } else if section == 1 { //投稿のためのCell部分のHeader
+            return 0
+        } else { //if section == 1 質問が溜まっていく部分のHeader
+            return 0
         }
-    }*/
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0||section == 1 { //DescriptionとAskのHeader設定。どのみちheightが0で外からは見えない。
+            return UIView()
+        } else { //section == 2 質問が溜まっていく部分のHeaderの中身
+            let section2HeaderView = UIView()
+            section2HeaderView.backgroundColor = UIColor.groupTableViewBackground
+            
+            //TitleLabelを作成し追加する
+            let section2TitleLabel = UILabel()
+            section2TitleLabel.text = "Questions"
+            section2TitleLabel.font = UIFont.boldSystemFont(ofSize: 17) //太字にした。
+            section2TitleLabel.frame = CGRect(x:15, y:10, width:160, height:30)
+            section2HeaderView.addSubview(section2TitleLabel)
+            
+            //Buttonを作成し追加する
+            let sortButton = UIButton()
+            sortButton.backgroundColor = .clear
+            sortButton.translatesAutoresizingMaskIntoConstraints = false //これを追加しないと、表示されなかった。
+            section2HeaderView.addSubview(sortButton)
+            sortButton.addTarget(self, action: #selector(popupSortingView(_:)), for: UIControl.Event.touchUpInside)
+            
+            
+            //AutoLayout
+            sortButton.widthAnchor.constraint(equalToConstant: 120).isActive = true //widthとheightはAutoLayoutの前でも問題ない。
+            sortButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            sortButton.centerYAnchor.constraint(equalTo: section2HeaderView.centerYAnchor).isActive = true
+            sortButton.trailingAnchor.constraint(equalTo: section2HeaderView.trailingAnchor, constant: -20.0).isActive = true
+            
+            //ImageViewを作成し追加する
+            let sortImageView = UIImageView()
+            sortImageView.image = UIImage.init(named: "sort")
+            sortImageView.translatesAutoresizingMaskIntoConstraints = false
+            section2HeaderView.addSubview(sortImageView)
+            
+            //AutoLayout
+            sortImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true //widthとheightはAutoLayoutの前でも問題ない。
+            sortImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            sortImageView.centerYAnchor.constraint(equalTo: section2HeaderView.centerYAnchor).isActive = true
+            sortImageView.trailingAnchor.constraint(equalTo: section2HeaderView.trailingAnchor, constant: -20.0).isActive = true
+            
+            //SortingModeのLabelを設置
+            let sortingModeLabel = UILabel()
+            sortingModeLabel.translatesAutoresizingMaskIntoConstraints = false
+            if UserDefaults.standard.object(forKey: "sortingMode") == nil || (UserDefaults.standard.object(forKey: "sortingMode") as? String) == "sortingTypeA" {
+                sortingModeLabel.text = "Popular"
+            } else if (UserDefaults.standard.object(forKey: "sortingMode") as? String) == "sortingTypeB" {
+                sortingModeLabel.text = "Recent"
+            }
+            sortingModeLabel.font = UIFont.boldSystemFont(ofSize: 16)
+            sortingModeLabel.textAlignment = NSTextAlignment.right
+            section2HeaderView.addSubview(sortingModeLabel)
+            
+            //AutoLayout
+            sortingModeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            sortingModeLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            sortingModeLabel.centerYAnchor.constraint(equalTo: section2HeaderView.centerYAnchor).isActive = true
+            sortingModeLabel.trailingAnchor.constraint(equalTo: sortImageView.leadingAnchor, constant: 0.0).isActive = true
+            
+            return section2HeaderView
+            
+        }
+    }
+    
+    @objc func popupSortingView(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options:UIView.AnimationOptions.curveEaseOut, animations: {
+            self.sortingView.alpha = 1.0
+            }, completion: nil)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            let section1HeaderView = UIView()
+            section1HeaderView.backgroundColor = UIColor.groupTableViewBackground
+            
+            //TitleLabelを作成し追加する
+            let section1TitleLabel = UILabel()
+            section1TitleLabel.text = "Ask Form"
+            section1TitleLabel.font = UIFont.boldSystemFont(ofSize: 17) //太字にした。
+            section1TitleLabel.frame = CGRect(x:15, y:10, width:160, height:30)
+            section1HeaderView.addSubview(section1TitleLabel)
+            
+            return section1HeaderView
+            
+        } else { //section == 1,2 どのみちheightは0で外からは見えない。
+            return UIView()
+        }
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 0||section == 1 { //DescriptionとAskのRowの数
             return 1
         } else { //if section == 1
-            print("questionArray.count:","\(questionArray.count)")
+            //print("questionArray.count:","\(questionArray.count)") デバッグ用
             return questionArray.count
             
         }
@@ -121,11 +242,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath)
+            return cell
+        } else if indexPath.section == 1 {
             let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "AskCell", for: indexPath)
             return cell
         } else { //indexPath.section == 1
 
-            print("cellForRowAtは呼ばれているよ！")
             let cell:QuestionCell = tableView.dequeueReusableCell(withIdentifier: "AskedCell", for: indexPath) as! QuestionCell
             cell.setQuestionCellInfo(questionData: questionArray[indexPath.row])
             cell.selectionStyle = .none
@@ -138,6 +261,8 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
+            
+        } else if indexPath.section == 1 {
             let vc:QuestionFormViewController = self.storyboard?.instantiateViewController(withIdentifier: "QuestionForm") as! QuestionFormViewController
             self.present(vc, animated: true, completion: nil)
         } else {
@@ -145,7 +270,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    //ボタンは現時点では設置していない。
+    //ボタンでも記入できるようにする
     @IBAction func QuestionFormButton(_ sender: Any) {
         let vc:QuestionFormViewController = self.storyboard?.instantiateViewController(withIdentifier: "QuestionForm") as! QuestionFormViewController
         self.present(vc, animated: true, completion: nil)
@@ -195,6 +320,42 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
+    }
+    
+    //★★★sortingするパート★★★//
+    
+    @IBAction func okButton(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options:UIView.AnimationOptions.curveEaseOut, animations: {
+            self.sortingView.alpha = 0.0
+        }, completion: nil)
+    }
+    
+    @IBAction func sortingTypeA(_ sender: Any) {
+        UserDefaults.standard.set("sortingTypeA", forKey: "sortingMode")
+        typeACheckImageView.isHidden = false
+        typeALabel.font = UIFont.boldSystemFont(ofSize: 17)
+            
+        typeBCheckImageView.isHidden = true
+        typeBLabel.font = UIFont.systemFont(ofSize: 17)
+        
+        self.fetchQuestions()
+        UIView.animate(withDuration: 0.3, delay: 0.0, options:UIView.AnimationOptions.curveEaseOut, animations: {
+            self.sortingView.alpha = 0.0
+        }, completion: nil)
+    }
+    
+    @IBAction func sortingTypeB(_ sender: Any) {
+        UserDefaults.standard.set("sortingTypeB", forKey: "sortingMode")
+        typeACheckImageView.isHidden = true
+        typeALabel.font = UIFont.systemFont(ofSize: 17)
+        
+        typeBCheckImageView.isHidden = false
+        typeBLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        
+        self.fetchQuestions()
+        UIView.animate(withDuration: 0.3, delay: 0.0, options:UIView.AnimationOptions.curveEaseOut, animations: {
+            self.sortingView.alpha = 0.0
+        }, completion: nil)
     }
 
 }

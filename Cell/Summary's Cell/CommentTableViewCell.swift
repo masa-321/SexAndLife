@@ -97,7 +97,8 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
             //clipButtonLabel.textColor = .black
         } else {
             likeButton.backgroundColor = .clear
-            likeButton.titleLabel?.font = .systemFont(ofSize: 17.0)
+            likeButton.titleLabel?.font = .systemFont(ofSize: 17.0) //デフォルト（太字ではない）
+            likeNumberLabel.font = .systemFont(ofSize: 17.0)
             //likeNumberLabel.font = UIFont.labelFontSize
             //clipButtonLabel.textColor = .white
         }
@@ -118,7 +119,7 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
                         self.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
                          //print("profileData",self.profileData)
                         
-                         self.commenterImageView.sd_setImage(with: URL(string: self.profileData!.pictureUrl!),placeholderImage: UIImage(named: "profile2"))
+                         self.commenterImageView.sd_setImage(with: URL(string: self.profileData!.pictureUrl!),placeholderImage: UIImage(named: "profile4"))
                          self.commenterNameLabel.text = self.profileData?.name
                         
                          if self.profileData?.employment != "" {

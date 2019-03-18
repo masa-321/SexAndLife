@@ -703,7 +703,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TaJ-Hj-2bc">
                                 <rect key="frame" x="10" y="153.5" width="355" height="80"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile2" translatesAutoresizingMaskIntoConstraints="NO" id="U1u-15-bKA" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile4" translatesAutoresizingMaskIntoConstraints="NO" id="U1u-15-bKA" customClass="EnhancedCircleImageView" customModule="SexualMediaApp" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="1cb-iF-r85"/>
@@ -796,14 +796,26 @@
                                             <action selector="clearButton:" destination="gPF-hw-DaV" eventType="touchUpInside" id="OM7-iF-QTY"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="残り 300" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJ7-jr-VIT">
+                                        <rect key="frame" x="260" y="125" width="80" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="6YV-54-0SI"/>
+                                            <constraint firstAttribute="width" constant="80" id="EUR-Qi-IUm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Us2-TX-ShP" firstAttribute="top" secondItem="pJ7-jr-VIT" secondAttribute="bottom" constant="15" id="5Ex-qt-ZDZ"/>
                                     <constraint firstAttribute="height" constant="200" id="Fid-HA-Ybd"/>
                                     <constraint firstItem="D2C-yg-Ecc" firstAttribute="top" secondItem="Sb6-3M-9DG" secondAttribute="top" constant="10" id="JAz-U4-Fq4"/>
                                     <constraint firstAttribute="trailing" secondItem="Us2-TX-ShP" secondAttribute="trailing" constant="15" id="V8t-Rg-f20"/>
                                     <constraint firstAttribute="bottom" secondItem="y4t-Rm-Ilw" secondAttribute="bottom" constant="10" id="dLg-Dn-LYS"/>
                                     <constraint firstAttribute="trailing" secondItem="D2C-yg-Ecc" secondAttribute="trailing" constant="10" id="e3X-xK-bsu"/>
+                                    <constraint firstAttribute="trailing" secondItem="pJ7-jr-VIT" secondAttribute="trailing" constant="15" id="eAn-Dl-6t4"/>
                                     <constraint firstItem="y4t-Rm-Ilw" firstAttribute="leading" secondItem="Sb6-3M-9DG" secondAttribute="leading" constant="15" id="kaq-Mh-aIl"/>
                                     <constraint firstAttribute="bottom" secondItem="D2C-yg-Ecc" secondAttribute="bottom" constant="50" id="l9M-bN-sBX"/>
                                     <constraint firstItem="D2C-yg-Ecc" firstAttribute="leading" secondItem="Sb6-3M-9DG" secondAttribute="leading" constant="10" id="o5S-F8-GvX"/>
@@ -828,6 +840,7 @@
                         <viewLayoutGuide key="safeArea" id="o3h-vv-iJM"/>
                     </view>
                     <connections>
+                        <outlet property="commentNumLabel" destination="pJ7-jr-VIT" id="WCL-u6-rze"/>
                         <outlet property="employmentAndOccupationLabel" destination="H1C-eu-w4V" id="bJ8-aZ-d8S"/>
                         <outlet property="imageView" destination="U1u-15-bKA" id="Fb3-o1-4g8"/>
                         <outlet property="lowerView" destination="Sb6-3M-9DG" id="VM0-J4-vFX"/>
@@ -865,7 +878,7 @@
         <image name="info" width="300" height="300"/>
         <image name="inquiry4" width="566.557373046875" height="566.557373046875"/>
         <image name="left" width="256" height="256"/>
-        <image name="profile2" width="512" height="512"/>
+        <image name="profile4" width="495" height="495"/>
         <image name="right" width="512" height="512"/>
         <image name="safari5" width="29" height="29"/>
         <image name="search" width="256" height="256"/>

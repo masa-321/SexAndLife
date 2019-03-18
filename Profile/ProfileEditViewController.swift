@@ -48,7 +48,7 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         if indexPath.row == 0 {
             let cell:ImageCell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for:indexPath) as! ImageCell
             if let profileData = self.profileData {
-                cell.profileImage.sd_setImage(with: URL(string: profileData.pictureUrl!), placeholderImage: UIImage(named: "profile2"))
+                cell.profileImage.sd_setImage(with: URL(string: profileData.pictureUrl!), placeholderImage: UIImage(named: "profile4"))
             }
             cell.IDLabel.text = self.profileData!.id
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
