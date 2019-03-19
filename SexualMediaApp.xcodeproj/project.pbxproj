@@ -19,6 +19,7 @@
 		1051845121659B1000EA36BD /* Media4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051845021659B1000EA36BD /* Media4ViewController.swift */; };
 		1051845321659B1B00EA36BD /* Media5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051845221659B1B00EA36BD /* Media5ViewController.swift */; };
 		10AB5C79216A5FCE00EB5E61 /* CoverFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AB5C78216A5FCE00EB5E61 /* CoverFlow.swift */; };
+		2209A38B224085710078583F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2209A38A224085710078583F /* GoogleService-Info.plist */; };
 		500485A92170311A0062C75F /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500485A82170311A0062C75F /* InfoViewModel.swift */; };
 		500485AB217033B60062C75F /* InfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500485AA217033B60062C75F /* InfoCellViewModel.swift */; };
 		500485AE2170372C0062C75F /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500485AC2170372C0062C75F /* InfoCell.swift */; };
@@ -44,7 +45,6 @@
 		509B4B7F216AEA78006F239C /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B4B7E216AEA78006F239C /* BrowseViewController.swift */; };
 		509B4B81216CD962006F239C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B4B80216CD962006F239C /* InfoViewController.swift */; };
 		509B4B8C216E1C3E006F239C /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 509B4B8B216E1C3E006F239C /* Info.storyboard */; };
-		509B4B92216F04AE006F239C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 509B4B91216F04AE006F239C /* GoogleService-Info.plist */; };
 		509B4B95216F0656006F239C /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B4B94216F0656006F239C /* ListCellViewModel.swift */; };
 		50E9C8DA2188C9A3006F567E /* ConsultationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9C8D92188C9A3006F567E /* ConsultationViewController.swift */; };
 		50E9C8E42189F454006F567E /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9C8E22189F454006F567E /* CommentTableViewCell.swift */; };
@@ -122,6 +122,7 @@
 		1051845021659B1000EA36BD /* Media4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media4ViewController.swift; sourceTree = "<group>"; };
 		1051845221659B1B00EA36BD /* Media5ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media5ViewController.swift; sourceTree = "<group>"; };
 		10AB5C78216A5FCE00EB5E61 /* CoverFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlow.swift; sourceTree = "<group>"; };
+		2209A38A224085710078583F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27C8B530C18E14604C5547E7 /* Pods_SexualMediaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SexualMediaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500485A82170311A0062C75F /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
 		500485AA217033B60062C75F /* InfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCellViewModel.swift; sourceTree = "<group>"; };
@@ -148,7 +149,6 @@
 		509B4B7E216AEA78006F239C /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		509B4B80216CD962006F239C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		509B4B8B216E1C3E006F239C /* Info.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
-		509B4B91216F04AE006F239C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		509B4B94216F0656006F239C /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
 		50E9C8D92188C9A3006F567E /* ConsultationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationViewController.swift; sourceTree = "<group>"; };
 		50E9C8E22189F454006F567E /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 				5F3883E221DDF6E700D95B72 /* R.generated.swift */,
 				1051843D2165992100EA36BD /* Assets.xcassets */,
 				105184422165992100EA36BD /* Info.plist */,
-				509B4B91216F04AE006F239C /* GoogleService-Info.plist */,
+				2209A38A224085710078583F /* GoogleService-Info.plist */,
 			);
 			path = SexualMediaApp;
 			sourceTree = "<group>";
@@ -442,7 +442,6 @@
 				105184312165992000EA36BD /* Resources */,
 				10AB5C67216A5A2200EB5E61 /* Embed Frameworks */,
 				DD1964897E4D967430C03FB2 /* [CP] Embed Pods Frameworks */,
-				578970BC5B0A6E34318CE703 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -503,12 +502,12 @@
 				5F48750621FB60CC00190E75 /* CommentEmptyCell.xib in Resources */,
 				509B4B8C216E1C3E006F239C /* Info.storyboard in Resources */,
 				1051843C2165992000EA36BD /* Main.storyboard in Resources */,
-				509B4B92216F04AE006F239C /* GoogleService-Info.plist in Resources */,
 				5F6DF6C721F742E60010085C /* Tutorial.storyboard in Resources */,
 				5F6A1FB021EC2489009AD79A /* Consultation.storyboard in Resources */,
 				50511DDD21878626003011CC /* SummaryCell.xib in Resources */,
 				5FB49034222E5A4100594856 /* ConsultationDetailFooterCell.xib in Resources */,
 				50E9C8E52189F454006F567E /* CommentTableViewCell.xib in Resources */,
+				2209A38B224085710078583F /* GoogleService-Info.plist in Resources */,
 				503C98FD2181432E00646A8B /* ListCell.xib in Resources */,
 				5F875632221EA60F009A8EF0 /* Question.storyboard in Resources */,
 			);
@@ -560,28 +559,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/SexualMediaApp/R.generated.swift\"\n#/usr/local/bin/carthage copy-frameworks 消去\n";
 		};
-		578970BC5B0A6E34318CE703 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DD1964897E4D967430C03FB2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -592,7 +569,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/CTFeedback/CTFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -614,7 +591,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
@@ -855,7 +832,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DFT9PS22CQ;
+				DEVELOPMENT_TEAM = 728MNT2Y45;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -882,7 +859,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DFT9PS22CQ;
+				DEVELOPMENT_TEAM = 728MNT2Y45;
 				INFOPLIST_FILE = SexualMediaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
