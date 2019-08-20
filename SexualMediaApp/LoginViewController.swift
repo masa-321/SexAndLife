@@ -12,22 +12,97 @@ import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
     
     var sex = ["男性","女性","その他"]
+    var lgbtqList = ["その他","レズビアン","ゲイ","バイセクシュアル","トランスジェンダー","クエスチョニング"]
     var age = ["19歳以下", "20~24歳", "25~29歳", "30~39歳", "40~49歳", "50歳以上"]
     var userSex = ""
     var userAge = ""
-
     
+    //★lgbtqを選ぶpopupView★
+    @IBOutlet weak var popupView: UIView!{
+        didSet {
+            popupView.alpha = 0
+        }
+    }
+    
+    @IBOutlet weak var sexpickerView: UIPickerView!{
+        didSet{
+            sexpickerView.layer.cornerRadius = 15.0
+            sexpickerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        }
+    }
+    @IBOutlet weak var sexpickerSupportView: UIView!{
+        didSet{
+            sexpickerSupportView.layer.cornerRadius = 15.0
+            sexpickerSupportView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return lgbtqList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String? {
+        
+        return lgbtqList[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView,didSelectRow row: Int,inComponent component: Int) {
+        //選んだ後の処理を記述する
+        //masterViewPointer?.profileData?.sex = dataList[row]
+        self.userSex = lgbtqList[row]
+        otherButtonLabel.text = self.userSex
+        //otherButtonLabel.textAlignment = NSTextAlignment.center
+        
+        
+        if self.userSex == "レズビアン" {
+            otherButtonLabel.font = UIFont.systemFont(ofSize: 14)
+        } else if self.userSex == "トランスジェンダー" {
+            otherButtonLabel.font = UIFont.systemFont(ofSize: 9)
+            
+        }else if self.userSex == "バイセクシュアル" || self.userSex == "クエスチョニング" {
+            otherButtonLabel.font = UIFont.systemFont(ofSize: 10)
+        } else {
+            otherButtonLabel.font = UIFont.systemFont(ofSize: 17)
+        }
+        
+        print(userSex)
+        
+    }
+    
+    @IBAction func popdownButton(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options:UIView.AnimationOptions.curveEaseOut, animations: {
+            self.popupView.alpha = 0.0
+        }, completion: nil)
+        otherButtonLabel.text = self.userSex //念の為
+    }
+    
+    @IBAction func okButton(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options:UIView.AnimationOptions.curveEaseOut, animations: {
+            self.popupView.alpha = 0.0
+        }, completion: nil)
+    }
+    
+    
+    //★性別と年齢を選ぶ★
     @IBOutlet weak var basementView: UIView!{
         didSet {
             basementView.layer.cornerRadius = 15.0
         }
     }
+    
+    
+    
     @IBOutlet weak var upperView: UIView!{
         didSet {
             upperView.layer.cornerRadius = 15.0
+            //
             upperView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             
             upperView.backgroundColor = UIColor(red:0.95, green:1.00, blue:0.36, alpha:1.0)
@@ -53,23 +128,34 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var maleButton: RoundedButton!
     var maleButtonSelected:Bool = false
     @IBAction func maleButton(_ sender: Any) {
-        userSex = sex[0]
+        
         if maleButtonSelected == false {
             maleButton.backgroundColor = .gray
             maleButton.setTitleColor(.white, for: .normal)
             maleButtonSelected = true
+            
+            //userSexを"男性"へ
+            userSex = sex[0]
+            
+            //その他の下のラベルをリセット
+            otherButtonLabel.text = "その他"
+            otherButtonLabel.font = UIFont.systemFont(ofSize: 17)
             
             femaleButton.backgroundColor = .white
             femaleButton.setTitleColor(.darkGray, for: .normal)
             femaleButtonSelected = false
             
             otherButton.backgroundColor = .white
-            otherButton.setTitleColor(.darkGray, for: .normal)
+            //otherButton.setTitleColor(.darkGray, for: .normal)
+            otherButtonLabel.textColor = .darkGray
             otherButtonSelected = false
         } else { //true時
             maleButton.backgroundColor = .white
             maleButton.setTitleColor(.darkGray, for: .normal)
             maleButtonSelected = false
+            
+            //userSexをリセット
+            userSex = ""
         }
     }
     
@@ -84,31 +170,55 @@ class LoginViewController: UIViewController {
             femaleButton.setTitleColor(.white, for: .normal)
             femaleButtonSelected = true
             
+            //userSexを"女性"へ
+            userSex = sex[1]
+            
+            //その他の下のラベルをリセット
+            otherButtonLabel.text = "その他"
+            otherButtonLabel.font = UIFont.systemFont(ofSize: 17)
+            
             maleButton.backgroundColor = .white
             maleButton.setTitleColor(.darkGray, for: .normal)
             maleButtonSelected = false
             
             otherButton.backgroundColor = .white
-            otherButton.setTitleColor(.darkGray, for: .normal)
+            //otherButton.setTitleColor(.darkGray, for: .normal)
+            otherButtonLabel.textColor = .darkGray
             otherButtonSelected = false
+            
+            print(userSex)
         } else { //true時
             femaleButton.backgroundColor = .white
             femaleButton.setTitleColor(.darkGray, for: .normal)
             femaleButtonSelected = false
+            
+            //userSexをリセット
+            userSex = ""
+            print(userSex)
         }
     }
     
     
     
     @IBOutlet weak var otherButton: RoundedButton!
+    @IBOutlet weak var otherButtonLabel: UILabel!
+    
     var otherButtonSelected:Bool = false
     
     @IBAction func otherButton(_ sender: Any) {
-        userSex = sex[2]
         if otherButtonSelected == false {
             otherButton.backgroundColor = .gray
-            otherButton.setTitleColor(.white, for: .normal)
+            //otherButton.setTitleColor(.white, for: .normal)
+            otherButtonLabel.textColor = .white
             otherButtonSelected = true
+            
+            //userSexを"その他"へ
+            userSex = sex[2]
+            
+            //popupViewをぬるっと表示させる
+            UIView.animate(withDuration: 0.3, delay: 0.0, options:UIView.AnimationOptions.curveEaseOut, animations: {
+                self.popupView.alpha = 1.0
+            }, completion: nil)
             
             maleButton.backgroundColor = .white
             maleButton.setTitleColor(.darkGray, for: .normal)
@@ -117,11 +227,22 @@ class LoginViewController: UIViewController {
             femaleButton.backgroundColor = .white
             femaleButton.setTitleColor(.darkGray, for: .normal)
             femaleButtonSelected = false
+            
+            print(userSex)
         } else { //true時
             otherButton.backgroundColor = .white
-            otherButton.setTitleColor(.darkGray, for: .normal)
+            //otherButton.setTitleColor(.darkGray, for: .normal)
+            otherButtonLabel.textColor = .darkGray
             otherButtonSelected = false
+            otherButtonLabel.text = "その他"
+            
+            //userSexをリセット
+            userSex = ""
+            
+            print(userSex)
         }
+        
+        
     }
     
     @IBOutlet weak var ageView: UIView!{
@@ -136,8 +257,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var age1Button: RoundedButton!
     var age1ButtonSelected:Bool = false
     @IBAction func age1Button(_ sender: Any) {
-        userAge = age[0]
+        
         if age1ButtonSelected == false {
+            
+            userAge = age[0]
+            
             age1Button.backgroundColor = .gray
             age1Button.setTitleColor(.white, for: .normal)
             age1ButtonSelected = true
@@ -162,6 +286,8 @@ class LoginViewController: UIViewController {
             age6Button.setTitleColor(.darkGray, for: .normal)
             age6ButtonSelected = false
         } else { //true時
+            userAge = ""
+            
             age1Button.backgroundColor = .white
             age1Button.setTitleColor(.darkGray, for: .normal)
             age1ButtonSelected = false
@@ -171,8 +297,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var age2Button: RoundedButton!
     var age2ButtonSelected:Bool = false
     @IBAction func age2Button(_ sender: Any) {
-        userAge = age[1]
+        
         if age2ButtonSelected == false {
+            userAge = age[1]
+            
             age2Button.backgroundColor = .gray
             age2Button.setTitleColor(.white, for: .normal)
             age2ButtonSelected = true
@@ -197,6 +325,8 @@ class LoginViewController: UIViewController {
             age6Button.setTitleColor(.darkGray, for: .normal)
             age6ButtonSelected = false
         } else { //true時
+            userAge = ""
+            
             age2Button.backgroundColor = .white
             age2Button.setTitleColor(.darkGray, for: .normal)
             age2ButtonSelected = false
@@ -206,8 +336,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var age3Button: RoundedButton!
     var age3ButtonSelected:Bool = false
     @IBAction func age3Button(_ sender: Any) {
-        userAge = age[2]
+        
         if age3ButtonSelected == false {
+            userAge = age[2]
+            
             age3Button.backgroundColor = .gray
             age3Button.setTitleColor(.white, for: .normal)
             age3ButtonSelected = true
@@ -232,6 +364,8 @@ class LoginViewController: UIViewController {
             age6Button.setTitleColor(.darkGray, for: .normal)
             age6ButtonSelected = false
         } else { //true時
+            userAge = ""
+            
             age3Button.backgroundColor = .white
             age3Button.setTitleColor(.darkGray, for: .normal)
             age3ButtonSelected = false
@@ -241,8 +375,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var age4Button: RoundedButton!
     var age4ButtonSelected:Bool = false
     @IBAction func age4Button(_ sender: Any) {
-        userAge = age[3]
+        
         if age4ButtonSelected == false {
+            userAge = age[3]
+            
             age4Button.backgroundColor = .gray
             age4Button.setTitleColor(.white, for: .normal)
             age4ButtonSelected = true
@@ -267,6 +403,8 @@ class LoginViewController: UIViewController {
             age6Button.setTitleColor(.darkGray, for: .normal)
             age6ButtonSelected = false
         } else { //true時
+            userAge = ""
+            
             age4Button.backgroundColor = .white
             age4Button.setTitleColor(.darkGray, for: .normal)
             age4ButtonSelected = false
@@ -276,8 +414,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var age5Button: RoundedButton!
     var age5ButtonSelected:Bool = false
     @IBAction func age5Button(_ sender: Any) {
-        userAge = age[4]
+        
         if age5ButtonSelected == false {
+            
+            userAge = age[4]
+            
             age5Button.backgroundColor = .gray
             age5Button.setTitleColor(.white, for: .normal)
             age5ButtonSelected = true
@@ -302,6 +443,8 @@ class LoginViewController: UIViewController {
             age6Button.setTitleColor(.darkGray, for: .normal)
             age6ButtonSelected = false
         } else { //true時
+            userAge = ""
+            
             age5Button.backgroundColor = .white
             age5Button.setTitleColor(.darkGray, for: .normal)
             age5ButtonSelected = false
@@ -311,8 +454,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var age6Button: RoundedButton!
     var age6ButtonSelected:Bool = false
     @IBAction func age6Button(_ sender: Any) {
-        userAge = age[5]
+        
         if age6ButtonSelected == false {
+            
+            userAge = age[5]
+            
             age6Button.backgroundColor = .gray
             age6Button.setTitleColor(.white, for: .normal)
             age6ButtonSelected = true
@@ -337,6 +483,8 @@ class LoginViewController: UIViewController {
             age5Button.setTitleColor(.darkGray, for: .normal)
             age5ButtonSelected = false
         } else { //true時
+            userAge = ""
+            
             age6Button.backgroundColor = .white
             age6Button.setTitleColor(.darkGray, for: .normal)
             age6ButtonSelected = false
@@ -453,6 +601,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         // Do any additional setup after loading the view.
+        sexpickerView.delegate = self
+        sexpickerView.dataSource = self
+        otherButtonLabel.text = "その他"
+        otherButtonLabel.textColor = .darkGray
     }
     
     override func viewDidDisappear(_ animated: Bool) {

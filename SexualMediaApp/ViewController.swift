@@ -89,9 +89,9 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         themeLabel_Array.append("健康のこと")
         
         controller5.masterViewPointer = self
-        controller5.title = "LGBTQ+"
+        controller5.title = "LGBTQ+(SOGI)"
         controllerArray.append(controller5)
-        themeLabel_Array.append("LGBTQ+")
+        themeLabel_Array.append("LGBTQ+(SOGI)")
         
         controller6.masterViewPointer = self
         controller6.title = "ライフプランニング"
