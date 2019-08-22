@@ -6,18 +6,27 @@ target 'SexualMediaApp' do
   use_frameworks!
 
   # Pods for SexualMediaApp
-  pod 'FSPagerView'
-  pod 'SDWebImage'
-  pod 'CTFeedback'
-  pod 'SVProgressHUD'
-  pod 'Firebase/Core'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Auth'
-  pod 'FirebaseDatabase'
-  pod 'FirebaseUI/Storage'
+  # pod installコマンドを使う限り、Podfile.lockに記載のversionからずれることはない。
+  # pod update [Pod名]で指定のライブラリをupdateさせることができる。
+  # ただし、Podfile.lockをgitに載せていないケースでは、ローカルで差分を生じさせないために、Podfileの方にversion指定をしておいた方が良い。
+  pod 'FSPagerView','0.8.2'
+  pod 'SDWebImage','4.4.3'
+  pod 'CTFeedback','1.1.1'
+  pod 'SVProgressHUD','2.2.5'
+  pod 'Firebase/Core','~> 5.1.10'
+  pod 'Firebase/Firestore','~> 0.16.1'
+  pod 'Firebase/Storage','~> 3.0.3'
+  pod 'Firebase/Auth','~> 5.2.0'
+  pod 'FirebaseDatabase','~> 5.0.4'
+  pod 'FirebaseUI/Storage','~> 5.2.2'
   pod 'R.swift','5.0.0'
   pod 'FBSDKLoginKit', '~> 4.38.0'
   pod 'FBSDKCoreKit', '~> 4.38.0'
-  pod 'ReadMoreTextView'
+  # 以下updateで指示されたコマンド
+  # pod 'FacebookSDK'
+  # pod 'FacebookSDK/LoginKit'
+  # pod 'FacebookSDK/ShareKit'
+  # pod 'FacebookSDK/PlacesKit'
+  # pod 'FBSDKMessengerShareKit'
+  pod 'ReadMoreTextView','3.0.1'
 end
