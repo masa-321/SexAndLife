@@ -22,6 +22,7 @@ target 'SexualMediaApp' do
   pod 'R.swift','5.0.0'
   pod 'FBSDKLoginKit', '~> 4.38.0'
   pod 'FBSDKCoreKit', '~> 4.38.0'
+  pod 'BoringSSL'
   # 以下updateで指示されたコマンド
   # pod 'FacebookSDK'
   # pod 'FacebookSDK/LoginKit'

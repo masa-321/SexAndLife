@@ -40,7 +40,8 @@ class QuestionCell: UITableViewCell {
         //Date型をString型に変換する準備
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
         //postDataLabelをstoryboardと紐つけておかないとエラーになる。
-        postDateLabel.text = formatter.string(from: questionData.questionTime! /*Date()*/)
+        //postDateLabel.text = formatter.string(from: questionData.questionTime! /*Date()*/)
+        //Unexpectedly nill...commentTableViewCellと同じ症状。
         
         //TextViewの高さを可変にする処理。CommentTableViewCell.swiftに倣っている。
         textView.text = questionData.questionText

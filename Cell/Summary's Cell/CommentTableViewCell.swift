@@ -69,7 +69,8 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
         
         //Date型をString型に変換する準備
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
-        postDateLabel.text = formatter.string(from: commentData.commentTime! /*Date()*/)
+        //postDateLabel.text = formatter.string(from: commentData.commentTime! /*Date()*/)
+        //コメントの日付がしっかり反映されない原因はまだ不明。解決は後回しにする。
         
         //TextViewの高さを可変にする処理
         textView.text = commentData.commentText
