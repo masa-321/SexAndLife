@@ -29,5 +29,5 @@ target 'SexualMediaApp' do
   # pod 'FacebookSDK/ShareKit'
   # pod 'FacebookSDK/PlacesKit'
   # pod 'FBSDKMessengerShareKit'
-  pod 'ReadMoreTextView','3.0.1'
+  # pod 'ReadMoreTextView','3.0.1'
 end
