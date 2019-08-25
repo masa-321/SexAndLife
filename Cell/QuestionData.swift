@@ -28,7 +28,9 @@ class QuestionData:NSObject {
         let valueDictionary = snapshot.value as! [String:Any]
         
         self.questionText = valueDictionary["questionText"] as? String
-        self.questionTime = valueDictionary["questionTime"] as? Date
+        
+        let timestamp = valueDictionary["questionTime"] as? Timestamp
+        self.questionTime = timestamp?.dateValue() //FirestoreのTimestampの仕様変更に伴う修正
         
         if let questionlikes = valueDictionary["questionLikes"] as? [String] {
             self.questionLikes = questionlikes

@@ -27,7 +27,9 @@ class CommentData:NSObject {
         let valueDictionary = snapshot.value as! [String:Any]
         
         self.commentText = valueDictionary["commentText"] as? String
-        self.commentTime = valueDictionary["commentTime"] as? Date
+
+        let timestamp = valueDictionary["commentTime"] as? Timestamp
+        self.commentTime = timestamp?.dateValue()//FirestoreのTimestampの仕様変更に伴う修正
         
         //self.commentedArticleID = valueDictionary["commentedArticleID"] as? String
         
