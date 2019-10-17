@@ -249,7 +249,7 @@ class Media7ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 for likeId in articleData.likes {
                     if likeId == uid {
                         // 削除するためにインデックスを保持しておく
-                        index = articleData.likes.index(of: likeId)!
+                        index = articleData.likes.firstIndex(of: likeId)!
                         break
                     }
                 }
@@ -292,7 +292,7 @@ class Media7ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 for likeId in articleData.likes {
                     if likeId == uid {
                         // 削除するためにインデックスを保持しておく
-                        index = articleData.likes.index(of: likeId)!
+                        index = articleData.likes.firstIndex(of: likeId)!
                         break
                     }
                 }
