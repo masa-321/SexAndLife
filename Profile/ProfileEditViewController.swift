@@ -15,7 +15,7 @@ import FBSDKLoginKit
 import SDWebImage
 import SVProgressHUD
 
-class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     
     var profileData:Profile?
 
@@ -39,6 +39,8 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         }*/
     }
     
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
@@ -52,6 +54,16 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
             }
             cell.IDLabel.text = self.profileData!.id
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
+      
+            
+            //longpressGestureの設置をする。やや時間がかかった。
+            cell.profileImage.isUserInteractionEnabled = true//imageViewのtapの認識を許可する
+            let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(_:)))//ロングプレスを認識するためのインスタンスを生成
+            longPressGesture.delegate = self //ロングプレスのデリゲートをセット
+            longPressGesture.minimumPressDuration = 1.5 //押す時間を設定
+            cell.profileImage
+                .addGestureRecognizer(longPressGesture)//Viewにインスタンス追加追加
+            
             return cell
             
         } else if indexPath.row == 1 {
@@ -100,6 +112,57 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    //longpressイベント
+    @objc func longPress(_ sender: UILongPressGestureRecognizer) {
+        //送信者の状態が　タッチ開始時にlongが認識される
+        if sender.state == .began{
+            //開始は認知される
+            print("Long Press began")
+            alertAction()
+        }
+        else if sender.state == .ended {
+            //label.text = "Long Pressd !"
+        }
+    }
+    
+    
+    func alertAction(){
+        print("alertActionが呼ばれたよ")
+        let alertController = UIAlertController(title: "プロフィール写真を変更", message: nil, preferredStyle: .actionSheet) // AlertContollerを初期化する。actionSheetを選択。
+        //キャンセルボタンの設置。inの後には特にコードの記述は不要。
+        let cancelAction:UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler: { (action:UIAlertAction!) -> Void in
+        })
+        
+        //Alertの項目を増やしていく。
+        //ライブラリから画像をピックアップするためのコード
+        /*let defaultAction1:UIAlertAction = UIAlertAction(title: "ライブラリから選択", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
+         //UIImagePickerController
+         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) == true {
+         let picker = UIImagePickerController()
+         picker.sourceType = .photoLibrary
+         picker.delegate = self
+         self.present(picker, animated: true, completion: nil)
+         } else {
+         print("この機種ではフォトライブラリが使用出来ません。")
+         }
+         })*/
+        
+        let defaultAction3:UIAlertAction = UIAlertAction(title: "リセット", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
+            //self.fileDelete()
+            print("リセット")
+        })
+        
+        
+        //alertController.addAction(defaultAction1)
+        //alertController.addAction(defaultAction2)
+        alertController.addAction(defaultAction3)
+        alertController.addAction(cancelAction) //キャンセルアクションを追加した。
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
     @IBAction func saveButton(_ sender: Any) {
         SVProgressHUD.show()
         
@@ -135,25 +198,66 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     
-
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
-class ImageCell:UITableViewCell{
+
+//UIImageを拡張し、resizedメソッドを追加する
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvas = CGSize(width: size.width * percentage, height: size.height * percentage)
+        return UIGraphicsImageRenderer(size: canvas, format: imageRendererFormat).image {
+            _ in draw(in: CGRect(origin: .zero, size: canvas))
+        }
+    }
+    func resized(toWidth width: CGFloat) -> UIImage? {
+        let canvas = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        return UIGraphicsImageRenderer(size: canvas, format: imageRendererFormat).image {
+            _ in draw(in: CGRect(origin: .zero, size: canvas))
+        }
+    }
+}
+
+
+class ImageCell:UITableViewCell {
+    //Redundant conformance of 'ImageCell' to protocol 'UIGestureRecognizerDelegate'、このメッセージは、すでに使用しているプロトコルを、再度継承しようとした時に起こる。
+    var masterViewPointer:ProfileEditViewController?
     
     @IBOutlet weak var profileImage: EnhancedCircleImageView!
     
     @IBOutlet weak var IDLabel: UILabel!
+    
+    override func awakeFromNib() {
+        
+        /*//imageViewのtapの認識を許可する
+        self.profileImage.isUserInteractionEnabled = true
+        //ロングプレスを認識するためのインスタンスを生成
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(ImageCell.longPress(_:)))
+        
+        longPressGesture.delegate = self //ロングプレスのデリゲートをセット
+        longPressGesture.minimumPressDuration = 1.5 //押す時間を設定
+        
+        //Viewにインスタンス追加追加
+        self.profileImage
+            .addGestureRecognizer(longPressGesture)*/
+    }
+    //longpressイベント
+    @objc func longPress(_ sender: UILongPressGestureRecognizer) {
+        //送信者の状態が　タッチ開始時にlongが認識される
+        if sender.state == .began{
+            //開始は認知される
+            print("Long Press began")
+            alertAction()
+        }
+        else if sender.state == .ended {
+            //label.text = "Long Pressd !"
+        }
+    }
+    
+    func alertAction(){
+        print("alertActionが呼ばれたよ")
+        //masterViewPointer?.present(masterViewPointer?.alertController, animated: true, completion: nil) //最後にモーダルで表示させている。
+        
+    }
     
 }
 

@@ -324,7 +324,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 var index = 0
                 for followerId in profileData!.followers {
                     if followerId == uid {
-                        index = profileData!.followers.index(of: followerId)!
+                        index = profileData!.followers.firstIndex(of: followerId)!
                     }
                 }
                 
@@ -557,7 +557,7 @@ class ProfileInfoCell:UITableViewCell {
                         var index = 0
                         for followerId in profileData.followers {
                             if followerId == user.uid {
-                                index = profileData.followers.index(of: followerId)!
+                                index = profileData.followers.firstIndex(of: followerId)!
                             }
                         }
                         
