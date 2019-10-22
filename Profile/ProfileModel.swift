@@ -45,6 +45,15 @@ class Profile:NSObject {
         } else {
             self.name = "\(snapshot.documentID)"
         }
+        
+        
+        if let pictureUrl = valueDictionary!["pictureUrl"] as? String {
+            self.pictureUrl = pictureUrl
+        } else {
+            self.pictureUrl = ""
+        }
+        /*
+        //firebaseの構造だろう。
         if let pictureData = valueDictionary!["picture"] as? [String : Any] {
             let pictureProperties = pictureData["data"] as? [String:Any]
             self.pictureUrl = pictureProperties!["url"] as? String
@@ -52,6 +61,7 @@ class Profile:NSObject {
             self.pictureUrl = ""
         }
         //self.profileImage.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "profile"))
+        */
         
         if let age = valueDictionary!["年齢"] as? String {
             self.age = age

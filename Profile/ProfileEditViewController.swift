@@ -15,7 +15,7 @@ import FBSDKLoginKit
 import SDWebImage
 import SVProgressHUD
 
-class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
+class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var profileData:Profile?
 
@@ -42,7 +42,7 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,55 +52,52 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
             if let profileData = self.profileData {
                 cell.profileImage.sd_setImage(with: URL(string: profileData.pictureUrl!), placeholderImage: UIImage(named: "profile4"))
             }
-            cell.IDLabel.text = self.profileData!.id
-            cell.selectionStyle = UITableViewCell.SelectionStyle.none
-      
             
-            //longpressGestureの設置をする。やや時間がかかった。
-            cell.profileImage.isUserInteractionEnabled = true//imageViewのtapの認識を許可する
-            let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(_:)))//ロングプレスを認識するためのインスタンスを生成
-            longPressGesture.delegate = self //ロングプレスのデリゲートをセット
-            longPressGesture.minimumPressDuration = 1.5 //押す時間を設定
-            cell.profileImage
-                .addGestureRecognizer(longPressGesture)//Viewにインスタンス追加追加
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             
             return cell
             
         } else if indexPath.row == 1 {
+            let cell:IdCell = tableView.dequeueReusableCell(withIdentifier: "idCell", for:indexPath) as! IdCell
+            cell.IDLabel.text = self.profileData!.id
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            return cell
+            
+        }else if indexPath.row == 2 {
             let cell:NameCell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for:indexPath) as! NameCell
             cell.nameTextField.text = self.profileData!.name
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
             
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 3 {
             let cell:EmploymentCell = tableView.dequeueReusableCell(withIdentifier: "employmentCell", for:indexPath) as! EmploymentCell
             cell.employmentTextField.text = self.profileData!.employment
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.masterViewPointer = self
             return cell
             
-        } else if indexPath.row == 3 {
+        } else if indexPath.row == 4 {
             let cell:OccupationCell = tableView.dequeueReusableCell(withIdentifier: "occupationCell", for:indexPath) as! OccupationCell
             cell.occupationTextField.text = self.profileData!.occupation
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.masterViewPointer = self
             return cell
             
-        } else if indexPath.row == 4 {
+        } else if indexPath.row == 5 {
             let cell:ProfileTextCell = tableView.dequeueReusableCell(withIdentifier: "profileTextCell", for:indexPath) as! ProfileTextCell
             cell.textView.text = self.profileData!.profile
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.masterViewPointer = self
             return cell
             
-        } else if indexPath.row == 5 {
+        } else if indexPath.row == 6 {
             let cell:SexCell = tableView.dequeueReusableCell(withIdentifier: "sexCell", for:indexPath) as! SexCell
             cell.setPicker(receivedSex: self.profileData!.sex!)
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.masterViewPointer = self
             return cell
             
-        } else if indexPath.row == 6 {
+        } else if indexPath.row == 7 {
             let cell:AgeCell = tableView.dequeueReusableCell(withIdentifier: "ageCell", for:indexPath) as! AgeCell
             cell.setPicker(receivedAge: self.profileData!.age!)
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -112,19 +109,11 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    //longpressイベント
-    @objc func longPress(_ sender: UILongPressGestureRecognizer) {
-        //送信者の状態が　タッチ開始時にlongが認識される
-        if sender.state == .began{
-            //開始は認知される
-            print("Long Press began")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
             alertAction()
         }
-        else if sender.state == .ended {
-            //label.text = "Long Pressd !"
-        }
     }
-    
     
     func alertAction(){
         print("alertActionが呼ばれたよ")
@@ -135,7 +124,7 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         
         //Alertの項目を増やしていく。
         //ライブラリから画像をピックアップするためのコード
-        /*let defaultAction1:UIAlertAction = UIAlertAction(title: "ライブラリから選択", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
+        let defaultAction1:UIAlertAction = UIAlertAction(title: "ライブラリから選択", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
          //UIImagePickerController
          if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) == true {
          let picker = UIImagePickerController()
@@ -145,7 +134,7 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
          } else {
          print("この機種ではフォトライブラリが使用出来ません。")
          }
-         })*/
+         })
         
         let defaultAction3:UIAlertAction = UIAlertAction(title: "リセット", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
             //self.fileDelete()
@@ -153,7 +142,7 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         })
         
         
-        //alertController.addAction(defaultAction1)
+        alertController.addAction(defaultAction1)
         //alertController.addAction(defaultAction2)
         alertController.addAction(defaultAction3)
         alertController.addAction(cancelAction) //キャンセルアクションを追加した。
@@ -197,8 +186,6 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    
-    
 }
 
 //UIImageを拡張し、resizedメソッドを追加する
@@ -217,6 +204,87 @@ extension UIImage {
     }
 }
 
+extension ProfileEditViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    // 画像が選択された時に呼ばれる
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let selectedImage = info[.originalImage] as? UIImage {
+            let resizedImage = selectedImage.resized(toWidth: 60)//データの容量もしっかり削減される。
+            //self.imageView.image = resizedImage
+            fileupload(image:resizedImage!) //データの名前を変えなければ、その度に上書きされる。
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // 画像選択がキャンセルされた時に呼ばれる
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func fileupload(image: UIImage) {
+        print("fileupload is called")
+        SVProgressHUD.show()
+        
+        if let user = Auth.auth().currentUser {
+            let storageRef = Storage.storage().reference(forURL: "gs://sexualhealthmedia-736f9.appspot.com/profileIcons")//ストレージへの参照を取得
+            let imageRef = storageRef.child("\(user.uid).JPG")//名前はuuidにする。//ツリーの下位への参照を作成
+            let imageData = image.jpegData(compressionQuality: 1.0)!
+            imageRef.putData(imageData, metadata: nil){ (metadata, error) in
+                guard let metadata = metadata else {
+                    // Uh-oh, an error occurred!
+                    return
+                }
+                // Metadata contains file metadata such as size, content-type.
+                let size = metadata.size
+                print("metadata.size",size) //バイト数で表示される。
+                
+                imageRef.downloadURL(completion: { (url, error) in
+                    if error != nil {
+                        print("Failed to download url:", error!)
+                        return
+                    } else {
+                        //Do something with url
+                        print("url",url)
+                        
+                        let userInfo = [
+                            "pictureUrl":"\(url!)"
+                        ]
+                        
+                        let userRef = Firestore.firestore().collection("users").document("\(user.uid)")
+                        userRef.updateData(userInfo){ err in
+                            if let err = err {
+                                print("Error adding document: \(err)")
+                            } else {
+                                print("Document successfully written!")
+                                //navigationControllerで一つ前の画面に戻る
+                                self.navigationController?.popViewController(animated: true)
+                                SVProgressHUD.dismiss()
+                                //self.navigationController?.popViewController(animated: false)
+                            }
+                        }
+                        
+                    }
+                })
+            }
+        }
+        
+    }
+    
+    func fileDelete() {
+        if let user = Auth.auth().currentUser {
+            let storageRef = Storage.storage().reference(forURL: "gs://sexualhealthmedia-736f9.appspot.com/profileIcons")
+            let imageRef = storageRef.child("\(user.uid).JPG")
+            imageRef.delete { error in
+                if let error = error {
+                    // Uh-oh, an error occurred!
+                } else {
+                    // File deleted successfully
+                }
+            }
+        }
+    }
+}
+
 
 class ImageCell:UITableViewCell {
     //Redundant conformance of 'ImageCell' to protocol 'UIGestureRecognizerDelegate'、このメッセージは、すでに使用しているプロトコルを、再度継承しようとした時に起こる。
@@ -224,40 +292,12 @@ class ImageCell:UITableViewCell {
     
     @IBOutlet weak var profileImage: EnhancedCircleImageView!
     
+}
+
+class IdCell:UITableViewCell {
+    var masterViewPointer:ProfileEditViewController?
+    
     @IBOutlet weak var IDLabel: UILabel!
-    
-    override func awakeFromNib() {
-        
-        /*//imageViewのtapの認識を許可する
-        self.profileImage.isUserInteractionEnabled = true
-        //ロングプレスを認識するためのインスタンスを生成
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(ImageCell.longPress(_:)))
-        
-        longPressGesture.delegate = self //ロングプレスのデリゲートをセット
-        longPressGesture.minimumPressDuration = 1.5 //押す時間を設定
-        
-        //Viewにインスタンス追加追加
-        self.profileImage
-            .addGestureRecognizer(longPressGesture)*/
-    }
-    //longpressイベント
-    @objc func longPress(_ sender: UILongPressGestureRecognizer) {
-        //送信者の状態が　タッチ開始時にlongが認識される
-        if sender.state == .began{
-            //開始は認知される
-            print("Long Press began")
-            alertAction()
-        }
-        else if sender.state == .ended {
-            //label.text = "Long Pressd !"
-        }
-    }
-    
-    func alertAction(){
-        print("alertActionが呼ばれたよ")
-        //masterViewPointer?.present(masterViewPointer?.alertController, animated: true, completion: nil) //最後にモーダルで表示させている。
-        
-    }
     
 }
 
