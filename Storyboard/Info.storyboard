@@ -556,7 +556,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="nameCell" rowHeight="112" id="sc0-QP-Gie" customClass="NameCell" customModule="SexualMediaApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="257.5" width="375" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sc0-QP-Gie" id="jnj-0z-19K">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sc0-QP-Gie" id="jnj-0z-19K">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="111.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -570,39 +570,27 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-qw-cb8">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6am-lO-uVw">
                                                     <rect key="frame" x="30" y="56" width="315" height="30"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="UtX-Ed-dCl"/>
+                                                        <constraint firstAttribute="height" constant="30" id="Eu6-Eh-NwZ"/>
                                                     </constraints>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※名前の設定にはFacebook連携が必要です" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDQ-cW-mgq">
-                                                    <rect key="frame" x="71" y="26" width="274" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="9wL-8e-5u4"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5nA-qw-cb8" firstAttribute="leading" secondItem="jnj-0z-19K" secondAttribute="leadingMargin" constant="15" id="IZT-b9-3pH"/>
-                                                <constraint firstAttribute="bottom" secondItem="5nA-qw-cb8" secondAttribute="bottom" constant="15" id="LuN-rR-egN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6am-lO-uVw" secondAttribute="trailing" constant="15" id="Epl-ee-b6P"/>
+                                                <constraint firstItem="6am-lO-uVw" firstAttribute="top" secondItem="Mh1-eH-kki" secondAttribute="bottom" id="NNc-EU-pek"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6am-lO-uVw" secondAttribute="bottom" constant="15" id="Qpv-DY-5h1"/>
                                                 <constraint firstItem="Mh1-eH-kki" firstAttribute="leading" secondItem="jnj-0z-19K" secondAttribute="leadingMargin" constant="15" id="Tfd-O6-lSy"/>
-                                                <constraint firstItem="5nA-qw-cb8" firstAttribute="top" secondItem="TDQ-cW-mgq" secondAttribute="bottom" id="TkM-y6-8kW"/>
-                                                <constraint firstItem="TDQ-cW-mgq" firstAttribute="leading" secondItem="Mh1-eH-kki" secondAttribute="trailing" constant="10" id="VVv-Sd-fVx"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="5nA-qw-cb8" secondAttribute="trailing" constant="15" id="f3L-0K-CAm"/>
-                                                <constraint firstItem="5nA-qw-cb8" firstAttribute="top" secondItem="Mh1-eH-kki" secondAttribute="bottom" id="fnA-mH-NWm"/>
                                                 <constraint firstItem="Mh1-eH-kki" firstAttribute="top" secondItem="jnj-0z-19K" secondAttribute="topMargin" constant="15" id="kO0-dX-Xvm"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="TDQ-cW-mgq" secondAttribute="trailing" constant="15" id="xZe-T7-f2Z"/>
+                                                <constraint firstItem="6am-lO-uVw" firstAttribute="leading" secondItem="jnj-0z-19K" secondAttribute="leadingMargin" constant="15" id="wnA-Ve-bq0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="nameTextField" destination="5nA-qw-cb8" id="5IT-Pl-jYI"/>
+                                            <outlet property="nameTextView" destination="6am-lO-uVw" id="bcY-mz-LwI"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="employmentCell" rowHeight="111" id="0l5-5r-4l5" customClass="EmploymentCell" customModule="SexualMediaApp" customModuleProvider="target">
@@ -621,27 +609,27 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xdh-65-Nzz">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ygw-7W-XpK">
                                                     <rect key="frame" x="30" y="56" width="315" height="30"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="dJx-lh-TcN"/>
+                                                        <constraint firstAttribute="height" constant="30" id="vk0-qw-E1o"/>
                                                     </constraints>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="xdh-65-Nzz" secondAttribute="trailing" constant="15" id="9fa-qP-zCn"/>
-                                                <constraint firstAttribute="bottom" secondItem="xdh-65-Nzz" secondAttribute="bottom" constant="15" id="Qws-Ls-qRZ"/>
-                                                <constraint firstItem="xdh-65-Nzz" firstAttribute="leading" secondItem="DZR-3d-OPB" secondAttribute="leadingMargin" constant="15" id="etw-d3-7L3"/>
+                                                <constraint firstItem="ygw-7W-XpK" firstAttribute="leading" secondItem="DZR-3d-OPB" secondAttribute="leadingMargin" constant="15" id="Dvc-qF-cIb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ygw-7W-XpK" secondAttribute="bottom" constant="15" id="N9h-FR-ihi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ygw-7W-XpK" secondAttribute="trailing" constant="15" id="l9B-ap-vcB"/>
                                                 <constraint firstItem="tjd-j8-aw4" firstAttribute="leading" secondItem="DZR-3d-OPB" secondAttribute="leadingMargin" constant="15" id="mLc-6K-Qw1"/>
-                                                <constraint firstItem="xdh-65-Nzz" firstAttribute="top" secondItem="tjd-j8-aw4" secondAttribute="bottom" id="n2Y-A7-3nL"/>
                                                 <constraint firstItem="tjd-j8-aw4" firstAttribute="top" secondItem="DZR-3d-OPB" secondAttribute="topMargin" constant="15" id="n9n-Fd-aFv"/>
+                                                <constraint firstItem="ygw-7W-XpK" firstAttribute="top" secondItem="tjd-j8-aw4" secondAttribute="bottom" id="rDP-7M-ppN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="employmentTextField" destination="xdh-65-Nzz" id="4qh-Ws-80y"/>
+                                            <outlet property="employmentTextView" destination="ygw-7W-XpK" id="tak-fn-Qoh"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="occupationCell" rowHeight="117" id="Grh-1M-NJa" customClass="OccupationCell" customModule="SexualMediaApp" customModuleProvider="target">
@@ -660,27 +648,27 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqE-GU-rd6">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xb5-5K-58d">
                                                     <rect key="frame" x="30" y="56" width="315" height="30"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="exX-ry-Ueg"/>
+                                                        <constraint firstAttribute="height" constant="30" id="a94-pv-sn4"/>
                                                     </constraints>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="rqE-GU-rd6" firstAttribute="leading" secondItem="maP-B4-1Np" secondAttribute="leadingMargin" constant="15" id="0mw-wA-Eh3"/>
-                                                <constraint firstItem="rqE-GU-rd6" firstAttribute="top" secondItem="NKQ-Yc-U7B" secondAttribute="bottom" id="GPG-U0-PYY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xb5-5K-58d" secondAttribute="bottom" constant="15" id="3lF-Zh-ccA"/>
+                                                <constraint firstItem="xb5-5K-58d" firstAttribute="leading" secondItem="maP-B4-1Np" secondAttribute="leadingMargin" constant="15" id="IhQ-i4-yvj"/>
+                                                <constraint firstItem="xb5-5K-58d" firstAttribute="top" secondItem="NKQ-Yc-U7B" secondAttribute="bottom" id="O5H-dv-yj0"/>
                                                 <constraint firstItem="NKQ-Yc-U7B" firstAttribute="top" secondItem="maP-B4-1Np" secondAttribute="topMargin" constant="15" id="OLn-oK-3eg"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="rqE-GU-rd6" secondAttribute="trailing" constant="15" id="cXC-HY-Vu8"/>
                                                 <constraint firstItem="NKQ-Yc-U7B" firstAttribute="leading" secondItem="maP-B4-1Np" secondAttribute="leadingMargin" constant="15" id="ceo-aT-E8w"/>
-                                                <constraint firstAttribute="bottom" secondItem="rqE-GU-rd6" secondAttribute="bottom" constant="15" id="m1E-EW-Tgj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="xb5-5K-58d" secondAttribute="trailing" constant="15" id="oLm-zd-AXH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="occupationTextField" destination="rqE-GU-rd6" id="RfY-l9-bpH"/>
+                                            <outlet property="occupationTextView" destination="xb5-5K-58d" id="5xw-Xt-tD6"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileTextCell" rowHeight="152" id="eN7-3a-Vr6" customClass="ProfileTextCell" customModule="SexualMediaApp" customModuleProvider="target">
@@ -692,7 +680,7 @@
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="n9f-Hc-2ZX">
                                                     <rect key="frame" x="30" y="56" width="315" height="80.5"/>
-                                                    <color key="backgroundColor" red="0.92559027670000005" green="0.9371793866" blue="0.94117784500000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>

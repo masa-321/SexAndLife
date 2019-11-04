@@ -65,20 +65,21 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
             
         }else if indexPath.row == 2 {
             let cell:NameCell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for:indexPath) as! NameCell
-            cell.nameTextField.text = self.profileData!.name
+            cell.nameTextView.text = self.profileData!.name
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            cell.masterViewPointer = self
             return cell
             
         } else if indexPath.row == 3 {
             let cell:EmploymentCell = tableView.dequeueReusableCell(withIdentifier: "employmentCell", for:indexPath) as! EmploymentCell
-            cell.employmentTextField.text = self.profileData!.employment
+            cell.employmentTextView.text = self.profileData!.employment
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.masterViewPointer = self
             return cell
             
         } else if indexPath.row == 4 {
             let cell:OccupationCell = tableView.dequeueReusableCell(withIdentifier: "occupationCell", for:indexPath) as! OccupationCell
-            cell.occupationTextField.text = self.profileData!.occupation
+            cell.occupationTextView.text = self.profileData!.occupation
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.masterViewPointer = self
             return cell
@@ -136,15 +137,15 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
          }
          })
         
-        let defaultAction3:UIAlertAction = UIAlertAction(title: "リセット", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
-            //self.fileDelete()
+        /*let defaultAction3:UIAlertAction = UIAlertAction(title: "リセット", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
+            self.fileDelete()
             print("リセット")
-        })
+        })*/
         
         
         alertController.addAction(defaultAction1)
         //alertController.addAction(defaultAction2)
-        alertController.addAction(defaultAction3)
+        //alertController.addAction(defaultAction3)
         alertController.addAction(cancelAction) //キャンセルアクションを追加した。
         
         self.present(alertController, animated: true, completion: nil)
@@ -156,6 +157,7 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         SVProgressHUD.show()
         
         let userInfo = [
+            "name": profileData?.name!,
             "Employment": profileData?.employment!,
             "Occupation": profileData?.occupation!,
             "Profile": profileData?.profile!,
@@ -301,105 +303,161 @@ class IdCell:UITableViewCell {
     
 }
 
-class NameCell:UITableViewCell,UITextFieldDelegate {
-    @IBOutlet weak var nameTextField: UITextField!
+class NameCell:UITableViewCell,UITextViewDelegate {
+    
     var masterViewPointer:ProfileEditViewController?
-    
-    override func awakeFromNib() {
-        nameTextField.delegate = self
-        nameTextField.returnKeyType = .done
-        nameTextField.isEnabled = false
-        nameTextField.borderStyle = UITextField.BorderStyle.none
+    @IBOutlet weak var nameTextView: UITextView!{
+        didSet {
+            nameTextView.delegate = self
+            nameTextView.text = ""
+            nameTextView.isScrollEnabled = false
+            // 仮のサイズでツールバー生成
+            let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+            kbToolBar.barStyle = UIBarStyle.default  // スタイルを設定
+            
+            kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
+            
+            // スペーサー
+            let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+            
+            // 閉じるボタン
+            let commitButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(commitButtonTapped(sender:event:)))
+            
+            kbToolBar.items = [spacer, commitButton]
+            nameTextView.inputAccessoryView = kbToolBar
+        }
     }
-    
-    //完了を押すとkeyboardを閉じる処理
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        //Keyboardを閉じる
-        nameTextField.resignFirstResponder()
-        
+    //nameTextView.isScrollEnabled = falseとの合わせ技で一行扱いにすることができる。
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange,
+                  replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder() //キーボードを閉じる
+            return false
+        }
         return true
-        
     }
     
-    //keyboard以外の画面を押すと、keyboardを閉じる処理
+    @objc func commitButtonTapped (sender:UIBarButtonItem, event:UIEvent) {
+        nameTextView.resignFirstResponder()
+        print("完了")
+    }
+    
+    //画面の外を押したら閉じる処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (self.nameTextField.isFirstResponder) {
-            self.nameTextField.resignFirstResponder()
+        if (self.nameTextView.isFirstResponder) {
+            self.nameTextView.resignFirstResponder()
         }
     }
     
-    //UITextFieldの編集後に処理を行う
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        masterViewPointer?.profileData?.employment = self.nameTextField.text
-    }
-}
-
-class EmploymentCell:UITableViewCell,UITextFieldDelegate {
-    @IBOutlet weak var employmentTextField: UITextField!
-    var masterViewPointer:ProfileEditViewController?
-    
-    override func awakeFromNib() {
-        employmentTextField.delegate = self
-        employmentTextField.returnKeyType = .done
-    }
-    
-    //完了を押すとkeyboardを閉じる処理
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        //Keyboardを閉じる
-        employmentTextField.resignFirstResponder()
-        
-        return true
-        
-    }
-    
-    //keyboard以外の画面を押すと、keyboardを閉じる処理
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (self.employmentTextField.isFirstResponder) {
-            self.employmentTextField.resignFirstResponder()
-        }
-    }
-    
-    //UITextFieldの編集後に処理を行う
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        masterViewPointer?.profileData?.employment = self.employmentTextField.text
+    //編集中でも情報を送ることができた。
+    func textViewDidChange(_ textView: UITextView) {
+        masterViewPointer?.profileData?.name = self.nameTextView.text
     }
     
 }
 
-class OccupationCell:UITableViewCell,UITextFieldDelegate {
-    @IBOutlet weak var occupationTextField: UITextField!
+class EmploymentCell:UITableViewCell,UITextViewDelegate {
     var masterViewPointer:ProfileEditViewController?
-    
-    override func awakeFromNib() {
-        occupationTextField.delegate = self
-        occupationTextField.returnKeyType = .done
+    @IBOutlet weak var employmentTextView: UITextView!{
+        didSet {
+            employmentTextView.delegate = self
+            employmentTextView.text = ""
+            employmentTextView.isScrollEnabled = false
+            // 仮のサイズでツールバー生成
+            let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+            kbToolBar.barStyle = UIBarStyle.default  // スタイルを設定
+            
+            kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
+            
+            // スペーサー
+            let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+            
+            // 閉じるボタン
+            let commitButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(commitButtonTapped(sender:event:)))
+            
+            kbToolBar.items = [spacer, commitButton]
+            employmentTextView.inputAccessoryView = kbToolBar
+        }
     }
-    
-    //完了を押すとkeyboardを閉じる処理
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        //Keyboardを閉じる
-        occupationTextField.resignFirstResponder()
-        
+    //textView.isScrollEnabled = falseとの合わせ技で一行扱いにすることができる。
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange,
+                  replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder() //キーボードを閉じる
+            return false
+        }
         return true
-        
     }
     
-    //keyboard以外の画面を押すと、keyboardを閉じる処理
+    @objc func commitButtonTapped (sender:UIBarButtonItem, event:UIEvent) {
+        employmentTextView.resignFirstResponder()
+        print("完了")
+    }
+    
+    //画面の外を押したら閉じる処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (self.occupationTextField.isFirstResponder) {
-            self.occupationTextField.resignFirstResponder()
+        if (self.employmentTextView.isFirstResponder) {
+            self.employmentTextView.resignFirstResponder()
         }
     }
     
-    //UITextFieldの編集後に処理を行う
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        masterViewPointer?.profileData?.occupation = self.occupationTextField.text
+    //編集中でも情報を送ることができた。
+    func textViewDidChange(_ textView: UITextView) {
+        masterViewPointer?.profileData?.employment = self.employmentTextView.text
     }
     
-    //textFieldにdidChangeメソッドはないようだ。
+}
+
+class OccupationCell:UITableViewCell,UITextViewDelegate {
+    var masterViewPointer:ProfileEditViewController?
+    @IBOutlet weak var occupationTextView: UITextView!{
+        didSet {
+            occupationTextView.delegate = self
+            occupationTextView.text = ""
+            occupationTextView.isScrollEnabled = false
+            // 仮のサイズでツールバー生成
+            let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+            kbToolBar.barStyle = UIBarStyle.default  // スタイルを設定
+            
+            kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
+            
+            // スペーサー
+            let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+            
+            // 閉じるボタン
+            let commitButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(commitButtonTapped(sender:event:)))
+            
+            kbToolBar.items = [spacer, commitButton]
+            occupationTextView.inputAccessoryView = kbToolBar
+        }
+    }
+    //textView.isScrollEnabled = falseとの合わせ技で一行扱いにすることができる。
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange,
+                  replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder() //キーボードを閉じる
+            return false
+        }
+        return true
+    }
+    
+    @objc func commitButtonTapped (sender:UIBarButtonItem, event:UIEvent) {
+        occupationTextView.resignFirstResponder()
+        print("完了")
+    }
+    
+    //画面の外を押したら閉じる処理
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (self.occupationTextView.isFirstResponder) {
+            self.occupationTextView.resignFirstResponder()
+        }
+    }
+    
+    //編集中でも情報を送ることができた。
+    func textViewDidChange(_ textView: UITextView) {
+        masterViewPointer?.profileData?.occupation = self.occupationTextView.text
+    }
+    
 }
 
 class ProfileTextCell:UITableViewCell, UITextViewDelegate {
@@ -461,7 +519,7 @@ class SexCell:UITableViewCell,UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func setPicker(receivedSex:String) {
-        print("setPckerが呼ばれたよ")
+        print("setPickerが呼ばれたよ")
         
         for i in 0..<dataList.count{
             if "" == receivedSex {

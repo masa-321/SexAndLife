@@ -36,6 +36,7 @@ class Profile:NSObject {
         //self.id = valueDictionary!["id"] as? String
         //コメンターがFabebook認証していないと、nilが表示されたわけだ。
         //FirebaseのAuthenticationをで、userを削除すると、プロフィール画面がエラーになる。uidはあるが、userデータは存在しないということになって、エラーになる。それを回避するためにはデータを削除した時は、初期画面に戻すことでは？
+        /*
         if let name = valueDictionary!["name"] as? String {
             if name == "" {
                 self.name = "\(snapshot.documentID)"
@@ -44,6 +45,11 @@ class Profile:NSObject {
             }
         } else {
             self.name = "\(snapshot.documentID)"
+        }*/
+        if let name = valueDictionary!["name"] as? String {
+            self.name = name
+        } else {
+            self.name = ""
         }
         
         
