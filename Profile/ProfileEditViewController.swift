@@ -148,6 +148,13 @@ class ProfileEditViewController: UIViewController, UITableViewDelegate, UITableV
         //alertController.addAction(defaultAction3)
         alertController.addAction(cancelAction) //キャンセルアクションを追加した。
         
+        //alertControllerがiPadだとエラーになる問題を解決。
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            let screenSize = UIScreen.main.bounds
+            alertController.popoverPresentationController?.sourceView = self.view
+            alertController.popoverPresentationController?.sourceRect = CGRect(x: screenSize.size.width/2, y: screenSize.size.height, width: 0, height: 0)
+        }
+        
         self.present(alertController, animated: true, completion: nil)
     }
     
