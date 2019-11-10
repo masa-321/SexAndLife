@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -467,13 +467,13 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="aboutSex" width="307.20001220703125" height="56.880001068115234"/>
-        <image name="body" width="205" height="38.880001068115234"/>
-        <image name="contraception" width="153.60000610351562" height="28.799999237060547"/>
+        <image name="aboutSex" width="1280" height="237"/>
+        <image name="body" width="854" height="162"/>
+        <image name="contraception" width="640" height="120"/>
         <image name="health" width="640" height="120"/>
         <image name="lgbtq" width="634" height="119"/>
-        <image name="lifeplaning" width="173.27999877929688" height="32.639999389648438"/>
-        <image name="partnership" width="172.55999755859375" height="32.400001525878906"/>
+        <image name="lifeplaning" width="722" height="136"/>
+        <image name="partnership" width="719" height="135"/>
         <image name="warp" width="256" height="256"/>
     </resources>
 </document>

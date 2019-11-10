@@ -13,9 +13,10 @@ import FirebaseUI
 import SDWebImage
 
 class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
-    var profileData:Profile?
+    var profileData:Profile? //コメント・コメンターの情報
     
-    let ref = Firestore.firestore().collection("articleData").document("-LQqLtig-hxumfojMFTT").collection("comments")
+    let ref = Firestore.firestore().collection("articleData").document("-LQqLtig-hxumfojMFTT").collection("comments")//このref使われている？？？
+    var commentedArticleID = String()
     
     @IBOutlet weak var commenterImageView: EnhancedCircleImageView!
     @IBOutlet weak var commenterNameLabel: UILabel!
@@ -60,12 +61,64 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
         }
     }
     
+    weak var myVC : UIViewController?
+    
+    
+    
+    @IBAction func reportButton(_ sender: Any) {
+        
+        let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        actionsheet.addAction(UIAlertAction(title: "ブロックする", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+            print("ユーザーID：",Auth.auth().currentUser?.uid,"/コメンターID：",self.profileData?.id,"/コメントされた記事：",self.commentedArticleID)
+            
+            let alertController = UIAlertController(title: "この方を非表示にしますか？", message: "今後この方のコメントは画面に表示されなくなります", preferredStyle: UIAlertController.Style.alert)
+            
+            let okAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
+                //ここで処理の続行へ戻させる
+                
+            })
+            
+            let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (action:UIAlertAction!) -> Void in
+                //キャンセル時の処理を書く。ただ処理をやめるだけなら書く必要はない。
+            })
+            
+            alertController.addAction(cancelAction) //addActionなのね。
+            alertController.addAction(okAction)
+            self.myVC?.present(alertController, animated: true, completion: nil)
+            
+            
+        }))
+        
+        actionsheet.addAction(UIAlertAction(title: "報告する", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+            
+            //ReportViewControllerへ移る
+            let storyboard: UIStoryboard = UIStoryboard(name: "Report", bundle: nil)//Main.storyboardを宣言
+            let reportVC:ReportViewController = storyboard.instantiateViewController(withIdentifier: "Report") as! ReportViewController//遷移先のReportViewControllerを宣言
+            //ReportViewControllerへ情報を送る
+            reportVC.commentedArticleID = self.commentedArticleID
+            reportVC.profileData = self.profileData
+            
+            //遷移。
+            //self.myVC?.present(reportVC, animated: true, completion: nil)
+            self.myVC?.navigationController?.pushViewController(reportVC, animated: true)
+            
+        }))
+        actionsheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler: { (action) -> Void in
+            
+        }))
+        myVC?.present(actionsheet, animated: true, completion: nil)
+
+    }
     
     
     
     let formatter = DateFormatter()
     
     func setCommentTableViewCellInfo(commentData:CommentData) {
+        
+        //reportのために、commentedArticleIDを渡す準備
+        commentedArticleID = commentData.commentedArticleID!
         
         //Date型をString型に変換する準備
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))

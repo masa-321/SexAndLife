@@ -181,7 +181,7 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //お問い合わせView作成
         if let viewController = CTFeedbackViewController(topics: CTFeedbackViewController.defaultLocalizedTopics(), localizedTopics: ["不具合報告","質問","要望","その他"]) {
-            viewController.toRecipients = ["matarashi@gmail.com"/*Bundle.Mail(key: .inquiry)*/]
+            viewController.toRecipients = ["matarashi0321@gmail.com"/*Bundle.Mail(key: .inquiry)*/]
             viewController.useHTML = true
             let navigationController = UINavigationController(rootViewController: viewController)
             navigationController.setNavigationBarHidden(false, animated: false)

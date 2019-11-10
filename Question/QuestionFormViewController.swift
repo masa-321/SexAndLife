@@ -90,7 +90,8 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
             var questionData:[String:Any] = [:]
             //一つ一つのQuestionに割り当てられるuuidを生成
             let uuid = NSUUID().uuidString
-
+            
+            
             let question = [
                     uuid:[
                     "questionLikes":[],
@@ -101,6 +102,7 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
             
             questionData = question
             
+            //最終的には実名で質問する人の可能性を考慮して、user.uidで分けていたっぽい
             let ref = Firestore.firestore().collection("questions").document(user.uid)
             ref.updateData(questionData) { err in
                 if let err = err {
@@ -111,6 +113,11 @@ class QuestionFormViewController: UIViewController, UITextViewDelegate {
                         ref.setData(questionData) {err in
                             if let err = err {
                                 print("setData(question) Error adding document: \(err)")
+                                //エラーの時もSVProgressHUDを止める
+                                self.dismiss(animated: true, completion:nil)
+                                SVProgressHUD.dismiss()
+                                return
+                                
                             } else {
                                 print("setData(question) Document successfully written!")
                                 

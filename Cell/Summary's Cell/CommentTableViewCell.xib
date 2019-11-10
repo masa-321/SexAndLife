@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -120,6 +120,18 @@
                             <constraint firstAttribute="height" constant="20" id="kOy-LB-6TU"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8i-lo-7BR">
+                        <rect key="frame" x="353" y="10" width="30" height="30"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="f70-3Z-O4f"/>
+                            <constraint firstAttribute="width" constant="30" id="sON-WN-Fqr"/>
+                        </constraints>
+                        <state key="normal" image="downGray"/>
+                        <connections>
+                            <action selector="reportButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Bay-6v-svD"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="hjy-WI-Djw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="5NA-GD-srh"/>
@@ -130,6 +142,7 @@
                     <constraint firstItem="9Mi-Ce-R8Y" firstAttribute="leading" secondItem="17S-Ic-5tg" secondAttribute="trailing" constant="15" id="D3o-ty-oEd"/>
                     <constraint firstItem="FnV-Q6-K69" firstAttribute="leading" secondItem="17S-Ic-5tg" secondAttribute="leading" id="K9P-ST-pyG"/>
                     <constraint firstItem="ffD-pk-wHu" firstAttribute="centerY" secondItem="oxp-B0-2v1" secondAttribute="centerY" id="Lfw-vs-rnI"/>
+                    <constraint firstAttribute="trailing" secondItem="Z8i-lo-7BR" secondAttribute="trailing" constant="10" id="Q9u-tl-Om4"/>
                     <constraint firstItem="WW4-Pm-2EG" firstAttribute="centerY" secondItem="eJJ-Qa-1kZ" secondAttribute="centerY" id="QL1-mL-GiX"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hjy-WI-Djw" secondAttribute="trailing" constant="15" id="S5p-RT-sEz"/>
                     <constraint firstAttribute="bottomMargin" secondItem="PIo-8B-Qfl" secondAttribute="bottom" constant="7" id="SEm-5v-pgV"/>
@@ -150,6 +163,7 @@
                     <constraint firstItem="eJJ-Qa-1kZ" firstAttribute="top" secondItem="hjy-WI-Djw" secondAttribute="bottom" constant="10" id="qKL-Hw-UgT"/>
                     <constraint firstItem="oxp-B0-2v1" firstAttribute="leading" secondItem="9Mi-Ce-R8Y" secondAttribute="trailing" id="u0e-Sv-Hhz"/>
                     <constraint firstItem="WW4-Pm-2EG" firstAttribute="leading" secondItem="eJJ-Qa-1kZ" secondAttribute="trailing" id="upl-op-DEp"/>
+                    <constraint firstItem="Z8i-lo-7BR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vQ8-s5-aAU"/>
                     <constraint firstItem="hjy-WI-Djw" firstAttribute="top" secondItem="17S-Ic-5tg" secondAttribute="bottom" constant="15" id="wvl-p2-aU4"/>
                     <constraint firstAttribute="bottomMargin" secondItem="eJJ-Qa-1kZ" secondAttribute="bottom" id="xnU-uW-vG4"/>
                 </constraints>
@@ -174,6 +188,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="downGray" width="512" height="512"/>
         <image name="editing" width="256" height="256"/>
         <image name="garbage" width="128" height="128"/>
         <image name="profile4" width="495" height="495"/>

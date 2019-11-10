@@ -22,6 +22,7 @@ class CommentData:NSObject {
     init (snapshot:(key: String, value: Any), commenterID:String, myId: String) {
         //self.commenterID = myId//ユーザーのID...これはおかしい
         self.commenterID = commenterID
+        
         self.commentedArticleID = snapshot.key //記事のID
         
         let valueDictionary = snapshot.value as! [String:Any]
@@ -47,6 +48,5 @@ class CommentData:NSObject {
         }
         
         self.likeSumNumber = commentLikes.count
-        
     }
 }

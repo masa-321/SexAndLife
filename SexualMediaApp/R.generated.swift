@@ -30,7 +30,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 68 images.
+  /// This `R.image` struct is generated, and contains static references to 69 images.
   struct image {
     /// Image ` identification`.
     static let identification = Rswift.ImageResource(bundle: R.hostingBundle, name: " identification")
@@ -82,6 +82,8 @@ struct R: Rswift.Validatable {
     static let defaultImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "defaultImage")
     /// Image `document`.
     static let document = Rswift.ImageResource(bundle: R.hostingBundle, name: "document")
+    /// Image `downGray`.
+    static let downGray = Rswift.ImageResource(bundle: R.hostingBundle, name: "downGray")
     /// Image `editing`.
     static let editing = Rswift.ImageResource(bundle: R.hostingBundle, name: "editing")
     /// Image `facebook`.
@@ -292,6 +294,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "document", bundle: ..., traitCollection: ...)`
     static func document(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.document, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "downGray", bundle: ..., traitCollection: ...)`
+    static func downGray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.downGray, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "editing", bundle: ..., traitCollection: ...)`
@@ -662,7 +669,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 28 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 30 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `AskCell`.
     static let askCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "AskCell")
@@ -714,6 +721,10 @@ struct R: Rswift.Validatable {
     static let occupationCell: Rswift.ReuseIdentifier<OccupationCell> = Rswift.ReuseIdentifier(identifier: "occupationCell")
     /// Reuse identifier `profileTextCell`.
     static let profileTextCell: Rswift.ReuseIdentifier<ProfileTextCell> = Rswift.ReuseIdentifier(identifier: "profileTextCell")
+    /// Reuse identifier `reportDescriptionCell`.
+    static let reportDescriptionCell: Rswift.ReuseIdentifier<ReportDescriptionCell> = Rswift.ReuseIdentifier(identifier: "reportDescriptionCell")
+    /// Reuse identifier `reportTextCell`.
+    static let reportTextCell: Rswift.ReuseIdentifier<ReportTextCell> = Rswift.ReuseIdentifier(identifier: "reportTextCell")
     /// Reuse identifier `sexCell`.
     static let sexCell: Rswift.ReuseIdentifier<SexCell> = Rswift.ReuseIdentifier(identifier: "sexCell")
     /// Reuse identifier `sourceImageCell`.
@@ -744,7 +755,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 7 storyboards.
   struct storyboard {
     /// Storyboard `Consultation`.
     static let consultation = _R.storyboard.consultation()
@@ -756,6 +767,8 @@ struct R: Rswift.Validatable {
     static let main = _R.storyboard.main()
     /// Storyboard `Question`.
     static let question = _R.storyboard.question()
+    /// Storyboard `Report`.
+    static let report = _R.storyboard.report()
     /// Storyboard `Tutorial`.
     static let tutorial = _R.storyboard.tutorial()
     
@@ -782,6 +795,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Question", bundle: ...)`
     static func question(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.question)
+    }
+    
+    /// `UIStoryboard(name: "Report", bundle: ...)`
+    static func report(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.report)
     }
     
     /// `UIStoryboard(name: "Tutorial", bundle: ...)`
@@ -879,6 +897,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "downGray", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'downGray' is used in nib 'CommentTableViewCell', but couldn't be loaded.") }
         if UIKit.UIImage(named: "editing", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'editing' is used in nib 'CommentTableViewCell', but couldn't be loaded.") }
         if UIKit.UIImage(named: "garbage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'garbage' is used in nib 'CommentTableViewCell', but couldn't be loaded.") }
         if UIKit.UIImage(named: "profile4", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'profile4' is used in nib 'CommentTableViewCell', but couldn't be loaded.") }
@@ -1061,6 +1080,7 @@ struct _R: Rswift.Validatable {
       try launchScreen.validate()
       try main.validate()
       try question.validate()
+      try report.validate()
       try tutorial.validate()
     }
     
@@ -1253,6 +1273,26 @@ struct _R: Rswift.Validatable {
         }
         if _R.storyboard.question().questionForm() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'questionForm' could not be loaded from storyboard 'Question' as 'QuestionFormViewController'.") }
         if _R.storyboard.question().questionViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'questionViewController' could not be loaded from storyboard 'Question' as 'QuestionViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct report: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = ReportViewController
+      
+      let bundle = R.hostingBundle
+      let name = "Report"
+      let report = StoryboardViewControllerResource<ReportViewController>(identifier: "Report")
+      
+      func report(_: Void = ()) -> ReportViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: report)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.report().report() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'report' could not be loaded from storyboard 'Report' as 'ReportViewController'.") }
       }
       
       fileprivate init() {}

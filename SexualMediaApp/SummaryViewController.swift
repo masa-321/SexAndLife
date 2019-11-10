@@ -719,6 +719,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             } else {
                 let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
                 cell.setCommentTableViewCellInfo(commentData: commentArray[indexPath.row - 1])
+                cell.myVC = self
                 cell.profileButton.addTarget(self, action:#selector(junpToCommenterProfile(sender:event:)), for:  UIControl.Event.touchUpInside)
                 //引数をどうやって渡せばいいのだ？commentArray[indexPath.row].commenterID。もしかしたら渡すことができないのかもしれない。であれば、likeと同じようにしてみるか。
                 cell.likeButton.addTarget(self, action:#selector(likeButton(sender:event:)), for:  UIControl.Event.touchUpInside)
@@ -984,7 +985,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                 for likeId in articleData.likes {
                     if likeId == uid {
                         // 削除するためにインデックスを保持しておく
-                        index = articleData.likes.index(of: likeId)!
+                        index = articleData.likes.firstIndex(of: likeId)!
                         //いまなぜかIDが二つあるから、indexは複数の値を持つことになるぞ。
                         break
                     }
@@ -1028,7 +1029,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                 for likeId in articleData.likes {
                     if likeId == uid {
                         // 削除するためにインデックスを保持しておく
-                        index = articleData.likes.index(of: likeId)!
+                        index = articleData.likes.firstIndex(of: likeId)!
                         break
                     }
                 }
@@ -1111,7 +1112,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             var newCommenterIDs:[String] = receiveCellViewModel!.commenterIDs
             
             if newCommenterIDs.contains(user.uid) {
-                newCommenterIDs.remove(at: newCommenterIDs.index(of: user.uid)!)
+                newCommenterIDs.remove(at: newCommenterIDs.firstIndex(of: user.uid)!)
             }
             
             let includingNewCommenterData = [
@@ -1196,7 +1197,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                 for likeId in commentData.commentLikes {
                     if likeId == uid {
                         // 削除するためにインデックスを保持しておく
-                        index = commentData.commentLikes.index(of: likeId)!
+                        index = commentData.commentLikes.firstIndex(of: likeId)!
                         
                         break
                     }

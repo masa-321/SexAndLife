@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aVA-HM-uaM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Report View Controller-->
+        <scene sceneID="ulN-Rk-xBN">
+            <objects>
+                <viewController storyboardIdentifier="Report" id="aVA-HM-uaM" customClass="ReportViewController" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CSi-s4-O01">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kqv-kI-nrO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="reportDescriptionCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportDescriptionCell" rowHeight="126" id="VWb-mn-Q2d" customClass="ReportDescriptionCell" customModule="SexualMediaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="126"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VWb-mn-Q2d" id="fcm-VD-Yql">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qQv-xC-gge">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="140" id="1g4-pl-pnI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="qQv-xC-gge" secondAttribute="trailing" id="171-68-GDH"/>
+                                                <constraint firstItem="qQv-xC-gge" firstAttribute="leading" secondItem="fcm-VD-Yql" secondAttribute="leading" id="5in-wO-Jn3"/>
+                                                <constraint firstItem="qQv-xC-gge" firstAttribute="top" secondItem="fcm-VD-Yql" secondAttribute="top" id="mQt-3i-6ZZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="qQv-xC-gge" secondAttribute="bottom" id="ncz-Ix-OiP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textView" destination="qQv-xC-gge" id="bgc-6I-dZt"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="reportTextCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportTextCell" rowHeight="177" id="BUs-JQ-Wy2" customClass="ReportTextCell" customModule="SexualMediaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="181.5" width="375" height="177"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BUs-JQ-Wy2" id="Fzj-vI-3ky">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NOM-ti-Ky2" customClass="InspectableTextView" customModule="SexualMediaApp" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="30" width="375" height="147"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="問題の詳細" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xag-Ji-3dK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="mAa-Qs-BKW"/>
+                                                        <constraint firstAttribute="height" constant="30" id="mWC-dH-JVQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="NOM-ti-Ky2" secondAttribute="trailing" id="9bU-hN-hRQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="NOM-ti-Ky2" secondAttribute="bottom" id="DKV-cU-Pvz"/>
+                                                <constraint firstItem="NOM-ti-Ky2" firstAttribute="leading" secondItem="Fzj-vI-3ky" secondAttribute="leading" id="Duh-BO-b84"/>
+                                                <constraint firstItem="NOM-ti-Ky2" firstAttribute="top" secondItem="Xag-Ji-3dK" secondAttribute="bottom" id="HVu-Id-eS8"/>
+                                                <constraint firstItem="Xag-Ji-3dK" firstAttribute="leading" secondItem="Fzj-vI-3ky" secondAttribute="leading" id="OUe-77-9e7"/>
+                                                <constraint firstItem="Xag-Ji-3dK" firstAttribute="top" secondItem="Fzj-vI-3ky" secondAttribute="top" id="rdN-Z5-XQz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textView" destination="NOM-ti-Ky2" id="PeY-DL-Ta7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Kqv-kI-nrO" firstAttribute="top" secondItem="SWf-WY-GrX" secondAttribute="top" id="0Fb-Ab-ngV"/>
+                            <constraint firstItem="Kqv-kI-nrO" firstAttribute="trailing" secondItem="SWf-WY-GrX" secondAttribute="trailing" id="MRe-0x-kFU"/>
+                            <constraint firstItem="Kqv-kI-nrO" firstAttribute="bottom" secondItem="SWf-WY-GrX" secondAttribute="bottom" id="R1f-Oj-TTF"/>
+                            <constraint firstItem="Kqv-kI-nrO" firstAttribute="leading" secondItem="SWf-WY-GrX" secondAttribute="leading" id="nYh-I0-utP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SWf-WY-GrX"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="qRB-WE-9Q2">
+                        <barButtonItem key="rightBarButtonItem" title="送信" id="kgE-bT-xG1">
+                            <connections>
+                                <action selector="sendButton:" destination="aVA-HM-uaM" id="EeE-Qt-d4E"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="Kqv-kI-nrO" id="bWc-Wb-D3B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UaI-rb-BV6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4173.6000000000004" y="-20.239880059970016"/>
+        </scene>
+    </scenes>
+</document>
