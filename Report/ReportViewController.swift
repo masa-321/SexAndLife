@@ -75,8 +75,9 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func sendButton(_ sender: Any) {
         
         //sendButtonを押した時のアラートを構築 関数の外に配置したら、navigationController?popViewControllerがうまく動かなかった。
-        let alertController1 = UIAlertController(title: "報告ありがとうございました", message: nil, preferredStyle: UIAlertController.Style.alert)
-        let alertController2 = UIAlertController(title: "何らかのエラーが発生した様です", message: nil, preferredStyle: UIAlertController.Style.alert)
+        var alertController1 = UIAlertController(title: "報告ありがとうございました", message: nil, preferredStyle: UIAlertController.Style.alert)
+        //UIAlertController can only have one action with a style of UIAlertActionStyleCancel→このためエラーになるっぽい
+        //let alertController2 = UIAlertController(title: "何らかのエラーが発生した様です", message: nil, preferredStyle: UIAlertController.Style.alert)
         let okAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel,handler :{ (action:UIAlertAction) in
             //ここで処理の続行へ戻させる
             
@@ -124,8 +125,16 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 print("setData(question) Error adding document: \(err)")
                                 
                                 SVProgressHUD.dismiss()
-                                alertController2.addAction(okAction)
-                                self.present(alertController2, animated: true, completion: nil)
+                                //これうまくいくのかな…
+                                alertController1 = UIAlertController(title: "何らかのエラーが発生した様です", message: nil, preferredStyle: UIAlertController.Style.alert)
+                                alertController1.addAction(okAction)
+                                self.present(alertController1, animated: true, completion: nil)
+                                
+                                /*
+                                alertController1.addAction(okAction)
+                                self.present(alertController1, animated: true, completion: nil)
+                                */
+                                return
                                 
                             } else {
                                 print("setData(question) Document successfully written!")

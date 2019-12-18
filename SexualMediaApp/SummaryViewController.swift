@@ -19,6 +19,8 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     var relatedArticleArray:[ArticleQueryData] = []
     var commentArray:[CommentData] = []
+    //blockしてるユーザーのID:Stringが格納される配列を宣言
+    var receivedBlockedUserIds:[String] = []
     
     //var relatedArticleCellViewModel = ListCellViewModel()
     //var relatedArticleCellViewModel_Array = [ListCellViewModel]()
@@ -82,12 +84,15 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             
             //100や200だとピョンとするが、コメント欄はちゃんと動く。1000だとコメント欄がバグる。
              */
+            
+            print("receivedBlockedUserIds",self.receivedBlockedUserIds)
         }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         relatedArticleFetchCellViewModell()
         fetchComments()
@@ -300,6 +305,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         if let user = Auth.auth().currentUser {
             //receiveCellViewModel!.id!がちゃんと記事のIDであれば、上手くいくはず。
             let uid = user.uid
+            
             let ref = Firestore.firestore().collection("comments")
             //whereField(receiveCellViewModel!.id!, arrayContains: <#T##Any#>)
             ref.addSnapshotListener { (querySnapshot, err) in
@@ -313,14 +319,15 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
                         //print("document.data()",document.data())
                         for snapshot in document.data() {
                             let commentData = CommentData(snapshot: snapshot,commenterID: document.documentID ,myId: uid)
-                            if commentData.commentedArticleID == self.receiveCellViewModel!.id!{
+                            //
+                            //block中のユーザーのコメントを非表示に。blockedUserIdsにcommenterIDが"含まれていない"ことを条件としている
+                            if commentData.commentedArticleID == self.receiveCellViewModel!.id! && !self.receivedBlockedUserIds.contains(commentData.commenterID!){
                                 self.commentArray.insert(commentData, at: 0)
                             }
                             self.commentArray.sort(by: {$0.commentLikes.count > $1.commentLikes.count}) //昇順にソート
                         }
                     }
                     self.relatedTableView.reloadData()
-                    
                 }
             }
         }
@@ -719,7 +726,9 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             } else {
                 let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
                 cell.setCommentTableViewCellInfo(commentData: commentArray[indexPath.row - 1])
+                //ここで親と紐つけている
                 cell.myVC = self
+                
                 cell.profileButton.addTarget(self, action:#selector(junpToCommenterProfile(sender:event:)), for:  UIControl.Event.touchUpInside)
                 //引数をどうやって渡せばいいのだ？commentArray[indexPath.row].commenterID。もしかしたら渡すことができないのかもしれない。であれば、likeと同じようにしてみるか。
                 cell.likeButton.addTarget(self, action:#selector(likeButton(sender:event:)), for:  UIControl.Event.touchUpInside)

@@ -27,6 +27,7 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
     @IBOutlet weak var themeLabelRight: UILabel!
     @IBOutlet weak var themeLabelLeft: UILabel!
     var themeLabel_Array = [String]()
+    var giveBlockedUserIds:[String] = []
     
     //まずはcontrollerArrayの中身の型を決めて、初期化する。これでタンスができた状態になる
     var controllerArray : [UIViewController] = []
@@ -112,7 +113,23 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         //FSPagerViewの設定
         setupCoverFlowSliderView()
         
-        
+        //blockしているユーザーリストを取得。後ろの方の、vc.receiveBlockedUserIds = self.giveBlockedUserIdsでSummaryViewControllerに配列を渡している。
+        if let user = Auth.auth().currentUser {
+            let ref2 = Firestore.firestore().collection("users").document(user.uid)
+            ref2.getDocument{ (document, err) in
+            if let err = err {
+                print("Error fetching documents: \(err)")
+            } else {
+                //blockedUserIdsを念のため初期化
+                self.giveBlockedUserIds = []
+                
+                if let blockedUserIds = document!.data()!["blockedUserIds"] as? [String] {
+                    self.giveBlockedUserIds = blockedUserIds
+                    print("self.giveBlockedUserIds",self.giveBlockedUserIds)
+                    }
+                }//else
+            }//getDocument
+        }//currentUser
         
     }
     
@@ -221,6 +238,8 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         //self.giveCellViewModel = giveCellViewModel
         let vc:SummaryViewController = self.storyboard?.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
         vc.receiveCellViewModel = giveCellViewModel
+        //summaryViewControllerへブロックリストの配列も渡す。
+        vc.receivedBlockedUserIds = giveBlockedUserIds
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class TutorialViewController1: UIViewController {
     
     override func viewDidLoad() {
@@ -209,3 +208,4 @@ class TutorialViewController6: UIViewController {
     
     
 }
+

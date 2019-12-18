@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseUI
 import SDWebImage
+import SVProgressHUD
 
 class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
     var profileData:Profile? //コメント・コメンターの情報
@@ -61,9 +62,8 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
         }
     }
     
-    weak var myVC : UIViewController?
-    
-    
+    //summaryViewControllerのtableViewのcellForRowAtでcell.myVC = selfとしている
+    weak var myVC : SummaryViewController? //UIViewController?
     
     @IBAction func reportButton(_ sender: Any) {
         
@@ -72,11 +72,11 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
         actionsheet.addAction(UIAlertAction(title: "ブロックする", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             print("ユーザーID：",Auth.auth().currentUser?.uid,"/コメンターID：",self.profileData?.id,"/コメントされた記事：",self.commentedArticleID)
             
-            let alertController = UIAlertController(title: "この方を非表示にしますか？", message: "今後この方のコメントは画面に表示されなくなります", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: "この方を非表示にしますか？", message: "再起動後、この方のコメントは画面に表示されなくなります", preferredStyle: UIAlertController.Style.alert)
             
             let okAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler :{ (action:UIAlertAction) in
                 //ここで処理の続行へ戻させる
-                
+                self.block(commenterId: self.profileData!.id!)
             })
             
             let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (action:UIAlertAction!) -> Void in
@@ -111,13 +111,70 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
 
     }
     
+    //var masterViewPointer:SummaryViewController?
+    
+    func block(commenterId:String){
+        SVProgressHUD.show()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            //self.myVC?.navigationController?.popViewController(animated: true)
+            self.myVC?.relatedTableView.reloadData()
+            
+        }
+        
+        if let user = Auth.auth().currentUser {
+            let ref = Firestore.firestore().collection("users").document(user.uid)
+            ref.getDocument{ (document, err) in
+            if let err = err {
+                print("Error fetching documents: \(err)")
+            } else {
+                if let blockedUserIds = document!.data()!["blockedUserIds"] as? [String] {
+                    var blockedUserIds:[String] = blockedUserIds
+                    blockedUserIds.append(commenterId)
+                    
+                    let userInfo = [
+                        "blockedUserIds": blockedUserIds
+                    ]
+                    
+                    ref.updateData(userInfo){ err in
+                    if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                            SVProgressHUD.dismiss()
+
+                        }//else
+                    
+                        }//updateData
+                    } else {
+                    //まだblockedUserIdsが存在しないケース。commenterIdを格納した配列をそのまま作ればいい。
+                    let userInfo = [
+                        "blockedUserIds": [commenterId]
+                    ]
+                    ref.updateData(userInfo){ err in
+                    if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                            SVProgressHUD.dismiss()
+                            //self.myVC?.navigationController?.popoverPresentationController ここに書いても呼ばれない
+                        }//else
+                    
+                        }
+                    }
+                
+                }//else
+            }//getDocument
+        }//currentUser
+    }
+    
     
     
     let formatter = DateFormatter()
     
     func setCommentTableViewCellInfo(commentData:CommentData) {
         
-        //reportのために、commentedArticleIDを渡す準備
+        //report機能のために、commentedArticleIDを渡す準備
         commentedArticleID = commentData.commentedArticleID!
         
         //Date型をString型に変換する準備
@@ -158,12 +215,15 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
         }
         
         if let user = Auth.auth().currentUser {
+            //コメンターとユーザーが同一人物であれば、削除・編集ボタンを出現させる
             if user.uid == commentData.commenterID {
                 deleteButton.isHidden = false
                 editButton.isHidden = false
             }
             
+            //
             if let commenterID = commentData.commenterID {
+                
                 let ref = Firestore.firestore().collection("users").document(commenterID)
                 print(commenterID)
                 ref.addSnapshotListener { querySnapshot, err in
@@ -195,6 +255,8 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
                         }
                     }
                 }
+                
+                
             }
         }
     }

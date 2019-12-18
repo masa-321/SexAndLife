@@ -1299,24 +1299,25 @@ struct _R: Rswift.Validatable {
     }
     
     struct tutorial: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = TutorialViewController1
+      typealias InitialController = MainViewController
       
       let bundle = R.hostingBundle
       let login = StoryboardViewControllerResource<LoginViewController>(identifier: "Login")
       let name = "Tutorial"
-      let tutorial1 = StoryboardViewControllerResource<TutorialViewController1>(identifier: "Tutorial1")
+      let tutorial = StoryboardViewControllerResource<MainViewController>(identifier: "Tutorial")
       let tutorial2 = StoryboardViewControllerResource<TutorialViewController2>(identifier: "Tutorial2")
       let tutorial3 = StoryboardViewControllerResource<TutorialViewController3>(identifier: "Tutorial3")
       let tutorial4 = StoryboardViewControllerResource<TutorialViewController4>(identifier: "Tutorial4")
       let tutorial5 = StoryboardViewControllerResource<TutorialViewController5>(identifier: "Tutorial5")
       let tutorial6 = StoryboardViewControllerResource<TutorialViewController6>(identifier: "Tutorial6")
+      let tutorialBaseViewController = StoryboardViewControllerResource<TutorialBaseViewController>(identifier: "TutorialBaseViewController")
       
       func login(_: Void = ()) -> LoginViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: login)
       }
       
-      func tutorial1(_: Void = ()) -> TutorialViewController1? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: tutorial1)
+      func tutorial(_: Void = ()) -> MainViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: tutorial)
       }
       
       func tutorial2(_: Void = ()) -> TutorialViewController2? {
@@ -1339,6 +1340,10 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: tutorial6)
       }
       
+      func tutorialBaseViewController(_: Void = ()) -> TutorialBaseViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: tutorialBaseViewController)
+      }
+      
       static func validate() throws {
         if UIKit.UIImage(named: "LaunchImage2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'LaunchImage2' is used in storyboard 'Tutorial', but couldn't be loaded.") }
         if UIKit.UIImage(named: "flick", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'flick' is used in storyboard 'Tutorial', but couldn't be loaded.") }
@@ -1349,12 +1354,13 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.tutorial().login() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'login' could not be loaded from storyboard 'Tutorial' as 'LoginViewController'.") }
-        if _R.storyboard.tutorial().tutorial1() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'tutorial1' could not be loaded from storyboard 'Tutorial' as 'TutorialViewController1'.") }
+        if _R.storyboard.tutorial().tutorial() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'tutorial' could not be loaded from storyboard 'Tutorial' as 'MainViewController'.") }
         if _R.storyboard.tutorial().tutorial2() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'tutorial2' could not be loaded from storyboard 'Tutorial' as 'TutorialViewController2'.") }
         if _R.storyboard.tutorial().tutorial3() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'tutorial3' could not be loaded from storyboard 'Tutorial' as 'TutorialViewController3'.") }
         if _R.storyboard.tutorial().tutorial4() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'tutorial4' could not be loaded from storyboard 'Tutorial' as 'TutorialViewController4'.") }
         if _R.storyboard.tutorial().tutorial5() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'tutorial5' could not be loaded from storyboard 'Tutorial' as 'TutorialViewController5'.") }
         if _R.storyboard.tutorial().tutorial6() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'tutorial6' could not be loaded from storyboard 'Tutorial' as 'TutorialViewController6'.") }
+        if _R.storyboard.tutorial().tutorialBaseViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'tutorialBaseViewController' could not be loaded from storyboard 'Tutorial' as 'TutorialBaseViewController'.") }
       }
       
       fileprivate init() {}

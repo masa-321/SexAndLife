@@ -533,7 +533,7 @@ class LoginViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
             let initialVc: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "Initial") as! UINavigationController
             self.show(initialVc, sender: nil)*/
             
-            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial1") as! UIViewController
+            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial") as! UIViewController
             self.show(tutorialVc, sender: nil)
             
             /*
@@ -579,9 +579,9 @@ class LoginViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
             //self.startVc.fetchCellViewModell()
             //self.dismiss(animated: true, completion: nil)
             
-            
+            //FlexibleSteppedProgressBarを使ったTutorialへ誘導するよう変更
             //この時点で、アカウントは生成されているし、それも確認されているはず。なのになぜ？
-            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial1") as! UIViewController
+            let  tutorialVc:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Tutorial") as! UIViewController
             self.show(tutorialVc, sender: nil)
             //これで解決
             /*
@@ -610,5 +610,8 @@ class LoginViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
     override func viewDidDisappear(_ animated: Bool) {
         SVProgressHUD.dismiss()
     }
+    /*override func viewWillDisappear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
+    }*/
 
 }

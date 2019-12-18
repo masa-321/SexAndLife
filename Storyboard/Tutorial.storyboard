@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qiM-o4-STu">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KWn-A0-54C">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage2" translatesAutoresizingMaskIntoConstraints="NO" id="YpJ-FL-x8d">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWw-IQ-LuH">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnn-L7-gKQ">
@@ -574,7 +573,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialClip" translatesAutoresizingMaskIntoConstraints="NO" id="r3i-0i-lxS">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svg-e1-9Ud">
@@ -655,7 +654,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialDefault" translatesAutoresizingMaskIntoConstraints="NO" id="P3m-cA-wHW">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャンネルは指で左右にフリックすることで切り替えることができます。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzj-5G-vP0">
@@ -736,13 +735,13 @@
         <!--Tutorial View Controller1-->
         <scene sceneID="1U9-Jf-TCm">
             <objects>
-                <viewController storyboardIdentifier="Tutorial1" id="qiM-o4-STu" customClass="TutorialViewController1" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qiM-o4-STu" customClass="TutorialViewController1" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8DX-Sp-8Yn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialDefault" translatesAutoresizingMaskIntoConstraints="NO" id="MG9-sF-5de">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3A-eq-oab" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
@@ -821,7 +820,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialConsultation" translatesAutoresizingMaskIntoConstraints="NO" id="C1a-mH-Lo7">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drs-Ac-eJo" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
@@ -903,7 +902,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialDefault" translatesAutoresizingMaskIntoConstraints="NO" id="czS-qL-K8v">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgG-e6-l9x" customClass="RoundedButton" customModule="SexualMediaApp" customModuleProvider="target">
@@ -982,7 +981,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialClip2" translatesAutoresizingMaskIntoConstraints="NO" id="eUz-Ox-mO5">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usv-eZ-RNV">
@@ -1054,13 +1053,156 @@
             </objects>
             <point key="canvasLocation" x="584.79999999999995" y="-1451.4242878560722"/>
         </scene>
+        <!--Main View Controller-->
+        <scene sceneID="lCa-d6-uJt">
+            <objects>
+                <viewController storyboardIdentifier="Tutorial" id="KWn-A0-54C" customClass="MainViewController" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hWP-Tw-JIg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cb-Xo-iTV" customClass="FlexibleSteppedProgressBar" customModule="FlexibleSteppedProgressBar">
+                                <rect key="frame" x="15" y="14" width="345" height="32"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="82d-5E-Jof"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundShapeColor">
+                                        <color key="value" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgoundColor">
+                                        <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsE-sV-Hyl">
+                                <rect key="frame" x="10" y="90" width="355" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hp3-wJ-81H">
+                                <rect key="frame" x="10" y="61" width="355" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rk6-9J-OEN">
+                                <rect key="frame" x="0.0" y="119" width="375" height="469"/>
+                                <connections>
+                                    <segue destination="ukd-F0-CMb" kind="embed" id="LT4-3o-cpC"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h1-kn-82F">
+                                <rect key="frame" x="37.5" y="603" width="300" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="lrs-46-44w"/>
+                                    <constraint firstAttribute="width" constant="300" id="rD6-oz-ajL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
+                                <state key="normal" title="チュートリアルを終える">
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="start:" destination="KWn-A0-54C" eventType="touchUpInside" id="2Bo-Qm-99k"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Hp3-wJ-81H" firstAttribute="centerX" secondItem="hWP-Tw-JIg" secondAttribute="centerX" id="0X7-vT-EFC"/>
+                            <constraint firstItem="BsE-sV-Hyl" firstAttribute="top" secondItem="Hp3-wJ-81H" secondAttribute="bottom" constant="8" id="FJZ-0B-BMo"/>
+                            <constraint firstItem="BsE-sV-Hyl" firstAttribute="leading" secondItem="l6F-Y5-Hyp" secondAttribute="leading" constant="10" id="HRF-2J-xOn"/>
+                            <constraint firstItem="BsE-sV-Hyl" firstAttribute="centerX" secondItem="hWP-Tw-JIg" secondAttribute="centerX" id="Mnu-J9-L5G"/>
+                            <constraint firstItem="l6F-Y5-Hyp" firstAttribute="trailing" secondItem="Hp3-wJ-81H" secondAttribute="trailing" constant="10" id="Sfo-gi-O3d"/>
+                            <constraint firstItem="rk6-9J-OEN" firstAttribute="trailing" secondItem="l6F-Y5-Hyp" secondAttribute="trailing" id="VvJ-un-F0I"/>
+                            <constraint firstItem="rk6-9J-OEN" firstAttribute="leading" secondItem="l6F-Y5-Hyp" secondAttribute="leading" id="XmU-xB-A1E"/>
+                            <constraint firstItem="9h1-kn-82F" firstAttribute="top" secondItem="rk6-9J-OEN" secondAttribute="bottom" constant="15" id="YcA-cz-vLY"/>
+                            <constraint firstItem="9h1-kn-82F" firstAttribute="centerX" secondItem="hWP-Tw-JIg" secondAttribute="centerX" id="Zox-Jz-D6w"/>
+                            <constraint firstItem="l6F-Y5-Hyp" firstAttribute="trailing" secondItem="8cb-Xo-iTV" secondAttribute="trailing" constant="15" id="anI-u3-ELw"/>
+                            <constraint firstItem="8cb-Xo-iTV" firstAttribute="top" secondItem="l6F-Y5-Hyp" secondAttribute="top" constant="14" id="cgu-ip-MAq"/>
+                            <constraint firstAttribute="trailing" secondItem="BsE-sV-Hyl" secondAttribute="trailing" constant="10" id="dA5-AG-z6P"/>
+                            <constraint firstItem="l6F-Y5-Hyp" firstAttribute="bottom" secondItem="9h1-kn-82F" secondAttribute="bottom" constant="24" id="k4a-pC-9vL"/>
+                            <constraint firstItem="Hp3-wJ-81H" firstAttribute="leading" secondItem="l6F-Y5-Hyp" secondAttribute="leading" constant="10" id="ldW-2d-Nnj"/>
+                            <constraint firstItem="Hp3-wJ-81H" firstAttribute="top" secondItem="8cb-Xo-iTV" secondAttribute="bottom" constant="15" id="nob-ZV-os2"/>
+                            <constraint firstItem="rk6-9J-OEN" firstAttribute="top" secondItem="BsE-sV-Hyl" secondAttribute="bottom" constant="8" id="p94-n8-3nm"/>
+                            <constraint firstItem="8cb-Xo-iTV" firstAttribute="leading" secondItem="l6F-Y5-Hyp" secondAttribute="leading" constant="15" id="sPB-nW-UTJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="l6F-Y5-Hyp"/>
+                    </view>
+                    <connections>
+                        <outlet property="stepIndicator" destination="8cb-Xo-iTV" id="VFa-m8-a0R"/>
+                        <outlet property="tutorialCounterLabel" destination="BsE-sV-Hyl" id="fPb-0s-Gbc"/>
+                        <outlet property="tutorialTitleLabel" destination="Hp3-wJ-81H" id="Mu0-Ti-Szd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xb6-pn-vMJ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1602.4000000000001" y="-602.24887556221893"/>
+        </scene>
+        <!--Tutorial Base View Controller-->
+        <scene sceneID="g3D-CX-oue">
+            <objects>
+                <viewController storyboardIdentifier="TutorialBaseViewController" id="Icy-Rr-5d0" customClass="TutorialBaseViewController" customModule="SexualMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Fl-Mn-un2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lh6-Yk-s8Z">
+                                <rect key="frame" x="100.5" y="183.5" width="174" height="300"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="174" id="MST-LD-KY4"/>
+                                    <constraint firstAttribute="height" constant="300" id="TF0-ji-qqg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFa-P4-0co">
+                                <rect key="frame" x="37.5" y="149.5" width="300" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="kpQ-vA-3X1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="14"/>
+                                <color key="textColor" red="0.99344800420000001" green="0.61462983630000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Lh6-Yk-s8Z" firstAttribute="top" secondItem="yFa-P4-0co" secondAttribute="bottom" constant="20" id="0Mp-lT-HoF"/>
+                            <constraint firstItem="Lh6-Yk-s8Z" firstAttribute="centerY" secondItem="4Fl-Mn-un2" secondAttribute="centerY" id="3ZJ-LG-wh4"/>
+                            <constraint firstItem="Lh6-Yk-s8Z" firstAttribute="centerX" secondItem="4Fl-Mn-un2" secondAttribute="centerX" id="WtE-c1-KvX"/>
+                            <constraint firstItem="yFa-P4-0co" firstAttribute="centerX" secondItem="4Fl-Mn-un2" secondAttribute="centerX" id="g0p-5O-PR6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qsL-zj-iQ8"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KHu-C3-9Hp"/>
+                    <connections>
+                        <outlet property="tutorialBaseImageView" destination="Lh6-Yk-s8Z" id="eYA-0V-maM"/>
+                        <outlet property="tutorialBaseTitleLabel" destination="yFa-P4-0co" id="n66-w0-dKe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bXC-Hk-5pg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-215" y="-568"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="mp6-VI-M9H">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ukd-F0-CMb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gGZ-JN-eOw"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aKU-un-6ug" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-897" y="-579"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage2" width="591.46014404296875" height="993.42333984375"/>
+        <image name="LaunchImage2" width="1339" height="2249"/>
         <image name="flick" width="512" height="512"/>
-        <image name="tutorialClip" width="212.57919311523438" height="366.35293579101562"/>
-        <image name="tutorialClip2" width="212.57919311523438" height="366.35293579101562"/>
-        <image name="tutorialConsultation" width="212.57919311523438" height="366.35293579101562"/>
-        <image name="tutorialDefault" width="212.57919311523438" height="366.35293579101562"/>
+        <image name="tutorialClip" width="1305" height="2249"/>
+        <image name="tutorialClip2" width="1305" height="2249"/>
+        <image name="tutorialConsultation" width="1305" height="2249"/>
+        <image name="tutorialDefault" width="1305" height="2249"/>
     </resources>
 </document>

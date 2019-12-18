@@ -23,6 +23,7 @@ target 'SexualMediaApp' do
   pod 'FBSDKLoginKit', '~> 4.38.0'
   pod 'FBSDKCoreKit', '~> 4.38.0'
   pod 'BoringSSL'
+  pod 'FlexibleSteppedProgressBar'
   # 以下updateで指示されたコマンド
   # pod 'FacebookSDK'
   # pod 'FacebookSDK/LoginKit'

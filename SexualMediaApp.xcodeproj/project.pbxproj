@@ -69,6 +69,9 @@
 		5F6A1FFA21F36A92009AD79A /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A1FF821F36A92009AD79A /* ProfileCommentCell.xib */; };
 		5F6DF6C521F72D610010085C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6DF6C421F72D610010085C /* TutorialViewController.swift */; };
 		5F6DF6C721F742E60010085C /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6DF6C621F742E60010085C /* Tutorial.storyboard */; };
+		5F85FEAC23AA514C0078378B /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F85FEAB23AA514C0078378B /* Tutorial.swift */; };
+		5F85FEAE23AA51DC0078378B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F85FEAD23AA51DC0078378B /* MainViewController.swift */; };
+		5F85FEB023AA52020078378B /* TutorialBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F85FEAF23AA52020078378B /* TutorialBaseViewController.swift */; };
 		5F875632221EA60F009A8EF0 /* Question.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F875631221EA60F009A8EF0 /* Question.storyboard */; };
 		5F875635221EA731009A8EF0 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F875634221EA731009A8EF0 /* QuestionViewController.swift */; };
 		5F875637221ECDEC009A8EF0 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F875636221ECDEC009A8EF0 /* QuestionCell.swift */; };
@@ -177,6 +180,9 @@
 		5F6A1FF821F36A92009AD79A /* ProfileCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCell.xib; sourceTree = "<group>"; };
 		5F6DF6C421F72D610010085C /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		5F6DF6C621F742E60010085C /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
+		5F85FEAB23AA514C0078378B /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		5F85FEAD23AA51DC0078378B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5F85FEAF23AA52020078378B /* TutorialBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialBaseViewController.swift; sourceTree = "<group>"; };
 		5F875631221EA60F009A8EF0 /* Question.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Question.storyboard; sourceTree = "<group>"; };
 		5F875634221EA731009A8EF0 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		5F875636221ECDEC009A8EF0 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
@@ -223,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				105184352165992000EA36BD /* SexualMediaApp */,
+				5F85FEAA23AA51130078378B /* Tutorial */,
 				5FEDC02A21E059E2006A3563 /* Consultation */,
 				509B4B90216E2A76006F239C /* ThemeViewControllers */,
 				5F086F8321EB33A00077B8E9 /* Profile */,
@@ -367,6 +374,16 @@
 				5F6A1FF121EF23D4009AD79A /* ProfileModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		5F85FEAA23AA51130078378B /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				5F85FEAB23AA514C0078378B /* Tutorial.swift */,
+				5F85FEAD23AA51DC0078378B /* MainViewController.swift */,
+				5F85FEAF23AA52020078378B /* TutorialBaseViewController.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		5F875633221EA6F9009A8EF0 /* Question */ = {
@@ -590,48 +607,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/CTFeedback/CTFeedback.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTFeedback.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-SexualMediaApp/Pods-SexualMediaApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -652,6 +632,7 @@
 				503C98FC2181432E00646A8B /* ListCell.swift in Sources */,
 				5FEDC03B21E1E2E8006A3563 /* ChannelCell.swift in Sources */,
 				5F6A1FF621F20490009AD79A /* ConsultationData.swift in Sources */,
+				5F85FEAE23AA51DC0078378B /* MainViewController.swift in Sources */,
 				50729B982185B20000F0F3C5 /* Const.swift in Sources */,
 				5FEDC02C21E05A6A006A3563 /* ConsultationCollectionCell.swift in Sources */,
 				5FEDC04221E611BA006A3563 /* SourceViewController.swift in Sources */,
@@ -659,6 +640,7 @@
 				5F48750221FAB5BB00190E75 /* BrowseConsultationViewController.swift in Sources */,
 				5F6DF6C521F72D610010085C /* TutorialViewController.swift in Sources */,
 				10AB5C79216A5FCE00EB5E61 /* CoverFlow.swift in Sources */,
+				5F85FEB023AA52020078378B /* TutorialBaseViewController.swift in Sources */,
 				5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */,
 				1051844F21659B0500EA36BD /* Media3ViewController.swift in Sources */,
 				5FB4902B222E5A0300594856 /* ConsultationDetailHeaderCell.swift in Sources */,
@@ -668,6 +650,7 @@
 				5FEDC02E21E05C3F006A3563 /* ConsultationItemCell.swift in Sources */,
 				502F9AE8218D3149008E6037 /* Media6ViewController.swift in Sources */,
 				50729B9A2185B2D300F0F3C5 /* ArticleData.swift in Sources */,
+				5F85FEAC23AA514C0078378B /* Tutorial.swift in Sources */,
 				50511DDF2187DBB0003011CC /* ClipViewController.swift in Sources */,
 				5F086F8021EB2E670077B8E9 /* CAPSPageMenu.swift in Sources */,
 				1051844D21659AFB00EA36BD /* Media2ViewController.swift in Sources */,
