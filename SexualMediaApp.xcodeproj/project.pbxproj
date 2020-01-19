@@ -843,6 +843,7 @@
 				CODE_SIGN_ENTITLEMENTS = SexualMediaApp/SexualMediaApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.2.7;
 				DEVELOPMENT_TEAM = DFT9PS22CQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -855,6 +856,7 @@
 					"@executable_path/Frameworks",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.masa321.SexualMediaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -871,6 +873,7 @@
 				CODE_SIGN_ENTITLEMENTS = SexualMediaApp/SexualMediaApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.2.7;
 				DEVELOPMENT_TEAM = DFT9PS22CQ;
 				INFOPLIST_FILE = SexualMediaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -879,6 +882,7 @@
 					"@executable_path/Frameworks",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.masa321.SexualMediaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

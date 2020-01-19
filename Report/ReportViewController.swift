@@ -75,7 +75,7 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func sendButton(_ sender: Any) {
         
         //sendButtonを押した時のアラートを構築 関数の外に配置したら、navigationController?popViewControllerがうまく動かなかった。
-        var alertController1 = UIAlertController(title: "報告ありがとうございました", message: nil, preferredStyle: UIAlertController.Style.alert)
+        let alertController1 = UIAlertController(title: "報告ありがとうございました", message: nil, preferredStyle: UIAlertController.Style.alert)
         //UIAlertController can only have one action with a style of UIAlertActionStyleCancel→このためエラーになるっぽい
         //let alertController2 = UIAlertController(title: "何らかのエラーが発生した様です", message: nil, preferredStyle: UIAlertController.Style.alert)
         let okAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel,handler :{ (action:UIAlertAction) in
@@ -86,6 +86,13 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.navigationController?.popViewController(animated: true)
             }
         })
+        
+        //alertControllerがiPadだとエラーになる問題を解決。
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            let screenSize = UIScreen.main.bounds
+            alertController1.popoverPresentationController?.sourceView = self.view
+            alertController1.popoverPresentationController?.sourceRect = CGRect(x: screenSize.size.width/2, y: screenSize.size.height, width: 0, height: 0)
+        }
         
         SVProgressHUD.show()
         if let user = Auth.auth().currentUser {
@@ -125,10 +132,10 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 print("setData(question) Error adding document: \(err)")
                                 
                                 SVProgressHUD.dismiss()
-                                //これうまくいくのかな…
-                                alertController1 = UIAlertController(title: "何らかのエラーが発生した様です", message: nil, preferredStyle: UIAlertController.Style.alert)
+                                //これうまくいくのかな…→うまくいかなかった。
+                                /*alertController1 = UIAlertController(title: "何らかのエラーが発生した様です", message: nil, preferredStyle: UIAlertController.Style.alert)
                                 alertController1.addAction(okAction)
-                                self.present(alertController1, animated: true, completion: nil)
+                                self.present(alertController1, animated: true, completion: nil)*/
                                 
                                 /*
                                 alertController1.addAction(okAction)

@@ -91,6 +91,7 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //なぜか初回は呼ばれないようだ。他のカラムから戻ってきたら呼ばれる。
         //fetchCellViewModell()
         fetchArticleData()
+        
     }
     
     //override func viewDidAppear(_ animated: Bool) {}
@@ -105,20 +106,20 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let ref = Firestore.firestore().collection("articleData")
             let uid = user.uid
             
-            ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
+            ref.order(by: "date", descending: true).limit(to: 14).addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching articleData documents: \(err)")
                 } else {
                     self.articleDataArray = []
                     for document in querySnapshot!.documents {
                         let articleData = ArticleQueryData(snapshot: document, myId: uid)
-                        
-                        if self.articleDataArray.count < 14 { //トップ記事は10記事まで
-                            self.articleDataArray.insert(articleData, at: 0)
-                        }
-
+                        self.articleDataArray.insert(articleData, at: 0)
+                        //self.articleDataArray.sort(by: {$0.date > $1.date})
+  
                     }
+                    self.articleDataArray.reverse()
                     
+                    print("articleData",self.articleDataArray)
                     let before = self.tableView.contentOffset.y
                     self.tableView.reloadData()
                     let after = self.tableView.contentOffset.y

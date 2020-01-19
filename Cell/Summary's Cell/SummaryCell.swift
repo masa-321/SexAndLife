@@ -29,7 +29,7 @@ class SummaryCell: UITableViewCell {
     @IBOutlet weak var summaryLabel: UILabel!
     
   
-    @IBOutlet weak var articleIdLabel: UILabel!
+    //@IBOutlet weak var articleIdLabel: UILabel!
     
     @IBOutlet weak var articleImageView: UIImageView!
   
@@ -59,7 +59,7 @@ class SummaryCell: UITableViewCell {
         browseButton.backgroundColor = UIColor(red:0.95, green:1.00, blue:0.36, alpha:1.0)
         titleLabel.text = articleData.titleStr
         sourceLabel.text = articleData.sourceName
-        articleIdLabel.text = articleData.id
+        //articleIdLabel.text = articleData.id 消去した
         
         //Date型をString型に変換する準備
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))

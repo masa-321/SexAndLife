@@ -76,6 +76,13 @@ class BrowseConsultationViewController: UIViewController, WKUIDelegate, WKNaviga
             self.dismiss(animated: true, completion: nil)
         })
         
+        //alertControllerがiPadだとエラーになる問題を解決。
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            let screenSize = UIScreen.main.bounds
+            alertController.popoverPresentationController?.sourceView = self.view
+            alertController.popoverPresentationController?.sourceRect = CGRect(x: screenSize.size.width/2, y: screenSize.size.height, width: 0, height: 0)
+        }
+        
         //alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)

@@ -157,7 +157,7 @@ class SourceViewController: UIViewController,UITableViewDelegate,UITableViewData
                 for likeId in articleData.likes {
                     if likeId == uid {
                         // 削除するためにインデックスを保持しておく
-                        index = articleData.likes.index(of: likeId)!
+                        index = articleData.likes.firstIndex(of: likeId)!
                         break
                     }
                 }
@@ -249,7 +249,10 @@ class SourceInfoCell:UITableViewCell{
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    self.sourceInfoTextView.text = document["SourceInfo"] as? String
+                    var preText = ""
+                    preText = (document["SourceInfo"] as? String)!
+                    self.sourceInfoTextView.text = preText.replacingOccurrences(of: "\\n", with: "\n")
+                    
                 }
             }
         }

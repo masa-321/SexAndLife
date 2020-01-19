@@ -69,6 +69,13 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
         
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
+        //actionsheetがiPadだとエラーになる問題を解決。
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            let screenSize = UIScreen.main.bounds
+            actionsheet.popoverPresentationController?.sourceView = self.myVC?.view //これでCommentTableViewCell.swiftがviewを持っていませんというエラーは解決できたか？
+            actionsheet.popoverPresentationController?.sourceRect = CGRect(x: screenSize.size.width/2, y: screenSize.size.height, width: 0, height: 0)
+        }
+        
         actionsheet.addAction(UIAlertAction(title: "ブロックする", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             print("ユーザーID：",Auth.auth().currentUser?.uid,"/コメンターID：",self.profileData?.id,"/コメントされた記事：",self.commentedArticleID)
             
@@ -82,6 +89,8 @@ class CommentTableViewCell: UITableViewCell/*,UITextViewDelegate*/ {
             let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (action:UIAlertAction!) -> Void in
                 //キャンセル時の処理を書く。ただ処理をやめるだけなら書く必要はない。
             })
+            
+            
             
             alertController.addAction(cancelAction) //addActionなのね。
             alertController.addAction(okAction)

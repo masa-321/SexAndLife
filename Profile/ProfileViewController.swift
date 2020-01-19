@@ -239,7 +239,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let ref = Firestore.firestore().collection("articleData")
             let uid = user.uid
             
-            ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
+            ref.order(by: "date", descending: true).addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching documents: \(err)")
                 } else {
@@ -253,6 +253,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                             }
                         }
                     }
+                    self.commentedArticleArray.reverse()
                     self.tableView.reloadData()
                     
                     /*

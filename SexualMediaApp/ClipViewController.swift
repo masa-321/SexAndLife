@@ -68,7 +68,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //.orderは約10個以上になるとうまく表示されない可能性がある。慎重に。
             let ref = Firestore.firestore().collection("articleData")
-            ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
+            ref.order(by: "date", descending: true).addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching documents: \(err)")
                 } else {
@@ -79,6 +79,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         print("documentがあったよ")
                         self.likesArray.insert(articleData, at: 0)
                     }
+                    self.likesArray.reverse()
                     
                     self.likesArray = self.likesArray.filter { $0.likes.contains(uid) }
                     

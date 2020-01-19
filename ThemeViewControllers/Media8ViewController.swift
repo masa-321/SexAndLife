@@ -95,18 +95,16 @@ class Media8ViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let ref = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "セックスのこと")
             let uid = user.uid
             
-            ref.order(by: "date", descending: false).addSnapshotListener { querySnapshot, err in
+            ref.order(by: "date", descending: true).limit(to: 14).addSnapshotListener { querySnapshot, err in
                 if let err = err {
                     print("Error fetching articleData documents: \(err)")
                 } else {
                     self.articleDataArray = []
                     for document in querySnapshot!.documents {
                         let articleData = ArticleQueryData(snapshot: document, myId: uid)
-                        
-                        if self.articleDataArray.count < 14 { //トップ記事は10記事まで
-                            self.articleDataArray.insert(articleData, at: 0)
-                        }
+                        self.articleDataArray.insert(articleData, at: 0)
                     }
+                    self.articleDataArray.reverse()
                     //Clipボタンを押した時にcontentOffsetがずれる課題に対しての気休め
                     let before = self.tableView.contentOffset.y
                     self.tableView.reloadData()
@@ -215,7 +213,7 @@ class Media8ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            if articleDataArray.count > 0 && articleDataArray.count <= 7{
+            if articleDataArray.count > 0/* && articleDataArray.count <= 7*/{
                 let selectCellViewModel = articleDataArray[indexPath.row]
                 masterViewPointer?.summaryView(giveCellViewModel: selectCellViewModel)
             } else {
