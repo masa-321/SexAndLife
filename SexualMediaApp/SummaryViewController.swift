@@ -21,36 +21,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     var commentArray:[CommentData] = []
     //blockしてるユーザーのID:Stringが格納される配列を宣言
     var receivedBlockedUserIds:[String] = []
-    
-    //var relatedArticleCellViewModel = ListCellViewModel()
-    //var relatedArticleCellViewModel_Array = [ListCellViewModel]()
-    
-    /*
-    @IBOutlet weak var scrollView: UIScrollView!{
-        didSet {
-            scrollView.delegate = self
-            scrollView.bounces = true
-            scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-            scrollView.contentSize = CGSize(width:UIScreen.main.bounds.size.width, height: 1600)
-            //600がメイン+TableViewが1000
-        }
-    }*/
-    
-  
-    
-    /*
-    @IBOutlet weak var webImage: UIImageView!{
-        didSet{
-            webImage.contentMode = UIView.ContentMode.scaleAspectFill //scaleAspectFit
-            webImage.center.x = self.view.bounds.width/2
-        }
-    }*/
-    
-    /*
-    @IBOutlet weak var tableHeight: NSLayoutConstraint! {
-        tableHeight.constant = relatedTableView.contentSize.height
-    }*/
-    
+   
     @IBOutlet weak var relatedTableView: UITableView! {
         didSet {
             relatedTableView.frame.size.height = 1000//375:200でTableViewCellを配置。関連記事は5つとして、200×5=1000
@@ -69,21 +40,6 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             let nib4 = UINib(nibName: "CommentEmptyCell", bundle: nil)
             relatedTableView.register(nib4, forCellReuseIdentifier: "CommentEmptyCell")
             relatedTableView.bounces = true
-            
-            
-            
-            //relatedTableView.rowHeight = UITableView.automaticDimension
-            
-            /*
-            relatedTableView.estimatedRowHeight = 1000
-            
-            //以下の２行はコメント欄を構築するに当たって書いていたコード。参考は、ReadMoreTextViewとTestComment
-            //relatedTableView.estimatedRowHeight = 100
-            //relatedTableView.estimatedRowHeight = 200
-            relatedTableView.rowHeight = UITableView.automaticDimension
-            
-            //100や200だとピョンとするが、コメント欄はちゃんと動く。1000だとコメント欄がバグる。
-             */
             
             print("receivedBlockedUserIds",self.receivedBlockedUserIds)
         }
@@ -142,20 +98,8 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //navigationController?.navigationBar.tintColor = .white
-        //navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //navigationController?.navigationBar.barTintColor = .white //なんだっけ
-        //navigationController?.navigationBar.tintColor = .darkGray //戻るボタンの色は最終的に黒になる
-        //navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        
     }
-    /*
-    //コメント欄の実装のために追加。ReadMoreTextViewとTestCommentを参考。
-    //あってもなくても関係がない？？
-    override func viewDidLayoutSubviews() {//ViewDidLoadの後のライフサイクル…
-        relatedTableView.reloadData()
-    }*/
-    
+
     
     //commentを起動させる
     @IBAction func commentButton(_ sender: Any) {
@@ -266,39 +210,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         present(activityViewController, animated: true, completion: nil)
     }
     
-    
-    // scrollViewのデリゲートメソッド？→TableViewのoffsetを応用すればできそうに思える。
-    /*
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //scrollView.contentOffset.yの値が、webImage.layer.frame.heightの値を超えるまでなだらかに色が変化し、最終的にtintColorはdarkGrey、setBackgroundImageは半透明になって欲しい。
-        let alpha = scrollView.contentOffset.y/webImage.layer.frame.height
-        
-        
-        if alpha <= 0{
-            
-            navigationController?.navigationBar.tintColor = .clear //戻るボタンの色は白.すでに上のviewDidAppearで宣言されている。
-            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //barの色は最初透明。すでに上のviewDidAppearで宣言されている。
-            navigationController?.navigationBar.shadowImage = UIImage() //下の線も最初透明。すでに上のviewDidAppearで宣言されている。
-            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.clear]
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
-        }else if alpha < 1 && alpha > 0 {
-            navigationController?.navigationBar.barTintColor = .white //なんだっけ
-            navigationController?.navigationBar.tintColor = .darkGray //戻るボタンの色は最終的に黒になる
-            navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-            navigationController?.navigationBar.alpha = alpha
-            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray]
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-            
-        } else if alpha >= 1 {
-            navigationController?.navigationBar.barTintColor = .white //なんだっけ
-            navigationController?.navigationBar.tintColor = .darkGray //戻るボタンの色は最終的に黒になる
-            navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray]
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-            
-        }
-    }*/
+   
     
 //★★★★★★★★★★★★コメントを引っ張ってくるためのコード★★★★★★★★★★★★//
     func fetchComments() {
@@ -371,164 +283,7 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             }
         }
     }
-    
-    /*
-    func relatedArticleFetchCellViewModell() {
-        
-        //relatedArticleIDs この中には5つIDがあって、そのIDに合致する記事を引っ張ってきたい。
-        if Auth.auth().currentUser != nil {
-            
-            if self.observing == false {
-            let articlesRef = Database.database().reference().child(Const.ArticlePath)
-                articlesRef.observe(.childAdded, with: {snapshot in
-                    //observeSingleEventは、元々のやり方とは合わなかったようだ。どういうわけかはよくわからない。
-                    
-                    //ArticleDataクラスを生成して受け取ったデータを設定する。
-                    if let uid = Auth.auth().currentUser?.uid {
-                        let relatedArticleData = ArticleData(snapshot: snapshot, myId: uid)
-                        
-                        for id in self.receiveCellViewModel!.relatedArticleIDs{
-                            if (relatedArticleData.id)! == id/*"\((relatedArticleData.id)!)".contains("\(id)") */{
-                                self.relatedArticleArray.insert(relatedArticleData, at: 0)
-                            }
-                        }
-                        /*
-                        if self.relatedArticleArray.count < 5 {
-                            
-                            var otherArticleDataIDs = [String]()
-                            for id in self.receiveCellViewModel!.relatedArticleIDs {
-                                if relatedArticleData.id != id {
-                                    otherArticleDataIDs.append(relatedArticleData.id!)
-                                }
-                            }
-                            print(otherArticleDataIDs)
-                            
-                            //ここで繰り返しをやると、合致しないidのセルがダブってしまう。
-                            for id in otherArticleDataIDs {
-                                if (relatedArticleData.id)! == id {
-                                    self.relatedArticleArray.insert(relatedArticleData, at: 0)
-                                }
-                            }
-                        }*/
-                            //if self.relatedArticleArray.count < 5 { //関連記事は5つ以下ということで。
-                            //
-                    
-                        //print(self.articleArray)
-                        // TableViewを再表示する
-                    self.relatedTableView.reloadData()
-                    }
-                })
-                
-                
-                articlesRef.observe(.childChanged, with: { snapshot in
-                    if let uid = Auth.auth().currentUser?.uid {
-                        let relatedArticleData = ArticleData(snapshot: snapshot, myId: uid)
-                        
-                        var index: Int = 5
-                        //変更があったCellのindexを取得しようとしている。
-                        for article in self.relatedArticleArray {
-                            if article.id == relatedArticleData.id {
-                                index = self.relatedArticleArray.index(of: article)!
-                                break
-                            }
-                        } //なかった場合、indexは0のまま…すると…relatedArticleArray[0]が消去され、relateArticleDataの[0]番目が差し込まれてしまうというわけだ。
-                        if index < 5 { //現時点ではindexは4が最高だからこれで大丈夫なはず
-                            self.relatedArticleArray.remove(at: index)
-                            self.relatedArticleArray.insert(relatedArticleData, at:index)
-                        }
-                        
-                        self.relatedTableView.reloadData()
-                        //reloadDataを消すと、ピョンピョン移動は消えるかもしれないが、ボタンの色の変化も消えてしまう。
-                        
-                        /*
-                        //差し替えるために一度削除
-                        if index > 0 {
-                        self.relatedArticleArray.remove(at: index)
-                        //削除したところに更新済みのデータを追加
-                        self.relatedArticleArray.insert(relatedArticleData, at:index) //おそらくこれのせいで、更新したときに、トップの記事が差し込まれることになる。
-                        }*/
-                        /*
-                        self.relatedTableView.reloadData()
-                        } else if index == 0 {
-                            self.relatedTableView.reloadData()
-                        } //これあかんやつや。最初の投稿のやつが削除されなくなってしまう。
-                        
-                        */
-                    }
-                })
-                
-                observing = true
-                
-            } else {
-                if observing == true {
-                    print("observingがtrueです")
-                    relatedArticleArray = []
-                    
-                    relatedTableView.reloadData()
-                    Database.database().reference().removeAllObservers()
-                    
-                    observing = false
-                }
-            }
-        }
-    }*/
-        /*
-        self.relatedArticleCellViewModel = ListCellViewModel()
-        self.relatedArticleCellViewModel_Array = [ListCellViewModel]()
-     
-        let ref = Database.database().reference()
-        ref.child("CellViewModel").observeSingleEvent(of: .value) { (snap,error) in
-            let cellViewModelSnap = snap.value as? [String:NSDictionary]
-            if cellViewModelSnap == nil {
-                return //returnが押されるとそこで終了してしまう可能性があるな。
-            }
-            //print(cellViewModelSnap)
-            for(_,cell) in cellViewModelSnap!{
-                self.relatedArticleCellViewModel = ListCellViewModel()
-     
-                if let summary = cell["summary"] as? String{
-                    self.relatedArticleCellViewModel.summary = summary
-                }else{self.relatedArticleCellViewModel.summary = ""}
-     
-                if let titleStr = cell["titleStr"] as? String{
-                    self.relatedArticleCellViewModel.titleStr = titleStr
-                }else{self.relatedArticleCellViewModel.titleStr = ""}
-     
-                if let articleUrl = cell["articleUrl"] as? String{
-                    self.relatedArticleCellViewModel.articleUrl = articleUrl
-                }else{self.relatedArticleCellViewModel.articleUrl = ""}
-     
-                if let genreName = cell["genreName"] as? String{
-                    self.relatedArticleCellViewModel.genreName = genreName
-                }else{self.relatedArticleCellViewModel.genreName = ""}
-     
-                if let sourceName = cell["sourceName"] as? String{
-                    self.relatedArticleCellViewModel.sourceName = sourceName
-                }else{self.relatedArticleCellViewModel.sourceName = ""}
-     
-                if let date = cell["date"] as? String {
-                    self.relatedArticleCellViewModel.date = date
-                } else {self.relatedArticleCellViewModel.date = ""}
-     
-                if let imageUrl = cell["imageUrl"] as? String {
-                    self.relatedArticleCellViewModel.imageUrl = imageUrl
-                } else {self.relatedArticleCellViewModel.imageUrl = ""}
-     
-                if let clipDate = cell["clipDate"] as? Date {
-                    self.relatedArticleCellViewModel.clipDate = clipDate
-                } else {self.relatedArticleCellViewModel.clipDate = Date()}
-                //print(self.relatedArticleCellViewModel.clipDate) →2018-10-26 14:43:54 +0000 こんな感じでコンソールに表示されていた。
-     
-                if let clipSumNumber = cell["clipSumNumber"] as? Int {
-                    self.relatedArticleCellViewModel.clipSumNumber = clipSumNumber
-                } else {self.relatedArticleCellViewModel.clipSumNumber = 0}
-                
-                if self.relatedArticleCellViewModel_Array.count < 5 {
-                    self.relatedArticleCellViewModel_Array.append(self.relatedArticleCellViewModel)
-                } //配列の数を5個までとする。
-            }
-            self.relatedTableView.reloadData()
-        }*/
+
     
 ///★★★★★★★★★★★★rerelatedTableViewの設定★★★★★★★★★★★★//
     
@@ -1187,16 +942,6 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
         let point = touch!.location(in: self.relatedTableView)
         let indexPath = relatedTableView.indexPathForRow(at: point)
         let commentData = commentArray[indexPath!.row - 1]//indexPath.rowの0は記入欄だから、1のズレを修正する必要あり。
-        print("likeButtonが呼ばれたよ")
-        print("touch",touch)
-        print("point",point)
-        print("indexPath",indexPath)
-        print("commentData.commentLikes",commentData.commentLikes)
-        /*
-         touch Optional(<UITouch: 0x10359b650> phase: Ended tap count: 1 force: 0.133 window: <UIWindow: 0x1035229e0; frame = (0 0; 375 667); gestureRecognizers = <NSArray: 0x2805c7180>; layer = <UIWindowLayer: 0x280bb10c0>> view: <UIButton: 0x10ca1d210; frame = (30 141; 60 30); opaque = NO; autoresize = RM+BM; layer = <CALayer: 0x280cd46e0>> location in window: {76.5, 416.5} previous location in window: {76.5, 416.5} location in view: {46.5, 22.5} previous location in view: {46.5, 22.5})
-         point (76.5, 1142.5)
-         indexPath Optional([1, 0])
-         */
         
         // Firebaseに保存するデータの準備
         if let uid = Auth.auth().currentUser?.uid {
@@ -1238,110 +983,6 @@ class SummaryViewController: UIViewController, UIScrollViewDelegate, UITableView
             }
         }
     }
-    
-    
-    /*
-     @objc func handleButton(sender:UIButton, event:UIEvent) {
-     print("DEBUG_PRINT: likeボタンがタップされました。")
-     
-     // タップされたセルのインデックスを求める
-     let touch = event.allTouches?.first
-     let point = touch!.location(in: self.tableView)
-     let indexPath = tableView.indexPathForRow(at: point)
-     
-     // 配列からタップされたインデックスのデータを取り出す
-     let articleData = articleArray[indexPath!.row]
-     
-     // Firebaseに保存するデータの準備
-     if let uid = Auth.auth().currentUser?.uid {
-     if articleData.isLiked {
-     // すでにいいねをしていた場合はいいねを解除するためIDを取り除く
-     var index = -1
-     for likeId in articleData.likes {
-     if likeId == uid {
-     // 削除するためにインデックスを保持しておく
-     index = articleData.likes.index(of: likeId)!
-     break
-     }
-     }
-     articleData.likes.remove(at: index)
-     } else {
-     articleData.likes.append(uid)
-     }
-     // 増えたlikesをFirebaseに保存する
-     let articleRef = Database.database().reference().child(Const.ArticlePath).child(articleData.id!)
-     let likes = ["likes": articleData.likes]
-     articleRef.updateChildValues(likes)
-     
-     }
-     
-     }
-     */
-    
-    
-    
-    /*
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        fromRelatedArticleToSummary
-        (giveTitleText: relatedArticleCellViewModel_Array[indexPath.row].titleStr,
-         giveSummaryText: relatedArticleCellViewModel_Array[indexPath.row].summary,
-         giveArticleUrl: relatedArticleCellViewModel_Array[indexPath.row].articleUrl,
-         giveGenreName: relatedArticleCellViewModel_Array[indexPath.row].genreName,
-         giveSorceName: relatedArticleCellViewModel_Array[indexPath.row].sourceName,
-         giveDate: relatedArticleCellViewModel_Array[indexPath.row].date,
-         giveImageUrl: relatedArticleCellViewModel_Array[indexPath.row].imageUrl)
-    }
-    
-    /*func fromRelatedArticleToSummary(giveCellViewModel:ListCellViewModel) {
-        self.giveCellViewModel = giveCellViewModel*/
-        
-    func fromRelatedArticleToSummary(giveTitleText:String, giveSummaryText:String, giveArticleUrl:String, giveGenreName:String, giveSorceName:String, giveDate:String, giveImageUrl:String){
-        self.giveTitleText = giveTitleText
-        self.giveSummaryText = giveSummaryText
-        self.giveArticleUrl = giveArticleUrl
-        self.giveGenreName = giveGenreName
-        self.giveSorceName = giveSorceName
-        self.giveDate = giveDate
-        self.giveImageUrl = giveImageUrl
-    
-        let vc:SummaryViewController = storyboard?.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
-        vc.receiveTitleText = giveTitleText
-        vc.receiveSummaryText = giveSummaryText
-        vc.receiveArticleUrl = giveArticleUrl
-        vc.receiveGenreName = giveGenreName
-        vc.receiveSorceName = giveSorceName
-        vc.receiveDate = giveDate
-        vc.receiveImageUrl = giveImageUrl
-        
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    
-    
-    /*
- func fromRelatedArticleToSummary(giveTitleText:String, giveSummaryText:String, giveArticleUrl:String, giveGenreName:String, giveSorceName:String, giveDate:String, giveImageUrl:String){
- self.giveTitleText = giveTitleText
- self.giveSummaryText = giveSummaryText
- self.giveArticleUrl = giveArticleUrl
- self.giveGenreName = giveGenreName
- self.giveSorceName = giveSorceName
- self.giveDate = giveDate
- self.giveImageUrl = giveImageUrl
- 
- let vc:SummaryViewController = self.storyboard?.instantiateViewController(withIdentifier: "SummaryViewController") as! SummaryViewController
- vc.receiveTitleText = giveTitleText
- vc.receiveSummaryText = giveSummaryText
- vc.receiveArticleUrl = giveArticleUrl
- vc.receiveGenreName = giveGenreName
- vc.receiveSorceName = giveSorceName
- vc.receiveDate = giveDate
- vc.receiveImageUrl = giveImageUrl
- 
- self.navigationController?.pushViewController(vc, animated: true)
- }
- */
-    */
-
     
 }
 

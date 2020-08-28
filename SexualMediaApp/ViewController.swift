@@ -13,6 +13,7 @@ import FirebaseAuth
 import FSPagerView
 import SVProgressHUD
 
+
 class InitialNavigationController: UINavigationController {
     
 }
@@ -54,19 +55,6 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         //UIScreen.mainScreen.bounds.width
         launchImageView.center = self.view.center
         self.view.addSubview(launchImageView)
-        
-        /*
-        navigationBar.tintColor = .white
-        //leftButton.tintColor = .black
-        leftButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        leftButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        leftButton.setImage(UIImage(named: "menu"), for: .normal)
-        
-        rightButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        rightButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        rightButton.setImage(UIImage(named: "info"), for: .normal)
-        */
-        
         
         //ViewControllerの画面を宣言し、初期化する。
         controller1.masterViewPointer = self
@@ -166,67 +154,13 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         let infoVc: InfoViewController = InfoStoryboard.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
         show(infoVc, sender: nil)
         
-        /*let navigationVc:NavigationViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as! NavigationViewController
-         navigationController?.pushViewController(navigationVc, animated: true)*/
     }
     
     @IBAction func questionButton(_ sender: Any) {
         let QuestionStoryboard: UIStoryboard = UIStoryboard(name: "Question", bundle: nil)
         let questionVc: QuestionViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
         show(questionVc, sender: nil)
-        /*
-        let vc:CommentViewController = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
-        let title = "Facebook連携が必要です"
-        let message = "コメント機能を利用するためにはFacebook連携を行う必要があります。ソーシャル連携のページへ移動しますか？"
-        
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        
-        //OK時の処理を定義。UIAlertAction.Styleがdefaultであることに注意
-        let okAction = UIAlertAction(title: "はい" ,style: UIAlertAction.Style.default, handler :
-        { (action:UIAlertAction) in
-            //ここで処理の続行へ戻させる
-            let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
-            let socialNetworkViewController:SocialNetworkViewController = InfoStoryboard.instantiateViewController(withIdentifier: "SocialNetwork") as! SocialNetworkViewController
-            self.navigationController?.pushViewController(socialNetworkViewController, animated: true)
-            
-            
-        })
-        alert.addAction(okAction)
-        
-        //キャンセル時の処理を定義。UIAlertAction.Styleがcancelであることに注意
-        let cancelAction:UIAlertAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.cancel, handler: { (action:UIAlertAction!) -> Void in
-            //キャンセル時の処理を書く。ただ処理をやめるだけなら書く必要はない。
-        })
-        alert.addAction(cancelAction)
-        
-        
-        if let user = Auth.auth().currentUser {
-            if !user.providerData.isEmpty {
-                for item in user.providerData {
-                    if item.providerID == "facebook.com" {
-                        Firestore.firestore().collection("users").document(user.uid).addSnapshotListener { querySnapshot, err in
-                            if let err = err {
-                                print("Error fetching documents: \(err)")
-                            } else {
-                                vc.profileData = Profile(snapshot: querySnapshot!, myId: user.uid)
-                                vc.receivedArticleData = self.receiveCellViewModel
-                                self.present(vc, animated: true, completion: nil)
-                                //self.navigationController?.pushViewController(vc, animated: true)
-                                
-                            }
-                        }
-                    }
-                }
-            } else {
-                self.present(alert, animated: true, completion: nil)
-                
-            }
-        }
-        
-        
-        
-        */
+
     }
     
 
