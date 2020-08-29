@@ -28,7 +28,7 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
     @IBOutlet weak var themeLabelRight: UILabel!
     @IBOutlet weak var themeLabelLeft: UILabel!
     var themeLabel_Array = [String]()
-    var giveBlockedUserIds:[String] = [] 
+    var giveBlockedUserIds:[String] = []
     
     //まずはcontrollerArrayの中身の型を決めて、初期化する。これでタンスができた状態になる
     var controllerArray : [UIViewController] = []
