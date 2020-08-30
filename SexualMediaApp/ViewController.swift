@@ -4,7 +4,6 @@
 //
 //  Created by 新 真大 on 2018/10/04.
 //  Copyright © 2018年 Masahiro Atarashi. All rights reserved.
-//追加したときは、coverflowContents = Coverflow.getSampleData() //ここで数を決めている。
 
 import UIKit
 import Firebase

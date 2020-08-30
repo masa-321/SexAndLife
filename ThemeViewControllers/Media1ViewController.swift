@@ -539,7 +539,7 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                  Terminating app due to uncaught exception 'NSGenericException', reason: 'Push segues can only be used when the source controller is managed by an instance of UINavigationController.
                  */
                 //これはどういう意味だろう。navigationControllerが呼ばれていないということだろうか。home画面へ移動する際のコードがshowになっていて、navigation controllerを継承したものではなかったのが原因だった。
-                //InitialNavigationControllerへ飛ばすことで解決。
+            
                 
             } else {
                 return
@@ -564,7 +564,6 @@ class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDa
                  Terminating app due to uncaught exception 'NSGenericException', reason: 'Push segues can only be used when the source controller is managed by an instance of UINavigationController.
                 */
                 //これはどういう意味だろう。navigationControllerが呼ばれていないということだろうか。home画面へ移動する際のコードがshowになっていて、navigation controllerを継承したものではなかったのが原因だった。
-                //InitialNavigationControllerへ飛ばすことで解決。
                 
             } else {
                 return

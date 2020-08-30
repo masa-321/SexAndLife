@@ -190,7 +190,7 @@ class ClipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for likeId in likeData.likes {
                 if likeId == uid {
                     // 削除するためにインデックスを保持しておく
-                    index = likeData.likes.index(of: likeId)!
+                    index = likeData.likes.firstIndex(of: likeId)!
                     break
                 }
             }
