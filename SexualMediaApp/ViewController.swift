@@ -131,8 +131,9 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
             // ログインしていないときの処理
             // viewDidAppear内でpresent()を呼び出しても表示されないためメソッドが終了してから呼ばれるようにする
             DispatchQueue.main.async {
-                let TutorialStoryboard: UIStoryboard = UIStoryboard(name: "Tutorial", bundle: nil)
-                let loginViewController = TutorialStoryboard.instantiateViewController(withIdentifier: "Login")
+                //let TutorialStoryboard: UIStoryboard = UIStoryboard(name: "Tutorial", bundle: nil)
+                //let loginViewController = TutorialStoryboard.instantiateViewController(withIdentifier: "Login")
+                let loginViewController = R.storyboard.tutorial.instantiateInitialViewController()!
                 self.present(loginViewController, animated: true, completion: self.controller1.tableView.reloadData)
             }
         }
@@ -149,9 +150,10 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
     }
     
     @IBAction func infoButton(_ sender: Any) {
-        let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
-        let infoVc: InfoViewController = InfoStoryboard.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
-        show(infoVc, sender: nil)
+        //let InfoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
+        //let infoVc: InfoViewController = InfoStoryboard.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
+        let infomationViewController = R.storyboard.info.instantiateInitialViewController()!
+        show(infomationViewController, sender: nil)
         
     }
     
