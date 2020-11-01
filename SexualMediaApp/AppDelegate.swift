@@ -15,6 +15,10 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    override init() { //初期化メソッドを追記
+            FirebaseApp.configure()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sleep(1)
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         UINavigationBar.appearance().shadowImage = UIImage()
-        FirebaseApp.configure()
+        //FirebaseApp.configure() [Swift5]にて"Failed to get FirebaseApp instance. Please call FirebaseApp.configure() before using Firestore"というエラーが出るようになったため、override init() {}の中に書くように変更。
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
