@@ -201,9 +201,11 @@ class TutorialViewController6: UIViewController {
 
     
     @IBAction func start(_ sender: Any) {
-        let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialVc: UINavigationController = MainStoryboard.instantiateViewController(withIdentifier: "Initial") as! UINavigationController
-        self.show(initialVc, sender: nil)
+//        let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let initialVc: UINavigationController = MainStoryboard.instantiateViewController(withIdentifier: "Initial") as! UINavigationController
+//        self.show(initialVc, sender: nil)
+        let initialVc = R.storyboard.main.instantiateInitialViewController()!
+        show(initialVc, sender: nil)
     }
     
     
