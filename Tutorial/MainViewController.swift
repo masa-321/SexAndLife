@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
 
 
     private func setupPageViewControllerTitle() {
-        tutorialTitleLabel.text = "クリスマスのディナー表示サンプル"
+        tutorialTitleLabel.text = "" //
     }
     
     //ステップアップインジゲーター表示の初期表示に関するセッティングをするメソッド

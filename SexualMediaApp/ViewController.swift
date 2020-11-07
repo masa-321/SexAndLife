@@ -31,14 +31,14 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
     
     //まずはcontrollerArrayの中身の型を決めて、初期化する。これでタンスができた状態になる
     var controllerArray : [UIViewController] = []
-    let controller1:Media1ViewController = Media1ViewController()
-    let controller2:Media2ViewController = Media2ViewController()
-    let controller3:Media3ViewController = Media3ViewController()
-    let controller4:Media4ViewController = Media4ViewController()
-    let controller5:Media5ViewController = Media5ViewController()
-    let controller6:Media6ViewController = Media6ViewController()
-    let controller7:Media7ViewController = Media7ViewController()
-    let controller8:Media8ViewController = Media8ViewController()
+    let controller0 = HomeViewController()
+    let controller1 = Category1ViewController()
+    let controller2 = Category2ViewController()
+    let controller3 = Category3ViewController()
+    let controller4 = Category4ViewController()
+    let controller5 = Category5ViewController()
+    let controller6 = Category6ViewController()
+    let controller7 = Category7ViewController()
     
     //起動画面のアニメーションで用いる。
     var launchImageView = UIImageView()
@@ -56,45 +56,45 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
         self.view.addSubview(launchImageView)
         
         //ViewControllerの画面を宣言し、初期化する。
-        controller1.masterViewPointer = self
-        controller1.title = "新着"
-        controllerArray.append(controller1)
+        controller0.masterViewPointer = self
+        controller0.title = "新着"
+        controllerArray.append(controller0)
         themeLabel_Array.append("新着")
         
-        controller2.masterViewPointer = self
-        controller2.title = "体のこと"
-        controllerArray.append(controller2)
+        controller1.masterViewPointer = self
+        controller1.title = "体のこと"
+        controllerArray.append(controller1)
         themeLabel_Array.append("体のこと")
         
-        controller3.masterViewPointer = self
-        controller3.title = "避妊のこと"
-        controllerArray.append(controller3)
+        controller2.masterViewPointer = self
+        controller2.title = "避妊のこと"
+        controllerArray.append(controller2)
         themeLabel_Array.append("避妊のこと")
         
-        controller4.masterViewPointer = self
-        controller4.title = "健康のこと"
-        controllerArray.append(controller4)
+        controller3.masterViewPointer = self
+        controller3.title = "健康のこと"
+        controllerArray.append(controller3)
         themeLabel_Array.append("健康のこと")
         
-        controller5.masterViewPointer = self
-        controller5.title = "LGBTQ+(SOGI)"
-        controllerArray.append(controller5)
+        controller4.masterViewPointer = self
+        controller4.title = "LGBTQ+(SOGI)"
+        controllerArray.append(controller4)
         themeLabel_Array.append("LGBTQ+(SOGI)")
         
-        controller6.masterViewPointer = self
-        controller6.title = "ライフプランニング"
-        controllerArray.append(controller6)
+        controller5.masterViewPointer = self
+        controller5.title = "ライフプランニング"
+        controllerArray.append(controller5)
         themeLabel_Array.append("ライフプランニング")
         
         
-        controller7.masterViewPointer = self
-        controller7.title = "パートナーシップ"
-        controllerArray.append(controller7)
+        controller6.masterViewPointer = self
+        controller6.title = "パートナーシップ"
+        controllerArray.append(controller6)
         themeLabel_Array.append("パートナーシップ")
         
-        controller8.masterViewPointer = self
-        controller8.title = "セックスのこと"
-        controllerArray.append(controller8)
+        controller7.masterViewPointer = self
+        controller7.title = "セックスのこと"
+        controllerArray.append(controller7)
         themeLabel_Array.append("セックスのこと")
         
         //FSPagerViewの設定
