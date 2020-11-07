@@ -48,6 +48,109 @@ class Media2ViewController: MediaViewController {
     }
 }
 
+class Media3ViewController: MediaViewController {
+    
+    let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "避妊のこと")
+    
+    override func refresh() {
+        fetchArticleData(query: query)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchArticleData(query: query)
+    }
+    
+    override func channelChange2(sender:UIButton, event:UIEvent) {
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+    }
+}
+
+class Media4ViewController: MediaViewController {
+    
+    let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "健康のこと")
+    
+    override func refresh() {
+        fetchArticleData(query: query)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchArticleData(query: query)
+    }
+    
+    override func channelChange3(sender:UIButton, event:UIEvent) {
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+    }
+}
+
+class Media5ViewController: MediaViewController {
+    
+    let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "LGBTQ+")
+    
+    override func refresh() {
+        fetchArticleData(query: query)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchArticleData(query: query)
+    }
+    
+    override func channelChange4(sender:UIButton, event:UIEvent) {
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+    }
+}
+
+class Media6ViewController: MediaViewController {
+    
+    let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "ライフプランニング")
+    
+    override func refresh() {
+        fetchArticleData(query: query)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchArticleData(query: query)
+    }
+    
+    override func channelChange5(sender:UIButton, event:UIEvent) {
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+    }
+}
+
+
+class Media7ViewController: MediaViewController {
+    
+    let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "パートナーシップ")
+    
+    override func refresh() {
+        fetchArticleData(query: query)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchArticleData(query: query)
+    }
+    
+    override func channelChange6(sender:UIButton, event:UIEvent) {
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+    }
+}
+
+class Media8ViewController: MediaViewController {
+    
+    let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "セックスのこと")
+    
+    override func refresh() {
+        fetchArticleData(query: query)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchArticleData(query: query)
+    }
+    
+    override func channelChange7(sender:UIButton, event:UIEvent) {
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+    }
+}
+
 //class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 //    //TableViewの宣言
 //    var tableView:UITableView = UITableView()
