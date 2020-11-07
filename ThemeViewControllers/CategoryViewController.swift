@@ -14,7 +14,7 @@ import FirebaseDatabase
 //import SDWebImage
 //import SVProgressHUD
 
-class Media1ViewController: MediaViewController {
+class HomeViewController: MediaViewController {
     
     let query = Firestore.firestore().collection("articleData")
     
@@ -31,7 +31,7 @@ class Media1ViewController: MediaViewController {
     }
 }
 
-class Media2ViewController: MediaViewController {
+class Category1ViewController: MediaViewController {
     
     let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "体のこと")
     
@@ -48,7 +48,7 @@ class Media2ViewController: MediaViewController {
     }
 }
 
-class Media3ViewController: MediaViewController {
+class Category2ViewController: MediaViewController {
     
     let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "避妊のこと")
     
@@ -65,7 +65,7 @@ class Media3ViewController: MediaViewController {
     }
 }
 
-class Media4ViewController: MediaViewController {
+class Category3ViewController: MediaViewController {
     
     let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "健康のこと")
     
@@ -82,7 +82,7 @@ class Media4ViewController: MediaViewController {
     }
 }
 
-class Media5ViewController: MediaViewController {
+class Category4ViewController: MediaViewController {
     
     let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "LGBTQ+")
     
@@ -99,7 +99,7 @@ class Media5ViewController: MediaViewController {
     }
 }
 
-class Media6ViewController: MediaViewController {
+class Category5ViewController: MediaViewController {
     
     let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "ライフプランニング")
     
@@ -117,7 +117,7 @@ class Media6ViewController: MediaViewController {
 }
 
 
-class Media7ViewController: MediaViewController {
+class Category6ViewController: MediaViewController {
     
     let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "パートナーシップ")
     
@@ -134,7 +134,7 @@ class Media7ViewController: MediaViewController {
     }
 }
 
-class Media8ViewController: MediaViewController {
+class Category7ViewController: MediaViewController {
     
     let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "セックスのこと")
     
