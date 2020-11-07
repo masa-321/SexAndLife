@@ -29,7 +29,23 @@ class Media1ViewController: MediaViewController {
     override func toHome(sender: UIButton, event: UIEvent) {
         self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
+}
+
+class Media2ViewController: MediaViewController {
     
+    let query = Firestore.firestore().collection("articleData").whereField("genreName", isEqualTo: "体のこと")
+    
+    override func refresh() {
+        fetchArticleData(query: query)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchArticleData(query: query)
+    }
+    
+    override func channelChange1(sender:UIButton, event:UIEvent) {
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+    }
 }
 
 //class Media1ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
