@@ -49,6 +49,7 @@
 		5F086F8021EB2E670077B8E9 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F7F21EB2E660077B8E9 /* CAPSPageMenu.swift */; };
 		5F086F8221EB33930077B8E9 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */; };
 		5F086F8521EB33EF0077B8E9 /* ProfileCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */; };
+		5F1151C5257EDF3400CC76B8 /* SocialNetworkLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1151C4257EDF3400CC76B8 /* SocialNetworkLogin.storyboard */; };
 		5F3883E321DDF6E800D95B72 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3883E221DDF6E700D95B72 /* R.generated.swift */; };
 		5F48750221FAB5BB00190E75 /* BrowseConsultationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48750121FAB5BB00190E75 /* BrowseConsultationViewController.swift */; };
 		5F48750521FB60CC00190E75 /* CommentEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48750321FB60CC00190E75 /* CommentEmptyCell.swift */; };
@@ -153,6 +154,7 @@
 		5F086F7F21EB2E660077B8E9 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		5F086F8121EB33930077B8E9 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		5F086F8421EB33EF0077B8E9 /* ProfileCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentViewController.swift; sourceTree = "<group>"; };
+		5F1151C4257EDF3400CC76B8 /* SocialNetworkLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SocialNetworkLogin.storyboard; sourceTree = "<group>"; };
 		5F3883E221DDF6E700D95B72 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		5F48750121FAB5BB00190E75 /* BrowseConsultationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseConsultationViewController.swift; sourceTree = "<group>"; };
 		5F48750321FB60CC00190E75 /* CommentEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEmptyCell.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				5F6A1FAF21EC2489009AD79A /* Consultation.storyboard */,
 				5F6DF6C621F742E60010085C /* Tutorial.storyboard */,
 				5F9B349C2376944D00C31C69 /* Report.storyboard */,
+				5F1151C4257EDF3400CC76B8 /* SocialNetworkLogin.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				5F6A1FFA21F36A92009AD79A /* ProfileCommentCell.xib in Resources */,
 				105184412165992100EA36BD /* LaunchScreen.storyboard in Resources */,
 				500485AF2170372C0062C75F /* InfoCell.xib in Resources */,
+				5F1151C5257EDF3400CC76B8 /* SocialNetworkLogin.storyboard in Resources */,
 				1051843E2165992100EA36BD /* Assets.xcassets in Resources */,
 				5FB49030222E5A2D00594856 /* ConsultationDetailBodyCell.xib in Resources */,
 				5FEDC03821E1D3D5006A3563 /* QuestionAnswerCell.xib in Resources */,
