@@ -755,7 +755,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 7 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 8 storyboards.
   struct storyboard {
     /// Storyboard `Consultation`.
     static let consultation = _R.storyboard.consultation()
@@ -769,6 +769,8 @@ struct R: Rswift.Validatable {
     static let question = _R.storyboard.question()
     /// Storyboard `Report`.
     static let report = _R.storyboard.report()
+    /// Storyboard `SocialNetworkLogin`.
+    static let socialNetworkLogin = _R.storyboard.socialNetworkLogin()
     /// Storyboard `Tutorial`.
     static let tutorial = _R.storyboard.tutorial()
     
@@ -800,6 +802,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Report", bundle: ...)`
     static func report(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.report)
+    }
+    
+    /// `UIStoryboard(name: "SocialNetworkLogin", bundle: ...)`
+    static func socialNetworkLogin(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.socialNetworkLogin)
     }
     
     /// `UIStoryboard(name: "Tutorial", bundle: ...)`
@@ -1081,6 +1088,7 @@ struct _R: Rswift.Validatable {
       try main.validate()
       try question.validate()
       try report.validate()
+      try socialNetworkLogin.validate()
       try tutorial.validate()
     }
     
@@ -1293,6 +1301,18 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.report().report() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'report' could not be loaded from storyboard 'Report' as 'ReportViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct socialNetworkLogin: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "SocialNetworkLogin"
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
       }
       
       fileprivate init() {}
